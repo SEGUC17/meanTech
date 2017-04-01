@@ -10,9 +10,8 @@ var app = express();
 app.set('view engine', 'ejs');
 
 // configure app
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
 
 mongoose.connect(DB_URI);
