@@ -12,7 +12,10 @@ var reviewSchema = mongoose.Schema({
         min: 1,
         max: 5
     },
-    date: Date
+    date: {
+        type: Date,
+        default: Date.now
+    }
 
 })
 
