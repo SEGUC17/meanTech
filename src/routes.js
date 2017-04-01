@@ -8,8 +8,8 @@ var serviceController = require('./controllers/serviceController');
 
 router.post('/company', companyController.companySubscription);
 router.post('/event', eventController.createEvent);
-router.get('/events', eventController.getAllEvents);
-router.get('/services', serviceController.getAllServices);
+router.get('/allEvents', eventController.getAllEvents);
+router.get('/allServices', serviceController.getAllServices);
 
 
 
