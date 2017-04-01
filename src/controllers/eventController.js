@@ -18,19 +18,16 @@ let eventController = {
 
                     }
                 })
+            },
 
-          //    }
-            }
-
-
-// Flaashh messages w event date hasnot passed
-
-
-
-
-
-
-
+    getAllEvents:function(req, res){
+        Event.find({}, '-_id -companyID', function(err, events){
+            if(err)
+                res.send(err.message)
+            else
+                res.send({events});
+        })
+    }
 }
 
 
