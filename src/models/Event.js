@@ -52,7 +52,7 @@ var eventSchema = mongoose.Schema({
 
     },
 
-    companyID:{type :mongoose.Schema.ObjectId, ref: 'Company'} //zy foreinkey
+    companyID:{type :mongoose.Schema.ObjectId, ref: 'Company'}
 
 
 
