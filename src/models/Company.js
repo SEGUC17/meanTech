@@ -8,7 +8,7 @@ var companySchema = mongoose.Schema({
         required:true
 
     },
-    username:{
+    username:{ 
         type:String,
         required:true,
         unique: true
