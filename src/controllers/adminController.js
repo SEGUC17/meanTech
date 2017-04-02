@@ -1,4 +1,6 @@
  var Admin = require('../models/Admin');
+ var Company = require('../models/Company');
+ var companyController = require('../controllers/companyController');
  var bcrypt = require('bcryptjs');
 
  module.exports.adminRegister = function (req, res) {
@@ -41,4 +43,42 @@
          if (err) throw err;
          callback(null, isMatch);
      });
+ }
+
+ module.exports.unverifiedCompanies = function (req, res) {
+     var verified = false;
+
+     companyController.getUnverfiedCompanies(verified, function (err, Company) {
+         if (err) {
+             res.send(err);
+         } else {
+             res.send(Company);
+         }
+     });
+ }
+
+ module.exports.verifyCompanies = function (req, res) {
+     var username = req.body.username;
+     var verified = req.body.verified;
+
+     companyController.getCompanyByUsername(username, verified, function (err, Company) {
+         if (err) {
+             res.send(err);
+         } else {
+             Company.save(function (err, Company) {
+                 if (err) {
+                     res.json({
+                         success: false,
+                         msg: 'Company was not verified.'
+                     });
+                 } else {
+                     res.json({
+                         success: true,
+                         msg: 'complete.'
+                     });
+                 }
+             });
+         }
+     });
+
  }

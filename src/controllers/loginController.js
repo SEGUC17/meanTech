@@ -13,7 +13,7 @@ module.exports.adminLogin = function (req, res) {
         if (!Admin) {
             return res.json({
                 success: false,
-                msg: 'Admin not available.'
+                msg: 'Admin not available.' 
             })
         }
 
