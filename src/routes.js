@@ -13,6 +13,9 @@ router.get('/allEvents', eventController.getAllEvents);
 router.get('/allServices', serviceController.getAllServices);
 router.post('/adminRegister', adminController.adminRegister);
 router.post('/adminLogin', loginController.adminLogin);
+router.post('/updateEvents', eventController.updateEvents);
+router.get('/companyEvents', eventController.getCompanyEvents);
+
 
 
 
