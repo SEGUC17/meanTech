@@ -1,4 +1,5 @@
 {
+
   "name": "session",
   "version": "1.0.0",
   "description": "",
@@ -17,4 +18,5 @@
     "nodemon": "^1.11.0",
     "jsonwebtoken": "^7.3.0"
   }
+
 }
