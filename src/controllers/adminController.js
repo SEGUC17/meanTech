@@ -82,3 +82,25 @@
      });
 
  }
+
+ module.exports.viewCompanies = function (req, res) {
+     companyController.getCompanies(function (err, companies) {
+         if (err) {
+             res.send(err);
+         } else {
+             res.send(companies);
+         }
+     });
+ }
+
+ module.exports.deleteCompany = function (req, res) {
+         var username = req.body.username;
+
+         companyController.getCompanyAndRemove(username, function(err, Company){
+                if(err){
+                    res.send(err);
+                }else{
+                    res.send('complete');
+                }
+         });
+ }

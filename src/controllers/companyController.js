@@ -49,8 +49,19 @@ module.exports.getUnverfiedCompanies = function (verified, callback) {
 
  module.exports.getCompanyByUsername = function (username, verified, callback) {
      var query = {
-         username: username,
+         username: username
      };
      
      Company.findOneAndUpdate(query, {$set:{"verified": verified}}).exec(callback);
  }
+
+module.exports.getCompanies = function (callback) {
+    Company.find({}, callback)
+}
+
+module.exports.getCompanyAndRemove = function(username, callback){
+  var query = {
+    username: username
+  };
+  Company.findOneAndRemove(query, callback);
+}

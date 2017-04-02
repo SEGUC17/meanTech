@@ -23,6 +23,10 @@ router.get('/unverifiedCompanies', adminController.unverifiedCompanies);
 
 router.post('/verifyCompanies', adminController.verifyCompanies);
 
+router.get('/viewCompanies', adminController.viewCompanies);
+
+router.post('/deleteCompany', adminController.deleteCompany);
+
 
 
 
