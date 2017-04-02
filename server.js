@@ -1,14 +1,20 @@
-// require depenciess
 
-const express = require('express');
-const router = require('./src/routes');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+//require depenciess
+var express = require('express');
+var router = require('./src/routes');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
+var token = require('./src/config/token');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(__dirname + '/public'));
+
 app.use(express.static('/public'));
 
 app.use(router);
