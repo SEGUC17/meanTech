@@ -44,8 +44,8 @@ let eventController = {
                         //     events
                         // }
                         res.send(200);
-                );
-            })
+                
+            });
     },
 
     updateEvents: function(req, res) {
