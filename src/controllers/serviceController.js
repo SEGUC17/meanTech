@@ -3,16 +3,6 @@ var express = require('express');
 var router = express.Router();
 
 let serviceController = {
-    getServices: function (req, res) {
-
-        Service.find(function (err, service) {
-
-            if (err)
-                res.send(err.message);
-            else
-                res.render('serviceView', {service});
-        })
-    },
     createService: function (req, res) {
         let service = new Service(req.body);
 
@@ -42,6 +32,14 @@ let serviceController = {
             $set: {
                 name: req.body.name
             }
+        })
+    },
+        getAllServices:function(req, res){
+        Service.find({}, '-_id -companyID', function(err, services){
+            if(err)
+                res.send(err.message)
+            else
+                res.send({services});
         })
     }
 }
