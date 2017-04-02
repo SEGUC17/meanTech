@@ -3,22 +3,22 @@ mongoose.Promise = require('bluebird');
 
 
 var faqSchema = mongoose.Schema({
-    questionText:{
-        type:String,
-        required:true
+    questionText: {
+        type: String,
+        required: true
 
     },
-    answerText:{
-        type:String,
-        
+    answerText: {
+        type: String,
+
 
     },
-  
-   clientUsername:{
-        type: String ,
-        required:true
+
+    clientUsername: {
+        type: String,
+        required: true
     }
-    })
+})
 
 var FAQ = mongoose.model("faq", faqSchema);
 

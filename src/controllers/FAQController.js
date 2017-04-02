@@ -15,18 +15,18 @@ let FAQController = {
         })
     },
 
-    askFAQ:function(req,res){
+    askFAQ: function (req, res) {
 
-        let newQ = new FAQ (req.body);
+        let newQ = new FAQ(req.body);
         console.log(req.body);
 
-        newQ.save(function(err,newQ){
+        newQ.save(function (err, newQ) {
 
-        if(err)
-            res.send(err.message)
-        else{
-            res.send('Success')
-        }
+            if (err)
+                res.send(err.message)
+            else {
+                res.send('Success')
+            }
         })
 
     },
