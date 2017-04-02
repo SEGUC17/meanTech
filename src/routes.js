@@ -12,6 +12,10 @@ var promotionController = require('./controllers/promotionController');
 var clientController = require('./controllers/clientController');
 var reviewController = require('./controllers/reviewController');
 
+router.get('/', function (req, res) {
+    res.json({ hello: 'world' });
+});
+
 router.get('/company/profile', companyController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
