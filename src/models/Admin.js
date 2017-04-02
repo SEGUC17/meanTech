@@ -12,6 +12,10 @@
      email: {
          type: String,
          requried: true
+     },
+     answer: {
+         type: String,
+         requried: true
      }
  });
 

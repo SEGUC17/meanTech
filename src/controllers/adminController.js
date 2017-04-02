@@ -5,7 +5,8 @@
      let newAdmin = new Admin({
          username: req.body.username,
          password: req.body.password,
-         email: req.body.email
+         email: req.body.email,
+         answer: req.body.answer
      });
 
      bcrypt.genSalt(10, function (err, salt) {
@@ -41,4 +42,24 @@
          if (err) throw err;
          callback(null, isMatch);
      });
+
+    
+    
+    module.exports.changePassword = function (req,res) {
+        getAdminByUsername.password = req.pw;
+    }
+
+module.exports.resetpassword = function(req,res) {
+    if (req.questionAnswer == getAdminByUsername.answer)
+    {
+        getAdminByUsername.password = req.pw;
+    }
+    else 
+    {
+        console.log('there"s a problem here ');
+    }
+}
+
+
+
  }
