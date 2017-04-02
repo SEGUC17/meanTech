@@ -21,12 +21,15 @@ module.exports.adminLogin = function (req, res) {
             if (err) throw err;
 
             if (isMatch) {
-                var token = jwt.sign(Admin, config.secret, {
+                var token = jwt.sign({
+                    username: Admin.username,
+                    role: 'admin',
+                }, config.secret, {
                     expiresIn: 604800
                 });
                 res.json({
                     success: true,
-                    token: 'JWT' + token,
+                    token: token,
                     admin: {
                         id: Admin._id,
                         username: Admin.username,
