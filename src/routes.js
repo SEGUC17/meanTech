@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var serviceController = require('./controllers/serviceController');
 let Service = require('./models/Service');
 
 
@@ -21,7 +20,10 @@ router.post('/company', companyController.companySubscription);
 router.post('/event', eventController.createEvent);
 router.post('/faq',FAQController.askFAQ);
 
-router.post('/serviceView', serviceController.deleteService);
+router.post('/deleteService', serviceController.deleteService);
+router.post('/updateService', serviceController.updateService);
+router.post('/createService', serviceController.createService);
+
 
 
 router.post('/company', companyController.companySubscription);
