@@ -16,11 +16,11 @@ console.log(req.body);
             logoURL: req.body.logoURL,
             email: req.body.email,
             mobileNumbers: req.body.mobileNumbers,
-          branches: req.body.branches,
+            branches: req.body.branches,
             socialMediaURL: req.body.socialMediaURL,
             verified: false,
-          payementMethod: req.body.payementMethod,
-          securityQuestion : req.body.securityQuestion,
+            payementMethod: req.body.payementMethod,
+            securityQuestion : req.body.securityQuestion,
             securityAnswer : req.body.securityAnswer
           });
 
@@ -35,11 +35,19 @@ console.log(req.body);
                 //res.redirect('/');
               }
           })
-      }
+      },
 
-
-
-
+       viewCompanyProfile:function(req,res){
+        var id = req.body.id;
+        console.log(id);
+        company.findById( id ,function(err,Company){
+            if (err)
+                res.send(err.message);
+            else 
+               console.log('success');
+                res.render('companyProfile',{Company})
+             })
+        },
 
 
 }
