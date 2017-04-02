@@ -1,6 +1,6 @@
 let Company = require('../models/Company');
 
-let companyController = {
+let companyController = { 
 
   companySubscription:function(req, res){
 console.log(req.body);
