@@ -14,7 +14,19 @@ let reviewController = {
                 console.log(review);
             }
         })
+    },
+
+    delete: function (req, res) {
+
+        Review.findOneAndRemove({ username: req.body.username, companyID: req.body.companyID }, function (err) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log('Review is deleted.');
+            }
+        })
     }
+
 }
 
 module.exports = reviewController;

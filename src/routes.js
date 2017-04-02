@@ -21,7 +21,7 @@ router.get('/company/profile', companyController.viewCompanyProfile);
 router.post('/company', companyController.companySubscription);
 router.post('/event', eventController.createEvent);
 router.post('/faq', FAQController.askFAQ);
-
+router.post('/faqa', FAQController.answerFAQ);
 
 
 router.post('/company', companyController.companySubscription);
@@ -42,6 +42,7 @@ router.get('/allPromotions', promotionController.getAllPromotions);
 router.post('/register', clientController.register);
 
 router.post('/review', reviewController.create);
+router.post('/deleteR', reviewController.delete);
 
 
 module.exports = router;
