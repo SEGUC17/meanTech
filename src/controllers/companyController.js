@@ -27,17 +27,29 @@ let companyController = {
       if (err) {
         res.send(err)
         console.log(err);
-      } else {
+      }
+      else {
         //  console.log(student);
         res.send('success');
         //res.redirect('/');
       }
     })
-  }
+
+  },
+  viewCompanyProfile: function (req, res) {
+    var id = req.body.id;
+    console.log(id);
+    company.findById(id, function (err, Company) {
+      if (err)
+        res.send(err.message);
+      else
+        console.log('success');
+      res.render('companyProfile', { Company })
+    })
+  },
 }
 
 module.exports = companyController;
-
 
 module.exports.getUnverfiedCompanies = function (verified, callback) {
   var query = {
