@@ -8,6 +8,7 @@ var eventController = require('./controllers/eventController');
 router.post('/company', companyController.companySubscription);
 router.post('/event', eventController.createEvent);
 
+router.get('/client',clientController.viewProfile);
 
 
 
