@@ -5,10 +5,12 @@ var eventController = require('./controllers/eventController');
 var serviceController = require('./controllers/serviceController');
 var adminController = require('./controllers/adminController');
 var loginController = require('./controllers/loginController');
-
+var clientController = require ('./controllers/clientController');
 
 router.post('/company', companyController.companySubscription);
 router.post('/event', eventController.createEvent);
+
+router.get('/client',clientController.viewProfile);
 router.get('/allEvents', eventController.getAllEvents);
 router.get('/allServices', serviceController.getAllServices);
 router.post('/adminRegister', adminController.adminRegister);
