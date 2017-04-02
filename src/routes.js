@@ -41,7 +41,7 @@ router.post('/adminLogin', loginController.adminLogin);
 
 router.post('/updateEvents', eventController.updateEvents);
 
-//router.get('/companyEvents', eventController.getCompanyEvents);
+router.get('/companyEvents', eventController.getCompanyEvents);
 
 router.get('/unverifiedCompanies', adminController.unverifiedCompanies);
 
