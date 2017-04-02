@@ -1,6 +1,6 @@
 let Promotion = require('../models/Promotion');
 
-let promotionController = {
+module.exports = {
     getAllPromotions: function (req, res) {
         Promotion.find(function (err, promotions) {
             if (err)
