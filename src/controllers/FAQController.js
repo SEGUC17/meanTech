@@ -1,16 +1,5 @@
 var FAQ = require('../models/FAQ');
 
-module.exports.viewFAQs = function(req, res, next) {
-
-    var query = FAQ.find({}).select('questionText answerText clientUsername');
-
-    query.exec(function (err, FAQ) {
-        if (err) return next(err);
-        res.send(FAQ);
-    });
-};
-
-
 let FAQController = {
 
     answerFAQ: function (req, res) {
@@ -40,6 +29,15 @@ let FAQController = {
             }
         })
 
+    },
+    viewFAQs: function (req, res, next) {
+
+        var query = FAQ.find({}).select('questionText answerText clientUsername');
+
+        query.exec(function (err, faq) {
+            if (err) return next(err);
+            res.send(faq);
+        });
     },
 
 }

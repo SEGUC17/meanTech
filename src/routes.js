@@ -1,15 +1,13 @@
 var express = require('express');
-var jwt = require('jsonwebtoken')
+var jwt = require('jsonwebtoken');
 var router = express.Router();
 
 var companyController = require('./controllers/companyController');
 var eventController = require('./controllers/eventController');
 var FAQController = require('./controllers/FAQController');
-
 var serviceController = require('./controllers/serviceController');
 var adminController = require('./controllers/adminController');
 var loginController = require('./controllers/loginController');
-var FAQController = require('./controllers/FAQController');
 var promotionController = require('./controllers/promotionController');
 var clientController = require('./controllers/clientController');
 var reviewController = require('./controllers/reviewController');

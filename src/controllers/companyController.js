@@ -27,8 +27,7 @@ let companyController = {
       if (err) {
         res.send(err)
         console.log(err);
-      }
-      else {
+      } else {
         //  console.log(student);
         res.send('success');
         //res.redirect('/');
@@ -44,35 +43,42 @@ let companyController = {
         res.send(err.message);
       else
         console.log('success');
-      res.render('companyProfile', { Company })
+      res.render('companyProfile', {
+        Company
+      })
     })
+  },
+ 
+
+  getUnverfiedCompanies: function (verified, callback) {
+    var query = {
+      verified: verified
+    };
+    Company.find(query, callback);
+  },
+
+  getCompanyByUsername: function (username, verified, callback) {
+    var query = {
+      username: username
+    };
+
+    Company.findOneAndUpdate(query, {
+      $set: {
+        "verified": verified
+      }
+    }).exec(callback);
+  },
+
+  getCompanies: function (callback) {
+    Company.find({}, callback)
+  },
+
+  getCompanyAndRemove: function (username, callback) {
+    var query = {
+      username: username
+    };
+    Company.findOneAndRemove(query, callback);
   },
 }
 
-module.exports = companyController;
-
-module.exports.getUnverfiedCompanies = function (verified, callback) {
-  var query = {
-    verified: verified
-  };
-  Company.find(query, callback);
-}
-
- module.exports.getCompanyByUsername = function (username, verified, callback) {
-     var query = {
-         username: username
-     };
-     
-     Company.findOneAndUpdate(query, {$set:{"verified": verified}}).exec(callback);
- }
-
-module.exports.getCompanies = function (callback) {
-    Company.find({}, callback)
-}
-
-module.exports.getCompanyAndRemove = function(username, callback){
-  var query = {
-    username: username
-  };
-  Company.findOneAndRemove(query, callback);
-}
+ module.exports = companyController;
