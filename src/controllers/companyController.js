@@ -3,7 +3,6 @@ let Company = require('../models/Company');
 let companyController = {
 
   companySubscription: function (req, res) {
-    console.log(req.body);
     let company = new Company({
       name: req.body.name,
       username: req.body.username,

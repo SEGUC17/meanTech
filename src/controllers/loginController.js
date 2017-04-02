@@ -28,7 +28,7 @@ module.exports.adminLogin = function (req, res) {
                     success: true,
                     token: 'JWT' + token,
                     admin: {
-                        id: Admin._id,
+                        id: Admin._id, 
                         username: Admin.username,
                         email: Admin.email
                     }

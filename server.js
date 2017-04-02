@@ -4,6 +4,9 @@ var router = require('./src/routes');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var DB_URI = "mongodb://localhost:27017/sprint1";
+var expressJWT = require('express-jwt');
+var jwt = require('jsonwebtoken');
+var token = require('./src/config/token');
 
 var app = express();
 
@@ -13,6 +16,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/public'));
+app.use(expressJWT({secret: token.secret}).unless({path: ['/unverifiedCompanies']}));
 
 mongoose.connect(DB_URI);
 app.use(router);

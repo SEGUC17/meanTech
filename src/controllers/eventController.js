@@ -31,22 +31,22 @@ let eventController = {
         },
         //coID should be in the session so i can query in the events table to get all events that have coID= to companyID
 
-        getCompanyEvents: function(req, res) {
+    //     getCompanyEvents: function(req, res) {
 
-            Event.find({
-                    companyID: 2
-                }, function(err, events) {
+    //         Event.find({
+    //                 companyID: 2
+    //             }, function(err, events) {
 
-                    if (err)
-                        res.send(err.message);
-                    else
-                        // res.render('events', {
-                        //     events
-                        // }
-                        res.send(200);
-                );
-            })
-    },
+    //                 if (err)
+    //                     res.send(err.message);
+    //                 else
+    //                     // res.render('events', {
+    //                     //     events
+    //                     // }
+    //                     res.send(200);
+    //             );
+    //         }
+    // },
 
     updateEvents: function(req, res) {
 
