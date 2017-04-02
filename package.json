@@ -1,6 +1,5 @@
 {
-
-  "name": "session",
+  "name": "meanTech",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -18,5 +17,4 @@
     "nodemon": "^1.11.0",
     "jsonwebtoken": "^7.3.0"
   }
-
 }
