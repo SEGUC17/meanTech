@@ -31,7 +31,8 @@ var clientSchema = mongoose.Schema({
     phoneNumbers: [String],
     previousEvents: [String],
     securityQuestion: String,
-    securityAnswer: String
+    securityAnswer: String,
+    wishList:[{type: mongoose.Schema.ObjectId, ref: 'Service'}]
 
 })
 
