@@ -38,14 +38,15 @@ let companyController = {
   },
 
   viewCompanyProfile: function (req, res) {
-    var id = req.body.id;
-    console.log(id);
-    company.findById(id, function (err, Company) {
+    var id = req.query;
+    
+    Company.findById( id , function (err, company) {
       if (err)
         res.send(err.message);
       else
-        console.log('success');
-      res.render('companyProfile', { Company })
+        res.send(company);
+       //console.log(req.body);
+     // res.render('companyProfile', { Company })
     })
   },
 

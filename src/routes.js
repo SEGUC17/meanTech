@@ -43,5 +43,9 @@ router.post('/register', clientController.register);
 
 router.post('/review', reviewController.create);
 
+router.get('/contactUs',function(req,res){
+    res.render('contactUs')
+});
+
 
 module.exports = router;

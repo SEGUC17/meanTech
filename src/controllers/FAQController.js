@@ -18,6 +18,7 @@ let FAQController = {
     askFAQ: function (req, res) {
 
         let newQ = new FAQ(req.body);
+        //req.decoded.username
         console.log(req.body);
 
         newQ.save(function (err, newQ) {
