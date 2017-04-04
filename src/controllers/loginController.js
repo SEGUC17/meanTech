@@ -49,7 +49,7 @@ module.exports = {
             });
         });
 
-    });
+    }
 }
 
 
@@ -148,6 +148,6 @@ module.exports.companyLogin =function(req, res){
 
             }
 
-    }
-}
+    
+
 

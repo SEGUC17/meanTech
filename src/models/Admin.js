@@ -15,7 +15,7 @@ var adminSchema = mongoose.Schema({
     },
     answer: {
         type: String,
-        requried: true
+        requried: true 
     }
 });
 

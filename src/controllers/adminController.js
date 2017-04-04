@@ -23,7 +23,7 @@ module.exports = {
         } else {
             console.log('there"s a problem here ');
         }
-    },
+    }, 
 
     adminRegister: function (req, res) {
         let newAdmin = new Admin({
