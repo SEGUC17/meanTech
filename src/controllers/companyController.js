@@ -3,7 +3,6 @@ let Company = require('../models/Company');
 let companyController = {
 
   companySubscription: function (req, res) {
-    console.log(req.body);
     let company = new Company({
       name: req.body.name,
       username: req.body.username,
@@ -28,15 +27,14 @@ let companyController = {
       if (err) {
         res.send(err)
         console.log(err);
-      }
-      else {
+      } else {
         //  console.log(student);
         res.send('success');
         //res.redirect('/');
       }
     })
-  },
 
+  },
   viewCompanyProfile: function (req, res) {
     var id = req.body.id;
     console.log(id);
@@ -45,11 +43,42 @@ let companyController = {
         res.send(err.message);
       else
         console.log('success');
-      res.render('companyProfile', { Company })
+      res.render('companyProfile', {
+        Company
+      })
     })
   },
+ 
 
+  getUnverfiedCompanies: function (verified, callback) {
+    var query = {
+      verified: verified
+    };
+    Company.find(query, callback);
+  },
 
+  getCompanyByUsername: function (username, verified, callback) {
+    var query = {
+      username: username
+    };
+
+    Company.findOneAndUpdate(query, {
+      $set: {
+        "verified": verified
+      }
+    }).exec(callback);
+  },
+
+  getCompanies: function (callback) {
+    Company.find({}, callback)
+  },
+
+  getCompanyAndRemove: function (username, callback) {
+    var query = {
+      username: username
+    };
+    Company.findOneAndRemove(query, callback);
+  },
 }
 
-module.exports = companyController;
+ module.exports = companyController;

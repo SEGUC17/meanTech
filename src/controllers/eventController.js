@@ -49,7 +49,7 @@ let eventController = {
         })
     },
     //coID should be in the session so i can query in the events table to get all events that have coID= to companyID
-
+    
     getCompanyEvents: function (req, res) {
 
         Event.find({
