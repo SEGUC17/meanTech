@@ -1,16 +1,16 @@
-var express = require('express');
-var jwt = require('jsonwebtoken');
-var router = express.Router();
+const express = require('express');
 
-var companyController = require('./controllers/companyController');
-var eventController = require('./controllers/eventController');
-var FAQController = require('./controllers/FAQController');
-var serviceController = require('./controllers/serviceController');
-var adminController = require('./controllers/adminController');
-var loginController = require('./controllers/loginController');
-var promotionController = require('./controllers/promotionController');
-var clientController = require('./controllers/clientController');
-var reviewController = require('./controllers/reviewController');
+const router = express.Router();
+const jwt = require('jsonwebtoken');
+const companyController = require('./controllers/companyController');
+const eventController = require('./controllers/eventController');
+const FAQController = require('./controllers/FAQController');
+const serviceController = require('./controllers/serviceController');
+const adminController = require('./controllers/adminController');
+const loginController = require('./controllers/loginController');
+const promotionController = require('./controllers/promotionController');
+const clientController = require('./controllers/clientController');
+const reviewController = require('./controllers/reviewController');
 
 router.get('/', function (req, res) {
     res.json({ hello: 'world' });
