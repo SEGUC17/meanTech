@@ -6,7 +6,7 @@ let eventController = {
 //    if ("req.body.date" : {"$gte":  Date.now}){
 
 //console.log(req.decoded.id);
-              let event = new Event({
+        let event = new Event({
                 name: req.body.name,
             details: req.body.details,
              date: req.body.date,

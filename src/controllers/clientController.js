@@ -29,23 +29,33 @@ let clientController = {
         )
     },
 
-    updatePassword: function (req,res, serviceID) {
+    updatePassword: function (req,res) {
 
-         Client.findOneAndUpdate({_id: req.decoded.id}, {"password" : req.newPassword}, function(err, client) {
-              if (err) {
+        Client.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.body.newPassword }, function(err, client) {
+            if (err) {
+                console.log(err);
                 console.log('update password failed ');
-              }
-              if (client){
-           console.log("Password updated");
-            client.markModified('Password ok');
             }
-
-            });
-
+            if (client){
+                console.log("Password updated");
+                client.markModified('Password ok');
+            }
+        });
     },
 
     resetPassword: function (req,res) {
-
+        if (req.decoded.securityAnswer === req.answer) {
+            Client.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.newPassword }, function(err, client) {
+                if (err) {
+                    console.log('reset password failed ');
+                }
+                if (client){
+                    console.log("Password reset successful");
+                    client.markModified('Password reset ok');
+                }
+            });
+        }
+    
     },
 
     /*  updateProfile: function(req , res){

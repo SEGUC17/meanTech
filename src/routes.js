@@ -52,26 +52,6 @@ router.post('/clientChangePassword', clientController.updatePassword);
 
 router.post('/adminResetPassword', adminController.resetPassword);
 
-// router.get('/allPromotions', clientController.get
-
-
-// router.get('/allPromotions', function (req, res){
-// 	console.log(req.decoded);
-
-// 	try {
-// 		const decodedPayload = req.decoded;
-// 		if (decodedPayload.role === 'client' || decodedPayload.role === 'visitor') {
-// 			promotionController.getAllPromotions(req, res);
-// 		} else {
-// 			res.status(401).json({
-// 				error: 'Unauthorized.'
-// 			});
-// 		}
-// 	} catch (err) {
-// 		console.log(err);
-// 	}
-// });
-
 router.post('/register', clientController.register);
 
 router.post('/review', reviewController.create);
@@ -162,6 +142,45 @@ router.get('/getAllPromotions', function (req, res) {
         console.log(err);
     }
 });
+
+router.post('/clientUpdatePassword', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+            clientController.updatePassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/clientResetPassword', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+			console.log("Password reset successful");
+            clientController.resetPassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 
 router.post('/wishList', function (req, res) {
 	console.log(req.decoded);
