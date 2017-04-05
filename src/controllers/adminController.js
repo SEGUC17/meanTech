@@ -1,7 +1,7 @@
-var Admin = require('../models/Admin');
-var Company = require('../models/Company');
-var companyController = require('../controllers/companyController');
-var bcrypt = require('bcryptjs');
+const Admin = require('../models/Admin');
+const Company = require('../models/Company');
+const companyController = require('../controllers/companyController');
+const bcrypt = require('bcryptjs');
 
 
 module.exports = {
@@ -23,6 +23,7 @@ module.exports = {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
+            securityQuesion: req.body.question,
             answer: req.body.answer
         });
 
@@ -48,7 +49,7 @@ module.exports = {
     },
 
    getAdminByUsername: function (username, callback) {
-        var query = {
+        const query = {
             username: username
         };
         Admin.findOne(query, callback);
@@ -65,7 +66,7 @@ module.exports = {
     },
 
     unverifiedCompanies: function (req, res) {
-        var verified = false;
+        const verified = false;
 
         companyController.getUnverfiedCompanies(verified, function (err, Company) {
             if (err) {
@@ -77,8 +78,8 @@ module.exports = {
     },
 
    verifyCompanies: function (req, res) {
-        var username = req.body.username;
-        var verified = req.body.verified;
+        const username = req.body.username;
+        const verified = req.body.verified;
 
         companyController.getCompanyByUsername(username, verified, function (err, Company) {
             if (err) {
@@ -103,7 +104,7 @@ module.exports = {
     },
 
    deleteCompany: function (req, res) {
-        var username = req.body.username;
+        const username = req.body.username;
 
         companyController.getCompanyAndRemove(username, function (err, Company) {
             if (err) {
