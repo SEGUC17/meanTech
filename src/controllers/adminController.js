@@ -109,16 +109,6 @@ module.exports = {
 
     },
 
-    viewCompanies: function (req, res) {
-        companyController.getCompanies(function (err, companies) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send(companies);
-            }
-        });
-    },
-
    deleteCompany: function (req, res) {
         var username = req.body.username;
 

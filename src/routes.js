@@ -24,9 +24,7 @@ router.get('/company/profile', companyController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
 
-router.post('/faq', FAQController.askFAQ);
 router.post('/faqa', FAQController.answerFAQ);
-
 
 router.post('/faq', FAQController.askFAQ);
 
@@ -55,6 +53,7 @@ router.get('/allPromotions', promotionController.getAllPromotions);
 router.post('/register', clientController.register);
 
 router.post('/review', reviewController.create);
+
 router.post('/deleteR', reviewController.delete);
 
 router.post('/clientLogin', loginController.clientLogin);
@@ -185,7 +184,7 @@ router.get('/viewCompanies', function (req, res) {
 	try {
 		const decodedPayload = req.decoded;
 		if (decodedPayload.role === 'admin') {
-			adminController.viewCompanies(req, res);
+			companyController.getCompanies(req, res);
 		} else {
 			res.status(401).json({
 				error: 'Unauthorized.'
