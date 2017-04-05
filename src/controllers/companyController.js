@@ -46,7 +46,7 @@ let companyController = {
       res.render('companyProfile', {
         Company
       })
-    })
+    }) 
   },
  
 
@@ -69,9 +69,15 @@ let companyController = {
     }).exec(callback);
   },
 
-  getCompanies: function (callback) {
-    Company.find({}, callback)
-  },
+ getCompanies: function (req, res, next) {
+
+        var query = Company.find({}).select('name username');
+
+        query.exec(function (err, faq) {
+            if (err) return next(err);
+            res.send(faq);
+        });
+    },
 
   getCompanyAndRemove: function (username, callback) {
     var query = {

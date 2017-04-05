@@ -6,13 +6,6 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
 
-    comparePassword: function (candidatePassword, hash, callback) {
-        bcrypt.compare(candidatePassword, hash, function (err, isMatch) {
-            if (err) throw err;
-            callback(null, isMatch);
-        });
-    },
-
     changePassword: function (req, res) {
         getAdminByUsername.password = req.pw;
     },
@@ -23,7 +16,7 @@ module.exports = {
         } else {
             console.log('there"s a problem here ');
         }
-    },
+    }, 
 
     adminRegister: function (req, res) {
         let newAdmin = new Admin({
@@ -108,16 +101,6 @@ module.exports = {
             }
         });
 
-    },
-
-    viewCompanies: function (req, res) {
-        companyController.getCompanies(function (err, companies) {
-            if (err) {
-                res.send(err);
-            } else {
-                res.send(companies);
-            }
-        });
     },
 
    deleteCompany: function (req, res) {

@@ -3,10 +3,8 @@ var FAQ = require('../models/FAQ');
 let FAQController = {
 
     answerFAQ: function (req, res) {
-        // need to set clientUsername --> session
-        let faq = new FAQ(req.body);
 
-        faq.save(function (err, faq) {
+        FAQ.findOneAndUpdate({ clientUsername:req.body.clientUsername , questionText: req.body.questionText}, { answerText:req.body.answerText}, function (err, faq) {
             if (err) {
                 console.log(err);
             } else {
