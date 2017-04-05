@@ -80,6 +80,7 @@ module.exports.companyLogin =function(req, res){
                 username: company.username,
                 id: company._id,
                 role: 'company',
+                securityAnswer: company.securityAnswer,
             }, config.secret , {
     					expiresIn: 86400 // expires in 24 hours
     				});

@@ -62,6 +62,8 @@ router.post('/clientLogin', loginController.clientLogin);
 
 router.post('/companyLogin', loginController.companyLogin);
 
+router.get('/getAllPromotions', promotionController.getAllPromotions);
+
 router.use(function (req, res, next) {
 
 	// check header or url parameters or post parameters for token
@@ -124,24 +126,7 @@ router.post('/event', function (req, res) {
 
 });
 
-router.get('/getAllPromotions', function (req, res) {
-    console.log(req.decoded);
 
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'client' || decodedPayload.role === 'visitor') {
-            console.log(decodedPayload);
-
-            promotionController.getAllPromotions(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        console.log(err);
-    }
-});
 
 router.post('/clientUpdatePassword', function (req, res) {
     console.log(req.decoded);
@@ -169,8 +154,46 @@ router.post('/clientResetPassword', function (req, res) {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
             console.log(decodedPayload);
-			console.log("Password reset successful");
+            console.log("Password reset successful");
             clientController.resetPassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/companyUpdatePassword', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            console.log(decodedPayload);
+
+            companyController.updatePassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/companyResetPassword', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            console.log(decodedPayload);
+            console.log("Password reset successful");
+            companyController.resetPassword(req, res);
         } else {
             res.status(401).json({
                 error: 'Unauthorized'
