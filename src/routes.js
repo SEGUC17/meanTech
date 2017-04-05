@@ -25,6 +25,10 @@ router.get('/company/profile', companyController.viewCompanyProfile);
 router.post('/company', companyController.companySubscription);
 
 router.post('/faq', FAQController.askFAQ);
+router.post('/faqa', FAQController.answerFAQ);
+
+
+router.post('/faq', FAQController.askFAQ);
 
 router.get('/client', clientController.viewProfile);
 
@@ -51,6 +55,7 @@ router.get('/allPromotions', promotionController.getAllPromotions);
 router.post('/register', clientController.register);
 
 router.post('/review', reviewController.create);
+router.post('/deleteR', reviewController.delete);
 
 router.post('/clientLogin', loginController.clientLogin);
 
