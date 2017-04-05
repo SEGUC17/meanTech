@@ -6,7 +6,7 @@ module.exports = {
             if (err)
                 res.send(err.message)
             else
-                res.render('getPromotions', { promotions }); //getPromotions should be a view
+                res.send({ promotions }); //getPromotions should be a view
 
         })
     }

@@ -30,6 +30,7 @@ module.exports = {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
+            securityQuesion: req.body.question,
             answer: req.body.answer
         });
 
