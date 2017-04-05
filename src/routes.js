@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 const express = require('express');
 
 const router = express.Router();
@@ -12,23 +12,9 @@ const loginController = require('./controllers/loginController');
 const promotionController = require('./controllers/promotionController');
 const clientController = require('./controllers/clientController');
 const reviewController = require('./controllers/reviewController');
-=======
-var express = require('express');
-var jwt = require('jsonwebtoken');
-var router = express.Router();
-var jwt = require('jsonwebtoken');
+
 var config = require('../src/config/token');
 
-var companyController = require('./controllers/companyController');
-var eventController = require('./controllers/eventController');
-var FAQController = require('./controllers/FAQController');
-var serviceController = require('./controllers/serviceController');
-var adminController = require('./controllers/adminController');
-var loginController = require('./controllers/loginController');
-var promotionController = require('./controllers/promotionController');
-var clientController = require('./controllers/clientController');
-var reviewController = require('./controllers/reviewController');
->>>>>>> eabaa6efdc4f586cfb9e975d5730bd1d79b8713a
 
 router.get('/', function (req, res) {
 	res.json({
@@ -62,9 +48,29 @@ router.get('/FAQView', FAQController.viewFAQs);
 
 router.post('/adminChangePassword', adminController.changePassword);
 
+router.post('/clientChangePassword', clientController.updatePassword);
+
 router.post('/adminResetPassword', adminController.resetPassword);
 
-router.get('/allPromotions', promotionController.getAllPromotions);
+// router.get('/allPromotions', clientController.get
+
+
+// router.get('/allPromotions', function (req, res){
+// 	console.log(req.decoded);
+
+// 	try {
+// 		const decodedPayload = req.decoded;
+// 		if (decodedPayload.role === 'client' || decodedPayload.role === 'visitor') {
+// 			promotionController.getAllPromotions(req, res);
+// 		} else {
+// 			res.status(401).json({
+// 				error: 'Unauthorized.'
+// 			});
+// 		}
+// 	} catch (err) {
+// 		console.log(err);
+// 	}
+// });
 
 router.post('/register', clientController.register);
 
@@ -136,6 +142,25 @@ router.post('/event', function (req, res) {
 		console.log(err);
 	}
 
+});
+
+router.get('/getAllPromotions', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client' || decodedPayload.role === 'visitor') {
+            console.log(decodedPayload);
+
+            promotionController.getAllPromotions(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 router.post('/wishList', function (req, res) {
