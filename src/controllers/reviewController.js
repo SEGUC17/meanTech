@@ -3,9 +3,14 @@ let Review = require('../models/Review');
 let reviewController = {
 
     create: function (req, res) {
-        // need to set username --> session
-        // need to set companyID --> company that is being reviewed
-        let review = new Review(req.body);
+
+        let review = new Review({
+            username: req.decoded.username,
+            companyID: req.body.companyID,
+            content: req.body.content,
+            rating: req.body.rating,
+            date: req.body.date
+        });
 
         review.save(function (err, review) {
             if (err) {
