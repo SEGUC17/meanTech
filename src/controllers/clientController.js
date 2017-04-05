@@ -18,21 +18,21 @@ let clientController = {
 
     viewProfile: function (req, res) {
 
-        Client.find({ username: req.session.username }, (function (err, clients) {
+        Client.find({ username: req.decoded.username }, (function (err, client) {
 
 
             if (err)
                 res.send(err.message);
             else
-                res.render('index', { clients });
+                res.send(200);
         })
         )
     },
-    /*  updateProfile: function(req , res){
+     updateProfile: function(req , res){
           client.update({
               _id: client.getElementbyId(req.body.id)
           },
-          {    if (id = firstName.id)
+          {    
               $set:{
 
                   firstName : req.body.firstName,
@@ -50,16 +50,20 @@ let clientController = {
                   securityAnswer : req.body.securityAnswer
 
 
-              }
-          }
-              )
-    } */
-    /*updateProfile : function (req , res ){
-        _id: client.getElementbyId(req.body.id)
-        if  ( { _id: })
-     { $set:
-        {
-    }*/
+              },function (err, client) {
+                if (err) {
+                    res.send(err.message)
+                    console.log(err);
+                } else {
+                    console.log(client);
+                    
+                    res.send(200);
+
+                }
+            }
+          })
+    } ,
+    
     addToWishList: function (req, res, serviceID) {
   Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
               if (err) {
