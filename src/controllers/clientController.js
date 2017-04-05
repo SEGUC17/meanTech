@@ -34,7 +34,7 @@ let clientController = {
           },
           {    if (id = firstName.id)
               $set:{
-  
+
                   firstName : req.body.firstName,
                   lastName : req.body.lastName,
                   username : req.body.username,
@@ -48,8 +48,8 @@ let clientController = {
                   age : req.body.age,
                   securityQuestion : req.body.securityQuestion,
                   securityAnswer : req.body.securityAnswer
-                    
-  
+
+
               }
           }
               )
@@ -60,6 +60,25 @@ let clientController = {
      { $set:
         {
     }*/
+    addToWishList: function (req, res, serviceID) {
+  Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
+              if (err) {
+                console.log('got an error');
+              }
+              if (client){
+           console.log("Added to Wishlist");
+            client.markModified('anything');
+            }
+
+            });
+
+
+    }
+
+
+
+
+
 }
 
 module.exports = clientController;

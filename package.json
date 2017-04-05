@@ -13,9 +13,13 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
+
+    "express-jwt": "^5.1.0",
     "jsonwebtoken": "^7.3.0",
     "mongoose": "^4.9.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
