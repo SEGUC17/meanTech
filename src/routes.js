@@ -1,18 +1,20 @@
-var express = require('express');
-var jwt = require('jsonwebtoken');
-var router = express.Router();
-var jwt = require('jsonwebtoken');
+
+const express = require('express');
+
+const router = express.Router();
+const jwt = require('jsonwebtoken');
+const companyController = require('./controllers/companyController');
+const eventController = require('./controllers/eventController');
+const FAQController = require('./controllers/FAQController');
+const serviceController = require('./controllers/serviceController');
+const adminController = require('./controllers/adminController');
+const loginController = require('./controllers/loginController');
+const promotionController = require('./controllers/promotionController');
+const clientController = require('./controllers/clientController');
+const reviewController = require('./controllers/reviewController');
+
 var config = require('../src/config/token');
 
-var companyController = require('./controllers/companyController');
-var eventController = require('./controllers/eventController');
-var FAQController = require('./controllers/FAQController');
-var serviceController = require('./controllers/serviceController');
-var adminController = require('./controllers/adminController');
-var loginController = require('./controllers/loginController');
-var promotionController = require('./controllers/promotionController');
-var clientController = require('./controllers/clientController');
-var reviewController = require('./controllers/reviewController');
 
 router.get('/', function (req, res) {
 	res.json({
@@ -46,9 +48,9 @@ router.get('/FAQView', FAQController.viewFAQs);
 
 router.post('/adminChangePassword', adminController.changePassword);
 
-router.post('/adminResetPassword', adminController.resetPassword);
+router.post('/clientChangePassword', clientController.updatePassword);
 
-router.get('/allPromotions', promotionController.getAllPromotions);
+router.post('/adminResetPassword', adminController.resetPassword);
 
 router.post('/register', clientController.register);
 
@@ -121,6 +123,64 @@ router.post('/event', function (req, res) {
 	}
 
 });
+
+router.get('/getAllPromotions', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client' || decodedPayload.role === 'visitor') {
+            console.log(decodedPayload);
+
+            promotionController.getAllPromotions(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/clientUpdatePassword', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+            clientController.updatePassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/clientResetPassword', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+			console.log("Password reset successful");
+            clientController.resetPassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 
 router.post('/wishList', function (req, res) {
 	console.log(req.decoded);
