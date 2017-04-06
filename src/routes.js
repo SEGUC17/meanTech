@@ -400,6 +400,22 @@ router.post('/addToFavCompanies', function(req, res) {
     } catch (err) {
         res.json(err);
     }
+  
+router.get('/viewMyReviews',function (req,res){
+    console.log(req.decoded);
+	try {
+		const decodedPayload = req.decoded;
+		if (decodedPayload.role === 'company') {
+			companyController.viewReviews(req, res);
+		} else {
+			res.status(401).json({
+				error: 'Unauthorized.'
+			});
+		}
+	} catch (err) {
+		console.log(err);
+	}
+  
 });
 
 

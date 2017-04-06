@@ -1,6 +1,8 @@
 let Company = require('../models/Company');
+let Review = require('../models/Review');
 
 let companyController = {
+
 
   companySubscription: function(req, res) {
 
@@ -18,7 +20,7 @@ let companyController = {
           mobileNumbers: req.body.mobileNumbers,
           branches: req.body.branches,
           socialMediaURL: req.body.socialMediaURL,
-          verified: false,
+          verified: req.body.verified,
           paymentMethod: req.body.paymentMethod,
           securityQuestion: req.body.securityQuestion,
           securityAnswer: req.body.securityAnswer
@@ -87,11 +89,16 @@ let companyController = {
 
         Company.findOneAndUpdate({_id: req.decoded.id }, { $set:{"password" : req.body.newPassword }}, function(err, company) {
             if (err) {
-                console.log(err);
-                console.log('update password failed ');
+                res.status(500).json({
+                    success: false,
+                    msg: 'You are not allowed to change the password, update failed',
+                });
             }
             if (company){
-                console.log("Password updated");
+                res.json({
+                    success: true,
+                    msg: 'The password has been updated successfully'
+                }); 
                 company.markModified('Password ok');
             }
         });
@@ -101,16 +108,34 @@ let companyController = {
         if (req.decoded.securityAnswer === req.answer) {
             Company.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.newPassword }}, function(err, client) {
                 if (err) {
-                    console.log('reset password failed ');
+                    res..status(500).json({
+                        success: false,
+                        msg: 'You are not allowed to change the password, update failed',
+                    });
                 }
                 if (company){
-                    console.log("Password reset successful");
+                    res.json({
+                        success: true,
+                        msg: 'The password has been updated successfully'
+                    }); 
                     company.markModified('Password reset ok');
                 }
             });
         }
 
     },
+
+    viewReviews: function (req,res) {
+    Review.find({companyID:req.decoded.id},function(err,reviews){
+      if (err){
+        console.log('err.message');
+      }
+      else{
+        console.log(reviews);
+        //res.send(reviews)
+      }
+    })
+  }
 }
 
 module.exports = companyController;
