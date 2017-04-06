@@ -47,7 +47,6 @@ router.get('/FAQView', FAQController.viewFAQs);
 
 router.post('/register', clientController.register);
 
-router.post('/companyLogin', loginController.companyLogin);
 
 router.post('/clientLogin', loginController.clientLogin);
 
@@ -57,13 +56,10 @@ router.get('/getAllPromotions', promotionController.getAllPromotions);
 
 router.use(function (req, res, next) {
 
-	// check header or url parameters or post parameters for token
 	var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 
-	// decode token
 	if (token) {
 
-		// verifies secret and checks exp
 		jwt.verify(token, config.secret, function (err, decoded) {
 			if (err) {
 				return res.json({
@@ -71,7 +67,6 @@ router.use(function (req, res, next) {
 					message: 'Failed to authenticate token.'
 				});
 			} else {
-				// if everything is good, save to request for use in other routes
 				req.decoded = decoded;
 				next();
 			}
@@ -79,8 +74,7 @@ router.use(function (req, res, next) {
 
 	} else {
 
-		// if there is no token
-		// return an error
+
 		return res.status(403).send({
 			success: false,
 			message: 'No token provided.'
@@ -181,26 +175,23 @@ router.post('/deleteR', function(req,res){
     }
 });
 
-router.post('/event', function (req, res) {
-	console.log(req.decoded);
+router.post('/event', function(req, res) {
 
-	try {
+    try {
 
-		const decodedPayload = req.decoded;
-		if (decodedPayload.role === 'company') {
-			console.log(decodedPayload);
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
 
-			// res.json( {topSecretResource: 'ay7aga'});
-			eventController.createEvent(req, res);
-		} else {
-			res.status(401).json({
-				error: 'Unauthorized'
-			});
-		}
-	} catch (err) {
-		//todo
-		console.log(err);
-	}
+            eventController.createEvent(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+
+        console.log(err);
+    }
 
 });
 
@@ -309,26 +300,24 @@ router.post('/adminResetPassword', function (req, res) {
 });
 
 
-router.post('/wishList', function (req, res) {
-	console.log(req.decoded);
+router.post('/addToWishList', function(req, res) {
 
-	try {
 
-		const decodedPayload = req.decoded;
-		if (decodedPayload.role === 'client') {
-			console.log(decodedPayload);
+    try {
 
-			// res.json( {topSecretResource: 'ay7aga'});
-			clientController.addToWishList(req, res, "58e1ff07a5a4f5a17354a363");
-		} else {
-			res.status(401).json({
-				error: 'Unauthorized'
-			});
-		}
-	} catch (err) {
-		//todo
-		console.log(err);
-	}
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+
+            clientController.addToWishList(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+
+        console.log(err);
+    }
 
 });
 
