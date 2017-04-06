@@ -20,10 +20,14 @@ router.get('/', function (req, res) {
 		hello: 'world'
 	});
 });
-
+router.get('/contactUs',function(req,res){
+    res.render('contactUs')
+});
 router.get('/company/profile', companyController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
+
+router.post('/faqa', FAQController.answerFAQ);
 
 router.get('/client', clientController.viewProfile);
 
@@ -348,5 +352,6 @@ router.post('/deleteCompany', function (req, res) {
 		console.log(err);
 	}
 });
+
 
 module.exports = router;
