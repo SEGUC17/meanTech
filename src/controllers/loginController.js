@@ -15,7 +15,7 @@ module.exports = {
             if (err) throw err;
 
             if (!Admin) {
-                return res.json({
+                return res.json({ 
                     success: false,
                     msg: 'Admin not available.'
                 })
@@ -128,6 +128,7 @@ module.exports.companyLogin =function(req, res){
                       username: client.username,
                       id: client._id,
                       role: 'client',
+                      securityAnswer: client.securityAnswer,
                   }, config.secret , {
           					expiresIn: 86400 // expires in 24 hours
           				});

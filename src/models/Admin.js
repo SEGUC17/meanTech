@@ -13,7 +13,11 @@ var adminSchema = mongoose.Schema({
         type: String,
         requried: true
     },
-    answer: {
+    securityQuestion: {
+        type: String,
+        requried: true
+    },
+    questionAnswer: {
         type: String,
         requried: true 
     }

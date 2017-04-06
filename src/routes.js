@@ -1,18 +1,19 @@
-var express = require('express');
-var jwt = require('jsonwebtoken');
-var router = express.Router();
-var jwt = require('jsonwebtoken');
-var config = require('../src/config/token');
 
-var companyController = require('./controllers/companyController');
-var eventController = require('./controllers/eventController');
-var FAQController = require('./controllers/FAQController');
-var serviceController = require('./controllers/serviceController');
-var adminController = require('./controllers/adminController');
-var loginController = require('./controllers/loginController');
-var promotionController = require('./controllers/promotionController');
-var clientController = require('./controllers/clientController');
-var reviewController = require('./controllers/reviewController');
+const express = require('express');
+
+const router = express.Router();
+const jwt = require('jsonwebtoken');
+const companyController = require('./controllers/companyController');
+const eventController = require('./controllers/eventController');
+const FAQController = require('./controllers/FAQController');
+const serviceController = require('./controllers/serviceController');
+const adminController = require('./controllers/adminController');
+const loginController = require('./controllers/loginController');
+const promotionController = require('./controllers/promotionController');
+const clientController = require('./controllers/clientController');
+const reviewController = require('./controllers/reviewController');
+
+var config = require('../src/config/token');
 
 router.get('/', function (req, res) {
 	res.json({
@@ -26,11 +27,7 @@ router.get('/company/profile', companyController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
 
-//router.post('/faq', FAQController.askFAQ);
 router.post('/faqa', FAQController.answerFAQ);
-
-
-//router.post('/faq', FAQController.askFAQ);
 
 router.get('/client', clientController.viewProfile);
 
@@ -50,18 +47,15 @@ router.get('/FAQView', FAQController.viewFAQs);
 
 router.post('/adminChangePassword', adminController.changePassword);
 
-router.post('/adminResetPassword', adminController.resetPassword);
+router.post('/clientChangePassword', clientController.updatePassword);
 
-router.get('/allPromotions', promotionController.getAllPromotions);
+router.post('/adminResetPassword', adminController.resetPassword);
 
 router.post('/register', clientController.register);
 
-router.post('/review', reviewController.create);
-router.post('/deleteR', reviewController.delete);
+router.post('/companyLogin', loginController.companyLogin);
 
 router.post('/clientLogin', loginController.clientLogin);
-
-router.post('/companyLogin', loginController.companyLogin);
 
 router.use(function (req, res, next) {
 
@@ -102,6 +96,93 @@ router.get('/check', function (req, res) {
 	res.json(req.decoded);
 });
 
+router.post('/faq', function(req,res){
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+			// res.json( {topSecretResource: 'ay7aga'});
+            FAQController.askFAQ(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+		// todo
+        console.log(err);
+    }
+});
+
+router.post('/faqa', function(req,res){
+    console.log(req.decoded);
+
+    try {
+
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+			// res.json( {topSecretResource: 'ay7aga'});
+            FAQController.answerFAQ(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+		// todo
+        console.log(err);
+	}
+});
+
+router.post('/review', function(req,res){
+    console.log(req.decoded);
+
+    try {
+
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+			// res.json( {topSecretResource: 'ay7aga'});
+            reviewController.create(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+		// todo
+        console.log(err);
+	}
+});
+
+router.post('/deleteR', function(req,res){
+    console.log(req.decoded);
+
+    try {
+
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'admin') {
+            console.log(decodedPayload);
+
+			// res.json( {topSecretResource: 'ay7aga'});
+            reviewController.delete(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+		// todo
+        console.log(err);
+    }
+});
+
 router.post('/event', function (req, res) {
 	console.log(req.decoded);
 
@@ -124,6 +205,64 @@ router.post('/event', function (req, res) {
 	}
 
 });
+
+router.get('/getAllPromotions', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client' || decodedPayload.role === 'visitor') {
+            console.log(decodedPayload);
+
+            promotionController.getAllPromotions(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/clientUpdatePassword', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+            clientController.updatePassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/clientResetPassword', function (req, res) {
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+			console.log("Password reset successful");
+            clientController.resetPassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 
 router.post('/wishList', function (req, res) {
 	console.log(req.decoded);
@@ -187,7 +326,7 @@ router.get('/viewCompanies', function (req, res) {
 	try {
 		const decodedPayload = req.decoded;
 		if (decodedPayload.role === 'admin') {
-			adminController.viewCompanies(req, res);
+			companyController.getCompanies(req, res);
 		} else {
 			res.status(401).json({
 				error: 'Unauthorized.'
@@ -213,9 +352,6 @@ router.post('/deleteCompany', function (req, res) {
 		console.log(err);
 	}
 });
-
-
-router.post('/faq', FAQController.askFAQ);
 
 
 module.exports = router;
