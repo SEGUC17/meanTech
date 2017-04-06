@@ -211,7 +211,10 @@ router.post('/clientUpdatePassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'Couldn"t update password, internal server error',
+                });
     }
 });
 
@@ -228,7 +231,10 @@ router.post('/clientResetPassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'Couldn"t reset password,internal server error',
+                });
     }
 });
 
@@ -245,7 +251,10 @@ router.post('/companyUpdatePassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'couldn"t update password, internal server error',
+                });
     }
 });
 
@@ -262,7 +271,10 @@ router.post('/companyResetPassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'couldn"t reset password, internal server error',
+                });
     }
 });
 
@@ -279,7 +291,10 @@ router.post('/adminUpdatePassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'couldn"t update password, internal server error',
+                });
     }
 });
 
@@ -296,7 +311,10 @@ router.post('/adminResetPassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'couldn"t reset password, internal server error',
+                });
     }
 });
 
