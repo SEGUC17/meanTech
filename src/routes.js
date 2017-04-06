@@ -391,6 +391,20 @@ router.post('/deleteCompany', function (req, res) {
 	}
 });
 
+router.post('/addToFavCompanies', function(req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.addToFavCompanies(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.json(err);
+    }
+  
 router.get('/viewMyReviews',function (req,res){
     console.log(req.decoded);
 	try {
@@ -405,6 +419,7 @@ router.get('/viewMyReviews',function (req,res){
 	} catch (err) {
 		console.log(err);
 	}
+  
 });
 
 

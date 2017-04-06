@@ -103,7 +103,7 @@ let companyController = {
             }
         }, function(err, company) {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     msg: 'You are not allowed to change the password, update failed',
                 });
@@ -128,7 +128,7 @@ let companyController = {
                 }
             }, function(err, client) {
                 if (err) {
-                    res.json({
+                    res.status(500).json({
                         success: false,
                         msg: 'You are not allowed to change the password, update failed',
                     });
