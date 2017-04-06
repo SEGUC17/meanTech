@@ -1,13 +1,17 @@
-let Promotion = require('../models/Promotion');
+let promotion = require('../models/Promotion');
 
 module.exports = {
     getAllPromotions: function (req, res) {
-        Promotion.find(function (err, promotions) {
+        promotion.find(function(err, promotions) {
             if (err)
-                res.send(err.message)
+            {
+                console.log(promotions);
+                res.send(err.message);
+            }
             else
-                res.render('getPromotions', { promotions }); //getPromotions should be a view
-
-        })
+            {
+                res.send({ promotions }); //should be a view
+            }
+        });
     }
 }
