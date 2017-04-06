@@ -21,7 +21,7 @@ const adminController = {
                 admin.password = hash;
                 admin.save(function (err, admin) {
                     if (err) {
-                        res.json({
+                        res.status(500).json({
                             success: false,
 
                             msg: 'Please Provide All required information and choose a unique username.'
@@ -77,7 +77,7 @@ const adminController = {
                 if (Company) {
                     Company.save(function (err, Company) {
                         if (err) {
-                            res.json({
+                            res.status(500).json({
                                 success: false,
                                 msg: 'Company was not verified review the username given.'
                             });
@@ -118,7 +118,7 @@ const adminController = {
         Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.body.newPassword } }, function (err, admin) {
 
             if (err) {
-                res..status(500).json({
+                res.status(500).json({
                     success: false,
                     msg: 'You are not allowed to change the password, update failed',
                 });
@@ -141,7 +141,7 @@ const adminController = {
             Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.newPassword } }, function (err, admin) {
 
                 if (err) {
-                    res..status(500).json({
+                    res.status(500).json({
                         success: false,
                         msg: 'You are not allowed to change the password, update failed',
                     });
