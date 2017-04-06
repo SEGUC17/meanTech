@@ -30,7 +30,7 @@ router.post('/faqa', FAQController.answerFAQ);
 
 router.post('/faq', FAQController.askFAQ);
 
-router.get('/client', clientController.viewProfile);
+//router.get('/client', clientController.viewProfile);
 
 router.get('/allEvents', eventController.getAllEvents);
 
@@ -210,6 +210,7 @@ router.post('/deleteCompany', function (req, res) {
 	} catch (err) {
 		console.log(err);
 	}
+});
 	router.get('/viewProfile', function (req, res) {
 	console.log(req.decoded);
 	try {
@@ -225,7 +226,7 @@ router.post('/deleteCompany', function (req, res) {
 		console.log(err);
 		}
 	});
-});
+
 router.post('/updateProfile', function (req, res) {
 	console.log(req.decoded);
 

@@ -22,59 +22,48 @@ let clientController = {
 
 
             if (err)
-                res.send(err.message);
-            else
+                res.send(err);
+            else {
                 res.send(200);
+                console.log(client)
+            }
         })
         )
     },
-     updateProfile: function(req , res){
-          client.update({
-              _id: client.getElementbyId(req.body.id)
-          },
-          {    
-              $set:{
+    updateProfile: function (req, res) {
+        var query = {
+            _id: req.decoded.id
+        };
 
-                  firstName : req.body.firstName,
-                  lastName : req.body.lastName,
-                  username : req.body.username,
-                  password : req.body.password,
-                  profilePictureURL : req.body.profilePictureURL,
-                  email : req.body.email,
-                  address : req.body.address,
-                  socialMediaUrl : req.body.socialMediaUrl,
-                  phoneNumbers : req.body.phoneNumbers,
-                  gender : req.body.gender,
-                  age : req.body.age,
-                  securityQuestion : req.body.securityQuestion,
-                  securityAnswer : req.body.securityAnswer
+        var update = {
+            $set: req.body
+        };
 
+        var options = {
+            new: true
+        };
 
-              },function (err, client) {
+        Client.findByIdAndUpdate(query, update, options, function (err, client) {
                 if (err) {
-                    res.send(err.message)
-                    console.log(err);
+                    res.json({ error: err.message })
                 } else {
-                    console.log(client);
-                    
-                    res.send(200);
-
+                    res.json({ data: client });
                 }
             }
-          })
-    } ,
-    
+        );
+    },
+
     addToWishList: function (req, res, serviceID) {
-  Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
-              if (err) {
+        Client.findOneAndUpdate({ _id: req.decoded.id }, { "$push": { "wishList": serviceID } }, function (err, client) {
+            if (err) {
                 console.log('got an error');
-              }
-              if (client){
-           console.log("Added to Wishlist");
-            client.markModified('anything');
+            }
+            if (client) {
+                console.log("Added to Wishlist");
+                client.markModified('anything');
             }
 
-            });
+        });
 
 
     }
