@@ -23,7 +23,7 @@ router.get('/', function (req, res) {
 router.get('/contactUs', function (req, res) {
     res.render('contactUs')
 });
-router.get('/company/profile', companyController.viewCompanyProfile);
+router.get('/company/profile', clientController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
 

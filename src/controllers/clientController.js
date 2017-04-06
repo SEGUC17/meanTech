@@ -1,5 +1,6 @@
 const Client = require('../models/Client');
 const bcrypt = require('bcryptjs');
+const Company = require('../models/Company');
 
 const clientController = {
 
@@ -143,7 +144,27 @@ const clientController = {
             }
         }
         );
-    }
+    },
+
+    viewCompanyProfile: function (req, res) {
+    var id = req.query;
+    
+    Company.findById( id , function (err, company) {
+      if (err) {
+        res.status(500).json({
+					success: false,
+					message: 'Failed to find company.'
+				});
+       } else
+       res.json({
+					success: true,
+					message: 'viewing company',
+                    company
+				});
+
+    })
+
+  }
 }
 
 module.exports = clientController;
