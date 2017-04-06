@@ -24,12 +24,6 @@ router.get('/company/profile', companyController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
 
-router.post('/faq', FAQController.askFAQ);
-router.post('/faqa', FAQController.answerFAQ);
-
-
-router.post('/faq', FAQController.askFAQ);
-
 router.get('/client', clientController.viewProfile);
 
 router.get('/allEvents', eventController.getAllEvents);
@@ -54,12 +48,9 @@ router.get('/allPromotions', promotionController.getAllPromotions);
 
 router.post('/register', clientController.register);
 
-router.post('/review', reviewController.create);
-router.post('/deleteR', reviewController.delete);
+router.post('/companyLogin', loginController.companyLogin);
 
 router.post('/clientLogin', loginController.clientLogin);
-
-router.post('/companyLogin', loginController.companyLogin);
 
 router.use(function (req, res, next) {
 
@@ -98,6 +89,93 @@ router.use(function (req, res, next) {
 
 router.get('/check', function (req, res) {
 	res.json(req.decoded);
+});
+
+router.post('/faq', function(req,res){
+    console.log(req.decoded);
+
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+			// res.json( {topSecretResource: 'ay7aga'});
+            FAQController.askFAQ(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+		// todo
+        console.log(err);
+    }
+});
+
+router.post('/faqa', function(req,res){
+    console.log(req.decoded);
+
+    try {
+
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+			// res.json( {topSecretResource: 'ay7aga'});
+            FAQController.answerFAQ(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+		// todo
+        console.log(err);
+	}
+});
+
+router.post('/review', function(req,res){
+    console.log(req.decoded);
+
+    try {
+
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            console.log(decodedPayload);
+
+			// res.json( {topSecretResource: 'ay7aga'});
+            reviewController.create(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+		// todo
+        console.log(err);
+	}
+});
+
+router.post('/deleteR', function(req,res){
+    console.log(req.decoded);
+
+    try {
+
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'admin') {
+            console.log(decodedPayload);
+
+			// res.json( {topSecretResource: 'ay7aga'});
+            reviewController.delete(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+		// todo
+        console.log(err);
+    }
 });
 
 router.post('/event', function (req, res) {
