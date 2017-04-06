@@ -45,18 +45,6 @@ let companyController = {
             }
         })
     },
-    viewCompanyProfile: function (req, res) {
-        var id = req.query;
-
-        Company.findById(id, function (err, company) {
-            if (err)
-                console.log(err.message);
-            else
-                console.log(company);
-
-        })
-
-    },
 
     getUnverfiedCompanies: function (verified, callback) {
         var query = {
@@ -84,7 +72,9 @@ let companyController = {
 
         query.exec(function (err, company) {
             if (err) return next(err);
-            res.json({ data: company });
+            res.json({
+                data: company
+            });
         });
     },
 
@@ -99,24 +89,23 @@ let companyController = {
         Company.findOneAndUpdate({
             _id: req.decoded.id
         }, {
-                $set: {
-                    "password": req.body.newPassword
-                }
-            }, function (err, company) {
-                if (err) {
-                    res.status(500).json({
-                        success: false,
-                        msg: 'You are not allowed to change the password, update failed',
-                    });
-                }
-                else {
-                    res.json({
-                        success: true,
-                        msg: 'The password has been updated successfully'
-                    });
-                    company.markModified('Password ok');
-                }
-            });
+            $set: {
+                "password": req.body.newPassword
+            }
+        }, function (err, company) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    msg: 'You are not allowed to change the password, update failed',
+                });
+            } else {
+                res.json({
+                    success: true,
+                    msg: 'The password has been updated successfully'
+                });
+                company.markModified('Password ok');
+            }
+        });
     },
 
     resetPassword: function (req, res) {
@@ -124,24 +113,23 @@ let companyController = {
             Company.findOneAndUpdate({
                 _id: req.decoded.id
             }, {
-                    $set: {
-                        "password": req.newPassword
-                    }
-                }, function (err, client) {
-                    if (err) {
-                        res.status(500).json({
-                            success: false,
-                            msg: 'You are not allowed to change the password, update failed',
-                        });
-                    }
-                    else {
-                        res.json({
-                            success: true,
-                            msg: 'The password has been updated successfully'
-                        });
-                        company.markModified('Password reset ok');
-                    }
-                });
+                $set: {
+                    "password": req.newPassword
+                }
+            }, function (err, client) {
+                if (err) {
+                    res.status(500).json({
+                        success: false,
+                        msg: 'You are not allowed to change the password, update failed',
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        msg: 'The password has been updated successfully'
+                    });
+                    company.markModified('Password reset ok');
+                }
+            });
         }
 
     },
@@ -151,10 +139,16 @@ let companyController = {
             companyID: req.decoded.id
         }, function (err, reviews) {
             if (err) {
-                console.log('err.message');
+                res.status(500).json({
+                    success: false,
+                    message: 'Can not view Reviews'
+                });
             } else {
-                console.log(reviews);
-                //res.send(reviews)
+                res.json({
+                    success: true,
+                    message: 'Successful',
+                    reviews
+                });
             }
         })
     }

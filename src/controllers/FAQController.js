@@ -38,9 +38,16 @@ let FAQController = {
 
         newQ.save(function (err, newQ) {
             if (err) {
-                console.log(err);
+                res.status(500).json({
+					success: false,
+					message: 'can not ask question'
+				});
             } else {
-                console.log(newQ);
+                res.json({
+					success: true,
+					message: 'question posted',
+                    newQ
+				});
             }
         });
 
