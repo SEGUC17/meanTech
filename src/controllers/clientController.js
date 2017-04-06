@@ -57,7 +57,7 @@ const clientController = {
                     msg: 'You are not allowed to change the password, update failed',
                 });
             }
-            if (client) {
+            else {
 
                 res.json({
                     success: true,
@@ -77,7 +77,7 @@ const clientController = {
                         msg: 'You are not allowed to change the password, update failed',
                     });
                 }
-                if (client) {
+                else {
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
@@ -143,8 +143,7 @@ const clientController = {
             }
         }
         );
-    },
-
+    }
 }
 
 module.exports = clientController;

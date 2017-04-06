@@ -58,9 +58,9 @@ const adminController = {
 
         companyController.getUnverfiedCompanies(verified, function (err, Company) {
             if (err) {
-                res.send(err);
+                res.status(500).json(err);
             } else {
-                res.send(Company);
+                res.json({ data: Company });
             }
         });
     },
@@ -71,7 +71,7 @@ const adminController = {
 
         companyController.getCompanyByUsername(username, verified, function (err, Company) {
             if (err) {
-                res.send(err);
+                res.status(500).json(err);
             } else {
 
                 if (Company) {
@@ -89,7 +89,7 @@ const adminController = {
                         }
                     });
                 } else {
-                    res.send('Company not found review username');
+                    res.status(500).json('Company not found review username');
                 }
 
             }
@@ -102,12 +102,12 @@ const adminController = {
         companyController.getCompanyAndRemove(username, function (err, Company) {
             if (Company) {
                 if (err) {
-                    res.send(err);
+                    res.status(500).json(err);
                 } else {
-                    res.send('complete');
+                    res.json('complete');
                 }
             } else {
-                res.send('Company not found.')
+                res.status(500).json('Company not found.')
             }
         });
     },
@@ -123,12 +123,12 @@ const adminController = {
                     msg: 'You are not allowed to change the password, update failed',
                 });
             }
-            if (admin) {
+            else {
 
                 res.json({
                     success: true,
                     msg: 'The password has been updated successfully'
-                }); 
+                });
 
                 admin.markModified('Password ok');
             }
@@ -146,12 +146,12 @@ const adminController = {
                         msg: 'You are not allowed to change the password, update failed',
                     });
                 }
-                if (admin) {
+                else {
 
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
-                    }); 
+                    });
 
                     admin.markModified('Password reset ok');
                 }

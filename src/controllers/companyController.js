@@ -4,7 +4,7 @@ let Review = require('../models/Review');
 let companyController = {
 
 
-    companySubscription: function(req, res) {
+    companySubscription: function (req, res) {
 
         let company = new Company({
             name: req.body.name,
@@ -26,7 +26,7 @@ let companyController = {
             securityAnswer: req.body.securityAnswer
         });
 
-        company.save(function(err, company) {
+        company.save(function (err, company) {
             if (err) {
 
                 res.status(500).json({
@@ -45,10 +45,10 @@ let companyController = {
             }
         })
     },
-    viewCompanyProfile: function(req, res) {
+    viewCompanyProfile: function (req, res) {
         var id = req.query;
 
-        Company.findById(id, function(err, company) {
+        Company.findById(id, function (err, company) {
             if (err)
                 console.log(err.message);
             else
@@ -58,14 +58,14 @@ let companyController = {
 
     },
 
-    getUnverfiedCompanies: function(verified, callback) {
+    getUnverfiedCompanies: function (verified, callback) {
         var query = {
             verified: verified
         };
         Company.find(query, callback);
     },
 
-    getCompanyByUsername: function(username, verified, callback) {
+    getCompanyByUsername: function (username, verified, callback) {
         var query = {
             username: username
         };
@@ -77,79 +77,79 @@ let companyController = {
         }).exec(callback);
     },
 
-    getCompanies: function(req, res, next) {
+    getCompanies: function (req, res, next) {
 
         var query = Company.find({}).select('name username');
 
 
         query.exec(function (err, company) {
             if (err) return next(err);
-            res.send(company);
+            res.json({ data: company });
         });
     },
 
-    getCompanyAndRemove: function(username, callback) {
+    getCompanyAndRemove: function (username, callback) {
         var query = {
             username: username
         };
         Company.findOneAndRemove(query, callback);
     },
-    updatePassword: function(req, res) {
+    updatePassword: function (req, res) {
 
         Company.findOneAndUpdate({
             _id: req.decoded.id
         }, {
-            $set: {
-                "password": req.body.newPassword
-            }
-        }, function(err, company) {
-            if (err) {
-                res.status(500).json({
-                    success: false,
-                    msg: 'You are not allowed to change the password, update failed',
-                });
-            }
-            if (company) {
-                res.json({
-                    success: true,
-                    msg: 'The password has been updated successfully'
-                });
-                company.markModified('Password ok');
-            }
-        });
-    },
-
-    resetPassword: function(req, res) {
-        if (req.decoded.securityAnswer === req.answer) {
-            Company.findOneAndUpdate({
-                _id: req.decoded.id
-            }, {
                 $set: {
-                    "password": req.newPassword
+                    "password": req.body.newPassword
                 }
-            }, function(err, client) {
+            }, function (err, company) {
                 if (err) {
                     res.status(500).json({
                         success: false,
                         msg: 'You are not allowed to change the password, update failed',
                     });
                 }
-                if (company) {
+                else {
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
                     });
-                    company.markModified('Password reset ok');
+                    company.markModified('Password ok');
                 }
             });
+    },
+
+    resetPassword: function (req, res) {
+        if (req.decoded.securityAnswer === req.answer) {
+            Company.findOneAndUpdate({
+                _id: req.decoded.id
+            }, {
+                    $set: {
+                        "password": req.newPassword
+                    }
+                }, function (err, client) {
+                    if (err) {
+                        res.status(500).json({
+                            success: false,
+                            msg: 'You are not allowed to change the password, update failed',
+                        });
+                    }
+                    else {
+                        res.json({
+                            success: true,
+                            msg: 'The password has been updated successfully'
+                        });
+                        company.markModified('Password reset ok');
+                    }
+                });
         }
 
     },
 
-    viewReviews: function(req, res) {
+    viewReviews: function (req, res) {
         Review.find({
             companyID: req.decoded.id
-        }, function(err, reviews) {
+        }, function (err, reviews) {
             if (err) {
                 console.log('err.message');
             } else {

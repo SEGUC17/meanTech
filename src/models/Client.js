@@ -32,8 +32,8 @@ var clientSchema = mongoose.Schema({
     previousEvents: [String],
     securityQuestion: String,
     securityAnswer: String,
-    wishList:[{type: mongoose.Schema.ObjectId, ref: 'Service'}],
-    favCompanies:[{type: mongoose.Schema.ObjectId, ref: 'Company'}]
+    wishList: [{ type: mongoose.Schema.ObjectId, ref: 'Service' }],
+    favCompanies: [{ type: mongoose.Schema.ObjectId, ref: 'Company' }]
 
 })
 
