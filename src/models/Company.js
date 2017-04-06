@@ -68,14 +68,12 @@ var companySchema = mongoose.Schema({
 
     },
     socialMediaURL: {
-        URL: String,
-
+        URL: String
 
     },
     verified: {
         type: Boolean,
         default: false
-
 
     },
     paymentMethod: {
