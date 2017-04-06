@@ -13,10 +13,15 @@ let clientController = {
 
                 client.save(function (err, client) {
                     if (err) {
-                        res.write('<h1>Username already exists, please choose another one.</h1>');
-                        console.log(err);
+                        res.status(500).json({
+                            success: false,
+                            message: 'Error registering data.'
+                        })
                     } else {
-                        console.log(client);
+                        rerturn res.json({
+                            success: true,
+                            message: 'New client successfully registered.'
+                        })
                     }
                 });
             });
@@ -25,44 +30,55 @@ let clientController = {
 
     viewProfile: function (req, res) {
 
-        Client.find({ username: req.session.username }, (function (err, clients) {
+        Client.find({
+            username: req.session.username
+        }, (function (err, clients) {
 
 
             if (err)
                 res.send(err.message);
             else
-                res.render('index', { clients });
-        })
-        )
+                res.render('index', {
+                    clients
+                });
+        }))
     },
 
-    updatePassword: function (req,res) {
+    updatePassword: function (req, res) {
 
-        Client.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.body.newPassword }, function(err, client) {
+        Client.findOneAndUpdate({
+            _id: req.decoded.id
+        }, {
+            "password": req.body.newPassword
+        }, function (err, client) {
             if (err) {
                 console.log(err);
                 console.log('update password failed ');
             }
-            if (client){
+            if (client) {
                 console.log("Password updated");
                 client.markModified('Password ok');
             }
         });
     },
 
-    resetPassword: function (req,res) {
+    resetPassword: function (req, res) {
         if (req.decoded.securityAnswer === req.answer) {
-            Client.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.newPassword }, function(err, client) {
+            Client.findOneAndUpdate({
+                _id: req.decoded.id
+            }, {
+                "password": req.newPassword
+            }, function (err, client) {
                 if (err) {
                     console.log('reset password failed ');
                 }
-                if (client){
+                if (client) {
                     console.log("Password reset successful");
                     client.markModified('Password reset ok');
                 }
             });
         }
-    
+
     },
 
     /*  updateProfile: function(req , res){
@@ -98,16 +114,22 @@ let clientController = {
         {
     }*/
     addToWishList: function (req, res, serviceID) {
-  Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
-              if (err) {
+        Client.findOneAndUpdate({
+            _id: req.decoded.id
+        }, {
+            "$push": {
+                "wishList": serviceID
+            }
+        }, function (err, client) {
+            if (err) {
                 console.log('got an error');
-              }
-              if (client){
-           console.log("Added to Wishlist");
-            client.markModified('anything');
+            }
+            if (client) {
+                console.log("Added to Wishlist");
+                client.markModified('anything');
             }
 
-            });
+        });
 
 
     }

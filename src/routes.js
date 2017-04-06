@@ -17,8 +17,8 @@ var config = require('../src/config/token');
 
 router.get('/', function (req, res) {
 	res.json({
-		hello: 'world'
-	});
+    hello: 'world'
+});
 });
 
 router.get('/company/profile', companyController.viewCompanyProfile);
@@ -93,14 +93,9 @@ router.get('/check', function (req, res) {
 });
 
 router.post('/faq', function(req,res){
-    console.log(req.decoded);
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            console.log(decodedPayload);
-
-			// res.json( {topSecretResource: 'ay7aga'});
             FAQController.askFAQ(req, res);
         } else {
             res.status(401).json({
@@ -108,21 +103,17 @@ router.post('/faq', function(req,res){
             });
         }
     } catch (err) {
-		// todo
-        console.log(err);
-    }
-});
+        res.status(500).json({
+                    success: false,
+                    message: 'Internal server error.'
+    })
+};
 
 router.post('/faqa', function(req,res){
-    console.log(req.decoded);
-
     try {
 
         const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'client') {
-            console.log(decodedPayload);
-
-			// res.json( {topSecretResource: 'ay7aga'});
+        if (decodedPayload.role === 'admin') {
             FAQController.answerFAQ(req, res);
         } else {
             res.status(401).json({
@@ -130,21 +121,17 @@ router.post('/faqa', function(req,res){
             });
         }
     } catch (err) {
-		// todo
-        console.log(err);
+		res.status(500).json({
+                    success: false,
+                    message: 'Internal server error.'
+    })
 	}
 });
 
 router.post('/review', function(req,res){
-    console.log(req.decoded);
-
     try {
-
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            console.log(decodedPayload);
-
-			// res.json( {topSecretResource: 'ay7aga'});
             reviewController.create(req, res);
         } else {
             res.status(401).json({
@@ -152,21 +139,17 @@ router.post('/review', function(req,res){
             });
         }
     } catch (err) {
-		// todo
-        console.log(err);
+		res.status(500).json({
+                    success: false,
+                    message: 'Internal server error.'
+    })
 	}
 });
 
 router.post('/deleteR', function(req,res){
-    console.log(req.decoded);
-
     try {
-
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
-            console.log(decodedPayload);
-
-			// res.json( {topSecretResource: 'ay7aga'});
             reviewController.delete(req, res);
         } else {
             res.status(401).json({
@@ -174,8 +157,10 @@ router.post('/deleteR', function(req,res){
             });
         }
     } catch (err) {
-		// todo
-        console.log(err);
+		res.status(500).json({
+                    success: false,
+                    message: 'Internal server error.'
+    })
     }
 });
 

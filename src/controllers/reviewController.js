@@ -12,22 +12,33 @@ let reviewController = {
 
         review.save(function (err, review) {
             if (err) {
-                console.log(err);
+                res.status(500).json({
+                    success: false,
+                    message: 'Error creating review.'
+                })
             } else {
-                console.log(review);
+                rerturn res.json({
+                    success: true,
+                    message: 'Review created successfully.'
+                })
             }
         });
     },
 
     delete: function (req, res) {
         Review.findOneAndRemove({
-            username: req.body.username,
-            companyID: req.body.companyID
+            _id: req.body.id
         }, function (err) {
             if (err) {
-                console.log(err);
+                res.status(500).json({
+                    success: false,
+                    message: 'Error deleting data.'
+                })
             } else {
-                console.log('Review is deleted.');
+                rerturn res.json({
+                    success: true,
+                    message: 'Review deleted successfully.'
+                })
             }
         });
     },
