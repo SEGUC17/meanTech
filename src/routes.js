@@ -387,5 +387,20 @@ router.post('/deleteCompany', function (req, res) {
 	}
 });
 
+router.post('/addToFavCompanies', function(req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.addToFavCompanies(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.json(err);
+    }
+});
+
 
 module.exports = router;
