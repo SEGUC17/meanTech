@@ -46,12 +46,6 @@ router.get('/companyEvents', eventController.getCompanyEvents);
 
 router.get('/FAQView', FAQController.viewFAQs);
 
-router.post('/adminChangePassword', adminController.changePassword);
-
-router.post('/clientChangePassword', clientController.updatePassword);
-
-router.post('/adminResetPassword', adminController.resetPassword);
-
 router.post('/register', clientController.register);
 
 router.post('/review', reviewController.create);
@@ -129,8 +123,6 @@ router.post('/event', function (req, res) {
 
 
 router.post('/clientUpdatePassword', function (req, res) {
-    console.log(req.decoded);
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -148,8 +140,6 @@ router.post('/clientUpdatePassword', function (req, res) {
 });
 
 router.post('/clientResetPassword', function (req, res) {
-    console.log(req.decoded);
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -167,8 +157,6 @@ router.post('/clientResetPassword', function (req, res) {
 });
 
 router.post('/companyUpdatePassword', function (req, res) {
-    console.log(req.decoded);
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -186,14 +174,46 @@ router.post('/companyUpdatePassword', function (req, res) {
 });
 
 router.post('/companyResetPassword', function (req, res) {
-    console.log(req.decoded);
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
             console.log(decodedPayload);
             console.log("Password reset successful");
             companyController.resetPassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/adminUpdatePassword', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'admin') {
+            console.log(decodedPayload);
+
+            adminController.updatePassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/adminResetPassword', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'admin') {
+            console.log(decodedPayload);
+            console.log("Password reset successful");
+            adminController.resetPassword(req, res);
         } else {
             res.status(401).json({
                 error: 'Unauthorized'

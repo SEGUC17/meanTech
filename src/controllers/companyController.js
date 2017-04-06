@@ -87,7 +87,7 @@ let companyController = {
   },
       updatePassword: function (req,res) {
 
-        Company.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.body.newPassword }, function(err, company) {
+        Company.findOneAndUpdate({_id: req.decoded.id }, { $set:{"password" : req.body.newPassword }}, function(err, company) {
             if (err) {
                 console.log(err);
                 console.log('update password failed ');
@@ -101,7 +101,7 @@ let companyController = {
 
     resetPassword: function (req,res) {
         if (req.decoded.securityAnswer === req.answer) {
-            Company.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.newPassword }, function(err, client) {
+            Company.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.newPassword }}, function(err, client) {
                 if (err) {
                     console.log('reset password failed ');
                 }

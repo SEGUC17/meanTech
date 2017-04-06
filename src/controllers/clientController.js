@@ -31,7 +31,7 @@ let clientController = {
 
     updatePassword: function (req,res) {
 
-        Client.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.body.newPassword }, function(err, client) {
+        Client.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.body.newPassword } }, function(err, client) {
             if (err) {
                 console.log(err);
                 console.log('update password failed ');
@@ -45,7 +45,7 @@ let clientController = {
 
     resetPassword: function (req,res) {
         if (req.decoded.securityAnswer === req.answer) {
-            Client.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.newPassword }, function(err, client) {
+            Client.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.newPassword }}, function(err, client) {
                 if (err) {
                     console.log('reset password failed ');
                 }

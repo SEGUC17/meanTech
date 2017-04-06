@@ -4,34 +4,22 @@ const companyController = require('../controllers/companyController');
 const bcrypt = require('bcryptjs');
 
 
-module.exports = {
-
-    changePassword: function (req, res) {
-        getAdminByUsername.password = req.pw;
-    },
-
-    resetPassword: function (req, res) {
-        if (req.questionAnswer == getAdminByUsername.answer) {
-            getAdminByUsername.password = req.pw;
-        } else {
-            console.log('there"s a problem here ');
-        }
-    }, 
+let adminController= {
 
     adminRegister: function (req, res) {
-        let newAdmin = new Admin({
+        let admin = new Admin({
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
-            securityQuesion: req.body.question,
-            answer: req.body.answer
+            securityQuestion: req.body.securityQuestion,
+            securityAnswer: req.body.securityAnswer,
         });
 
         bcrypt.genSalt(10, function (err, salt) {
-            bcrypt.hash(newAdmin.password, salt, function (err, hash) {
+            bcrypt.hash(admin.password, salt, function (err, hash) {
                 if (err) throw err;
-                newAdmin.password = hash;
-                newAdmin.save(function (err, newAdmin) {
+                admin.password = hash;
+                admin.save(function (err, admin) {
                     if (err) {
                         res.json({
                             success: false,
@@ -113,5 +101,37 @@ module.exports = {
                 res.send('complete');
             }
         });
+    },
+      
+    updatePassword: function (req,res) {
+        Admin.findOneAndUpdate({username: req.decoded.username }, { $set: {"password" : req.body.newPassword } }, function(err, admin) {
+            if (err) {
+                console.log(err);
+                console.log('update password failed ');
+            }
+            if (admin){
+                console.log("Password updated");
+                admin.markModified('Password ok');
+            }
+
+        });
+    },
+
+    resetPassword: function (req,res) {
+        if (req.decoded.securityAnswer === req.answer) {
+            Admin.findOneAndUpdate({username: req.decoded.username }, { $set:{ "password" : req.newPassword } }, function(err, admin) {
+                if (err) {
+                    console.log('reset password failed ');
+                }
+                if (admin){
+                    console.log("Password reset successful");
+                    admin.markModified('Password reset ok');
+                }
+            });
+        }
+    
     }
 };
+
+module.exports = adminController;
+
