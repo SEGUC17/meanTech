@@ -84,9 +84,7 @@ router.use(function (req, res, next) {
 
 });
 
-router.get('/check', function (req, res) {
-	res.json(req.decoded);
-});
+
 
 router.post('/faq', function(req,res){
     console.log(req.decoded);
@@ -190,7 +188,10 @@ router.post('/event', function(req, res) {
         }
     } catch (err) {
 
-        console.log(err);
+			res.status(500).json({
+					success: false,
+					message: 'Internal server error'
+			});
     }
 
 });
@@ -210,7 +211,10 @@ router.post('/clientUpdatePassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'Couldn"t update password, internal server error',
+                });
     }
 });
 
@@ -227,7 +231,10 @@ router.post('/clientResetPassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'Couldn"t reset password,internal server error',
+                });
     }
 });
 
@@ -244,7 +251,10 @@ router.post('/companyUpdatePassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'couldn"t update password, internal server error',
+                });
     }
 });
 
@@ -261,7 +271,10 @@ router.post('/companyResetPassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'couldn"t reset password, internal server error',
+                });
     }
 });
 
@@ -278,7 +291,10 @@ router.post('/adminUpdatePassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'couldn"t update password, internal server error',
+                });
     }
 });
 
@@ -295,7 +311,10 @@ router.post('/adminResetPassword', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+                res.status(500).json({
+                    success: false,
+                    msg: 'couldn"t reset password, internal server error',
+                });
     }
 });
 
@@ -316,7 +335,10 @@ router.post('/addToWishList', function(req, res) {
         }
     } catch (err) {
 
-        console.log(err);
+			res.status(500).json({
+					success: false,
+					message: 'Internal server error'
+			});
     }
 
 });
