@@ -19,15 +19,19 @@ let clientController = {
     viewProfile: function (req, res) {
 
         Client.find({ username: req.decoded.username }, (function (err, client) {
+                if (err) {
+                    res.status(500).json({ 
+                       success: false,
+                       msg:'can not view profile'
 
-
-            if (err)
-                res.send(err);
-            else {
-                res.send(200);
-                console.log(client)
-            }
-        })
+                     })
+                } else {
+                    res.json({ 
+                        success: true,
+                       msg:'can '
+                    });
+                }
+            })
         )
     },
     updateProfile: function (req, res) {
@@ -45,9 +49,16 @@ let clientController = {
 
         Client.findByIdAndUpdate(query, update, options, function (err, client) {
                 if (err) {
-                    res.json({ error: err.message })
+                    res.status(500).json({ 
+                       success: false,
+                       msg:'update fail'
+
+                     })
                 } else {
-                    res.json({ data: client });
+                    res.json({ 
+                        success: true,
+                       msg:'update success'
+                    });
                 }
             }
         );
