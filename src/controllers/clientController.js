@@ -89,13 +89,20 @@ const clientController = {
         });
 
 
+    },
+
+    addToFavCompanies: function (req, res) {
+    var  companyID = req.body.companyID;
+    Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"favCompanies" : companyID}},function(err, client) {
+        if (err) {
+            res.json(err);
+        }
+        if (client){
+            return res.json({ success: true, message: 'Successfully added to favCompanies' });
+            client.markModified('anything');
+        }
+    });
     }
-
-
-
-
-
-
 }
 
 module.exports = clientController;
