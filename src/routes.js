@@ -235,11 +235,6 @@ router.post('/clientUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            res.json({
-                success: true,
-                msg: 'password updated successfully',
-            });
-
             clientController.updatePassword(req, res);
         } else {
             res.status(401).json({
@@ -258,10 +253,6 @@ router.post('/clientResetPassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            res.json({
-                success: true,
-                msg: 'password updated successfully',
-            });
             clientController.resetPassword(req, res);
         } else {
             res.status(401).json({
@@ -280,11 +271,6 @@ router.post('/companyUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'password updated successfully',
-            });
-
             companyController.updatePassword(req, res);
         } else {
             res.status(401).json({
@@ -325,11 +311,6 @@ router.post('/adminUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
-            res.json({
-                success: true,
-                msg: 'password updated successfully',
-            });
-
             adminController.updatePassword(req, res);
         } else {
             res.status(401).json({
