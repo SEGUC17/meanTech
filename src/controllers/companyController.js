@@ -33,22 +33,19 @@ let companyController = {
         //res.redirect('/');
       }
     })
-
   },
   viewCompanyProfile: function (req, res) {
-    var id = req.body.id;
-    console.log(id);
-    company.findById(id, function (err, Company) {
+    var id = req.query;
+    
+    Company.findById( id , function (err, company) {
       if (err)
-        res.send(err.message);
+        console.log(err.message);
       else
-        console.log('success');
-      res.render('companyProfile', {
-        Company
-      })
-    }) 
+        console.log(company);
+         
+    })
+
   },
- 
 
   getUnverfiedCompanies: function (verified, callback) {
     var query = {
@@ -115,4 +112,4 @@ let companyController = {
     },
 }
 
- module.exports = companyController;
+module.exports = companyController;
