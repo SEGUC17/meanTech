@@ -18,7 +18,7 @@ let companyController = {
       branches: req.body.branches,
       socialMediaURL: req.body.socialMediaURL,
       verified: false,
-      payementMethod: req.body.payementMethod,
+      paymentMethod: req.body.paymentMethod,
       securityQuestion: req.body.securityQuestion,
       securityAnswer: req.body.securityAnswer
     });

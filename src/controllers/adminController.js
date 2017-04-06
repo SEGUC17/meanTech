@@ -12,7 +12,7 @@ let adminController= {
             password: req.body.password,
             email: req.body.email,
             securityQuestion: req.body.securityQuestion,
-            securityAnswer: req.body.securityAnswer,
+            questionAnswer: req.body.questionAnswer,
         });
 
         bcrypt.genSalt(10, function (err, salt) {
