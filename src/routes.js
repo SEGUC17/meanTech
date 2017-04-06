@@ -400,6 +400,7 @@ router.post('/addToFavCompanies', function(req, res) {
     } catch (err) {
         res.json(err);
     }
+});
   
 router.get('/viewMyReviews',function (req,res){
     console.log(req.decoded);
