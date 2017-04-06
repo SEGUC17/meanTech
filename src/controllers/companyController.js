@@ -118,8 +118,8 @@ let companyController = {
         console.log('err.message');
       }
       else{
-        //console.log(reviews);
-        res.send(reviews)
+        console.log(reviews);
+        //res.send(reviews)
       }
     })
   }

@@ -382,7 +382,7 @@ router.get('/viewCompanies', function (req, res) {
 	}
 });
 
-router.get('/viewReviews',function (req,res){
+router.get('/viewMyReviews',function (req,res){
     console.log(req.decoded);
 	try {
 		const decodedPayload = req.decoded;
