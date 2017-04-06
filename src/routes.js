@@ -45,17 +45,15 @@ router.get('/companyEvents', eventController.getCompanyEvents);
 
 router.get('/FAQView', FAQController.viewFAQs);
 
-router.post('/adminChangePassword', adminController.changePassword);
-
-router.post('/clientChangePassword', clientController.updatePassword);
-
-router.post('/adminResetPassword', adminController.resetPassword);
-
 router.post('/register', clientController.register);
 
 router.post('/companyLogin', loginController.companyLogin);
 
 router.post('/clientLogin', loginController.clientLogin);
+
+router.post('/companyLogin', loginController.companyLogin);
+
+router.get('/getAllPromotions', promotionController.getAllPromotions);
 
 router.use(function (req, res, next) {
 
@@ -206,28 +204,9 @@ router.post('/event', function (req, res) {
 
 });
 
-router.get('/getAllPromotions', function (req, res) {
-    console.log(req.decoded);
 
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'client' || decodedPayload.role === 'visitor') {
-            console.log(decodedPayload);
-
-            promotionController.getAllPromotions(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        console.log(err);
-    }
-});
 
 router.post('/clientUpdatePassword', function (req, res) {
-    console.log(req.decoded);
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -245,14 +224,80 @@ router.post('/clientUpdatePassword', function (req, res) {
 });
 
 router.post('/clientResetPassword', function (req, res) {
-    console.log(req.decoded);
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
             console.log(decodedPayload);
-			console.log("Password reset successful");
+            console.log("Password reset successful");
             clientController.resetPassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/companyUpdatePassword', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            console.log(decodedPayload);
+
+            companyController.updatePassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/companyResetPassword', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            console.log(decodedPayload);
+            console.log("Password reset successful");
+            companyController.resetPassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/adminUpdatePassword', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'admin') {
+            console.log(decodedPayload);
+
+            adminController.updatePassword(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post('/adminResetPassword', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'admin') {
+            console.log(decodedPayload);
+            console.log("Password reset successful");
+            adminController.resetPassword(req, res);
         } else {
             res.status(401).json({
                 error: 'Unauthorized'

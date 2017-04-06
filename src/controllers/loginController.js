@@ -27,7 +27,10 @@ module.exports = {
                 if (isMatch) {
                     var token = jwt.sign({
                         username: Admin.username,
+                        id: Admin._id,
                         role: 'admin',
+                        securityAnswer: Admin.securityAnswer,
+
                     }, config.secret, {
                         expiresIn: 604800
                     });
@@ -37,7 +40,7 @@ module.exports = {
                         admin: {
                             id: Admin._id,
                             username: Admin.username,
-                            email: Admin.email
+                            email: Admin.email,
                         }
                     });
                 } else {
@@ -80,6 +83,7 @@ module.exports.companyLogin =function(req, res){
                 username: company.username,
                 id: company._id,
                 role: 'company',
+                securityAnswer: company.securityAnswer,
             }, config.secret , {
     					expiresIn: 86400 // expires in 24 hours
     				});
