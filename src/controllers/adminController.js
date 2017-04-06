@@ -117,20 +117,25 @@ const adminController = {
         });
     },
 
-resetPassword: function (req, res) {
-    if (req.decoded.securityAnswer === req.answer) {
-        Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.newPassword } }, function (err, admin) {
-            if (err) {
-                console.log('reset password failed ');
-            }
-            if (admin) {
-                console.log("Password reset successful");
-                admin.markModified('Password reset ok');
-            }
-        });
+    resetPassword: function (req, res) {
+        if (req.decoded.securityAnswer === req.answer) {
+            Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.newPassword } }, function (err, admin) {
+                if (err) {
+                    res.json({
+                        success: false,
+                        msg: 'You are not allowed to change the password, update failed',
+                    });
+                }
+                if (admin) {
+                    res.json({
+                        success: true,
+                        msg: 'The password has been updated successfully'
+                    }); 
+                    admin.markModified('Password reset ok');
+                }
+            });
+        }
     }
-
-}
 };
 
 module.exports = adminController;
