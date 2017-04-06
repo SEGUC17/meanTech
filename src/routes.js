@@ -1,4 +1,3 @@
-
 const express = require('express');
 
 const router = express.Router();
@@ -497,86 +496,158 @@ router.get('/viewMyReviews', function (req, res) {
 });
 
 router.post('/postPromotion1', function (req, res) {
-    console.log(req.decoded);
-
     try {
-
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            console.log(decodedPayload);
-
-            // res.json( {topSecretResource: 'ay7aga'});
+            res.json({
+                success: true,
+                msg: 'promotion posted successfully',
+            });
             promotionController.postPromotion(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized.'
+                error: 'Unauthorized'
             });
-
         }
     } catch (err) {
-        //todo
-        res.status(500).json({ error: err.message });
-
+        res.status(500).json({
+            success: false,
+            msg: 'Could not post promotion',
+        });
     }
 
 });
 
 router.post('/updatePromotion1', function (req, res) {
-    console.log(req.decoded);
-
     try {
-
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            console.log(decodedPayload);
-
+            res.json({
+                success: true,
+                msg: 'promotion updated successfully',
+            });
             promotionController.updatePromotion(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized.'
+                error: 'Unauthorized'
             });
-
         }
     } catch (err) {
-
-        res.status(500).json({ error: err.message });
-
+        res.status(500).json({
+            success: false,
+            msg: 'Could not update promotion',
+        });
     }
 
 });
 
 router.get('/viewPromotions1', function (req, res) {
-    console.log(req.decoded);
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
+            res.json({
+                success: true,
+                msg: 'Here are your promotions!',
+            });
             promotionController.viewPromotions(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized.'
+                error: 'Unauthorized'
             });
-
         }
     } catch (err) {
-        res.status(500).json({ error: err.message });
-
+        res.status(500).json({
+            success: false,
+            msg: 'Could not view promotions',
+        });
     }
 });
 
 router.post('/deletePromotion1', function (req, res) {
-    console.log(req.decoded);
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
+            res.json({
+                success: true,
+                msg: 'promotion deleted successfully',
+            });
             promotionController.deletePromotion(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized.'
+                error: 'Unauthorized'
             });
         }
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        res.status(500).json({
+            success: false,
+            msg: 'Could not delete promotion',
+        });
+    }
+});
 
+router.get('/getCompanyEvents', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            res.json({
+                success: true,
+                msg: 'Here are the events of your company',
+            });
+            eventController.getCompanyEvents(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            msg: 'No events available for you',
+        });
+    }
+});
+
+router.post('/viewRatings', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            res.json({
+                success: true,
+                msg: 'Here are the reviews people provided about this company',
+            });
+            reviewController.viewRatings(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            msg: 'No reviews available',
+        });
+    }
+});
+
+router.post('/updateEvents', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            res.json({
+                success: true,
+                msg: 'Company info updated successfully',
+            });
+            eventController.updateEvents(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            msg: 'Could not update event',
+        });
     }
 });
 
