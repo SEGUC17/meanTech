@@ -236,7 +236,10 @@ router.post('/clientUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            console.log(decodedPayload);
+        res.json({
+            success: true,
+            msg: 'password updated successfully',
+        });
 
             clientController.updatePassword(req, res);
         } else {
@@ -256,8 +259,10 @@ router.post('/clientResetPassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
+        res.json({
+            success: true,
+            msg: 'password updated successfully',
+        });
             clientController.resetPassword(req, res);
         } else {
             res.status(401).json({
@@ -276,7 +281,10 @@ router.post('/companyUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            console.log(decodedPayload);
+        res.json({
+            success: true,
+            msg: 'password updated successfully',
+        });
 
             companyController.updatePassword(req, res);
         } else {
@@ -296,8 +304,10 @@ router.post('/companyResetPassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
+        res.json({
+            success: true,
+            msg: 'password reset successfully',
+        });
             companyController.resetPassword(req, res);
         } else {
             res.status(401).json({
@@ -316,7 +326,10 @@ router.post('/adminUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
-            console.log(decodedPayload);
+        res.json({
+            success: true,
+            msg: 'password updated successfully',
+        });
 
             adminController.updatePassword(req, res);
         } else {
@@ -336,108 +349,10 @@ router.post('/adminResetPassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
-            adminController.resetPassword(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'couldn"t reset password, internal server error',
+        res.json({
+            success: true,
+            msg: 'password reset successfully',
         });
-    }
-});
-
-router.post('/clientResetPassword', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'client') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
-            clientController.resetPassword(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'Couldn"t reset password,internal server error',
-        });
-    }
-});
-
-router.post('/companyUpdatePassword', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'company') {
-            console.log(decodedPayload);
-
-            companyController.updatePassword(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'couldn"t update password, internal server error',
-        });
-    }
-});
-
-router.post('/companyResetPassword', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'company') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
-            companyController.resetPassword(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'couldn"t reset password, internal server error',
-        });
-    }
-});
-
-router.post('/adminUpdatePassword', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'admin') {
-            console.log(decodedPayload);
-
-            adminController.updatePassword(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'couldn"t update password, internal server error',
-        });
-    }
-});
-
-router.post('/adminResetPassword', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'admin') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
             adminController.resetPassword(req, res);
         } else {
             res.status(401).json({
@@ -474,7 +389,6 @@ router.post('/addToWishList', function (req, res) {
 });
 
 router.get('/unverifiedCompanies', function (req, res) {
-    console.log(req.decoded);
 
     try {
         const decodedPayload = req.decoded;
@@ -486,12 +400,14 @@ router.get('/unverifiedCompanies', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 
 router.post('/verifyCompanies', function (req, res) {
-    console.log(req.decoded);
 
     try {
         const decodedPayload = req.decoded;
@@ -503,12 +419,14 @@ router.post('/verifyCompanies', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err)
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 
 router.get('/viewCompanies', function (req, res) {
-    console.log(req.decoded);
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -519,12 +437,14 @@ router.get('/viewCompanies', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 
 router.post('/deleteCompany', function (req, res) {
-    console.log(req.decoded);
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -535,7 +455,10 @@ router.post('/deleteCompany', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 
@@ -555,7 +478,6 @@ router.post('/addToFavCompanies', function (req, res) {
 });
 
 router.get('/viewMyReviews', function (req, res) {
-    console.log(req.decoded);
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -566,107 +488,13 @@ router.get('/viewMyReviews', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 
 });
 
-router.get('/unverifiedCompanies', function (req, res) {
-    console.log(req.decoded);
-
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'admin') {
-            adminController.unverifiedCompanies(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized.'
-            });
-        }
-    } catch (err) {
-        console.log(err);
-    }
-});
-
-router.post('/verifyCompanies', function (req, res) {
-    console.log(req.decoded);
-
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'admin') {
-            adminController.verifyCompanies(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized.'
-            });
-        }
-    } catch (err) {
-        console.log(err)
-    }
-});
-
-router.get('/viewCompanies', function (req, res) {
-    console.log(req.decoded);
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'admin') {
-            companyController.getCompanies(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized.'
-            });
-        }
-    } catch (err) {
-        console.log(err);
-    }
-});
-
-router.post('/deleteCompany', function (req, res) {
-    console.log(req.decoded);
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'admin') {
-            adminController.deleteCompany(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized.'
-            });
-        }
-    } catch (err) {
-        console.log(err);
-    }
-});
-
-router.post('/addToFavCompanies', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'client') {
-            clientController.addToFavCompanies(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.json(err);
-    }
-});
-
-router.get('/viewMyReviews', function (req, res) {
-    console.log(req.decoded);
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'company') {
-            companyController.viewReviews(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized.'
-            });
-        }
-    } catch (err) {
-        console.log(err);
-    }
-
-});
 
 module.exports = router;
