@@ -88,7 +88,7 @@ let companyController = {
 
         Company.findOneAndUpdate({_id: req.decoded.id }, { $set:{"password" : req.body.newPassword }}, function(err, company) {
             if (err) {
-                res.json({
+                res.status(500).json({
                     success: false,
                     msg: 'You are not allowed to change the password, update failed',
                 });
@@ -107,7 +107,7 @@ let companyController = {
         if (req.decoded.securityAnswer === req.answer) {
             Company.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.newPassword }}, function(err, client) {
                 if (err) {
-                    res.json({
+                    res..status(500).json({
                         success: false,
                         msg: 'You are not allowed to change the password, update failed',
                     });

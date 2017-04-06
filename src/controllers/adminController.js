@@ -102,7 +102,7 @@ const adminController = {
     updatePassword: function (req, res) {
         Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.body.newPassword } }, function (err, admin) {
             if (err) {
-                res.json({
+                res..status(500).json({
                     success: false,
                     msg: 'You are not allowed to change the password, update failed',
                 });
@@ -121,7 +121,7 @@ const adminController = {
         if (req.decoded.securityAnswer === req.answer) {
             Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.newPassword } }, function (err, admin) {
                 if (err) {
-                    res.json({
+                    res..status(500).json({
                         success: false,
                         msg: 'You are not allowed to change the password, update failed',
                     });
