@@ -40,11 +40,16 @@ let clientController = {
 
         Client.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.body.newPassword } }, function(err, client) {
             if (err) {
-                console.log(err);
-                console.log('update password failed ');
+                res.json({
+                    success: false,
+                    msg: 'You are not allowed to change the password, update failed',
+                });
             }
             if (client){
-                console.log("Password updated");
+                res.json({
+                    success: true,
+                    msg: 'The password has been updated successfully'
+                }); 
                 client.markModified('Password ok');
             }
         });
@@ -54,10 +59,16 @@ let clientController = {
         if (req.decoded.securityAnswer === req.answer) {
             Client.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.newPassword }}, function(err, client) {
                 if (err) {
-                    console.log('reset password failed ');
+                    res.json({
+                        success: false,
+                        msg: 'You are not allowed to change the password, update failed',
+                    });
                 }
                 if (client){
-                    console.log("Password reset successful");
+                    res.json({
+                        success: true,
+                        msg: 'The password has been updated successfully'
+                    }); 
                     client.markModified('Password reset ok');
                 }
             });
