@@ -81,9 +81,10 @@ let companyController = {
 
         var query = Company.find({}).select('name username');
 
-        query.exec(function(err, faq) {
+
+        query.exec(function (err, company) {
             if (err) return next(err);
-            res.send(faq);
+            res.send(company);
         });
     },
 
