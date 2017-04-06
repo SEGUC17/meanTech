@@ -387,5 +387,21 @@ router.post('/deleteCompany', function (req, res) {
 	}
 });
 
+router.get('/viewMyReviews',function (req,res){
+    console.log(req.decoded);
+	try {
+		const decodedPayload = req.decoded;
+		if (decodedPayload.role === 'company') {
+			companyController.viewReviews(req, res);
+		} else {
+			res.status(401).json({
+				error: 'Unauthorized.'
+			});
+		}
+	} catch (err) {
+		console.log(err);
+	}
+});
+
 
 module.exports = router;

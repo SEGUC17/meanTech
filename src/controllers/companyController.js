@@ -1,4 +1,5 @@
 let Company = require('../models/Company');
+let Review = require('../models/Review');
 
 let companyController = {
 
@@ -111,6 +112,18 @@ let companyController = {
         }
 
     },
+
+    viewReviews: function (req,res) {
+    Review.find({companyID:req.decoded.id},function(err,reviews){
+      if (err){
+        console.log('err.message');
+      }
+      else{
+        console.log(reviews);
+        //res.send(reviews)
+      }
+    })
+  }
 }
 
 module.exports = companyController;
