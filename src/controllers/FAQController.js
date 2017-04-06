@@ -29,6 +29,8 @@ let FAQController = {
     },
 
     askFAQ: function (req, res) {
+
+
         let newQ = new FAQ({
             questionText: req.body.questionText,
             clientUsername: req.decoded.username
@@ -41,6 +43,7 @@ let FAQController = {
                 console.log(newQ);
             }
         });
+
     },
 
     viewFAQs: function (req, res, next) {
