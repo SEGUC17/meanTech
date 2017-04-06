@@ -62,7 +62,7 @@ let clientController = {
                 }
             });
         }
-    
+
     },
 
     /*  updateProfile: function(req , res){
@@ -97,12 +97,14 @@ let clientController = {
      { $set:
         {
     }*/
-    addToWishList: function (req, res, serviceID) {
+    addToWishList: function (req, res) {
+    var  serviceID = req.body.serviceID;
   Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
               if (err) {
                 console.log('got an error');
               }
               if (client){
+                return res.json({ success: true, message: 'Successfully added to wishList' });
            console.log("Added to Wishlist");
             client.markModified('anything');
             }
@@ -112,7 +114,6 @@ let clientController = {
 
     }
 
-   
 
 
 

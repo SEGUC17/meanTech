@@ -15,7 +15,7 @@ module.exports = {
             if (err) throw err;
 
             if (!Admin) {
-                return res.json({ 
+                return res.json({
                     success: false,
                     msg: 'Admin not available.'
                 })
@@ -56,103 +56,115 @@ module.exports = {
 }
 
 
-module.exports.companyLogin =function(req, res){
+module.exports.companyLogin = function(req, res) {
 
     Company.findOne({
-    		username: req.body.username
-    	}, function(err, company) {
+        username: req.body.username
+    }, function(err, company) {
 
-    		if (err) console.log(err);
+        if (err) console.log(err);
 
-    		if (!company) {
+        if (!company) {
 
-    			res.json({ success: false, message: 'Authentication failed. User not found.' });
-    		} else if (company) {
+            res.json({
+                success: false,
+                message: 'Authentication failed. User not found.'
+            });
+        } else if (company) {
 
-    			// check if password matches
-    			if (company.password != req.body.password) {
-          //  req.flash("messages", { "error" : "Invalid username or password" });
-                //    res.locals.messages = req.flash();
-    				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-    			} else {
+            if (company.verified == true) {
+                if (company.password != req.body.password) {
 
-    				// if user is found and password is right
-    				// create a token
-            var token = jwt.sign({
-              name: company.name,
-                username: company.username,
-                id: company._id,
-                role: 'company',
-                securityAnswer: company.securityAnswer,
-            }, config.secret , {
-    					expiresIn: 86400 // expires in 24 hours
-    				});
-        //   req.flash("messages", { "success" : "Sign Up Success" });
-    				res.json({
-    					success: true,
-    					message: 'Success',
-    					token: token
-    				});
-    			}
-
-    		}
-
-    	});
+                    res.json({
+                        success: false,
+                        message: 'Authentication failed. Wrong password.'
+                    });
+                } else {
 
 
+                    var token = jwt.sign({
+                        name: company.name,
+                        username: company.username,
+                        id: company._id,
+                        securityAnswer: company.securityAnswer,
+                        role: 'company',
 
+                    }, config.secret, {
+                        expiresIn: 86400
+                    });
 
-      }
-
-
-  module.exports.clientLogin =function(req, res){
-
-          Client.findOne({
-          		username: req.body.username
-          	}, function(err, client) {
-
-          		if (err) console.log(err);
-
-          		if (!client) {
-
-          			res.json({ success: false, message: 'Authentication failed. User not found.' });
-          		} else if (client) {
-
-          			// check if password matches
-          			if (client.password != req.body.password) {
-                //  req.flash("messages", { "error" : "Invalid username or password" });
-                      //    res.locals.messages = req.flash();
-          				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-          			} else {
-
-          				// if user is found and password is right
-          				// create a token
-                  var token = jwt.sign({
-                    name: client.name,
-                      username: client.username,
-                      id: client._id,
-                      role: 'client',
-                      securityAnswer: client.securityAnswer,
-                  }, config.secret , {
-          					expiresIn: 86400 // expires in 24 hours
-          				});
-              //   req.flash("messages", { "success" : "Sign Up Success" });
-          				res.json({
-          					success: true,
-          					message: 'Success',
-          					token: token
-          				});
-          			}
-
-          		}
-
-          	});
-
-
-
-
+                    res.json({
+                        success: true,
+                        message: 'Success',
+                        token: token
+                    });
+                }
+            } else {
+                res.json({
+                    success: false,
+                    message: 'Unautherized access. Not a verified Company'
+                });
             }
 
-    
+        }
+
+    });
 
 
+
+
+}
+
+
+module.exports.clientLogin = function(req, res) {
+
+    Client.findOne({
+        username: req.body.username
+    }, function(err, client) {
+
+        if (err) console.log(err);
+
+        if (!client) {
+
+            res.json({
+                success: false,
+                message: 'Authentication failed. User not found.'
+            });
+        } else if (client) {
+
+
+            if (client.password != req.body.password) {
+
+                res.json({
+                    success: false,
+                    message: 'Authentication failed. Wrong password.'
+                });
+            } else {
+
+                
+                var token = jwt.sign({
+                    name: client.name,
+                    username: client.username,
+                    id: client._id,
+                    securityAnswer: client.securityAnswer,
+                    role: 'client',
+                }, config.secret, {
+                    expiresIn: 86400
+                });
+
+                res.json({
+                    success: true,
+                    message: 'Success',
+                    token: token
+                });
+            }
+
+        }
+
+    });
+
+
+
+
+
+}

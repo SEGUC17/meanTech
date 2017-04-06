@@ -1,42 +1,38 @@
 let Event = require('../models/Event');
 
 let eventController = {
-  createEvent:function(req, res){
-  //  console.log("create");
-//    if ("req.body.date" : {"$gte":  Date.now}){
+  createEvent: function(req, res) {
 
-//console.log(req.decoded.id);
-        let event = new Event({
-                name: req.body.name,
-            details: req.body.details,
-             date: req.body.date,
-            durationMins:req.body.durationMins,
-            address: req.body.address,
-            pictureURL: req.body.pictureURL,
-            category: req.body.category,
-            contacts: req.body.contacts,
-           price: req.body.price,
-           companyID: req.decoded.id
+      let event = new Event({
+          name: req.body.name,
+          details: req.body.details,
+          date: req.body.date,
+          durationMins: req.body.durationMins,
+          address: req.body.address,
+          pictureURL: req.body.pictureURL,
+          category: req.body.category,
+          contacts: req.body.contacts,
+          price: req.body.price,
+          companyID: req.decoded.id
 
 
 
-              });
+      });
 
 
-            event.save(function(err, event){
-                  if(err){
-                     res.send(err)
-                  console.log(err);
-                  }
-                  else{
+      event.save(function(err, event) {
+          if (err) {
+              res.send("Please provide all the required event information ")
+              console.log(err);
+          } else {
 
-                    res.send('success');
+              res.send('success');
 
-                  }
-              })
+          }
+      })
 
-        //    }
-      },
+
+  },
 
     getAllEvents: function (req, res) {
         Event.find({}, '-_id -companyID', function (err, events) {
@@ -49,7 +45,7 @@ let eventController = {
         })
     },
     //coID should be in the session so i can query in the events table to get all events that have coID= to companyID
-    
+
     getCompanyEvents: function (req, res) {
 
         Event.find({
