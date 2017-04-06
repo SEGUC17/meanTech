@@ -60,7 +60,7 @@ const adminController = {
             if (err) {
                 res.status(500).json(err);
             } else {
-                res.json({data: Company});
+                res.json({ data: Company });
             }
         });
     },
@@ -123,12 +123,12 @@ const adminController = {
                     msg: 'You are not allowed to change the password, update failed',
                 });
             }
-            if (admin) {
+            else {
 
                 res.json({
                     success: true,
                     msg: 'The password has been updated successfully'
-                }); 
+                });
 
                 admin.markModified('Password ok');
             }
@@ -146,12 +146,12 @@ const adminController = {
                         msg: 'You are not allowed to change the password, update failed',
                     });
                 }
-                if (admin) {
+                else {
 
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
-                    }); 
+                    });
 
                     admin.markModified('Password reset ok');
                 }

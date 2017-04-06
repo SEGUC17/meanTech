@@ -20,7 +20,7 @@ var adminSchema = mongoose.Schema({
     },
     questionAnswer: {
         type: String,
-        requried: true 
+        requried: true
     }
 });
 

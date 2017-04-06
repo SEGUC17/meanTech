@@ -7,11 +7,11 @@ var jwt = require('jsonwebtoken');
 var config = require('../config/token');
 
 module.exports = {
-    adminLogin: function(req, res) {
+    adminLogin: function (req, res) {
         var username = req.body.username;
         var password = req.body.password;
 
-        adminController.getAdminByUsername(username, function(err, Admin) {
+        adminController.getAdminByUsername(username, function (err, Admin) {
             if (err) throw err;
 
             if (!Admin) {
@@ -21,7 +21,7 @@ module.exports = {
                 })
             }
 
-            adminController.comparePassword(password, Admin.password, function(err, isMatch) {
+            adminController.comparePassword(password, Admin.password, function (err, isMatch) {
                 if (err) throw err;
 
                 if (isMatch) {
@@ -32,8 +32,8 @@ module.exports = {
                         securityAnswer: Admin.securityAnswer,
 
                     }, config.secret, {
-                        expiresIn: 604800
-                    });
+                            expiresIn: 604800
+                        });
                     res.json({
                         success: true,
                         token: token,
@@ -56,11 +56,11 @@ module.exports = {
 }
 
 
-module.exports.companyLogin = function(req, res) {
+module.exports.companyLogin = function (req, res) {
 
     Company.findOne({
         username: req.body.username
-    }, function(err, company) {
+    }, function (err, company) {
 
         if (err) res.status(500).json({
             success: false,
@@ -94,8 +94,8 @@ module.exports.companyLogin = function(req, res) {
                         role: 'company',
 
                     }, config.secret, {
-                        expiresIn: 86400
-                    });
+                            expiresIn: 86400
+                        });
 
                     res.json({
                         success: true,
@@ -120,11 +120,11 @@ module.exports.companyLogin = function(req, res) {
 }
 
 
-module.exports.clientLogin = function(req, res) {
+module.exports.clientLogin = function (req, res) {
 
     Client.findOne({
         username: req.body.username
-    }, function(err, client) {
+    }, function (err, client) {
 
         if (err) res.status(500).json({
             success: false,
@@ -157,8 +157,8 @@ module.exports.clientLogin = function(req, res) {
                     securityAnswer: client.securityAnswer,
                     role: 'client',
                 }, config.secret, {
-                    expiresIn: 86400
-                });
+                        expiresIn: 86400
+                    });
 
                 res.json({
                     success: true,

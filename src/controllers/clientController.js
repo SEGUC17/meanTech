@@ -53,7 +53,7 @@ const clientController = {
                     msg: 'You are not allowed to change the password, update failed',
                 });
             }
-            if (client) {
+            else {
 
                 res.json({
                     success: true,
@@ -73,7 +73,7 @@ const clientController = {
                         msg: 'You are not allowed to change the password, update failed',
                     });
                 }
-                if (client) {
+                else {
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
@@ -86,12 +86,12 @@ const clientController = {
     },
 
     addToWishList: function (req, res) {
-    var  serviceID = req.body.serviceID;
-  Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
-              if (err) {
-                res.status(500).json({success: false, message: 'Got an error'});
-              }
-              if (client){
+        var serviceID = req.body.serviceID;
+        Client.findOneAndUpdate({ _id: req.decoded.id }, { "$push": { "wishList": serviceID } }, function (err, client) {
+            if (err) {
+                res.status(500).json({ success: false, message: 'Got an error' });
+            }
+            if (client) {
                 client.markModified('anything');
                 return res.json({ success: true, message: 'Successfully added to wishList' });
             }
@@ -99,16 +99,16 @@ const clientController = {
     },
 
     addToFavCompanies: function (req, res) {
-    var  companyID = req.body.companyID;
-    Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"favCompanies" : companyID}},function(err, client) {
-        if (err) {
-            res.json(err);
-        }
-        if (client){
-            return res.json({ success: true, message: 'Successfully added to favCompanies' });
-            client.markModified('anything');
-        }
-    });
+        var companyID = req.body.companyID;
+        Client.findOneAndUpdate({ _id: req.decoded.id }, { "$push": { "favCompanies": companyID } }, function (err, client) {
+            if (err) {
+                res.json(err);
+            }
+            if (client) {
+                return res.json({ success: true, message: 'Successfully added to favCompanies' });
+                client.markModified('anything');
+            }
+        });
     }
 }
 
