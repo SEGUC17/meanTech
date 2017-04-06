@@ -11,26 +11,31 @@ let serviceController = {
             pictureURL: req.body.pictureURL,
             companyID: req.decoded.id
         });
-        service.save(function (err, services) {
+        service.save(function (err, service) {
             if (err) {
-                res.json({
-                    error: "Could not create service",
-                    data: null
+
+                res.status(500).json({
+                    success: false,
+                    message: 'Could not create service'
                 });
             } else {
-                res.json({
-                    message: "success"
+
+                return res.json({
+                    success: true,
+                    message: 'Service Successfully created'
                 });
+
             }
         })
     },
+
     deleteService: function (req, res) {
         Service.findOne({
             _id: req.body._id
         }, function (err, service) {
             if (err) {
                 res.json({
-                    error: "Could not find service",
+                    error: 'Could not find service',
                     data: null
                 });
             } else {
@@ -40,19 +45,19 @@ let serviceController = {
                     }, function (err) {
                         if (err) {
                             res.json({
-                                error: "Could not delete service",
+                                error: 'Could not delete service',
                                 data: null
                             });
                         } else {
                             res.json({
-                                message: "success"
+                                message: 'success'
                             });
                         }
                     });
 
                 } else {
                     res.json({
-                        error: "Unauthorized access",
+                        error: 'Unauthorized access',
                         data: null
                     });
                 }
@@ -62,7 +67,6 @@ let serviceController = {
     },
 
     updateService: function (req, res) {
-
         Service.findOne({
             _id: req.body._id
         }, function (err, service) {
@@ -71,6 +75,7 @@ let serviceController = {
                     error: "Could not find service",
                     data: null
                 });
+
             } else {
                 if (service.companyID == req.decoded.id) {
                     var query = {
@@ -103,9 +108,8 @@ let serviceController = {
                         data: null
                     });
                 }
-
             }
-        })
+        });
     },
 
     getAllServices: function (req, res) {
@@ -116,8 +120,8 @@ let serviceController = {
                 res.send({
                     services
                 });
-        })
-    }
-}
+        });
+    },
+};
 
 module.exports = serviceController;

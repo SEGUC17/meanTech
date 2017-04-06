@@ -60,7 +60,9 @@ const adminController = {
             if (err) {
                 res.status(500).json(err);
             } else {
-                res.json({ data: Company });
+                res.json({
+                    data: Company
+                });
             }
         });
     },
@@ -115,15 +117,20 @@ const adminController = {
 
 
     updatePassword: function (req, res) {
-        Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.body.newPassword } }, function (err, admin) {
+        Admin.findOneAndUpdate({
+            username: req.decoded.username
+        }, {
+            $set: {
+                "password": req.body.newPassword
+            }
+        }, function (err, admin) {
 
             if (err) {
                 res.status(500).json({
                     success: false,
                     msg: 'You are not allowed to change the password, update failed',
                 });
-            }
-            else {
+            } else {
 
                 res.json({
                     success: true,
@@ -138,15 +145,20 @@ const adminController = {
     resetPassword: function (req, res) {
         if (req.decoded.securityAnswer === req.answer) {
 
-            Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.newPassword } }, function (err, admin) {
+            Admin.findOneAndUpdate({
+                username: req.decoded.username
+            }, {
+                $set: {
+                    "password": req.newPassword
+                }
+            }, function (err, admin) {
 
                 if (err) {
                     res.status(500).json({
                         success: false,
                         msg: 'You are not allowed to change the password, update failed',
                     });
-                }
-                else {
+                } else {
 
                     res.json({
                         success: true,

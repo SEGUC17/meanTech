@@ -16,10 +16,8 @@ var promotionSchema = mongoose.Schema({
     },
     companyID: {
         type: String,
-        required: true,
-
+        required: true
     }
-
 })
 
 var Promotion = mongoose.model("Promotion", promotionSchema);

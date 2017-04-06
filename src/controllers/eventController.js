@@ -64,7 +64,7 @@ let eventController = {
                 });
 
             res.json({
-                error: null,
+                message: "Here are your events",
                 data: event
             });
 
@@ -73,47 +73,31 @@ let eventController = {
     },
 
     updateEvents: function (req, res) {
+        var query = {
+            _id: req.body.id
+        };
 
-        var x;
-        Event.findOne({
-            _id: req.body._id
-        }, function (err, event) {
+        var update = {
+            $set: req.body
+        };
+
+        var options = {
+            new: true
+        };
+
+        Event.findByIdAndUpdate(query, update, options, function (err, event) {
             if (err) {
-                res.status(500).json({
-                    error: err.message
+                res.json({
+                    error: "An error appeared while updating",
+                    data: null
                 });
             } else {
-                x = event.companyID;
-                if (x === req.decoded.id) {
-
-                    Event.findByIdAndUpdate({
-                            _id: req.body._id
-                        }, {
-                            $set: req.body
-                        }, {
-                            new: true
-                        },
-                        function (err, event) {
-                            if (err) {
-                                res.status(500).json({
-                                    error: err.message
-                                });
-
-                            } else {
-                                res.json({
-                                    error: null,
-                                    data: event
-                                });
-
-                            }
-                        })
-                } else {
-                    res.json("sorry, you are not authorized to update this Event");
-                }
-
+                res.json({
+                    Message: "you have updated the data Successfully",
+                    data: event
+                });
             }
-        })
-
+        });
     },
     cancelEvent: function (req, res) {
 
@@ -137,7 +121,7 @@ let eventController = {
         });
     }
 
-}
+};
 
 
 

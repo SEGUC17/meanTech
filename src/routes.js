@@ -499,10 +499,6 @@ router.post('/postPromotion1', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'promotion posted successfully',
-            });
             promotionController.postPromotion(req, res);
         } else {
             res.status(401).json({
@@ -522,10 +518,6 @@ router.post('/updatePromotion1', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'promotion updated successfully',
-            });
             promotionController.updatePromotion(req, res);
         } else {
             res.status(401).json({
@@ -545,10 +537,6 @@ router.get('/viewPromotions1', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'Here are your promotions!',
-            });
             promotionController.viewPromotions(req, res);
         } else {
             res.status(401).json({
@@ -567,10 +555,6 @@ router.post('/deletePromotion1', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'promotion deleted successfully',
-            });
             promotionController.deletePromotion(req, res);
         } else {
             res.status(401).json({
@@ -589,10 +573,6 @@ router.get('/getCompanyEvents', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'Here are the events of your company',
-            });
             eventController.getCompanyEvents(req, res);
         } else {
             res.status(401).json({
@@ -611,10 +591,6 @@ router.post('/viewRatings', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            res.json({
-                success: true,
-                msg: 'Here are the reviews people provided about this company',
-            });
             reviewController.viewRatings(req, res);
         } else {
             res.status(401).json({
@@ -655,10 +631,6 @@ router.post('/createService', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'Company service created successfully',
-            });
             serviceController.createService(req, res);
         } else {
             res.status(401).json({
@@ -677,10 +649,6 @@ router.post('/updateService', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'Company service updated successfully',
-            });
             serviceController.updateService(req, res);
         } else {
             res.status(401).json({
@@ -699,10 +667,6 @@ router.post('/deleteService', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'Company service delete successfully',
-            });
             serviceController.deleteService(req, res);
         } else {
             res.status(401).json({
