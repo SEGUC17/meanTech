@@ -10,8 +10,6 @@ var faqSchema = mongoose.Schema({
     },
     answerText: {
         type: String,
-
-
     },
 
     clientUsername: {

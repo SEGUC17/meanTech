@@ -3,10 +3,8 @@ let FAQ = require('../models/FAQ');
 let FAQController = {
 
     answerFAQ: function (req, res) {
-        // need to set clientUsername --> session
-        let faq = new FAQ(req.body);
 
-        faq.save(function (err, faq) {
+        FAQ.findOneAndUpdate({ clientUsername:req.body.clientUsername , questionText: req.body.questionText}, { answerText:req.body.answerText}, function (err, faq) {
             if (err) {
                 console.log(err);
             } else {
@@ -17,19 +15,29 @@ let FAQController = {
 
     askFAQ: function (req, res) {
 
-        let newQ = new FAQ(req.body);
-        //req.decoded.username
-        console.log(req.body);
+        let newQ = new FAQ
+        ({questionText:req.body.questionText,
+            clientUsername:req.decoded.username
+        }) ;
+        
+          newQ.save(function (err, newQ) {
 
-        newQ.save(function (err, newQ) {
+             if (err)
+                 console.log(err.message)
+             else {
+                 console.log(newQ)
+             }
+         })
 
-            if (err)
-                res.send(err.message)
-            else {
-                res.send('Success')
-            }
-        })
+    },
+    viewFAQs: function (req, res, next) {
 
+        var query = FAQ.find({}).select('questionText answerText clientUsername');
+
+        query.exec(function (err, faq) {
+            if (err) return next(err);
+            res.send(faq);
+        });
     },
 
 }
