@@ -84,7 +84,7 @@ let companyController = {
 
         query.exec(function (err, company) {
             if (err) return next(err);
-            res.send(company);
+            res.json({data: company});
         });
     },
 
