@@ -30,17 +30,21 @@ const clientController = {
 
     viewProfile: function (req, res) {
 
-        Client.find({
-            username: req.session.username
-        }, (function (err, clients) {
+        Client.find({ username: req.decoded.username }, (function (err, client) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    msg: 'can not view profile'
 
-            if (err)
-                res.send(err.message);
-            else
-                res.render('index', {
-                    clients
-                });
-        }))
+                })
+            } else {
+                res.json({
+                    success: true,
+                    data: client
+                })
+            };
+        })
+        )
     },
 
     updatePassword: function (req, res) {
@@ -86,12 +90,12 @@ const clientController = {
     },
 
     addToWishList: function (req, res) {
-    var  serviceID = req.body.serviceID;
-  Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
-              if (err) {
-                res.status(500).json({success: false, message: 'Got an error'});
-              }
-              if (client){
+        var serviceID = req.body.serviceID;
+        Client.findOneAndUpdate({ _id: req.decoded.id }, { "$push": { "wishList": serviceID } }, function (err, client) {
+            if (err) {
+                res.status(500).json({ success: false, message: 'Got an error' });
+            }
+            if (client) {
                 client.markModified('anything');
                 return res.json({ success: true, message: 'Successfully added to wishList' });
             }
@@ -99,17 +103,48 @@ const clientController = {
     },
 
     addToFavCompanies: function (req, res) {
-    var  companyID = req.body.companyID;
-    Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"favCompanies" : companyID}},function(err, client) {
-        if (err) {
-            res.json(err);
+        var companyID = req.body.companyID;
+        Client.findOneAndUpdate({ _id: req.decoded.id }, { "$push": { "favCompanies": companyID } }, function (err, client) {
+            if (err) {
+                res.json(err);
+            }
+            if (client) {
+                return res.json({ success: true, message: 'Successfully added to favCompanies' });
+                client.markModified('anything');
+            }
+        });
+    },
+
+    updateProfile: function (req, res) {
+        var query = {
+            _id: req.decoded.id
+        };
+
+        var update = {
+            $set: req.body
+        };
+
+        var options = {
+            new: true
+        };
+
+        Client.findByIdAndUpdate(query, update, options, function (err, client) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    msg: 'update fail'
+
+                })
+            } else {
+                res.json({
+                    success: true,
+                    msg: 'update success'
+                });
+            }
         }
-        if (client){
-            return res.json({ success: true, message: 'Successfully added to favCompanies' });
-            client.markModified('anything');
-        }
-    });
-    }
+        );
+    },
+
 }
 
 module.exports = clientController;
