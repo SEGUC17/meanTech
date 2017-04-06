@@ -47,8 +47,7 @@ var companySchema = mongoose.Schema({
     },
     logoURL: {
         type: String,
-        required: true,
-        //  unique: true
+        required: true
 
     },
     email: {
@@ -70,13 +69,13 @@ var companySchema = mongoose.Schema({
     },
     socialMediaURL: {
         URL: String,
-        //  required:true
+
 
     },
     verified: {
         type: Boolean,
         default: false
-        //  required:true
+
 
     },
     paymentMethod: {
@@ -88,9 +87,8 @@ var companySchema = mongoose.Schema({
         required: true
     },
     securityAnswer: {
-        type: String, 
-        required: true,
-        unique: true
+        type: String,
+        required: true
     }
 })
 

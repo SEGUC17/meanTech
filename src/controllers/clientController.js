@@ -49,7 +49,7 @@ let clientController = {
                 res.json({
                     success: true,
                     msg: 'The password has been updated successfully'
-                }); 
+                });
                 client.markModified('Password ok');
             }
         });
@@ -68,7 +68,7 @@ let clientController = {
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
-                    }); 
+                    });
                     client.markModified('Password reset ok');
                 }
             });
@@ -112,12 +112,12 @@ let clientController = {
     var  serviceID = req.body.serviceID;
   Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
               if (err) {
-                console.log('got an error');
+                res.status(500).json({success: false, message: 'Got an error'});
               }
               if (client){
+                client.markModified('anything');
+
                 return res.json({ success: true, message: 'Successfully added to wishList' });
-           console.log("Added to Wishlist");
-            client.markModified('anything');
             }
 
             });
