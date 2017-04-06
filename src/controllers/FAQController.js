@@ -18,7 +18,7 @@ let FAQController = {
                     message: 'Answer not updated.'
                 })
             } else {
-                rerturn res.json({
+                return res.json({
                     success: true,
                     message: 'Answer updated successfully.'
                 })
