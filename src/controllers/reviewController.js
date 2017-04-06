@@ -17,7 +17,7 @@ let reviewController = {
                     message: 'Error creating review.'
                 })
             } else {
-                rerturn res.json({
+                return res.json({
                     success: true,
                     message: 'Review created successfully.'
                 })
@@ -35,7 +35,7 @@ let reviewController = {
                     message: 'Error deleting data.'
                 })
             } else {
-                rerturn res.json({
+                return res.json({
                     success: true,
                     message: 'Review deleted successfully.'
                 })

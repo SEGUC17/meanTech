@@ -18,7 +18,7 @@ const clientController = {
                             message: 'Error registering data.'
                         })
                     } else {
-                        rerturn res.json({
+                        return res.json({
                             success: true,
                             message: 'New client successfully registered.'
                         })
