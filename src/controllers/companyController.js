@@ -1,4 +1,5 @@
 let Company = require('../models/Company');
+let Review = require('../models/Review');
 
 let companyController = {
 
@@ -18,7 +19,7 @@ let companyController = {
       branches: req.body.branches,
       socialMediaURL: req.body.socialMediaURL,
       verified: false,
-      payementMethod: req.body.payementMethod,
+      paymentMethod: req.body.paymentMethod,
       securityQuestion: req.body.securityQuestion,
       securityAnswer: req.body.securityAnswer
     });
@@ -110,6 +111,18 @@ let companyController = {
         }
     
     },
+
+  viewReviews: function (req,res) {
+    Review.find({companyID:req.decoded.id},function(err,reviews){
+      if (err){
+        console.log('err.message');
+      }
+      else{
+        //console.log(reviews);
+        res.send(reviews)
+      }
+    })
+  }
 }
 
 module.exports = companyController;
