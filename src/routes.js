@@ -84,9 +84,7 @@ router.use(function (req, res, next) {
 
 });
 
-router.get('/check', function (req, res) {
-	res.json(req.decoded);
-});
+
 
 router.post('/faq', function(req,res){
     console.log(req.decoded);
@@ -190,7 +188,10 @@ router.post('/event', function(req, res) {
         }
     } catch (err) {
 
-        console.log(err);
+			res.status(500).json({
+					success: false,
+					message: 'Internal server error'
+			});
     }
 
 });
@@ -316,7 +317,10 @@ router.post('/addToWishList', function(req, res) {
         }
     } catch (err) {
 
-        console.log(err);
+			res.status(500).json({
+					success: false,
+					message: 'Internal server error'
+			});
     }
 
 });

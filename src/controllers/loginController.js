@@ -7,11 +7,11 @@ var jwt = require('jsonwebtoken');
 var config = require('../config/token');
 
 module.exports = {
-    adminLogin: function (req, res) {
+    adminLogin: function(req, res) {
         var username = req.body.username;
         var password = req.body.password;
 
-        adminController.getAdminByUsername(username, function (err, Admin) {
+        adminController.getAdminByUsername(username, function(err, Admin) {
             if (err) throw err;
 
             if (!Admin) {
@@ -21,7 +21,7 @@ module.exports = {
                 })
             }
 
-            adminController.comparePassword(password, Admin.password, function (err, isMatch) {
+            adminController.comparePassword(password, Admin.password, function(err, isMatch) {
                 if (err) throw err;
 
                 if (isMatch) {
@@ -62,7 +62,11 @@ module.exports.companyLogin = function(req, res) {
         username: req.body.username
     }, function(err, company) {
 
-        if (err) console.log(err);
+        if (err) res.status(500).json({
+            success: false,
+            message: 'Got an error'
+        });
+
 
         if (!company) {
 
@@ -122,7 +126,11 @@ module.exports.clientLogin = function(req, res) {
         username: req.body.username
     }, function(err, client) {
 
-        if (err) console.log(err);
+        if (err) res.status(500).json({
+            success: false,
+            message: 'Got an error'
+        });
+
 
         if (!client) {
 
@@ -141,7 +149,7 @@ module.exports.clientLogin = function(req, res) {
                 });
             } else {
 
-                
+
                 var token = jwt.sign({
                     name: client.name,
                     username: client.username,

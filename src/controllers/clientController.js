@@ -75,15 +75,17 @@ const clientController = {
     },
 
     addToWishList: function (req, res) {
-        var serviceID = req.body.serviceID;
-        Client.findOneAndUpdate({ _id: req.decoded.id }, { "$push": { "wishList": serviceID } }, function (err, client) {
-            if (err) {
-                console.log('got an error');
-            }
-            if (client) {
-                return res.json({ success: true, message: 'Successfully added to wishList' });
-                console.log("Added to Wishlist");
+
+    var  serviceID = req.body.serviceID;
+  Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
+              if (err) {
+                res.status(500).json({success: false, message: 'Got an error'});
+              }
+              if (client){
                 client.markModified('anything');
+
+                return res.json({ success: true, message: 'Successfully added to wishList' });
+
             }
 
         });
