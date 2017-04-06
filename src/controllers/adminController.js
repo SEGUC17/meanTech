@@ -4,7 +4,7 @@ const companyController = require('../controllers/companyController');
 const bcrypt = require('bcryptjs');
 
 
-let adminController= {
+let adminController = {
 
     adminRegister: function (req, res) {
         let admin = new Admin({
@@ -36,7 +36,7 @@ let adminController= {
         });
     },
 
-   getAdminByUsername: function (username, callback) {
+    getAdminByUsername: function (username, callback) {
         const query = {
             username: username
         };
@@ -65,7 +65,7 @@ let adminController= {
         });
     },
 
-   verifyCompanies: function (req, res) {
+    verifyCompanies: function (req, res) {
         const username = req.body.username;
         const verified = req.body.verified;
 
@@ -73,43 +73,57 @@ let adminController= {
             if (err) {
                 res.send(err);
             } else {
-                Company.save(function (err, Company) {
-                    if (err) {
-                         res.json({
-                            success: false,
-                            msg: 'Company was not verified review the username given.'
-                        });
-                    } else {
-                        res.json({
-                            success: true,
-                            msg: 'complete.'
-                        });
-                    }
-                });
+                if (Company) {
+                    Company.save(function (err, Company) {
+                        if (err) {
+                            res.json({
+                                success: false,
+                                msg: 'Company was not verified review the username given.'
+                            });
+                        } else {
+                            res.json({
+                                success: true,
+                                msg: 'complete.'
+                            });
+                        }
+                    });
+                } else {
+                    res.send('Company not found review username');
+                }
             }
         });
 
     },
 
-   deleteCompany: function (req, res) {
+    deleteCompany: function (req, res) {
         const username = req.body.username;
 
         companyController.getCompanyAndRemove(username, function (err, Company) {
-            if (err) {
-                res.send(err);
+            if (Company) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send('complete');
+                }
             } else {
-                res.send('complete');
+                res.send('Company not found.')
             }
         });
     },
-      
-    updatePassword: function (req,res) {
-        Admin.findOneAndUpdate({username: req.decoded.username }, { $set: {"password" : req.body.newPassword } }, function(err, admin) {
+
+    updatePassword: function (req, res) {
+        Admin.findOneAndUpdate({
+            username: req.decoded.username
+        }, {
+            $set: {
+                "password": req.body.newPassword
+            }
+        }, function (err, admin) {
             if (err) {
                 console.log(err);
                 console.log('update password failed ');
             }
-            if (admin){
+            if (admin) {
                 console.log("Password updated");
                 admin.markModified('Password ok');
             }
@@ -117,21 +131,26 @@ let adminController= {
         });
     },
 
-    resetPassword: function (req,res) {
+    resetPassword: function (req, res) {
         if (req.decoded.securityAnswer === req.answer) {
-            Admin.findOneAndUpdate({username: req.decoded.username }, { $set:{ "password" : req.newPassword } }, function(err, admin) {
+            Admin.findOneAndUpdate({
+                username: req.decoded.username
+            }, {
+                $set: {
+                    "password": req.newPassword
+                }
+            }, function (err, admin) {
                 if (err) {
                     console.log('reset password failed ');
                 }
-                if (admin){
+                if (admin) {
                     console.log("Password reset successful");
                     admin.markModified('Password reset ok');
                 }
             });
         }
-    
+
     }
 };
 
 module.exports = adminController;
-
