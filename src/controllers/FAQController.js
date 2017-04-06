@@ -3,18 +3,29 @@ let FAQ = require('../models/FAQ');
 let FAQController = {
 
     answerFAQ: function (req, res) {
-        FAQ.findOneAndUpdate({
-            clientUsername: req.decoded.username,
-            questionText: req.body.questionText
+        FAQ.findByIdAndUpdate({
+            _id: req.body.id
         }, {
-            answerText: req.body.answerText
+            $set: {
+                "answerText": req.body.answerText,
+            }
+        }, {
+            new: true
         }, function (err, faq) {
             if (err) {
-                console.log(err);
+                res.status(500).json({
+                    success: false,
+                    message: 'Answer not updated.'
+                })
             } else {
-                console.log(faq);
+                rerturn res.json({
+                    success: true,
+                    message: 'Answer updated successfully.'
+                })
             }
         });
+
+
     },
 
     askFAQ: function (req, res) {

@@ -13,10 +13,15 @@ const clientController = {
 
                 client.save(function (err, client) {
                     if (err) {
-                        res.write('<h1>Username already exists, please choose another one.</h1>');
-                        console.log(err);
+                        res.status(500).json({
+                            success: false,
+                            message: 'Error registering data.'
+                        })
                     } else {
-                        console.log(client);
+                        rerturn res.json({
+                            success: true,
+                            message: 'New client successfully registered.'
+                        })
                     }
                 });
             });
@@ -25,16 +30,21 @@ const clientController = {
 
     viewProfile: function (req, res) {
 
-        Client.find({ username: req.session.username }, (function (err, clients) {
+        Client.find({
+            username: req.session.username
+        }, (function (err, clients) {
+
             if (err)
                 res.send(err.message);
             else
-                res.render('index', { clients });
-        })
-        )
+                res.render('index', {
+                    clients
+                });
+        }))
     },
 
     updatePassword: function (req, res) {
+
 
         Client.findOneAndUpdate({ _id: req.decoded.id }, { $set: { "password": req.body.newPassword } }, function (err, client) {
             if (err) {
@@ -44,6 +54,7 @@ const clientController = {
                 });
             }
             if (client) {
+
                 res.json({
                     success: true,
                     msg: 'The password has been updated successfully'
@@ -75,7 +86,6 @@ const clientController = {
     },
 
     addToWishList: function (req, res) {
-
     var  serviceID = req.body.serviceID;
   Client.findOneAndUpdate({_id: req.decoded.id}, {"$push": {"wishList" : serviceID}},function(err, client) {
               if (err) {
@@ -83,14 +93,9 @@ const clientController = {
               }
               if (client){
                 client.markModified('anything');
-
                 return res.json({ success: true, message: 'Successfully added to wishList' });
-
             }
-
         });
-
-
     },
 
     addToFavCompanies: function (req, res) {
