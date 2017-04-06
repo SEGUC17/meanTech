@@ -23,7 +23,7 @@ let adminController= {
                     if (err) {
                         res.json({
                             success: false,
-                            msg: 'Admin not registered.'
+                            msg: 'Please Provide All required information and choose a unique username.'
                         });
                     } else {
                         res.json({
@@ -75,9 +75,9 @@ let adminController= {
             } else {
                 Company.save(function (err, Company) {
                     if (err) {
-                        res.json({
+                         res.json({
                             success: false,
-                            msg: 'Company was not verified.'
+                            msg: 'Company was not verified review the username given.'
                         });
                     } else {
                         res.json({
