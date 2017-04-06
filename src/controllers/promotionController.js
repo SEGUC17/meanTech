@@ -5,8 +5,10 @@ module.exports = {
         promotion.find(function(err, promotions) {
             if (err)
             {
-                console.log(promotions);
-                res.send(err.message);
+                res.status(500).json({
+                        success: false,
+                        msg: 'You are not allowed to view the promotions, or no promotions are available',
+                    });
             }
             else
             {

@@ -57,7 +57,7 @@ const clientController = {
         if (req.decoded.securityAnswer === req.answer) {
             Client.findOneAndUpdate({ _id: req.decoded.id }, { $set: { "password": req.newPassword } }, function (err, client) {
                 if (err) {
-                    res..status(500).json({
+                    res.status(500).json({
                         success: false,
                         msg: 'You are not allowed to change the password, update failed',
                     });
