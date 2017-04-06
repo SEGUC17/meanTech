@@ -90,8 +90,28 @@ let eventController = {
 
                 }
             })
+    },
+    cancelEvent: function (req, res) {
+
+        Event.remove({ _id: req.body.id, companyID: req.decoded.id }, function (err, result) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    msg: 'can not cancel event'
+
+                })
+            } else {
+                res.json({
+                    success: true,
+                    msg: 'event cancelled successfully'
+                });
+            }
+
+        });
     }
+
 }
+
 
 
 module.exports = eventController;

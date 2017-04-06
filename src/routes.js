@@ -29,8 +29,6 @@ router.post('/company', companyController.companySubscription);
 
 router.post('/faqa', FAQController.answerFAQ);
 
-router.get('/client', clientController.viewProfile);
-
 router.get('/allEvents', eventController.getAllEvents);
 
 router.get('/allServices', serviceController.getAllServices);
@@ -100,8 +98,8 @@ router.post('/faq', function (req, res) {
         res.status(500).json({
             success: false,
             message: 'Internal server error.'
-        });
-    }
+        })
+    };
 });
 
 router.post('/faqa', function (req, res) {
@@ -159,10 +157,63 @@ router.post('/deleteR', function (req, res) {
     }
 });
 
-router.post('/event', function (req, res) {
-
+router.get('/viewProfile', function (req, res) {
     try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.viewProfile(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error.'
+        })
+    }
+});
 
+router.post('/updateProfile', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.updateProfile(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error.'
+        })
+    }
+
+});
+
+router.post('/deleteEvent', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            eventController.cancelEvent(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error.'
+        })
+    }
+});
+
+router.post('/event', function (req, res) {
+    try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
 
@@ -179,16 +230,16 @@ router.post('/event', function (req, res) {
             message: 'Internal server error'
         });
     }
-
 });
-
-
 
 router.post('/clientUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            console.log(decodedPayload);
+        res.json({
+            success: true,
+            msg: 'password updated successfully',
+        });
 
             clientController.updatePassword(req, res);
         } else {
@@ -208,8 +259,10 @@ router.post('/clientResetPassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
+        res.json({
+            success: true,
+            msg: 'password updated successfully',
+        });
             clientController.resetPassword(req, res);
         } else {
             res.status(401).json({
@@ -228,7 +281,10 @@ router.post('/companyUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            console.log(decodedPayload);
+        res.json({
+            success: true,
+            msg: 'password updated successfully',
+        });
 
             companyController.updatePassword(req, res);
         } else {
@@ -248,8 +304,10 @@ router.post('/companyResetPassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
+        res.json({
+            success: true,
+            msg: 'password reset successfully',
+        });
             companyController.resetPassword(req, res);
         } else {
             res.status(401).json({
@@ -268,7 +326,10 @@ router.post('/adminUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
-            console.log(decodedPayload);
+        res.json({
+            success: true,
+            msg: 'password updated successfully',
+        });
 
             adminController.updatePassword(req, res);
         } else {
@@ -288,8 +349,10 @@ router.post('/adminResetPassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
-            console.log(decodedPayload);
-            console.log("Password reset successful");
+        res.json({
+            success: true,
+            msg: 'password reset successfully',
+        });
             adminController.resetPassword(req, res);
         } else {
             res.status(401).json({
@@ -306,10 +369,7 @@ router.post('/adminResetPassword', function (req, res) {
 
 
 router.post('/addToWishList', function (req, res) {
-
-
     try {
-
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
 
@@ -326,11 +386,9 @@ router.post('/addToWishList', function (req, res) {
             message: 'Internal server error'
         });
     }
-
 });
 
 router.get('/unverifiedCompanies', function (req, res) {
-    console.log(req.decoded);
 
     try {
         const decodedPayload = req.decoded;
@@ -342,12 +400,14 @@ router.get('/unverifiedCompanies', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 
 router.post('/verifyCompanies', function (req, res) {
-    console.log(req.decoded);
 
     try {
         const decodedPayload = req.decoded;
@@ -359,12 +419,14 @@ router.post('/verifyCompanies', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err)
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 
 router.get('/viewCompanies', function (req, res) {
-    console.log(req.decoded);
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -375,12 +437,14 @@ router.get('/viewCompanies', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 
 router.post('/deleteCompany', function (req, res) {
-    console.log(req.decoded);
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -391,7 +455,10 @@ router.post('/deleteCompany', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 
@@ -411,7 +478,6 @@ router.post('/addToFavCompanies', function (req, res) {
 });
 
 router.get('/viewMyReviews', function (req, res) {
-    console.log(req.decoded);
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -422,7 +488,10 @@ router.get('/viewMyReviews', function (req, res) {
             });
         }
     } catch (err) {
-        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 
 });

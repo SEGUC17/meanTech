@@ -30,17 +30,21 @@ const clientController = {
 
     viewProfile: function (req, res) {
 
-        Client.find({
-            username: req.session.username
-        }, (function (err, clients) {
+        Client.find({ username: req.decoded.username }, (function (err, client) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    msg: 'can not view profile'
 
-            if (err)
-                res.send(err.message);
-            else
-                res.render('index', {
-                    clients
-                });
-        }))
+                })
+            } else {
+                res.json({
+                    success: true,
+                    data: client
+                })
+            };
+        })
+        )
     },
 
     updatePassword: function (req, res) {
@@ -109,6 +113,36 @@ const clientController = {
                 client.markModified('anything');
             }
         });
+    },
+
+    updateProfile: function (req, res) {
+        var query = {
+            _id: req.decoded.id
+        };
+
+        var update = {
+            $set: req.body
+        };
+
+        var options = {
+            new: true
+        };
+
+        Client.findByIdAndUpdate(query, update, options, function (err, client) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    msg: 'update fail'
+
+                })
+            } else {
+                res.json({
+                    success: true,
+                    msg: 'update success'
+                });
+            }
+        }
+        );
     }
 }
 
