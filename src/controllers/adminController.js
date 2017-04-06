@@ -3,8 +3,8 @@ const Company = require('../models/Company');
 const companyController = require('../controllers/companyController');
 const bcrypt = require('bcryptjs');
 
-
 const adminController = {
+
 
     adminRegister: function (req, res) {
         const admin = new Admin({
@@ -12,7 +12,7 @@ const adminController = {
             password: req.body.password,
             email: req.body.email,
             securityQuestion: req.body.securityQuestion,
-            securityAnswer: req.body.securityAnswer,
+            questionAnswer: req.body.questionAnswer,
         });
 
         bcrypt.genSalt(10, function (err, salt) {
@@ -23,7 +23,9 @@ const adminController = {
                     if (err) {
                         res.json({
                             success: false,
-                            msg: 'Admin not registered.',
+
+                            msg: 'Please Provide All required information and choose a unique username.'
+
                         });
                     } else {
                         res.json({
@@ -71,19 +73,25 @@ const adminController = {
             if (err) {
                 res.send(err);
             } else {
-                Company.save(function (err, Company) {
-                    if (err) {
-                        res.json({
-                            success: false,
-                            msg: 'Company was not verified.',
-                        });
-                    } else {
-                        res.json({
-                            success: true,
-                            msg: 'complete.',
-                        });
-                    }
-                });
+
+                if (Company) {
+                    Company.save(function (err, Company) {
+                        if (err) {
+                            res.json({
+                                success: false,
+                                msg: 'Company was not verified review the username given.'
+                            });
+                        } else {
+                            res.json({
+                                success: true,
+                                msg: 'complete.'
+                            });
+                        }
+                    });
+                } else {
+                    res.send('Company not found review username');
+                }
+
             }
         });
     },
@@ -92,15 +100,23 @@ const adminController = {
         const username = req.body.username;
 
         companyController.getCompanyAndRemove(username, function (err, Company) {
-            if (err) {
-                res.send(err);
+            if (Company) {
+                if (err) {
+                    res.send(err);
+                } else {
+                    res.send('complete');
+                }
             } else {
-                res.send('complete');
+                res.send('Company not found.')
             }
         });
     },
+
+
+
     updatePassword: function (req, res) {
         Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.body.newPassword } }, function (err, admin) {
+
             if (err) {
                 res.json({
                     success: false,
@@ -108,10 +124,12 @@ const adminController = {
                 });
             }
             if (admin) {
+
                 res.json({
                     success: true,
                     msg: 'The password has been updated successfully'
                 }); 
+
                 admin.markModified('Password ok');
             }
         });
@@ -119,7 +137,9 @@ const adminController = {
 
     resetPassword: function (req, res) {
         if (req.decoded.securityAnswer === req.answer) {
+
             Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.newPassword } }, function (err, admin) {
+
                 if (err) {
                     res.json({
                         success: false,
@@ -127,16 +147,18 @@ const adminController = {
                     });
                 }
                 if (admin) {
+
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
                     }); 
+
                     admin.markModified('Password reset ok');
                 }
             });
         }
+
     }
 };
 
 module.exports = adminController;
-

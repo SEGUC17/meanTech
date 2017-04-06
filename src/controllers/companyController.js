@@ -3,6 +3,7 @@ let Review = require('../models/Review');
 
 let companyController = {
 
+
   companySubscription: function(req, res) {
 
       let company = new Company({
@@ -19,7 +20,7 @@ let companyController = {
           mobileNumbers: req.body.mobileNumbers,
           branches: req.body.branches,
           socialMediaURL: req.body.socialMediaURL,
-          verified: false,
+          verified: req.body.verified,
           paymentMethod: req.body.paymentMethod,
           securityQuestion: req.body.securityQuestion,
           securityAnswer: req.body.securityAnswer

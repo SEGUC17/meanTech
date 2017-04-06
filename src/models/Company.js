@@ -88,7 +88,7 @@ var companySchema = mongoose.Schema({
         required: true
     },
     securityAnswer: {
-        type: String,
+        type: String, 
         required: true,
         unique: true
     }
