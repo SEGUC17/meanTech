@@ -42,6 +42,26 @@ let reviewController = {
             }
         });
     },
+    viewRatings: function (req, res) {
+
+        Review.find({
+            companyID: req.body.companyID
+        }, function (err, review) {
+
+            if (err)
+
+                res.json({
+                    error: "An error in the viewing ratings",
+                    data: null
+                });
+            else
+                res.json({
+                    error: null,
+                    data: review
+                });
+
+        })
+    }
 };
 
 module.exports = reviewController;

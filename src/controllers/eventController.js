@@ -50,50 +50,77 @@ let eventController = {
                 });
         })
     },
-    //coID should be in the session so i can query in the events table to get all events that have coID= to companyID
 
     getCompanyEvents: function (req, res) {
 
         Event.find({
-            companyID: 2
-        }, function (err, events) {
+            companyID: req.decoded.id
+        }, function (err, event) {
 
             if (err)
-                res.send(err.message);
-            else
-                // res.render('events', {
-                //     events
-                // }
-                res.send(200);
+                res.json({
+                    error: "no events to show ",
+                    data: null
+                });
+
+            res.json({
+                error: null,
+                data: event
+            });
+
 
         })
     },
 
     updateEvents: function (req, res) {
 
-        // the token should be inserted in the first bracket to access the event we need to update
-        // i should handle all the attributes that can be update so this function is 100% complete but 100% working
-        Event.update({
-            _id: Event.getElementById(req.body._id) // not sure about the syntax of this line
-        }, {
-                $set: {
-                    name: req.body.name
-                }
-            }, function (err, event) {
-                if (err) {
-                    res.send(err.message)
-                    console.log(err);
-                } else {
-                    console.log(event);
-                    // res.redirect('/events');
-                    res.send(200);
+        var x;
+        Event.findOne({
+            _id: req.body._id
+        }, function (err, event) {
+            if (err) {
+                res.status(500).json({
+                    error: err.message
+                });
+            } else {
+                x = event.companyID;
+                if (x === req.decoded.id) {
 
+                    Event.findByIdAndUpdate({
+                            _id: req.body._id
+                        }, {
+                            $set: req.body
+                        }, {
+                            new: true
+                        },
+                        function (err, event) {
+                            if (err) {
+                                res.status(500).json({
+                                    error: err.message
+                                });
+
+                            } else {
+                                res.json({
+                                    error: null,
+                                    data: event
+                                });
+
+                            }
+                        })
+                } else {
+                    res.json("sorry, you are not authorized to update this Event");
                 }
-            })
+
+            }
+        })
+
     },
     cancelEvent: function (req, res) {
 
-        Event.remove({ _id: req.body.id, companyID: req.decoded.id }, function (err, result) {
+        Event.remove({
+            _id: req.body.id,
+            companyID: req.decoded.id
+        }, function (err, result) {
             if (err) {
                 res.status(500).json({
                     success: false,
