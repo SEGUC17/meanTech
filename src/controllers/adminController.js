@@ -3,11 +3,11 @@ const Company = require('../models/Company');
 const companyController = require('../controllers/companyController');
 const bcrypt = require('bcryptjs');
 
+const adminController = {
 
-let adminController = {
 
     adminRegister: function (req, res) {
-        let admin = new Admin({
+        const admin = new Admin({
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
@@ -23,12 +23,14 @@ let adminController = {
                     if (err) {
                         res.json({
                             success: false,
+
                             msg: 'Please Provide All required information and choose a unique username.'
+
                         });
                     } else {
                         res.json({
                             success: true,
-                            msg: 'Admin registered.'
+                            msg: 'Admin registered.',
                         });
                     }
                 });
@@ -38,12 +40,10 @@ let adminController = {
 
     getAdminByUsername: function (username, callback) {
         const query = {
-            username: username
+            username: username,
         };
         Admin.findOne(query, callback);
     },
-
-
 
 
     comparePassword: function (candidatePassword, hash, callback) {
@@ -73,6 +73,7 @@ let adminController = {
             if (err) {
                 res.send(err);
             } else {
+
                 if (Company) {
                     Company.save(function (err, Company) {
                         if (err) {
@@ -90,9 +91,9 @@ let adminController = {
                 } else {
                     res.send('Company not found review username');
                 }
+
             }
         });
-
     },
 
     deleteCompany: function (req, res) {
@@ -111,40 +112,47 @@ let adminController = {
         });
     },
 
+
+
     updatePassword: function (req, res) {
-        Admin.findOneAndUpdate({
-            username: req.decoded.username
-        }, {
-            $set: {
-                "password": req.body.newPassword
-            }
-        }, function (err, admin) {
+        Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.body.newPassword } }, function (err, admin) {
+
             if (err) {
-                console.log(err);
-                console.log('update password failed ');
+                res.json({
+                    success: false,
+                    msg: 'You are not allowed to change the password, update failed',
+                });
             }
             if (admin) {
-                console.log("Password updated");
+
+                res.json({
+                    success: true,
+                    msg: 'The password has been updated successfully'
+                }); 
+
                 admin.markModified('Password ok');
             }
-
         });
     },
 
     resetPassword: function (req, res) {
         if (req.decoded.securityAnswer === req.answer) {
-            Admin.findOneAndUpdate({
-                username: req.decoded.username
-            }, {
-                $set: {
-                    "password": req.newPassword
-                }
-            }, function (err, admin) {
+
+            Admin.findOneAndUpdate({ username: req.decoded.username }, { $set: { "password": req.newPassword } }, function (err, admin) {
+
                 if (err) {
-                    console.log('reset password failed ');
+                    res.json({
+                        success: false,
+                        msg: 'You are not allowed to change the password, update failed',
+                    });
                 }
                 if (admin) {
-                    console.log("Password reset successful");
+
+                    res.json({
+                        success: true,
+                        msg: 'The password has been updated successfully'
+                    }); 
+
                     admin.markModified('Password reset ok');
                 }
             });
