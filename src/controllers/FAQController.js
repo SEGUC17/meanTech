@@ -40,7 +40,7 @@ let FAQController = {
 
         query.exec(function (err, faq) {
             if (err) return next(err);
-            res.send(faq);
+            res.json({data: faq});
         });
     },
 
