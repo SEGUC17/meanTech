@@ -33,22 +33,19 @@ let companyController = {
         //res.redirect('/');
       }
     })
-
   },
   viewCompanyProfile: function (req, res) {
-    var id = req.body.id;
-    console.log(id);
-    company.findById(id, function (err, Company) {
+    var id = req.query;
+    
+    Company.findById( id , function (err, company) {
       if (err)
-        res.send(err.message);
+        console.log(err.message);
       else
-        console.log('success');
-      res.render('companyProfile', {
-        Company
-      })
-    }) 
+        console.log(company);
+         
+    })
+
   },
- 
 
   getUnverfiedCompanies: function (verified, callback) {
     var query = {
@@ -85,6 +82,34 @@ let companyController = {
     };
     Company.findOneAndRemove(query, callback);
   },
+      updatePassword: function (req,res) {
+
+        Company.findOneAndUpdate({_id: req.decoded.id }, { $set:{"password" : req.body.newPassword }}, function(err, company) {
+            if (err) {
+                console.log(err);
+                console.log('update password failed ');
+            }
+            if (company){
+                console.log("Password updated");
+                company.markModified('Password ok');
+            }
+        });
+    },
+
+    resetPassword: function (req,res) {
+        if (req.decoded.securityAnswer === req.answer) {
+            Company.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.newPassword }}, function(err, client) {
+                if (err) {
+                    console.log('reset password failed ');
+                }
+                if (company){
+                    console.log("Password reset successful");
+                    company.markModified('Password reset ok');
+                }
+            });
+        }
+    
+    },
 }
 
- module.exports = companyController;
+module.exports = companyController;

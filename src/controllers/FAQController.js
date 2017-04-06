@@ -1,35 +1,41 @@
-var FAQ = require('../models/FAQ');
+let FAQ = require('../models/FAQ');
 
 let FAQController = {
 
     answerFAQ: function (req, res) {
-
-        FAQ.findOneAndUpdate({ clientUsername:req.body.clientUsername , questionText: req.body.questionText}, { answerText:req.body.answerText}, function (err, faq) {
+        FAQ.findOneAndUpdate({
+            clientUsername: req.decoded.username,
+            questionText: req.body.questionText
+        }, {
+            answerText: req.body.answerText
+        }, function (err, faq) {
             if (err) {
                 console.log(err);
             } else {
                 console.log(faq);
             }
-        })
+        });
     },
 
     askFAQ: function (req, res) {
 
-        let newQ = new FAQ(req.body);
-        console.log(req.body);
+
+        let newQ = new FAQ({
+            questionText: req.body.questionText,
+            clientUsername: req.decoded.username
+        });
 
         newQ.save(function (err, newQ) {
-
-            if (err)
-                res.send(err.message)
-            else {
-                res.send('Success')
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(newQ);
             }
-        })
+        });
 
     },
-    viewFAQs: function (req, res, next) {
 
+    viewFAQs: function (req, res, next) {
         var query = FAQ.find({}).select('questionText answerText clientUsername');
 
         query.exec(function (err, faq) {

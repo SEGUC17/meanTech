@@ -1,20 +1,27 @@
 let Client = require('../models/Client');
+let bcrypt = require('bcryptjs');
 
 let clientController = {
 
     register: function (req, res) {
         let client = new Client(req.body);
 
-        client.save(function (err, client) {
-            if (err) {
-                res.write('<h1>Username already exists, please choose another one.</h1>');
-                console.log(err);
-            } else {
-                console.log(client);
-            }
-        })
-    },
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(client.password, salt, function (err, hash) {
+                if (err) throw err;
+                client.password = hash;
 
+                client.save(function (err, client) {
+                    if (err) {
+                        res.write('<h1>Username already exists, please choose another one.</h1>');
+                        console.log(err);
+                    } else {
+                        console.log(client);
+                    }
+                });
+            });
+        });
+    },
 
     viewProfile: function (req, res) {
 
@@ -31,7 +38,7 @@ let clientController = {
 
     updatePassword: function (req,res) {
 
-        Client.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.body.newPassword }, function(err, client) {
+        Client.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.body.newPassword } }, function(err, client) {
             if (err) {
                 console.log(err);
                 console.log('update password failed ');
@@ -45,7 +52,7 @@ let clientController = {
 
     resetPassword: function (req,res) {
         if (req.decoded.securityAnswer === req.answer) {
-            Client.findOneAndUpdate({_id: req.decoded.id }, { "password" : req.newPassword }, function(err, client) {
+            Client.findOneAndUpdate({_id: req.decoded.id }, {$set:{ "password" : req.newPassword }}, function(err, client) {
                 if (err) {
                     console.log('reset password failed ');
                 }
@@ -104,6 +111,8 @@ let clientController = {
 
 
     }
+
+   
 
 
 
