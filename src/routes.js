@@ -651,5 +651,71 @@ router.post('/updateEvents', function (req, res) {
     }
 });
 
+router.post('/createService', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            res.json({
+                success: true,
+                msg: 'Company service created successfully',
+            });
+            serviceController.createService(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            msg: 'Could not create service',
+        });
+    }
+});
+
+router.post('/updateService', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            res.json({
+                success: true,
+                msg: 'Company service updated successfully',
+            });
+            serviceController.updateService(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            msg: 'Could not update service',
+        });
+    }
+});
+
+router.post('/deleteService', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            res.json({
+                success: true,
+                msg: 'Company service delete successfully',
+            });
+            serviceController.deleteService(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            msg: 'Could not delete service',
+        });
+    }
+
+});
 
 module.exports = router;

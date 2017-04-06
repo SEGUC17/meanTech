@@ -7,7 +7,7 @@ var serviceSchema = mongoose.Schema({
         unique: true
     },
     availableBookings: {
-        type: Number,
+        type: String,
         required: true
 
     },
@@ -22,7 +22,7 @@ var serviceSchema = mongoose.Schema({
 
     },
     price: {
-        type: Number,
+        type: String,
         required: true
 
     },
@@ -30,7 +30,10 @@ var serviceSchema = mongoose.Schema({
         type: String
 
     },
-    companyID: { type: mongoose.Schema.ObjectId, ref: 'Company' }
+    companyID: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'Company'
+    }
 
 });
 
