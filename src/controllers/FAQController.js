@@ -6,24 +6,24 @@ let FAQController = {
         FAQ.findByIdAndUpdate({
             _id: req.body.id
         }, {
-            $set: {
-                "answerText": req.body.answerText,
-            }
-        }, {
-            new: true
-        }, function (err, faq) {
-            if (err) {
-                res.status(500).json({
-                    success: false,
-                    message: 'Answer not updated.'
-                })
-            } else {
-                return res.json({
-                    success: true,
-                    message: 'Answer updated successfully.'
-                })
-            }
-        });
+                $set: {
+                    "answerText": req.body.answerText,
+                }
+            }, {
+                new: true
+            }, function (err, faq) {
+                if (err) {
+                    res.status(500).json({
+                        success: false,
+                        message: 'Answer not updated.'
+                    })
+                } else {
+                    return res.json({
+                        success: true,
+                        message: 'Answer updated successfully.'
+                    })
+                }
+            });
 
 
     },
@@ -51,7 +51,7 @@ let FAQController = {
 
         query.exec(function (err, faq) {
             if (err) return next(err);
-            res.json({data: faq});
+            res.json({ data: faq });
         });
     },
 
