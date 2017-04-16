@@ -1,4 +1,4 @@
-let promotion = require('../models/Promotion');
+let Promotion = require('../models/Promotion');
 
 module.exports = {
     getAllPromotions: function (req, res) {
