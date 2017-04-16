@@ -289,10 +289,6 @@ router.post('/companyResetPassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-            res.json({
-                success: true,
-                msg: 'password reset successfully',
-            });
             companyController.resetPassword(req, res);
         } else {
             res.status(401).json({
