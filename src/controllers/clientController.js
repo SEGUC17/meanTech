@@ -68,12 +68,12 @@ const clientController = {
     },
 
     resetPassword: function (req, res) {
-        if (req.decoded.securityAnswer === req.answer) {
+        if (req.decoded.securityAnswer === req.body.securityAnswer) {
             Client.findOneAndUpdate({
                 _id: req.decoded.id
             }, {
                 $set: {
-                    "password": req.newPassword
+                    "password": req.body.newPassword
                 }
             }, function (err, client) {
                 if (err) {
@@ -90,7 +90,13 @@ const clientController = {
                 }
             });
         }
-
+        else
+        {
+            res.status(500).json({
+                        success: false,
+                        msg: 'Wrong security answer',
+                    });
+        }
     },
 
     addToWishList: function (req, res) {
