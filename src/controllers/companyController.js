@@ -84,6 +84,7 @@ let companyController = {
         };
         Company.findOneAndRemove(query, callback);
     },
+
     updatePassword: function (req, res) {
 
         Company.findOneAndUpdate({
@@ -109,14 +110,14 @@ let companyController = {
     },
 
     resetPassword: function (req, res) {
-        if (req.decoded.securityAnswer === req.answer) {
+        if (req.decoded.securityAnswer === req.body.securityAnswer) {
             Company.findOneAndUpdate({
                 _id: req.decoded.id
             }, {
                 $set: {
-                    "password": req.newPassword
+                    "password": req.body.newPassword
                 }
-            }, function (err, client) {
+            }, function (err, company) {
                 if (err) {
                     res.status(500).json({
                         success: false,
@@ -131,6 +132,13 @@ let companyController = {
                 }
             });
         }
+        else {
+             res.status(500).json({
+                        success: false,
+                        msg: 'Wrong security answer',
+                    });
+        }
+
 
     },
 
