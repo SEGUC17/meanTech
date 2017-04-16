@@ -84,6 +84,7 @@ let companyController = {
         };
         Company.findOneAndRemove(query, callback);
     },
+    
     updatePassword: function (req, res) {
 
         Company.findOneAndUpdate({
