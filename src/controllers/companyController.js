@@ -20,7 +20,7 @@ let companyController = {
             mobileNumbers: req.body.mobileNumbers,
             branches: req.body.branches,
             socialMediaURL: req.body.socialMediaURL,
-            verified: req.body.verified,
+            verified: false,
             paymentMethod: req.body.paymentMethod,
             securityQuestion: req.body.securityQuestion,
             securityAnswer: req.body.securityAnswer
