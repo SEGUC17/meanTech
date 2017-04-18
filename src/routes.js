@@ -14,11 +14,6 @@ const reviewController = require('./controllers/reviewController');
 
 var config = require('../src/config/token');
 
-router.get('/', function (req, res) {
-    res.json({
-        hello: 'world'
-    });
-});
 router.get('/contactUs', function (req, res) {
     res.render('contactUs')
 });
