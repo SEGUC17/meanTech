@@ -16,5 +16,9 @@ App.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/createEvent.html',
           controller: 'eventController'
       })
+      .when('/stripeTest', {
+          templateUrl: 'views/stripeTest.html'
+
+      })
 
 }])

@@ -2,7 +2,7 @@
 
 <head>
     <title>Ceate Event</title>
-  
+
 
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -90,42 +90,59 @@
 
     <div class="col-xs-12 col-md-4">
         <div class="form-container">
-            <form name="myForms.firstForm" class="form"  ng-submit="createEvent()">
+            <form name="eventF" class="form"  ng-submit="createEvent()">
                 <div class="form-group">
                     <label for="InputTitle">Name</label>
-                    <input name = "name" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.name">
+                    <input name = "name" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.name" required="required">
+                    <span ng-show="eventF.name.$error.required">*</span>
                 </div>
                 <div class="form-group">
                     <label for="InputLink">Details</label>
-                    <input name = "details" type="text" class="form-control" id="InputLink" placeholder="" ng-model="eventForm.details">
+                    <input name = "details" type="text" class="form-control" id="InputLink" placeholder="" ng-model="eventForm.details" required="required">
+                    <span ng-show="eventF.details.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Date</label>
-                    <input name = "date" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.date">
+                    <input name = "date" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.date" required="required">
+                    <span ng-show="eventF.date.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Duration in Minutes</label>
-                    <input name = "durationMins" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.durationMins">
+                    <input name = "durationMins" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.durationMins" required="required">
+                    <span ng-show="eventF.durationMins.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Address</label>
-                    <input name = "address" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.address">
+                    <input name = "address" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.address" required="required">
+                    <span ng-show="eventF.address.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Picture URL</label>
-                    <input name = "pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.pictureURL">
+                    <input name = "pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.pictureURL" required="required">
+                    <span ng-show="eventF.prictureURL.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Category</label>
-                    <input name = "category" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.category">
+                    <input name = "category" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.category" required="required">
+                    <span ng-show="eventF.category.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Contacts</label>
-                    <input name = "contacts" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.contacts">
+                    <input name = "contacts" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.contacts" required="required">
+                    <span ng-show="eventF.contacts.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Price</label>
-                    <input name = "price" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.price">
+                    <input name = "price" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.price" required="required">
+                    <span ng-show="eventF.price.$error.required">*</span>
+
                 </div>
 
                 <button type="submit" class="btn btn-default" >Create Event!</button>

@@ -31,7 +31,7 @@ let companyController = {
 
                 res.status(500).json({
                     success: false,
-                    message: 'If you have provided all required information please choose another username!'
+                    message: "Please choose another Username"
                 });
 
             } else {

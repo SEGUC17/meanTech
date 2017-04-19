@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const companyController = require('./controllers/companyController');
@@ -11,6 +10,7 @@ const loginController = require('./controllers/loginController');
 const promotionController = require('./controllers/promotionController');
 const clientController = require('./controllers/clientController');
 const reviewController = require('./controllers/reviewController');
+var stripe = require("stripe")("sk_test_iDQ4j6FIHxplL81qcqEtSWCU");
 
 var config = require('../src/config/token');
 
@@ -19,6 +19,11 @@ router.get('/', function (req, res) {
         hello: 'world'
     });
 });
+router.post('/charge', function (req, res) {
+
+});
+
+
 router.get('/contactUs', function (req, res) {
     res.render('contactUs')
 });
@@ -53,7 +58,7 @@ router.get('/getAllPromotions', promotionController.getAllPromotions);
 
 router.use(function (req, res, next) {
 
-    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+    var token = req.body.token || req.param.token || req.headers['x-access-token'];
 
     if (token) {
 

@@ -1,8 +1,8 @@
 <html ng-app="meanTech">
 
 <head>
-    <title>Client Registration</title>
-  
+    <title>Company Subscription</title>
+
 
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -83,77 +83,109 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <h1 class="navbar-brand" >{{ heading }}</h1>
+                <h1 class="navbar-brand" >Subscription</h1>
             </div>
         </div>
     </nav>
 
     <div class="col-xs-12 col-md-4">
         <div class="form-container">
-            <form name="myForms.firstForm" class="form"  ng-submit="createCompany()">
+            <form name="firstForm" class="form"  ng-submit="createCompany()">
                 <div class="form-group">
                     <label for="InputTitle">Name</label>
-                    <input name = "name" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.name">
+                    <input name = "name" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.name" required="required">
+                    <span ng-show="firstForm.name.$error.required">*</span>
                 </div>
                 <div class="form-group">
                     <label for="InputLink">City</label>
-                    <input name = "city" type="text" class="form-control" id="InputLink" placeholder="" ng-model="formData.city">
+                    <input name = "city" type="text" class="form-control" id="InputLink" placeholder="" ng-model="formData.city" required="required">
+                    <span ng-show="firstForm.city.$error.required">*</span>
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Area</label>
-                    <input name = "area" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.area">
+                    <input name = "area" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.area" required="required">
+                    <span ng-show="firstForm.area.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Address</label>
-                    <input name = "address" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.address">
+                    <input name = "address" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.address" required="required">
+                    <span ng-show="firstForm.address.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Description</label>
-                    <input name = "description" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.description">
+                    <input name = "description" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.description" required="required">
+                    <span ng-show="firstForm.description.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Category</label>
-                    <input name = "category" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.category">
+                    <input name = "category" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.category" required="required">
+                    <span ng-show="firstForm.category.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Logo URL</label>
-                    <input name = "logoURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.logoURL">
+                    <input name = "logoURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.logoURL" required="required">
+                    <span ng-show="firstForm.logoURL.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Email</label>
-                    <input name = "email" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.email">
+                    <input name = "email" type="email" class="form-control" id="InputTitle" placeholder="" ng-model="formData.email" required="required">
+                    <span ng-show="firstForm.email.$error.required">*</span>
+                    <span ng-show="firstForm.email.$error.email">Please enter a valid email!</span>
+
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Mobile</label>
-                    <input name = "mobile" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.mobileNumbers">
+                    <input name = "mobile" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.mobileNumbers" required="required">
+                    <span ng-show="firstForm.mobile.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                   <div class="form-group">
                       <label for="InputTitle">Branches</label>
-                      <input name = "branches" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.branches">
+                      <input name = "branches" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.branches" required="required">
+                      <span ng-show="firstForm.branches.$error.required">*</span>
+
                   </div>
                   <div class="form-group">
                       <label for="InputTitle">Social Media URL</label>
-                      <input name = "socialMediaURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.socialMediaURL">
+                      <input name = "socialMediaURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.socialMediaURL" required="required">
+                      <span ng-show="firstForm.socialMediaURL.$error.required">*</span>
+
                   </div>
                   <div class="form-group">
                       <label for="InputTitle">Payment Method</label>
-                      <input name = "paymentMethod" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.paymentMethod">
+                      <input name = "paymentMethod" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.paymentMethod" required="required">
+                      <span ng-show="firstForm.paymentMethod.$error.required">*</span>
+
                   </div>
                   <div class="form-group">
                       <label for="InputTitle">Security Question</label>
-                      <input name = "securityQuestion" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.securityQuestion">
+                      <input name = "securityQuestion" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.securityQuestion" required="required">
+                      <span ng-show="firstForm.securityQuestion.$error.required">*</span>
+
                   </div>
                   <div class="form-group">
                       <label for="InputTitle">Security Answer</label>
-                      <input name = "securityAnswer" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.securityAnswer">
+                      <input name = "securityAnswer" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.securityAnswer" required="required">
+                      <span ng-show="firstForm.securityAnswer.$error.required">*</span>
+
                   </div>
                     <label for="InputTitle"> Username</label>
-                    <input name = "setusername" type="text" class="form-control" id="InputTitle" placeholder="username" ng-model="formData.username">
+                    <input name = "setusername" type="text" class="form-control" id="InputTitle" placeholder="username" ng-model="formData.username" required="required">
+                    <span ng-show="firstForm.setusername.$error.required">*</span>
+
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Password</label>
-                    <input name = "setpassword" type="text" class="form-control" id="InputTitle" placeholder="password" ng-model="formData.password">
+                    <input name = "setpassword" type="text" class="form-control" id="InputTitle" placeholder="password" ng-model="formData.password" required="required">
+                    <span ng-show="firstForm.setpassword.$error.required">*</span>
+
                 </div>
                 <button type="submit" class="btn btn-default" >Subscribe!</button>
 

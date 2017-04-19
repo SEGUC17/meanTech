@@ -1,48 +1,40 @@
-const loginController = function ($scope, $location, factory, $log) {
+const loginController = function ($scope, $location, factory) {
   $scope.companyForm = {};
     $scope.clientForm = {};
 
     $scope.companyLogin = function companyLogin() {
 
-
-        if ($scope.companyForm != undefined) {
             factory.companyLogin($scope.companyForm)
              .success(function(data) {
-                /* data1 = JSON.stringify(data, null, 4);
-                if (data1[0].token == undefined){
-                  alert(data1[0].message);
-                }else {
-                  alert(data1[0].token)
-                }*/
 
-                $log.info(JSON.stringify(data, null, 4));
-            }).error(function(data) {
-                $log.error('error');
+
+         factory.setToken(data.token);
+           console.log(factory.getToken());
+         }).error(function(error) {
+              alert(error.message);
             });
 
-        }
+
 
     };
 
     $scope.clientLogin = function clientLogin() {
 
-
-        if ($scope.clientForm != undefined) {
           factory.clientLogin($scope.clientForm)
 
         .success(function(data) {
-                $log.info(JSON.stringify(data, null, 4));
+               factory.setToken(data.token);
 
-            }).error(function(data) {
-                $log.error('error');
+            }).error(function(error) {
+                alert(error.message);
             });
 
-        }
+
 
     };
 
 
 }
 
-loginController.$inject = ['$scope', '$location', 'factory', '$log'];
+loginController.$inject = ['$scope', '$location', 'factory'];
 App.controller('loginController', loginController);

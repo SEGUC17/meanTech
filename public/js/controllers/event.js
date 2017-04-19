@@ -1,23 +1,26 @@
-const eventController = function ($scope, $location, factory, $log) {
+const eventController = function ($scope, $location, factory) {
   $scope.eventForm = {};
 
     $scope.createEvent = function createEvent() {
 
 
-        if ($scope.eventForm != undefined) {
+
             factory.createEvent($scope.eventForm)
               .success(function(data) {
-                $log.info(JSON.stringify(data, null, 4));
 
-            }).error(function(data) {
-                $log.error('error');
+              alert("Event Successfully created!")
+
+            }).error(function(error) {
+
+              alert(error.message)
+
             });
 
-        }
+
 
     };
 
 }
 
-eventController.$inject = ['$scope', '$location', 'factory', '$log'];
+eventController.$inject = ['$scope', '$location', 'factory'];
 App.controller('eventController', eventController);
