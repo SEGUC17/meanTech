@@ -17,6 +17,30 @@ App.factory('factory', function ($http, $location) {
                     password: user.password
                 })
             });
+        },
+
+        logout: function () {
+            return $http({
+                method: 'POST',
+                url: apiUrl + 'logout',
+                data: JSON.stringify({
+                    token: null
+                })
+            });
+        },
+
+        getAllEvents: function () {
+            return $http.get("/allEvents")
+						.then(function(response){
+							return response.data;
+						})
+        },
+
+        getAllServices: function () {
+            return $http.get("/allServices")
+						.then(function(response){
+							return response.data;
+						})
         }
     };
 });

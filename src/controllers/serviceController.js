@@ -113,12 +113,15 @@ let serviceController = {
     },
 
     getAllServices: function (req, res) {
-        Service.find({}, '-_id -companyID', function (err, services) {
-            if (err)
-                res.send(err.message)
+        Service.find({}, function (err, services) {
+            if (err){
+                res.status(500).json({
+                    msg: err.message
+                })
+            }
             else
-                res.send({
-                    services
+                res.json({
+                    data: services
                 });
         });
     },
