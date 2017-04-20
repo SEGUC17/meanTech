@@ -1,0 +1,40 @@
+<div ng-controller="getCompanyEvents">
+    <h1>{{hello}}</h1>
+
+    <table style="width:100%">
+        <thead>
+        
+       
+  <tr>
+    <th>name</th>
+    <th>details</th> 
+    <th>date</th>
+    <th>durationMins</th>
+    <th>address</th>
+    <th>pictureURL</th>
+     <th>category</th>
+    <th>price</th>
+
+
+  </tr>
+   </thead>
+   <tbody>
+       
+  <tr ng-repeat="event in events"> 
+    <td>{{event.name}}</td>
+    <td>{{event.details}}</td> 
+    <td>{{event.date}}</td> 
+    <td>{{event.durationMins}}</td> 
+    <td>{{event.address}}</td> 
+    <td>event.pictureURL</td> 
+    <td>{{event.category}}</td>
+    <td>{{event.price}}</td>
+  </tr>
+     </tbody>
+</table>
+    
+    
+</div>
+
+
+    <!--<script type="text/javascript" src="./js/controllers/eventController.js"></script>-->

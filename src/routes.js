@@ -543,6 +543,7 @@ router.post('/deletePromotion1', function (req, res) {
 
 router.get('/getCompanyEvents', function (req, res) {
     try {
+        console.log("inside the src route");
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
             eventController.getCompanyEvents(req, res);
