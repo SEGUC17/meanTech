@@ -1,3 +1,28 @@
 <div>
     <h1>Hello Worled</h1>
 </div>
+<body ng-controller= "loginController">
+  <div class="login1" >
+	<h1>Company Login</h1>
+    <form method="post" ng-submit="companyLogin()">
+    	<input type="text" name="u" placeholder="Username" required="required"  ng-model="companyForm.username"/>
+        <input type="password" name="p" placeholder="Password" required="required"  ng-model="companyForm.password" />
+        <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+    </form>
+</div>
+<a href="/#/companyS">Subscribe now!</a>
+<a href="/#/createEvent">Create Event!</a>
+</br>
+<a href="/#/stripeTest">Stripe Test</a>
+
+<div class="login2" >
+
+<h1>Client Login</h1>
+  <form method="post" ng-submit="clientLogin()">
+    <input type="text" name="u" placeholder="Username" required="required" ng-model="clientForm.username"/>
+      <input type="password" name="p" placeholder="Password" required="required" ng-model="clientForm.password"/>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Let me in.</button>
+  </form>
+</div>
+
+</body>

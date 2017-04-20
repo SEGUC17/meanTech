@@ -4,4 +4,8 @@ App.config(function ($routeProvider) {
             templateUrl: 'views/login.html',
             controller: 'loginController'
         })
+       .when('/clientProfile', {
+            templateUrl: 'views/viewProfile.html',
+            controller: 'viewProfileController'
+        })  
 });
