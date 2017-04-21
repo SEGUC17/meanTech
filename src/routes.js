@@ -12,12 +12,16 @@ const promotionController = require('./controllers/promotionController');
 const clientController = require('./controllers/clientController');
 const reviewController = require('./controllers/reviewController');
 
+
+
 var config = require('../src/config/token');
 
 router.get('/contactUs', function (req, res) {
     res.render('contactUs')
 });
 router.get('/company/profile', clientController.viewCompanyProfile);
+
+router.get('/waseem', clientController.viewWaseem);
 
 router.post('/company', companyController.companySubscription);
 
@@ -543,7 +547,6 @@ router.post('/deletePromotion1', function (req, res) {
 
 router.get('/getCompanyEvents', function (req, res) {
     try {
-        console.log("inside the src route");
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
             eventController.getCompanyEvents(req, res);

@@ -1,0 +1,38 @@
+<div>
+
+  <h1>My Ratings</h1>
+
+
+
+  <table style="width:100%" ng-controller="reviewController">
+ 
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>details</th>
+        <th>date</th>
+        <th>durationMins</th>
+        <th>address</th>
+        <th>pictureURL</th>
+        <th>category</th>
+        <th>price</th>
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr ng-repeat="rating in ratings| orderBy:'name'">
+        <td>{{ratings.name}}</td>
+        <td>{{ratings.details}}</td>
+        <td>{{ratings.date}}</td>
+        <td>{{ratings.durationMins}}</td>
+        <td>{{ratings.address}}</td>
+        <td>{{ratings.pictureURL}}</td>
+        <td>{{ratings.category}}</td>
+        <td>{{ratings.price}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

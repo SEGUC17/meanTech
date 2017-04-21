@@ -1,45 +1,4 @@
-// App.factory('factory', function ($http, $location) {
-//     const apiUrl = 'locahost:8080/';
-// let token = null;
 
-//     const user = {
-//         username: null,
-//         password: null,
-//         token: null
-//     };
-
-//     return {
-//         clientLogin: function () {
-//             return $http({
-//                 method: 'POST',
-//                 url: apiUrl + 'clientLogin',
-//                 data: JSON.stringify({
-//                     username: user.username,
-//                     password: user.password
-//                 })
-//             });
-//         }
-//     };
-
-//      return {
-//         getCompanyEvents: function () {
-//             return $http({
-//                 method: 'GET',
-//                 url: apiUrl + 'getCompanyEvents',
-//                 headers: {
-//                     'x-access-token': token
-//                 }
-//                 // data: JSON.stringify({
-//                 //     username: user.username,
-//                 //     password: user.password
-//                 // })
-//             });
-//      
-
-//     };
-// //receive the data using the route from the back end and return it to the ctrl 
- 
-// });
 App.factory('factory', function($http, $location) {
     const apiUrl = 'http://localhost:8080/';
 
@@ -70,16 +29,39 @@ App.factory('factory', function($http, $location) {
         getToken: function() {
             return token;
         },
+    
+    getCompanyEvents: function(){
+        console.log("it gets to the factory of get company events");
+        return $http.get('http://localhost:8080/getCompanyEvents',{
+             
+                headers: {
+                    'x-access-token': token
+                }
+        });
 
-        updateEvents: function(event) {
-            return $http.post('http://localhost:8080/updateEvents', event, {
+        
+    },
+     viewRatings: function(companyID){
+        console.log("it gets to the factory of view ratings");
+        return $http.post('http://localhost:8080/viewRatings',companyID,{
+             
+                headers: {
+                    'x-access-token': token
+                }
+        });
+
+        
+    },
+
+       updateEvent: function(info) {
+            return $http.post('http://localhost:8080/updateEvents', info, {
                 headers: {
                     'x-access-token': token
                 }
             });
 
-        },
+        }
+    
         
-
     };
 });

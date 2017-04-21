@@ -1,5 +1,6 @@
-const eventController = function ($scope,getCompanyEvents, $location, factory) {
+const eventController = function ($scope, $location, factory) {
   $scope.eventForm = {};
+  $scope.updateForm={};
 
     $scope.createEvent = function createEvent() {
 
@@ -8,11 +9,11 @@ const eventController = function ($scope,getCompanyEvents, $location, factory) {
             factory.createEvent($scope.eventForm)
               .success(function(data) {
 
-              alert("Event Successfully created!")
+              alert("Event Successfully created!");
 
             }).error(function(error) {
 
-              alert(error.message)
+              alert(error.message);
 
             });
 
@@ -20,20 +21,28 @@ const eventController = function ($scope,getCompanyEvents, $location, factory) {
 
     };
 
-$scope.updateForm={};
 
-    $scope.updateEvents = function updateEvents() {
+     factory.getCompanyEvents().success(function(data){
+          console.log("it gets to the controller");
+          console.log(data);
+
+          
+
+          $scope.events=data.data;
+        });
+
+    $scope.updateEvent = function updateEvent() {
 
 
-          $scope.hello = "Update form";
-            factory.updateEvents($scope.updateForm)
+
+            factory.updateEvent($scope.eventForm)
               .success(function(data) {
 
-              alert("Event Successfully updated!")
+              alert("Event Successfully Updated!");
 
             }).error(function(error) {
 
-              alert(error.message)
+              alert(error.message);
 
             });
 
@@ -41,7 +50,9 @@ $scope.updateForm={};
 
     };
 
-}
+
+
+};
 
 eventController.$inject = ['$scope', '$location', 'factory'];
 App.controller('eventController', eventController);

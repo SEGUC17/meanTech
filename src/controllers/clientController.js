@@ -193,6 +193,17 @@ const clientController = {
 
         })
 
+    },
+
+
+    viewWaseem: function(req,res){
+        Company.find(function(err,companies){
+            if(err){
+                res.send(err)
+            }else{
+                res.send(companies)
+            }
+        })
     }
 }
 

@@ -7,12 +7,21 @@ App.config(function ($routeProvider) {
     
         .when('/viewEvents', {
             templateUrl: 'views/viewEvents.html',
-            controller: 'getCompanyEvents'
+            controller: 'eventController'
+        })
+         .when('/viewRatings', {
+            templateUrl: 'views/viewRatings.html',
+            controller: 'reviewController'
         })
 
         .when('/updateEvents',{
             templateUrl:'views/updateEvents.html',
             controller:'eventController'
 
-        })
+        });
+
+
+        
+
+        
 });

@@ -1,40 +1,102 @@
-<div ng-controller="getCompanyEvents">
-    <h1>{{hello}}</h1>
+<!--<div>
 
-    <table style="width:100%">
-        <thead>
-        
-       
+  <h1>My EVENTS</h1>
+
+
+
+
+  <table style="width:100%">
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>details</th>
+        <th>date</th>
+        <th>durationMins</th>
+        <th>address</th>
+        <th>pictureURL</th>
+        <th>category</th>
+        <th>price</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <!--<tr ng-repeat="event in events">
+          console.log(event);-->
+        <td>{{event.name}}</td>
+        <td>{{event.details}}</td>
+        <td>{{event.date}}</td>
+        <td>{{event.durationMins}}</td>
+        <td>{{event.address}}</td>
+        <td>{{event.pictureURL}}</td>
+        <td>{{event.category}}</td>
+        <td>{{event.price}}</td>
+
+      <!--</tr>
+    </tbody>
+  </table>-->
+
+  <!DOCTYPE html>
+<html>
+<head>
+<style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+</head>
+<body>
+
+<table id="customers">
   <tr>
-    <th>name</th>
-    <th>details</th> 
-    <th>date</th>
-    <th>durationMins</th>
-    <th>address</th>
-    <th>pictureURL</th>
-     <th>category</th>
-    <th>price</th>
-
-
+        <th>name</th>
+        <th>details</th>
+        <th>date</th>
+        <th>durationMins</th>
+        <th>address</th>
+        <th>pictureURL</th>
+        <th>category</th>
+        <th>price</th>
   </tr>
-   </thead>
-   <tbody>
-       
-  <tr ng-repeat="event in events"> 
-    <td>{{event.name}}</td>
-    <td>{{event.details}}</td> 
-    <td>{{event.date}}</td> 
-    <td>{{event.durationMins}}</td> 
-    <td>{{event.address}}</td> 
-    <td>event.pictureURL</td> 
-    <td>{{event.category}}</td>
-    <td>{{event.price}}</td>
+  <tr ng-repeat="event in events| orderBy:'name'">
+        <td>{{event.name}}</td>
+        <td>{{event.details}}</td>
+        <td>{{event.date}}</td>
+        <td>{{event.durationMins}}</td>
+        <td>{{event.address}}</td>
+        <td>{{event.pictureURL}}</td>
+        <td>{{event.category}}</td>
+        <td>{{event.price}}</td>
   </tr>
-     </tbody>
 </table>
-    
-    
+
+</body>
+  
+
+
+
+
+
+
+
+
+
 </div>
-
-
-    <!--<script type="text/javascript" src="./js/controllers/eventController.js"></script>-->
