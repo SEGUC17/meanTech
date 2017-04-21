@@ -1,10 +1,10 @@
 const resetPasswordController = function ($scope, $location, factory) {
-    $scope.clientresetPasswordForm = {};
-    $scope.companyresetPasswordForm = {};
+    $scope.clientResetPasswordForm = {};
+    $scope.companyResetPasswordForm = {};
 
 
-    $scope.clientresetPassword = function clientresetPassword() {
-        factory.clientresetPassword($scope.clientresetPasswordForm)
+    $scope.clientResetPassword = function clientResetPassword() {
+        factory.clientResetPassword($scope.clientResetPasswordForm)
 
             .success(function (data) {
                 alert('Password updated Successfully');
@@ -13,8 +13,8 @@ const resetPasswordController = function ($scope, $location, factory) {
             });
     };
 
-    $scope.companyresetPassword = function companyresetPassword() {
-        factory.companyresetPassword($scope.companyresetPasswordForm)
+    $scope.companyResetPassword = function companyResetPassword() {
+        factory.companyResetPassword($scope.companyResetPasswordForm)
 
             .success(function (data) {
                 alert('Password updated Successfully');

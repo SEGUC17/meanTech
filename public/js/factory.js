@@ -34,19 +34,13 @@ App.factory('factory', ($http, $location) => {
 
         //TODO adminUpdatePassword
 
-        clienResetPassword: (data) => {
-            return $http.post('http://localhost:8080/clienResetPassword', data, {
-                headers: {
-                    'x-access-token': token,
-                },
+        clientResetPassword: (data) => {
+            return $http.post('http://localhost:8080/clientResetPassword', data, {
             });
         },
 
         companyResetPassword: (data) => {
             return $http.post('http://localhost:8080/companyResetPassword', data, {
-                headers: {
-                    'x-access-token': token,
-                },
             });
         },
 

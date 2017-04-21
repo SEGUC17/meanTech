@@ -124,7 +124,7 @@ let companyController = {
                     message: 'Username not found',
                 });
             } else if (company) {
-                if (company.securityAnswer != req.body.securityAnswer) {
+                if (company.securityAnswer !== req.body.securityAnswer) {
 
                     res.status(401).json({
                         success: false,
