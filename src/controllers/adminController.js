@@ -120,36 +120,8 @@ const adminController = {
         Admin.findOneAndUpdate({
             username: req.decoded.username
         }, {
-            $set: {
-                "password": req.body.newPassword
-            }
-        }, function (err, admin) {
-
-            if (err) {
-                res.status(500).json({
-                    success: false,
-                    msg: 'You are not allowed to change the password, update failed',
-                });
-            } else {
-
-                res.json({
-                    success: true,
-                    msg: 'The password has been updated successfully'
-                });
-
-                admin.markModified('Password ok');
-            }
-        });
-    },
-
-    resetPassword: function (req, res) {
-        if (req.decoded.securityAnswer === req.answer) {
-
-            Admin.findOneAndUpdate({
-                username: req.decoded.username
-            }, {
                 $set: {
-                    "password": req.newPassword
+                    "password": req.body.newPassword
                 }
             }, function (err, admin) {
 
@@ -165,12 +137,62 @@ const adminController = {
                         msg: 'The password has been updated successfully'
                     });
 
-                    admin.markModified('Password reset ok');
+                    admin.markModified('Password ok');
                 }
             });
-        }
+    },
 
-    }
+    resetPassword: function (req, res) {
+        Admin.findOne({
+            username: req.body.username
+        }, function (err, admin) {
+            if (err) res.status(500).json({
+                success: false,
+                message: 'Error'
+            });
+
+            if (!admin) {
+                res.status(404).json({
+                    success: false,
+                    message: 'Username not found',
+                });
+            } else if (admin) {
+                if (admin.questionAnswer != req.body.questionAnswer) {
+
+                    res.status(401).json({
+                        success: false,
+                        message: 'Authentication failed. Wrong Security Answer.',
+                    });
+                } else {
+                    Admin.findOneAndUpdate({
+                        username: req.body.username,
+                    }, {
+                            $set: {
+                                'password': req.body.newPassword,
+                            },
+                        }, function (err, admin) {
+                            if (err) {
+                                res.status(500).json({
+                                    success: false,
+                                    msg: 'You are not allowed to change the password, update failed',
+                                });
+                            } else {
+                                res.json({
+                                    success: true,
+                                    msg: 'The password has been updated successfully'
+                                });
+                                admin.markModified('Password reset ok');
+                            }
+                        });
+
+                };
+
+            }
+
+        });
+
+    },
+
 };
 
 module.exports = adminController;

@@ -46,6 +46,14 @@ router.post('/companyLogin', loginController.companyLogin);
 
 router.get('/getAllPromotions', promotionController.getAllPromotions);
 
+router.post('/clientResetPassword', clientController.resetPassword);
+
+router.post('/companyResetPassword', companyController.resetPassword);
+
+router.post('/adminResetPassword', adminController.resetPassword);
+
+
+
 router.use(function (req, res, next) {
 
     var token = req.body.token || req.param('token') || req.headers['x-access-token'];
@@ -244,23 +252,6 @@ router.post('/clientUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/clientResetPassword', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'client') {
-            clientController.resetPassword(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'Couldn"t reset password,internal server error',
-        });
-    }
-});
 
 router.post('/companyUpdatePassword', function (req, res) {
     try {
@@ -280,23 +271,6 @@ router.post('/companyUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/companyResetPassword', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'company') {
-            companyController.resetPassword(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'couldn"t reset password, internal server error',
-        });
-    }
-});
 
 router.post('/adminUpdatePassword', function (req, res) {
     try {
@@ -316,27 +290,6 @@ router.post('/adminUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/adminResetPassword', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload.role === 'admin') {
-            res.json({
-                success: true,
-                msg: 'password reset successfully',
-            });
-            adminController.resetPassword(req, res);
-        } else {
-            res.status(401).json({
-                error: 'Unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'couldn"t reset password, internal server error',
-        });
-    }
-});
 
 
 router.post('/addToWishList', function (req, res) {

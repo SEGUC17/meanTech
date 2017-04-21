@@ -109,38 +109,57 @@ let companyController = {
         });
     },
 
-    resetPassword: function (req, res) {
-        if (req.decoded.securityAnswer === req.body.securityAnswer) {
-            Company.findOneAndUpdate({
-                _id: req.decoded.id
-            }, {
-                $set: {
-                    "password": req.body.newPassword
-                }
-            }, function (err, company) {
-                if (err) {
-                    res.status(500).json({
+        resetPassword: function (req, res) {
+        Company.findOne({
+            username: req.body.username
+        }, function (err, company) {
+            if (err) res.status(500).json({
+                success: false,
+                message: 'Error'
+            });
+
+            if (!company) {
+                res.status(404).json({
+                    success: false,
+                    message: 'Username not found',
+                });
+            } else if (company) {
+                if (company.securityAnswer != req.body.securityAnswer) {
+
+                    res.status(401).json({
                         success: false,
-                        msg: 'You are not allowed to change the password, update failed',
+                        message: 'Authentication failed. Wrong Security Answer.',
                     });
                 } else {
-                    res.json({
-                        success: true,
-                        msg: 'The password has been updated successfully'
-                    });
-                    company.markModified('Password reset ok');
-                }
-            });
-        }
-        else {
-             res.status(500).json({
-                        success: false,
-                        msg: 'Wrong security answer',
-                    });
-        }
+                    Company.findOneAndUpdate({
+                        username: req.body.username,
+                    }, {
+                            $set: {
+                                'password': req.body.newPassword,
+                            },
+                        }, function (err, company) {
+                            if (err) {
+                                res.status(500).json({
+                                    success: false,
+                                    msg: 'You are not allowed to change the password, update failed',
+                                });
+                            } else {
+                                res.json({
+                                    success: true,
+                                    msg: 'The password has been updated successfully'
+                                });
+                                company.markModified('Password reset ok');
+                            }
+                        });
 
+                };
+
+            }
+
+        });
 
     },
+
 
     viewReviews: function (req, res) {
         Review.find({
