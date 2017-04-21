@@ -48,7 +48,7 @@ router.get('/getAllPromotions', promotionController.getAllPromotions);
 
 router.use(function (req, res, next) {
 
-    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+    var token = req.body.token || req.param.token || req.headers['x-access-token'];
 
     if (token) {
 

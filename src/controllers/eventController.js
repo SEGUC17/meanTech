@@ -25,13 +25,13 @@ let eventController = {
 
                 res.status(500).json({
                     success: false,
-                    message: 'Please provide all the required event information'
+                    message: "Please make sure you have provided valid information"
                 });
             } else {
 
                 return res.json({
                     success: true,
-                    message: 'Event Successfully created'
+                    message: "Event Successfully created"
                 });
 
             }
