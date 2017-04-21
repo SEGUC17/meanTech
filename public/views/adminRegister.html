@@ -1,0 +1,38 @@
+<html ng-app="meanTech">
+<div class="page-header">
+    <h1>Admin Registration</h1>
+</div>
+
+<body ng-controller="adminController">
+<form ng-submit="adminRegister()">
+    <!-- Username -->
+    <label>Username:</label>
+    <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="formData.username" required>
+    <br>
+    <!-- Password -->
+    <label>Password:</label>
+    <input class="form-control" type="password" name="password" placeholder="Please enter password." ng-model="formData.password" required>
+    <br>
+    <!-- Email -->
+    <label>Email:</label>
+    <input class="form-control" type="text" name="email" placeholder="Please enter email." ng-model="formData.email" required>
+    <br>
+    <!-- Security Question -->
+    <label>Security Question:</label>
+    <input class="form-control" type="text" name="sq" placeholder="Please enter security question." ng-model="formData.securityQuestion" required>
+    <br>
+    <!-- Question Answer -->
+    <label>Question Answer:</label>
+    <input class="form-control" type="text" name="qa" placeholder="Please enter question answer." ng-model="formData.questionAnswer" required>
+    <br>
+    <button class="btn btn-primary" type="submit">Register</button>
+</form>
+</body>
+<div class="row show-hide message" ng-show="adminController.successMsg">
+    <div class="alert alert-sucess">{{adminController.successMsg}}</div>
+</div>
+
+<div class="row show-hide message" ng-show="adminController.errorMsg">
+    <div class="alert alert-danger">{{adminController.errorMsg}}</div>
+</div>
+</html>

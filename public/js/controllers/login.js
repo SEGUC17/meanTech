@@ -1,5 +1,5 @@
 const loginController = function ($scope, $location, factory) {
-
+      
 };
 
 loginController.$inject = ['$scope', '$location', 'factory'];

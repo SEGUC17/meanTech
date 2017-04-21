@@ -1,35 +1,36 @@
 App.config(function ($routeProvider) {
     $routeProvider
-    
-        .when('/', {
-            templateUrl: 'views/login.html',
-            controller: 'loginController',
-
-        }).when('/unverifiedCompanies', {
+        .when('/unverifiedCompanies', {
             templateUrl: 'views/unverifiedCompanies.html',
             controller: 'adminController',
 
-        }).when('/verifyCompanies', {
+        })
+        .when('/verifyCompanies', {
             templateUrl: 'views/verifyCompanies.html',
             controller: 'adminController',
 
-        }).when('/viewCompanies', {
+        })
+        .when('/viewCompanies', {
             templateUrl: 'views/viewCompanies.html',
             controller: 'companyController',
 
-        }).when('/deleteCompany', {
+        })
+        .when('/deleteCompany', {
             templateUrl: 'views/deleteCompany.html',
             controller: 'adminController',
 
-        }).when('/FAQView', {
+        })
+        .when('/FAQView', {
             templateUrl: 'views/FAQView.html',
             controller: 'FAQController',
 
-        }).when('/adminRegister', {
+        })
+        .when('/adminRegister', {
             templateUrl: 'views/adminRegister.html',
             controller: 'adminController',
 
-        }).when('/adminLogin', {
+        })
+        .when('/adminLogin', {
             templateUrl: 'views/adminLogin.html',
             controller: 'loginController',
 

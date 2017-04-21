@@ -1,0 +1,14 @@
+<html ng-app="meanTech">
+<body ng-controller="loginController">
+    <div class="admin-login">
+        <h1> Admin Login.</h1>
+        <form class="post" ng-submit="adminLogin()">
+           
+            <input type="text" name="username" placeholder="Username" required ng-model="adminForm.username"/>
+            <input type="password" name="password" placeholder="Password" required ng-model="adminForm.password"/>
+            
+            <button type="submit" class="btn btn-primary btn-block btn-large">Sign in</button>
+        </form>
+    </div>
+</body>
+</html>
