@@ -1,6 +1,8 @@
 const resetPasswordController = function ($scope, $location, factory) {
     $scope.clientResetPasswordForm = {};
     $scope.companyResetPasswordForm = {};
+    $scope.adminResetPasswordForm = {};
+
 
 
     $scope.clientResetPassword = function clientResetPassword() {
@@ -23,7 +25,15 @@ const resetPasswordController = function ($scope, $location, factory) {
             });
     };
 
-    // TODO admin reset password 
+    $scope.adminResetPassword = function adminResetPassword() {
+        factory.adminResetPassword($scope.adminResetPasswordForm)
+
+            .success(function (data) {
+                alert('Password updated Successfully');
+            }).error(function (error) {
+                alert(error.message);
+            });
+    };
 };
 
 resetPasswordController.$inject = ['$scope', '$location', 'factory'];

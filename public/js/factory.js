@@ -44,7 +44,10 @@ App.factory('factory', ($http, $location) => {
             });
         },
 
-        //TODO adminResetPassword
+        adminResetPassword: (data) => {
+            return $http.post('http://localhost:8080/adminResetPassword', data, {
+            });
+        },
 
 
         setToken: (newToken) => {

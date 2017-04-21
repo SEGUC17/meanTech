@@ -32,6 +32,9 @@ App.config(['$routeProvider', function ($routeProvider) {
             controller: 'resetPasswordController',
         })
 
-        // TODO admin reset 
+        .when('/adminResetPassword', {
+            templateUrl: 'views/adminResetPassword.html',
+            controller: 'resetPasswordController',
+        })
 
 }])
