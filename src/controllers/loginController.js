@@ -134,7 +134,7 @@ module.exports.clientLogin = function (req, res) {
 
         if (!client) {
 
-            res.json({
+            res.status(404).json({
                 success: false,
                 message: 'Authentication failed. User not found.'
             });
@@ -143,7 +143,7 @@ module.exports.clientLogin = function (req, res) {
 
             if (client.password != req.body.password) {
 
-                res.json({
+                res.status(401).json({
                     success: false,
                     message: 'Authentication failed. Wrong password.'
                 });

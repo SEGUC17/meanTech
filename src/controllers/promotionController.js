@@ -1,8 +1,8 @@
-let Promotion = require('../models/Promotion');
+const Promotion = require('../models/Promotion');
 
 module.exports = {
     getAllPromotions: function (req, res) {
-        promotion.find(function (err, promotions) {
+        Promotion.find(function (err, promotions) {
             if (err) {
                 res.status(500).json({
                     success: false,
@@ -11,7 +11,7 @@ module.exports = {
             } else {
                 res.json({
                     success: true,
-                    data: promotions
+                    data: promotions,
                 });
             }
         });
