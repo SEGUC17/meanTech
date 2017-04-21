@@ -1,104 +1,111 @@
-
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+  crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
 
 <div class="alert alert-info">
-    <p>Sort Type: {{ sortType }}</p>
-    <p>Sort Reverse: {{ sortReverse }}</p>
-    <p>Search Query: {{ searchFish }}</p>
-  </div>
-  
-  <form>
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-        <input type="text" class="form-control" placeholder="Search your events" ng-model="searchFish">
-      </div>      
+  <p>Sort Type: {{ sortType }}</p>
+  <p>Sort Reverse: {{ sortReverse }}</p>
+  <p>Search Query: {{ searchFish }}</p>
+</div>
+
+<form>
+  <div class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon"><i class="fa fa-search"></i></div>
+      <input type="text" class="form-control" placeholder="Search your events" ng-model="searchFish">
     </div>
-  </form>
-  
-  <table class="table table-bordered table-striped">
-    
-    <thead>
-      <tr>
-        <td>
-          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+  </div>
+</form>
+
+<table class="table table-bordered table-striped">
+
+  <thead>
+    <tr>
+      <td>
+        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
             Name 
             <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-        </td>
-        <td>
-          <a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
           Details
             <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-        </td>
-        <td>
-          <a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
           Date 
             <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-        </td>
-                <td>
-          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
             Duration Mins 
             <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-        </td>
-                <td>
-          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
             Address 
             <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-        </td>
-                <td>
-          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
             Picture URL 
             <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-        </td>
-                <td>
-          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
             Category 
             <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-        </td>
-                <td>
-          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+      </td>
+      <td>
+        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
             Price
             <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
             <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
           </a>
-        </td>
-      </tr>
-    </thead>
-    
-    <tbody>
-      <tr ng-repeat="event in events | orderBy:sortType:sortReverse | filter:searchFish">
-        <td>{{event.name}}</td>
-        <td>{{event.details}}</td>
-        <td>{{event.date}}</td>
-        <td>{{event.durationMins}}</td>
-        <td>{{event.address}}</td>
-        <td>{{event.pictureURL}}</td>
-        <td>{{event.category}}</td>
-        <td>{{event.price}}</td>
-      </tr>
-    </tbody>
-    
-  </table>
-  
+      </td>
+      <td>Update</td>
+      <td> Delete</td>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="event in events | orderBy:sortType:sortReverse | filter:searchFish">
+      <td>{{event.name}}</td>
+      <td>{{event.details}}</td>
+      <td>{{event.date}}</td>
+      <td>{{event.durationMins}}</td>
+      <td>{{event.address}}</td>
+      <td>{{event.pictureURL}}</td>
+      <td>{{event.category}}</td>
+      <td>{{event.price}}</td>
+      <td><button class="btn btn-danger" ng-click="updateEvent(event._id)">Update</button></td>
+      <td><button class="btn btn-warning" ng-click="deleteEvent(event._id)">Edit</button></td>
+    </tr>
+  </tbody>
+
+</table>
+
 </div>

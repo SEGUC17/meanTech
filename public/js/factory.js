@@ -54,6 +54,7 @@ App.factory('factory', function($http, $location) {
     },
 
        updateEvent: function(info) {
+           console.log("inside the factory of  update events");
             return $http.post('http://localhost:8080/updateEvents', info, {
                 headers: {
                     'x-access-token': token

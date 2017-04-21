@@ -32,12 +32,13 @@ const eventController = function ($scope, $location, factory) {
     $scope.events = data.data;
   });
 
-  $scope.updateEvent = function updateEvent() {
+  $scope.updateEvent = function updateEvent(id) {
 
-
+console.log(id);
 
     factory.updateEvent($scope.eventForm)
       .success(function (data) {
+        console.log("it gets to the CTRL of view ratings");
 
         alert("Event Successfully Updated!");
 
