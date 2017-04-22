@@ -1,5 +1,4 @@
 const promotionController = function ($scope, $location, factory) {
-    console.log('PROMOTION CONTROLLER INVOKED');
 
     $scope.promotionForm = {};
 
