@@ -1,0 +1,116 @@
+ <head>
+    <title>post Promotion</title>
+
+
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <style media="screen">
+        * {
+            font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: bolder;
+        }
+        .row {
+            margin: 0;
+        }
+        .navbar-default {
+            height: 100px;
+            padding-top: 23px;
+            padding-left: 70px;
+            border: 0;
+            border-radius: 0 !important;
+            background: #2c3e50;
+        }
+        .navbar-default .navbar-brand {
+            text-transform: uppercase;
+            font-size: 2em;
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        .navbar-default .navbar-brand:hover {
+            color: #18bc9c;
+            transition: color 0.3s ease;
+        }
+        .card {
+            padding: 10px;
+            padding-top: 20px;
+            background: #18bc9c;
+            border: 1px #c8c3ff solid;
+            border-radius: 5px;
+            text-align: center;
+            margin: 10px 3% 1% 3%;
+            height: 190px;
+            width: calc(80% * (1/3));
+        }
+        .card .card-title {
+            color: #02695e;
+            font-size: 2em;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+        .card .card-link {
+            margin-top: 40px;
+            font-size: 1.1em;
+            font-weight: bold;
+            width: 90%;
+            border: 2px solid white;
+            color: white;
+            background: transparent;
+            transition: background-color 0.5s ease;
+        }
+        .card .card-link:hover {
+            color: #18bc9c;
+            background: white;
+            transition: background-color 0.5s ease;
+        }
+        .form-container {
+            height: 400px;
+            border-left: 1px solid gray;
+            padding-left: 30px;
+        }
+        .form-control {
+            width: 90%;
+        }
+    </style>
+  </head>
+   <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h1 class="navbar-brand" >Promotion</h1>
+            </div>
+        </div>
+    </nav>
+ 
+ <div class="col-xs-12 col-md-4">
+        <div class="form-container">
+            <form name="promotionF" class="form"  ng-submit="postPromotion()">
+                <div class="form-group">
+                    <label for="InputTitle">Content</label>
+                    <input name = "Content" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="promotionForm.content" required="required">
+                    <span ng-show="promotionF.Content.$error.required">*</span>
+                </div>
+                <div class="form-group">
+                    <label for="InputLink">Expiry</label>
+                    <input name = "Expiry" type="date" class="form-control" id="InputLink" placeholder="" ng-model="promotionForm.expiry" required="required">
+                    <span ng-show="promotionF.Expiry.$error.required">*</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="InputTitle">Picture URL</label>
+                    <input name = "pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="promotionForm.pictureURL">
+                    <span ng-show="promotionF.pictureURL.$error.required">*</span>
+
+
+                </div>
+
+                <button type="submit" class="btn btn-default" >Post Promotion!</button>
+
+
+
+            </form>
+
+
+        </div>
+    </div>

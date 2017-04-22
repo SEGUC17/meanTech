@@ -18,6 +18,7 @@ module.exports = {
     },
 
     postPromotion: function (req, res) {
+        
         let promotion = new Promotion({
 
             content: req.body.content,
@@ -27,6 +28,7 @@ module.exports = {
         });
         promotion.save(function (err, promotion) {
             if (err) {
+                console.log(err);
                 res.status(500).json({
                     error: err.message
                 });

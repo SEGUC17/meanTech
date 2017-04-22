@@ -473,6 +473,7 @@ router.get('/viewMyReviews', function (req, res) {
 
 router.post('/postPromotion1', function (req, res) {
     try {
+        
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
             promotionController.postPromotion(req, res);

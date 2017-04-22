@@ -13,6 +13,11 @@ App.config(function ($routeProvider) {
             templateUrl: 'views/viewRatings.html',
             controller: 'reviewController'
         })
+        .when('/postPromotion', {
+          templateUrl: 'views/postPromotion.html',
+          controller: 'promotionController'
+      })
+
 
         .when('/updateEvents',{
             templateUrl:'views/updateEvents.html',

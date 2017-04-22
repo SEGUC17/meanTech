@@ -60,7 +60,19 @@ App.factory('factory', function($http, $location) {
                 }
             });
 
-        }
+        },
+         postPromotion: function (info) {
+            console.log("in factory");
+            console.log(info);
+            return $http.post('http://localhost:8080/postPromotion1', info, {
+                headers: {
+                    'x-access-token': token
+                }
+            });
+            console.log(info,"factory line 72");
+
+        }
+
     
         
     };
