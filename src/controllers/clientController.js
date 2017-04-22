@@ -47,31 +47,6 @@ const clientController = {
         Client.findOneAndUpdate({
             _id: req.decoded.id
         }, {
-            $set: {
-                "password": req.body.newPassword
-            }
-        }, function (err, client) {
-            if (err) {
-                res.status(500).json({
-                    success: false,
-                    msg: 'You are not allowed to change the password, update failed',
-                });
-            } else {
-
-                res.json({
-                    success: true,
-                    msg: 'The password has been updated successfully'
-                });
-                client.markModified('Password ok');
-            }
-        });
-    },
-
-    resetPassword: function (req, res) {
-        if (req.decoded.securityAnswer === req.body.securityAnswer) {
-            Client.findOneAndUpdate({
-                _id: req.decoded.id
-            }, {
                 $set: {
                     "password": req.body.newPassword
                 }
@@ -82,20 +57,44 @@ const clientController = {
                         msg: 'You are not allowed to change the password, update failed',
                     });
                 } else {
+
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
                     });
-                    client.markModified('Password reset ok');
+                    client.markModified('Password ok');
                 }
             });
+    },
+
+    resetPassword: function (req, res) {
+        if (req.decoded.securityAnswer === req.body.securityAnswer) {
+            Client.findOneAndUpdate({
+                _id: req.decoded.id
+            }, {
+                    $set: {
+                        "password": req.body.newPassword
+                    }
+                }, function (err, client) {
+                    if (err) {
+                        res.status(500).json({
+                            success: false,
+                            msg: 'You are not allowed to change the password, update failed',
+                        });
+                    } else {
+                        res.json({
+                            success: true,
+                            msg: 'The password has been updated successfully'
+                        });
+                        client.markModified('Password reset ok');
+                    }
+                });
         }
-        else
-        {
+        else {
             res.status(500).json({
-                        success: false,
-                        msg: 'Wrong security answer',
-                    });
+                success: false,
+                msg: 'Wrong security answer',
+            });
         }
     },
 
@@ -104,24 +103,24 @@ const clientController = {
         Client.findOneAndUpdate({
             _id: req.decoded.id
         }, {
-            "$push": {
-                "wishList": serviceID
-            }
-        }, function (err, client) {
-            if (err) {
-                res.status(500).json({
-                    success: false,
-                    message: 'Got an error'
-                });
-            }
-            if (client) {
-                client.markModified('anything');
-                return res.json({
-                    success: true,
-                    message: 'Successfully added to wishList'
-                });
-            }
-        });
+                "$push": {
+                    "wishList": serviceID
+                }
+            }, function (err, client) {
+                if (err) {
+                    res.status(500).json({
+                        success: false,
+                        message: 'Got an error'
+                    });
+                }
+                if (client) {
+                    client.markModified('anything');
+                    return res.json({
+                        success: true,
+                        message: 'Successfully added to wishList'
+                    });
+                }
+            });
     },
 
     addToFavCompanies: function (req, res) {
@@ -129,21 +128,21 @@ const clientController = {
         Client.findOneAndUpdate({
             _id: req.decoded.id
         }, {
-            "$push": {
-                "favCompanies": companyID
-            }
-        }, function (err, client) {
-            if (err) {
-                res.json(err);
-            }
-            if (client) {
-                return res.json({
-                    success: true,
-                    message: 'Successfully added to favCompanies'
-                });
-                client.markModified('anything');
-            }
-        });
+                "$push": {
+                    "favCompanies": companyID
+                }
+            }, function (err, client) {
+                if (err) {
+                    res.json(err);
+                }
+                if (client) {
+                    return res.json({
+                        success: true,
+                        message: 'Successfully added to favCompanies'
+                    });
+                    client.markModified('anything');
+                }
+            });
     },
 
     updateProfile: function (req, res) {
@@ -167,12 +166,14 @@ const clientController = {
 
                 })
             } else {
+                   
                 res.json({
-                    success: true,
-                    msg: 'update success'
-                });
-            }
-        });
+                            success: true,
+                            msg: 'update success'
+                        });
+                }
+                
+            });
     },
 
     viewCompanyProfile: function (req, res) {

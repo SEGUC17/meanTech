@@ -20,5 +20,13 @@ App.config(['$routeProvider', function ($routeProvider) {
           templateUrl: 'views/stripeTest.html'
 
       })
+      .when('/clientViewProfile', {
+            templateUrl: 'views/viewProfile.html',
+            controller: 'viewProfileController'
+        }) 
+        .when('/clientUpdateProfile', {
+            templateUrl: 'views/clientUpdateProfile.html',
+            controller: 'updateProfileController'
+        })   
 
 }])
