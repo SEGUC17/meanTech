@@ -1,27 +1,68 @@
 <!--{{profile}}-->
-<form method = "GET" ng-submit= "viewProfile()">
-        <div class="jumbotron text-center">
-            <h1>My profile: <span class="label label-info"></span></h1>
-        </div>
+<form method="GET" ng-submit="viewProfile()">
+    <div >
+        <h1>My profile: <span class="label label-info"></span></h1>
+    </div>
 
-<div id = "profile-list" class = "row">
-    <div class = "col-sm-4 col-cm-offser-4">
-                <div class="" ng-view="profile">
-                    <div class="panel panel-primary">
-                        <div> {{ "First name: " + profile.firstName}}
-                            
+    <div>
+        <div >
+            <div>
+                <div>
+                    <div>First name: {{profile.firstName}}<br>
 
-                                    <!--<div style="float: right;">
-                                        <button class "btn btn-primary" ng-click="book(promotion)">Book</button>
-                                    </div>-->
 
-                                </div>
-                            </div>
-
-                        </div>
+                    </div>
+                    <div>
+                        {{ "last name: " + profile.lastName}} <br>
                     </div>
 
+                    <div>
+                        {{ "user name: " + profile.username}} <br>
+
+                    </div>
+
+                    <div>
+                        {{ profile.profilePictureURL}}
+                        <img src= {{profile.profilePictureURL}} alt="no photo" style="width:304px;height:228px;">
+
+                         <br>
+                    </div>
+
+                    <div>
+                        {{ "email: " + profile.email}} <br>
+                    </div>
+
+                    <div>
+                        {{ "address: " + profile.address}} <br>
+                    </div>
+                    <div>
+                        {{ "gender: " + profile.gender}} <br>
+                    </div>
+                    <div>
+                        {{ "age: " + profile.age}} <br>
+                    </div>
+                    <div>
+                        {{ "security question: " + profile.securityQuestion}} <br>
+                    </div>
+                    <div>
+                        {{ "security answer: " + profile.securityAnswer}} <br>
+                    </div>
+                    <!--<div>
+                        {{ "favCompanies: " + profile.favCompanies}} <br>
+                    </div>-->
+                    <div ng-repeat="company in profile.favCompanies">
+                     {{company}}<br />
+                    </div>
+                    <div>
+                        {{ "phone numbers: " + profile.phoneNumbers}} <br>
+                    </div>
+                    <div>
+                        {{ "previous events: " + profile.previousEvents}}
+                    </div>
                 </div>
+            </div>
+
+        </div>
     </div>
-</div>
+
 </form>
