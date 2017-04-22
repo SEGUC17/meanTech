@@ -10,21 +10,33 @@ const loginController = require('./controllers/loginController');
 const promotionController = require('./controllers/promotionController');
 const clientController = require('./controllers/clientController');
 const reviewController = require('./controllers/reviewController');
-var stripe = require("stripe")("sk_test_iDQ4j6FIHxplL81qcqEtSWCU");
+const stripe = require("stripe")("sk_test_iDQ4j6FIHxplL81qcqEtSWCU");
 
 var config = require('../src/config/token');
 
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
     res.json({
         hello: 'world'
     });
 });
-router.post('/charge', function (req, res) {
-
+router.post('/stripe', function(req, res) {
+    stripe.customers.create({
+            source: req.body.token
+        })
+        .then(customer =>
+            stripe.charges.create({
+                amount: req.body.amount,
+                description: "Sample Charge",
+                currency: "usd",
+                customer: customer.id
+            }))
+        .then(charge => {
+          res.json({error: null, data: charge});
+        });
 });
 
 
-router.get('/contactUs', function (req, res) {
+router.get('/contactUs', function(req, res) {
     res.render('contactUs')
 });
 router.get('/company/profile', clientController.viewCompanyProfile);
@@ -56,13 +68,13 @@ router.post('/companyLogin', loginController.companyLogin);
 
 router.get('/getAllPromotions', promotionController.getAllPromotions);
 
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
 
     var token = req.body.token || req.param.token || req.headers['x-access-token'];
 
     if (token) {
 
-        jwt.verify(token, config.secret, function (err, decoded) {
+        jwt.verify(token, config.secret, function(err, decoded) {
             if (err) {
                 return res.json({
                     success: false,
@@ -88,7 +100,7 @@ router.use(function (req, res, next) {
 
 
 
-router.post('/faq', function (req, res) {
+router.post('/faq', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -106,7 +118,7 @@ router.post('/faq', function (req, res) {
     };
 });
 
-router.post('/faqa', function (req, res) {
+router.post('/faqa', function(req, res) {
     try {
 
         const decodedPayload = req.decoded;
@@ -125,7 +137,7 @@ router.post('/faqa', function (req, res) {
     }
 });
 
-router.post('/review', function (req, res) {
+router.post('/review', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -143,7 +155,7 @@ router.post('/review', function (req, res) {
     }
 });
 
-router.post('/deleteR', function (req, res) {
+router.post('/deleteR', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -161,7 +173,7 @@ router.post('/deleteR', function (req, res) {
     }
 });
 
-router.get('/viewProfile', function (req, res) {
+router.get('/viewProfile', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -179,7 +191,7 @@ router.get('/viewProfile', function (req, res) {
     }
 });
 
-router.post('/updateProfile', function (req, res) {
+router.post('/updateProfile', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -198,7 +210,7 @@ router.post('/updateProfile', function (req, res) {
 
 });
 
-router.post('/deleteEvent', function (req, res) {
+router.post('/deleteEvent', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -216,7 +228,7 @@ router.post('/deleteEvent', function (req, res) {
     }
 });
 
-router.post('/event', function (req, res) {
+router.post('/event', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -236,7 +248,7 @@ router.post('/event', function (req, res) {
     }
 });
 
-router.post('/clientUpdatePassword', function (req, res) {
+router.post('/clientUpdatePassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -254,7 +266,7 @@ router.post('/clientUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/clientResetPassword', function (req, res) {
+router.post('/clientResetPassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -272,7 +284,7 @@ router.post('/clientResetPassword', function (req, res) {
     }
 });
 
-router.post('/companyUpdatePassword', function (req, res) {
+router.post('/companyUpdatePassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -290,7 +302,7 @@ router.post('/companyUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/companyResetPassword', function (req, res) {
+router.post('/companyResetPassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -308,7 +320,7 @@ router.post('/companyResetPassword', function (req, res) {
     }
 });
 
-router.post('/adminUpdatePassword', function (req, res) {
+router.post('/adminUpdatePassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -326,7 +338,7 @@ router.post('/adminUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/adminResetPassword', function (req, res) {
+router.post('/adminResetPassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -349,7 +361,7 @@ router.post('/adminResetPassword', function (req, res) {
 });
 
 
-router.post('/addToWishList', function (req, res) {
+router.post('/addToWishList', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -369,7 +381,7 @@ router.post('/addToWishList', function (req, res) {
     }
 });
 
-router.get('/unverifiedCompanies', function (req, res) {
+router.get('/unverifiedCompanies', function(req, res) {
 
     try {
         const decodedPayload = req.decoded;
@@ -388,7 +400,7 @@ router.get('/unverifiedCompanies', function (req, res) {
     }
 });
 
-router.post('/verifyCompanies', function (req, res) {
+router.post('/verifyCompanies', function(req, res) {
 
     try {
         const decodedPayload = req.decoded;
@@ -407,7 +419,7 @@ router.post('/verifyCompanies', function (req, res) {
     }
 });
 
-router.get('/viewCompanies', function (req, res) {
+router.get('/viewCompanies', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -425,7 +437,7 @@ router.get('/viewCompanies', function (req, res) {
     }
 });
 
-router.post('/deleteCompany', function (req, res) {
+router.post('/deleteCompany', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -443,7 +455,7 @@ router.post('/deleteCompany', function (req, res) {
     }
 });
 
-router.post('/addToFavCompanies', function (req, res) {
+router.post('/addToFavCompanies', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -458,7 +470,7 @@ router.post('/addToFavCompanies', function (req, res) {
     }
 });
 
-router.get('/viewMyReviews', function (req, res) {
+router.get('/viewMyReviews', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -477,7 +489,7 @@ router.get('/viewMyReviews', function (req, res) {
 
 });
 
-router.post('/postPromotion1', function (req, res) {
+router.post('/postPromotion1', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -496,7 +508,7 @@ router.post('/postPromotion1', function (req, res) {
 
 });
 
-router.post('/updatePromotion1', function (req, res) {
+router.post('/updatePromotion1', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -515,7 +527,7 @@ router.post('/updatePromotion1', function (req, res) {
 
 });
 
-router.get('/viewPromotions1', function (req, res) {
+router.get('/viewPromotions1', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -533,7 +545,7 @@ router.get('/viewPromotions1', function (req, res) {
     }
 });
 
-router.post('/deletePromotion1', function (req, res) {
+router.post('/deletePromotion1', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -551,7 +563,7 @@ router.post('/deletePromotion1', function (req, res) {
     }
 });
 
-router.get('/getCompanyEvents', function (req, res) {
+router.get('/getCompanyEvents', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -569,7 +581,7 @@ router.get('/getCompanyEvents', function (req, res) {
     }
 });
 
-router.post('/viewRatings', function (req, res) {
+router.post('/viewRatings', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -587,7 +599,7 @@ router.post('/viewRatings', function (req, res) {
     }
 });
 
-router.post('/updateEvents', function (req, res) {
+router.post('/updateEvents', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -609,7 +621,7 @@ router.post('/updateEvents', function (req, res) {
     }
 });
 
-router.post('/createService', function (req, res) {
+router.post('/createService', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -627,7 +639,7 @@ router.post('/createService', function (req, res) {
     }
 });
 
-router.post('/updateService', function (req, res) {
+router.post('/updateService', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -645,7 +657,7 @@ router.post('/updateService', function (req, res) {
     }
 });
 
-router.post('/deleteService', function (req, res) {
+router.post('/deleteService', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
