@@ -44,8 +44,7 @@ let eventController = {
         Event.find({}, function (err, events) {
             if (err){
                 res.status(500).json({
-                    msg: err.message
-
+                    message: "No events available"
                 })
             }
             else

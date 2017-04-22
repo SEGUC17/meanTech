@@ -1,17 +1,8 @@
 const eventController = function ($scope, $location, factory) {
-    $scope.eventForm = {};
 
-    $scope.getAllEvents = function getAllEvents() {
-
-            factory.getAllEvents($scope.eventForm)
-              .success(function(data) {
-
-            }).error(function(error) {
-
-              alert(error.message)
-
-            });
-    };
+    factory.getAllEvents().success(function(data) {
+        $scope.allevents=data.data;
+    });
 }
 
 eventController.$inject = ['$scope', '$location', 'factory'];

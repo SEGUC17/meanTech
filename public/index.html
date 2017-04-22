@@ -16,7 +16,15 @@
 </head>
 <body ng-app="meanTech">
 
+    <div ng-controller= "logoutController">
+    <form method="post" ng-submit="logout()">
+        <button type="submit" class="btn btn-primary">Logout</button>
+    </form>
+    </div>
+
     <div ng-view></div>
+
+    </div>
 </body>
 
 </html>

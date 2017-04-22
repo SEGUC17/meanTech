@@ -5,11 +5,11 @@ const logoutController = function ($scope, $location, factory) {
 
         .success(function(data) {
                factory.setToken(null);
-
+               console.log(factory.getToken());
             }).error(function(error) {
-                alert(error.message);
+                alert("Cannot logout");
             });
+    }
 }
-
 logoutController.$inject = ['$scope', '$location', 'factory'];
 App.controller('logoutController', logoutController);

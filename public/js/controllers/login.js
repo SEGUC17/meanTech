@@ -20,6 +20,7 @@ const loginController = function ($scope, $location, factory) {
 
         .success(function(data) {
                 factory.setToken(data.token);
+                console.log(factory.getToken());
         }).error(function(error) {
                 alert(error.message);
         });

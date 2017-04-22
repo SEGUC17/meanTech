@@ -3,13 +3,11 @@ const clientController = function ($scope, $location, factory) {
 
     $scope.addFavCompanies = function addFavCompanies() {
 
-            factory.addFavCompanies($scope.clientFavForm)
-              .success(function(data) {
-                  alert('Company added to favourites successfully');
+        factory.addFavCompanies($scope.clientFavForm)
+            .success(function(data) {
+                alert("Company added to favourites");
             }).error(function(error) {
-
-                  alert(error.message)
-
+                alert("Cannot add company to favourites");
             });
     };
 }

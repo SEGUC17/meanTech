@@ -1,6 +1,18 @@
 <html ng-app="meanTech">
 <head>
     <title>All Services</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+  crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+  crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+
 <style media="screen">
   @import url('http://fonts.googleapis.com/css?family=Amarante');
 
@@ -127,7 +139,7 @@ h1 {
 	<body ng-controller="serviceController">
     <h1>All Services</h1>
 
-    <table style="width:100%">
+    <table class="table table-bordered table-striped">
     <thead>
      
     <tr>
@@ -137,18 +149,20 @@ h1 {
     <th>Description</th>
     <th>Price</th>
     <th>Picture</th>
-
+    <td>Book</td>
+    
     </tr>
     </thead>
     <tbody>
        
-    <tr ng-repeat="service in services"> 
+    <tr ng-repeat="service in allservices"> 
     <td>{{service.name}}</td>
     <td>{{service.availableBookings}}</td> 
     <td>{{service.duration}}</td> 
     <td>{{service.description}}</td> 
     <td>{{service.price}}</td> 
-    <td>service.pictureURL</td> 
+    <td>{{service.pictureURL}}</td>
+    <td><button class "btn btn-primary" ng-click="book(service)">Book</button></td>
     </tr>
     </tbody>
 </table>

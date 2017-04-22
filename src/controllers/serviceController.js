@@ -116,7 +116,7 @@ let serviceController = {
         Service.find({}, function (err, services) {
             if (err){
                 res.status(500).json({
-                    msg: err.message
+                    message: "No services available"
                 })
             }
             else

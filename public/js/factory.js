@@ -32,7 +32,7 @@ App.factory('factory', function ($http, $location) {
             });
         },
         logout: function () {
-            return $http.post('http://locahost:8080/', {
+            return $http.post('http://locahost:8080/logout', {
                 headers: {
                     'x-access-token': token
                 }

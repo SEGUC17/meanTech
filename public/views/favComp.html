@@ -116,11 +116,11 @@ form {
                 <form name="add" class="form" ng-submit="addFavCompanies()">
                     <div class="form-group">
                         <label for="InputTitle">Company ID:</label>
-                        <input name="id" type="text" class="form-control" id="InputTitle" placeholder="Company ID" ng-model="clientFavForm.compID"
+                        <input name="compID" type="text" class="form-control" id="InputTitle" placeholder="Company ID" ng-model="clientFavForm.compID"
                             required="required"/>
                             <span ng-show="add.compID.$error.required"></span>
                     </div>
-                    <button type="submit" class="btn btn-default">Add to Favourites</button>
+                    <button class "btn btn-primary" ng-click="addFavCompanies(compID)">Add to Favourites</button>
                 </form>
             </div>
         </div>

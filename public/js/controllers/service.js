@@ -1,17 +1,8 @@
 const serviceController = function ($scope, $location, factory) {
-    $scope.serviceForm = {};
 
-    $scope.getAllServices = function getAllServices() {
-
-            factory.getAllServices($scope.serviceForm)
-              .success(function(data) {
-
-            }).error(function(error) {
-
-              alert(error.message)
-
-            });
-    };
+    factory.getAllServices().success(function(data) {
+        $scope.allservices=data.data;
+    });
 }
 
 serviceController.$inject = ['$scope', '$location', 'factory'];
