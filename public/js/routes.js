@@ -14,7 +14,7 @@ App.config(function ($routeProvider) {
             controller: 'reviewController'
         })
 
-        .when('/updateEvents',{
+        .when('/updateEvents/:id',{
             templateUrl:'views/updateEvents.html',
             controller:'eventController'
 

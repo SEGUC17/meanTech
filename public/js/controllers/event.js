@@ -34,12 +34,16 @@ const eventController = function ($scope, $location, factory) {
 
   $scope.updateEvent = function updateEvent(id) {
 
-console.log(id);
+    console.log(id);
+
+    $scope.id = {
+      id
+    };
 
     // $location.path('http://localhost:8080/updateEvents');
 
 
-    factory.updateEvent($scope.eventForm)
+    factory.updateEvent($scope.eventForm, $scope.id)
       .success(function (data) {
         console.log("it gets to the CTRL of view ratings");
 
@@ -58,10 +62,10 @@ console.log(id);
 
   $scope.deleteEvent = function deleteEvent(id) {
 
-console.log(id);
-$scope.id={
-  id
-};
+    console.log(id);
+    $scope.id = {
+      id
+    };
     // $location.path('http://localhost:8080/updateEvent');
 
 
@@ -70,7 +74,18 @@ $scope.id={
         console.log("it gets to the CTRL of delete event");
 
         alert("Event Successfully delted!");
-  location.reload(true);
+
+        // $route.reload(true);
+        factory.getCompanyEvents().success(function (data) {
+          // console.log("it gets to the controller");
+          // console.log(data);
+
+          // $scope.sortType = 'name'; // set the default sort type
+          // $scope.sortReverse = false; // set the default sort order
+          // $scope.searchFish = ''; // set the default search/filter term
+          $scope.events = data.data;
+        });
+
       }).error(function (error) {
 
         alert(error);
@@ -80,7 +95,7 @@ $scope.id={
 
 
   };
-   
+
 
 
 
