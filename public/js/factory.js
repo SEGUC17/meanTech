@@ -30,13 +30,6 @@ App.factory('factory', function ($http, $location) {
                     'x-access-token': token
                 }
             });
-        },
-        logout: function () {
-            return $http.post('http://locahost:8080/logout', {
-                headers: {
-                    'x-access-token': token
-                }
-            });
         }
     };
 });

@@ -16,8 +16,4 @@ App.config(function ($routeProvider) {
             templateUrl: 'views/favComp.html',
             controller: 'clientController'
         })
-        .when('/logout', {
-            templateUrl: 'views/login.html',
-            controller: 'logoutController'
-        })
 });
