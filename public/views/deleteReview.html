@@ -19,8 +19,8 @@
     /* Set a style for all buttons */
 
     input[type=text] {
-        height: 300px;
-        width: 100%;
+        height: 150px;
+        width: 50%;
         padding: 8px 20px;
         margin: 8px 0;
         display: inline-block;
@@ -30,11 +30,6 @@
 
     textarea {
         width: 100%;
-    }
-
-    select {
-        width: 4%;
-        height: 1%;
     }
 
     button {
@@ -53,26 +48,15 @@
 </style>
 
 <div>
-    <h1>Post Review</h1>
+    <h1>Post question answer</h1>
 
-    <form ng-submit="postReview()" style="border:1px solid #ccc">
+    <form ng-submit="deleteReview()" style="border:1px solid #ccc">
         <div class="container">
-
-            <label><b>Rating</b></label>
-            <select name="rating" ng-model="reviewInfo.rating" required>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
-            <br> <br>
-            <label><b>Review</b></label> <br>
-            <textarea name="content" placeholder="Write your review here..." ng-model="reviewInfo.content" rows="15" cols="20" required>
-            </textarea>
+            <label><b>Deleting Reviews</b></label>
             <br>
-
-            <button type="submit">Post Review</button>
+            <input type="text" placeholder="" ng-model="" name="firstName" required>
+            <br>
+            <button type="submit">Post Answer</button>
         </div>
     </form>
 

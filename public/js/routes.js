@@ -4,6 +4,14 @@ App.config(function ($routeProvider) {
             templateUrl: 'views/login.html',
             controller: 'loginController',
         })
+        .when('/adminRegister', {
+            templateUrl: 'views/adminRegister.html',
+            controller: 'adminController',
+        })
+        .when('/adminLogin', {
+            templateUrl: 'views/adminLogin.html',
+            controller: 'loginController',
+        })
         .when('/viewEvents', {
             templateUrl: 'views/viewEvents.html',
             controller: 'eventController',
@@ -12,11 +20,9 @@ App.config(function ($routeProvider) {
             templateUrl: 'views/viewRatings.html',
             controller: 'reviewController',
         })
-
         .when('/updateEvents', {
             templateUrl: 'views/updateEvents.html',
             controller: 'eventController',
-
         })
         .when('/answerQuestion', {
             templateUrl: 'views/answerQuestion.html',
@@ -28,6 +34,10 @@ App.config(function ($routeProvider) {
         })
         .when('/pr', {
             templateUrl: 'views/postReview.html',
-            controller: 'reviewController',
+            controller: 'postReviewController',
         })
+        .when('/deletereview', {
+            templateUrl: 'views/deleteReview.html',
+            controller: 'reviewController',
+        });
 });

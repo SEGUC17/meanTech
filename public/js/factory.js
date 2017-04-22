@@ -1,6 +1,6 @@
 App.factory('factory', function ($http, $location) {
-    const apiUrl = 'http://localhost:8080/';
-
+   const apiUrl = 'http://localhost:8080/';
+   
     let token = null;
     return {
         clientLogin: function (user) {
@@ -8,7 +8,6 @@ App.factory('factory', function ($http, $location) {
         },
         companyLogin: function (user) {
             return $http.post('http://localhost:8080/companyLogin', user);
-
         },
         createEvent: function (info) {
             return $http.post('http://localhost:8080/event', info, {
@@ -16,11 +15,16 @@ App.factory('factory', function ($http, $location) {
                     'x-access-token': token,
                 },
             });
+        },
+        adminRegister: function(info) {
+            return $http.post(apiUrl + 'adminRegister', info);
+        },
 
+        adminLogin: (user) => {
+            return $http.post(apiUrl + 'adminLogin', user);
         },
         companySubscription: function (info) {
             return $http.post('http://localhost:8080/company', info);
-
         },
         setToken: function (newToken) {
             token = newToken;
@@ -28,7 +32,6 @@ App.factory('factory', function ($http, $location) {
         getToken: function () {
             return token;
         },
-
         getCompanyEvents: function () {
             console.log("it gets to the factory of get company events");
             return $http.get('http://localhost:8080/getCompanyEvents', {
@@ -37,11 +40,9 @@ App.factory('factory', function ($http, $location) {
                     'x-access-token': token,
                 },
             });
-
-
         },
         viewRatings: function (companyID) {
-            console.log("it gets to the factory of view ratings");
+            console.log('it gets to the factory of view ratings');
             return $http.post('http://localhost:8080/viewRatings', companyID, {
                 headers: {
                     'x-access-token': token,
@@ -50,7 +51,7 @@ App.factory('factory', function ($http, $location) {
         },
 
         updateEvent: function (info) {
-            console.log("inside the factory of  update events");
+            console.log('inside the factory of  update events');
             return $http.post('http://localhost:8080/updateEvents', info, {
                 headers: {
                     'x-access-token': token,
@@ -69,6 +70,13 @@ App.factory('factory', function ($http, $location) {
         },
         answerQuestion: function (answer) {
             return $http.post('http://localhost:8080/faqa', answer, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+        deleteReview: function (info) {
+            return $http.post('http://localhost:8080/deleteR', info, {
                 headers: {
                     'x-access-token': token,
                 },

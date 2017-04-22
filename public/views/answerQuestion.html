@@ -1,5 +1,3 @@
-<html>
-
 <head>
     <title>Post Review</title>
 </head>
@@ -30,10 +28,6 @@
         box-sizing: border-box;
     }
 
-    textarea {
-        width: 100%;
-    }
-
     select {
         width: 4%;
         height: 1%;
@@ -54,19 +48,17 @@
     }
 </style>
 
-<body>
+<div>
     <h1>Post question answer</h1>
 
     <form ng-submit="answerQuestion()" style="border:1px solid #ccc">
         <div class="container">
             <label><b>Answer</b></label>
             <br>
-            <input type="text" placeholder="Enter Answer" ng-model="answers.answer" name="firstName" required>
+            <textarea name="answer" placeholder="Write your answer here..." ng-model="answers.answer" rows="10" cols="80" required>
+            </textarea>
             <br>
             <button type="submit">Post Answer</button>
         </div>
     </form>
-
-</body>
-
-</html>
+</div>

@@ -51,11 +51,9 @@ router.post('/companyLogin', loginController.companyLogin);
 router.get('/getAllPromotions', promotionController.getAllPromotions);
 
 router.use(function (req, res, next) {
-
     var token = req.body.token || req.param('token') || req.headers['x-access-token'];
 
     if (token) {
-
         jwt.verify(token, config.secret, function (err, decoded) {
             if (err) {
                 return res.json({
@@ -67,17 +65,12 @@ router.use(function (req, res, next) {
                 next();
             }
         });
-
     } else {
-
-
         return res.status(403).send({
             success: false,
             message: 'No token provided.'
         });
-
     }
-
 });
 
 
@@ -102,20 +95,19 @@ router.post('/faq', function (req, res) {
 
 router.post('/faqa', function (req, res) {
     try {
-
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
             FAQController.answerFAQ(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized'
+                error: 'Unauthorized',
             });
         }
     } catch (err) {
         res.status(500).json({
             success: false,
-            message: 'Internal server error.'
-        })
+            message: 'Internal server error.',
+        });
     }
 });
 
@@ -126,14 +118,14 @@ router.post('/review', function (req, res) {
             reviewController.create(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized'
+                error: 'Unauthorized',
             });
         }
     } catch (err) {
         res.status(500).json({
             success: false,
-            message: 'Internal server error.'
-        })
+            message: 'Internal server error.',
+        });
     }
 });
 
@@ -144,14 +136,14 @@ router.post('/deleteR', function (req, res) {
             reviewController.delete(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized'
+                error: 'Unauthorized',
             });
         }
     } catch (err) {
         res.status(500).json({
             success: false,
-            message: 'Internal server error.'
-        })
+            message: 'Internal server error.',
+        });
     }
 });
 
@@ -189,7 +181,6 @@ router.post('/updateProfile', function (req, res) {
             message: 'Internal server error.'
         })
     }
-
 });
 
 router.post('/deleteEvent', function (req, res) {
@@ -214,7 +205,6 @@ router.post('/event', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
-
             eventController.createEvent(req, res);
         } else {
             res.status(401).json({
@@ -222,7 +212,6 @@ router.post('/event', function (req, res) {
             });
         }
     } catch (err) {
-
         res.status(500).json({
             success: false,
             message: 'Internal server error'
@@ -347,7 +336,6 @@ router.post('/addToWishList', function (req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
-
             clientController.addToWishList(req, res);
         } else {
             res.status(401).json({
@@ -355,7 +343,6 @@ router.post('/addToWishList', function (req, res) {
             });
         }
     } catch (err) {
-
         res.status(500).json({
             success: false,
             message: 'Internal server error'
@@ -364,7 +351,6 @@ router.post('/addToWishList', function (req, res) {
 });
 
 router.get('/unverifiedCompanies', function (req, res) {
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -383,7 +369,6 @@ router.get('/unverifiedCompanies', function (req, res) {
 });
 
 router.post('/verifyCompanies', function (req, res) {
-
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -468,7 +453,6 @@ router.get('/viewMyReviews', function (req, res) {
             message: 'Internal server error'
         });
     }
-
 });
 
 router.post('/postPromotion1', function (req, res) {
@@ -487,7 +471,6 @@ router.post('/postPromotion1', function (req, res) {
             msg: 'Could not post promotion',
         });
     }
-
 });
 
 router.post('/updatePromotion1', function (req, res) {
@@ -506,7 +489,6 @@ router.post('/updatePromotion1', function (req, res) {
             msg: 'Could not update promotion',
         });
     }
-
 });
 
 router.get('/viewPromotions1', function (req, res) {
@@ -655,7 +637,6 @@ router.post('/deleteService', function (req, res) {
             msg: 'Could not delete service',
         });
     }
-
 });
 
 module.exports = router;
