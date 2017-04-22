@@ -36,6 +36,9 @@ const eventController = function ($scope, $location, factory) {
 
 console.log(id);
 
+    // $location.path('http://localhost:8080/updateEvents');
+
+
     factory.updateEvent($scope.eventForm)
       .success(function (data) {
         console.log("it gets to the CTRL of view ratings");
@@ -51,6 +54,36 @@ console.log(id);
 
 
   };
+
+
+  $scope.deleteEvent = function deleteEvent(id) {
+
+console.log(id);
+$scope.id={
+  id
+};
+    // $location.path('http://localhost:8080/updateEvent');
+
+
+    factory.deleteEvent($scope.id)
+      .success(function (data) {
+        console.log("it gets to the CTRL of delete event");
+
+        alert("Event Successfully delted!");
+  location.reload(true);
+      }).error(function (error) {
+
+        alert(error);
+
+      });
+
+
+
+  };
+   
+
+
+
 
 
 

@@ -17,7 +17,7 @@ var reviewSchema = mongoose.Schema({
         default: Date.now
     }
 
-})
+});
 
 var Review = mongoose.model("review", reviewSchema);
 

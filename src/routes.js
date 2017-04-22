@@ -97,7 +97,7 @@ router.post('/faq', function (req, res) {
             success: false,
             message: 'Internal server error.'
         })
-    };
+    }
 });
 
 router.post('/faqa', function (req, res) {

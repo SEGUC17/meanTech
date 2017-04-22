@@ -59,10 +59,20 @@ App.factory('factory', function($http, $location) {
                 headers: {
                     'x-access-token': token
                 }
+            })
+
+        },
+
+               deleteEvent: function(info) {
+           console.log("inside the factory of  deleteEvent ");
+            return $http.post('http://localhost:8080/deleteEvent', info, {
+                headers: {
+                    'x-access-token': token
+                }
             });
 
         }
-    
+
         
     };
 });
