@@ -664,4 +664,22 @@ router.post('/deleteService', function (req, res) {
 
 });
 
+router.get('/viewMyProfile', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            companyController.viewMyProfile(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error.'
+        })
+    }
+});
+
 module.exports = router;
