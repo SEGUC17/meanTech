@@ -1,0 +1,16 @@
+<html ng-app="meanTech">
+<div class="page-header">
+    <h1>Unverified Companies</h1>
+</div>
+
+<body ng-controller="adminController">
+    <ul class="list-group" ng-submit="unverifiedCompanies()">
+        <li class="list-group-item" ng-repeat="companies in unverifiedCompanies()">
+            {{companies}}
+        </li>
+    </ul>
+    <br>
+    <button class="btn btn-primary" type="submit" ng-click="goVerify()">Next</button>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+<html ng-app="meanTech">
+<div class="page-header">
+    <h1>Delete Company</h1>
+</div>
+
+<body ng-controller="adminController">
+    <form ng-submit="deleteCompany()">
+        <!-- Username -->
+        <label>Username:</label>
+        <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="deleteForm.username"
+            required>
+        <br>
+        <button class="btn btn-primary" type="submit">Delete</button>
+    </form>
+</body>
+
+</html>

@@ -1,9 +1,9 @@
 App.factory('factory', function ($http, $location) {
-    const apiUrl = 'http://locahost:8080/';
+    const apiUrl = 'http://localhost:8080/';
 
     let token = null;
     return {
-        adminRegister: (info) => {
+        adminRegister: function(info){
             return $http.post(apiUrl + 'adminRegister', info);
         },
 
@@ -20,11 +20,11 @@ App.factory('factory', function ($http, $location) {
         },
 
         FAQView: () => {
-            return $http.post(apiUrl + 'FAQView');
+            return $http.get(apiUrl + 'FAQView');
         },
 
         unverifiedCompanies: () => {
-            return $http.post(apiUrl + 'unverifiedCompanies', {
+            return $http.get(apiUrl + 'unverifiedCompanies', {
                 headers: {
                     'x-access-token': token,
                 },
@@ -38,11 +38,15 @@ App.factory('factory', function ($http, $location) {
             });
         },
         viewCompanies: () => {
-            return $http.post(apiUrl + 'viewCompanies', {
+            return $http.get(apiUrl + 'viewCompanies', {
                 headers: {
                     'x-access-token': token,
                 },
             });
+        },
+
+        adminHome: () => {
+            return $http.get(apiUrl + 'adminHome');
         },
 
         setToken: (loginToken) => {

@@ -1,0 +1,22 @@
+<html ng-app="meanTech">
+<div class="page-header">
+    <h1>Verify Company</h1>
+</div>
+
+<body ng-controller="adminController">
+    <form ng-submit="verifyCompanies()">
+        <!-- Username -->
+        <label>Username:</label>
+        <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="verifyForm.username"
+            required>
+        <br>
+        <!-- verified -->
+        <label>verified:</label>
+        <input class="form-control" type="text" name="verified" placeholder="Please enter true or false." ng-model="verifyForm.verified"
+            required>
+        <br>
+        <button class="btn btn-primary" type="submit">Verify</button>
+    </form>
+</body>
+
+</html>

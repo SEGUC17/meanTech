@@ -1,0 +1,14 @@
+<html ng-app="meanTech">
+<div class="page-header">
+    <h1>FAQs</h1>
+</div>
+
+<body ng-controller="FAQController">
+    <ul class="list-group" ng-submit="viewFAQs()">
+        <li class="list-group-item" ng-repeat="FAQs in viewFAQs()">
+            {{FAQs}}
+        </li>
+    </ul>
+</body>
+
+</html>

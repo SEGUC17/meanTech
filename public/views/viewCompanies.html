@@ -1,0 +1,16 @@
+<html ng-app="meanTech">
+<div class="page-header">
+    <h1>Companies</h1>
+</div>
+
+<body ng-controller="companyController">
+    <ul class="list-group" ng-submit="viewCompanies()">
+        <li class="list-group-item" ng-repeat="companies in viewCompanies()">
+            {{companies}}
+        </li>
+    </ul>
+    <br>
+    <button class="btn btn-primary" type="submit" ng-click="goDelete()">Next</button>
+</body>
+
+</html>

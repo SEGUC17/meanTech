@@ -21,6 +21,8 @@ router.get('/company/profile', clientController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
 
+router.post('/adminHome');
+
 router.post('/faqa', FAQController.answerFAQ);
 
 router.get('/allEvents', eventController.getAllEvents);

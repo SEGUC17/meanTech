@@ -14,10 +14,19 @@ const adminController = {
             securityQuestion: req.body.securityQuestion,
             questionAnswer: req.body.questionAnswer,
         });
-
         bcrypt.genSalt(10, function (err, salt) {
             bcrypt.hash(admin.password, salt, function (err, hash) {
-                if (err) throw err;
+      
+                if (err) {
+                        res.status(500).json({
+                            success: false,
+
+                            msg: 'Please Provide All required information and choose a unique username.'
+
+                        });
+
+                    throw err;
+                }
                 admin.password = hash;
                 admin.save(function (err, admin) {
                     if (err) {
