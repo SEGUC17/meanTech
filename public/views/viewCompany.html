@@ -1,0 +1,22 @@
+<div>
+    <div align="center">
+        <h1>{{companyInfo.name}}</h1>
+    </div>
+
+    <div>
+        <img src="{{companyInfo.logoURL}}">
+        <br>
+        <label>Category: {{companyInfo.category}}</label>
+        <br>
+        <label>Address: {{companyInfo.address}} , {{companyInfo.area}} , {{companyInfo.city}}  </label>
+        <br>
+        <label>Description: {{companyInfo.description}}</label>
+        <br>
+        <label>Email: {{companyInfo.email}}</label>
+        <div ng-repeat="mobileNumber in companyInfo.mobileNumbers">
+            {{mobileNumber}} </div>
+        <div ng-repeat="branch in companyInfo.branches">
+            {{branch}} </div>
+        <br>
+    </div>
+</div>

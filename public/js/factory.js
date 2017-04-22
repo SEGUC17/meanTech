@@ -29,16 +29,9 @@ App.factory('factory', function($http, $location) {
             return token;
         },
         askFAQ: function (question) {
-            // return $http({
-            //     method: 'POST',
-            //     url: apiUrl + 'faq',
-            //     data: JSON.stringify({
-            //         question: question,
-            //     }),
-            // });
             return $http.post('http://localhost:8080/faq', question, {
                 headers: {
-                    'x-access-token': token
+                    'x-access-token': token,
                 },
             });
         },
@@ -50,8 +43,8 @@ App.factory('factory', function($http, $location) {
             });
         },
         companyProfile: function (id) {
-            return $http.get('http://localhost:8080/company/profile',id);
-        },
+            return $http.get('http://localhost:8080/company/profile', id);
+        }, 
 
         MyCompanyProfile: function() {
             return $http.get('http://localhost:8080/viewMyProfile',{

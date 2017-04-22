@@ -1,4 +1,4 @@
-const compControl = function ($scope, $location, factory) {
+const PublicCompControl = function ($scope, $location, factory) {
 
     $scope.id = { "_id": "58fb40303cd3fd347cb0adec" };
     factory.companyProfile($scope.id)
@@ -11,5 +11,5 @@ const compControl = function ($scope, $location, factory) {
             
         });
 };
-compControl.$inject = ['$scope', '$location', 'factory'];
-App.controller('compControl', compControl);
+PublicCompControl.$inject = ['$scope', '$location', 'factory'];
+App.controller('PublicCompControl', PublicCompControl);

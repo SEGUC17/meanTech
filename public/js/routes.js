@@ -8,10 +8,10 @@ App.config(['$routeProvider', function ($routeProvider) {
         })
 
         // route for the about page
-        .when('/companyS', {
-            templateUrl: 'views/subscription.html',
-            controller: 'companyController'
-        })
+        // .when('/companyS', {
+        //     templateUrl: 'views/subscription.html',
+        //     controller: 'companyController'
+        // })
         .when('/createEvent', {
             templateUrl: 'views/createEvent.html',
             controller: 'eventController'
@@ -20,20 +20,20 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/stripeTest.html'
 
         })
-        .when('/comp/profile', {
-            templateUrl: 'views/CompPro.html',
-            controller: 'compControl',
+        .when('/CompanyProfile', {
+            templateUrl: 'views/viewCompany.html',
+            controller: 'viewCompanyController',
         })
         .when('/faqq', {
             templateUrl: 'views/FAQ.html',
-            controller: 'faqControl',
+            controller: 'FaqControl',
         })
-        .when('/viewReviews', {
+        .when('/ViewReviews', {
             templateUrl: 'views/MyCompRev.html',
-            controller: 'reviewControl',
+            controller: 'getReviewsController',
         })
-         .when('/MycompProfile', {
-             templateUrl: 'views/MyCompPro.html',
-             controller: 'compControl2',
-         });
+        //  .when('/MycompProfile', {
+        //      templateUrl: 'views/MyCompPro.html',
+        //      controller: 'PrivateCompControl',
+        //  });
 }]);

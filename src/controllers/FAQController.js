@@ -6,31 +6,27 @@ let FAQController = {
         FAQ.findByIdAndUpdate({
             _id: req.body.id
         }, {
-                $set: {
-                    "answerText": req.body.answerText,
-                }
-            }, {
-                new: true
-            }, function (err, faq) {
-                if (err) {
-                    res.status(500).json({
-                        success: false,
-                        message: 'Answer not updated.'
-                    })
-                } else {
-                    return res.json({
-                        success: true,
-                        message: 'Answer updated successfully.'
-                    })
-                }
-            });
-
-
+            $set: {
+                "answerText": req.body.answerText,
+            }
+        }, {
+            new: true
+        }, function (err, faq) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    message: 'Answer not updated.'
+                })
+            } else {
+                return res.json({
+                    success: true,
+                    message: 'Answer updated successfully.'
+                })
+            }
+        });
     },
 
     askFAQ: function (req, res) {
-
-
         let newQ = new FAQ({
             questionText: req.body.questionText,
             clientUsername: req.decoded.username
@@ -39,18 +35,17 @@ let FAQController = {
         newQ.save(function (err, newQ) {
             if (err) {
                 res.status(500).json({
-					success: false,
-					message: 'can not ask question'
-				});
+                    success: false,
+                    message: 'can not ask question'
+                });
             } else {
                 res.json({
-					success: true,
-					message: 'question posted',
+                    success: true,
+                    message: 'question posted',
                     newQ
-				});
+                });
             }
         });
-
     },
 
     viewFAQs: function (req, res, next) {
@@ -58,7 +53,9 @@ let FAQController = {
 
         query.exec(function (err, faq) {
             if (err) return next(err);
-            res.json({ data: faq });
+            res.json({
+                data: faq
+            });
         });
     },
 
