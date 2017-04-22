@@ -1,0 +1,124 @@
+<html>
+
+<head>
+    <title>Client Registration</title>
+</head>
+
+<style>
+    /* Full-width input fields */
+
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=URL],
+    input[type=date] {
+        width: 100%;
+        padding: 8px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    /* Set a style for all buttons */
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+    /* Extra styles for the cancel button */
+
+    .cancelbtn {
+        padding: 14px 20px;
+        background-color: #f44336;
+    }
+    /* Float cancel and signup buttons and add an equal width */
+
+    .cancelbtn,
+    .signupbtn {
+        float: left;
+        width: 50%;
+    }
+    /* Add padding to container elements */
+
+    .container {
+        padding: 16px;
+    }
+    /* Clear floats */
+
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    /* Change styles for cancel button and signup button on extra small screens */
+
+    @media screen and (max-width: 300px) {
+        .cancelbtn,
+        .signupbtn {
+            width: 100%;
+        }
+    }
+</style>
+
+<body>
+    <h2>Registration Form</h2>
+
+    <form ng-submit="register()" style="border:1px solid #ccc">
+        <div class="container">
+            <label><b>First Name</b></label>
+            <input type="text" placeholder="Enter First Name" ng-model="clientInfo.firstName" name="firstName" required>
+
+            <label><b>Last Name</b></label>
+            <input type="text" placeholder="Enter Last Name" ng-model="clientInfo.lastName" name="lastName" required>
+
+            <label><b>Date of Birth</b></label>
+            <input type="date" placeholder="Enter Date of Birth" ng-model="clientInfo.DOB" name="date" required>
+
+            <label><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" ng-model="clientInfo.username" name="username" required>
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" ng-model="clientInfo.password" name="password" required>
+
+            <label><b>Confirm Password</b></label>
+            <input type="password" placeholder="Confirm Password" name="psw-repeat" required>
+
+            <label><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" ng-model="clientInfo.email" name="email" required>
+
+            <label><b>Address</b></label>
+            <input type="text" placeholder="Enter Address" ng-model="clientInfo.address" name="address" required>
+
+            <label><b>Gender</b></label> <br>
+            <input type="radio" name="gender" ng-model="clientInfo.gender" value="Male" checked> Male<br>
+            <input type="radio" name="gender" ng-model="clientInfo.gender" value="Female"> Female<br><br>
+
+            <label><b>Profile Picture URL</b></label>
+            <input type="url" placeholder="Enter URL" ng-model="clientInfo.profilePictureURL" name="pictureURL" required>
+
+            <label><b>Social Media URL</b></label>
+            <input type="url" placeholder="Enter URL" ng-model="clientInfo.socialMediaURL" name="socialURL" required>
+
+            <label><b>Phone Number</b></label>
+            <input type="text" placeholder="Enter phone number" ng-model="clientInfo.phoneNumbers" name="phone" required>
+
+            <label><b>Security Question</b></label>
+            <input type="text" placeholder="Enter Security Question" ng-model="clientInfo.securityQuestion" name="Squestion" required>
+
+            <label><b>Security Answer</b></label>
+            <input type="text" placeholder="Enter Security Answer" ng-model="clientInfo.securityAnswer" name="Sanswer" required>
+
+            <div class="clearfix">
+                <button type="submit" class="signupbtn">Sign Up</button>
+            </div>
+        </div>
+    </form>
+
+</body>
+
+</html>

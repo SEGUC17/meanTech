@@ -1,5 +1,4 @@
 const reviewController = function ($scope, $location, factory) {
-
     $scope.companyID = {
         "companyID": "58e6a0581a4ebeed5fadfa3e"
     };
@@ -12,7 +11,19 @@ const reviewController = function ($scope, $location, factory) {
         $scope.searchFish = ''; // set the default search/filter term
         $scope.ratings = data.data;
     });
+
+    $scope.reviewInfo = {};
+
+    $scope.postReview = function postReview() {
+        factory.postReview($scope.reviewInfo)
+            .success(function (data) {
+                alert('Review successfully posted!');
+            }).error(function (error) {
+                alert(error.message);
+            });
+    };
 };
+
 
 reviewController.$inject = ['$scope', '$location', 'factory'];
 App.controller('reviewController', reviewController);

@@ -9,15 +9,16 @@ var reviewSchema = mongoose.Schema({
     },
     rating: {
         type: Number,
+        required: true,
         min: 1,
-        max: 5
+        max: 5,
     },
     date: {
         type: Date,
-        default: Date.now
-    }
+        default: Date.now,
+    },
 
-})
+});
 
 var Review = mongoose.model("review", reviewSchema);
 

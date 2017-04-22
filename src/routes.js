@@ -96,8 +96,8 @@ router.post('/faq', function (req, res) {
         res.status(500).json({
             success: false,
             message: 'Internal server error.'
-        })
-    };
+        });
+    }
 });
 
 router.post('/faqa', function (req, res) {
