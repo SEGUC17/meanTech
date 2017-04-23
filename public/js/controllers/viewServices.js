@@ -1,9 +1,9 @@
-const serviceController = function ($scope, $location, factory) {
+const viewServiceController = function ($scope, $location, factory) {
 
     factory.getAllServices().success(function(data) {
         $scope.allservices=data.data;
     });
 }
 
-serviceController.$inject = ['$scope', '$location', 'factory'];
-App.controller('serviceController', serviceController);
+viewServiceController.$inject = ['$scope', '$location', 'factory'];
+App.controller('viewServiceController', viewServiceController);
