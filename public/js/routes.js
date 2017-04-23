@@ -4,7 +4,6 @@ App.config(function ($routeProvider) {
             templateUrl: 'views/login.html',
             controller: 'loginController'
         })
-    
         .when('/viewEvents', {
             templateUrl: 'views/viewEvents.html',
             controller: 'eventController'
@@ -17,12 +16,13 @@ App.config(function ($routeProvider) {
           templateUrl: 'views/postPromotion.html',
           controller: 'promotionController'
       })
-
-
         .when('/updateEvents',{
             templateUrl:'views/updateEvents.html',
             controller:'eventController'
-
+        })
+        .when('/viewPromotions', {
+            templateUrl: 'views/viewPromotions.html',
+            controller: 'promotionController'
         });
 
 

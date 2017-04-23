@@ -28,7 +28,6 @@ module.exports = {
         });
         promotion.save(function (err, promotion) {
             if (err) {
-                console.log(err);
                 res.status(500).json({
                     error: err.message
                 });
@@ -106,19 +105,20 @@ module.exports = {
 
         var x;
         Promotion.findOne({
-            _id: req.body._id
+            _id: req.body.id
         }, function (err, pro) {
             if (err) {
                 res.status(500).json({
                     error: err.message
                 });
-            } else {
+            } 
+            else {
                 x = pro.companyID;
 
                 if (x == req.decoded.id) {
 
                     Promotion.remove({
-                        _id: req.body._id
+                        _id: req.body.id
                     }, function (err, result) {
                         if (err) {
                             res.status(500).json({
