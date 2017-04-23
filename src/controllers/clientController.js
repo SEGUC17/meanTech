@@ -47,31 +47,6 @@ const clientController = {
         Client.findOneAndUpdate({
             _id: req.decoded.id
         }, {
-            $set: {
-                "password": req.body.newPassword
-            }
-        }, function (err, client) {
-            if (err) {
-                res.status(500).json({
-                    success: false,
-                    msg: 'You are not allowed to change the password, update failed',
-                });
-            } else {
-
-                res.json({
-                    success: true,
-                    msg: 'The password has been updated successfully'
-                });
-                client.markModified('Password ok');
-            }
-        });
-    },
-
-    resetPassword: function (req, res) {
-        if (req.decoded.securityAnswer === req.body.securityAnswer) {
-            Client.findOneAndUpdate({
-                _id: req.decoded.id
-            }, {
                 $set: {
                     "password": req.body.newPassword
                 }
@@ -82,46 +57,91 @@ const clientController = {
                         msg: 'You are not allowed to change the password, update failed',
                     });
                 } else {
+
                     res.json({
                         success: true,
                         msg: 'The password has been updated successfully'
                     });
-                    client.markModified('Password reset ok');
+                    client.markModified('Password ok');
                 }
             });
-        }
-        else
-        {
-            res.status(500).json({
-                        success: false,
-                        msg: 'Wrong security answer',
-                    });
-        }
     },
+
+    resetPassword: function (req, res) {
+        Client.findOne({
+            username: req.body.username
+        }, function (err, client) {
+            if (err) res.status(500).json({
+                success: false,
+                message: 'Error'
+            });
+
+            if (!client) {
+                res.status(404).json({
+                    success: false,
+                    message: 'Username not found',
+                });
+            } else if (client) {
+                if (client.securityAnswer != req.body.securityAnswer) {
+
+                    res.status(401).json({
+                        success: false,
+                        message: 'Authentication failed. Wrong Security Answer.',
+                    });
+                } else {
+                    Client.findOneAndUpdate({
+                        username: req.body.username,
+                    }, {
+                            $set: {
+                                'password': req.body.newPassword,
+                            },
+                        }, function (err, client) {
+                            if (err) {
+                                res.status(500).json({
+                                    success: false,
+                                    msg: 'You are not allowed to change the password, update failed',
+                                });
+                            } else {
+                                res.json({
+                                    success: true,
+                                    msg: 'The password has been updated successfully'
+                                });
+                                client.markModified('Password reset ok');
+                            }
+                        });
+
+                };
+
+            }
+
+        });
+
+    },
+
 
     addToWishList: function (req, res) {
         var serviceID = req.body.serviceID;
         Client.findOneAndUpdate({
             _id: req.decoded.id
         }, {
-            "$push": {
-                "wishList": serviceID
-            }
-        }, function (err, client) {
-            if (err) {
-                res.status(500).json({
-                    success: false,
-                    message: 'Got an error'
-                });
-            }
-            if (client) {
-                client.markModified('anything');
-                return res.json({
-                    success: true,
-                    message: 'Successfully added to wishList'
-                });
-            }
-        });
+                "$push": {
+                    "wishList": serviceID
+                }
+            }, function (err, client) {
+                if (err) {
+                    res.status(500).json({
+                        success: false,
+                        message: 'Got an error'
+                    });
+                }
+                if (client) {
+                    client.markModified('anything');
+                    return res.json({
+                        success: true,
+                        message: 'Successfully added to wishList'
+                    });
+                }
+            });
     },
 
     addToFavCompanies: function (req, res) {
@@ -129,21 +149,21 @@ const clientController = {
         Client.findOneAndUpdate({
             _id: req.decoded.id
         }, {
-            "$push": {
-                "favCompanies": companyID
-            }
-        }, function (err, client) {
-            if (err) {
-                res.json(err);
-            }
-            if (client) {
-                return res.json({
-                    success: true,
-                    message: 'Successfully added to favCompanies'
-                });
-                client.markModified('anything');
-            }
-        });
+                "$push": {
+                    "favCompanies": companyID
+                }
+            }, function (err, client) {
+                if (err) {
+                    res.json(err);
+                }
+                if (client) {
+                    return res.json({
+                        success: true,
+                        message: 'Successfully added to favCompanies'
+                    });
+                    client.markModified('anything');
+                }
+            });
     },
 
     updateProfile: function (req, res) {
