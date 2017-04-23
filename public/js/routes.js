@@ -65,7 +65,7 @@ App.config(['$routeProvider', function ($routeProvider) {
         })
         .when('/allEvents', {
             templateUrl: 'views/allEvents.html',
-            controller: 'eventController'
+            controller: 'viewEventController'
         })
         .when('/allServices', {
             templateUrl: 'views/allServices.html',
