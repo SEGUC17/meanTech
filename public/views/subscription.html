@@ -127,8 +127,9 @@
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Logo URL</label>
-                    <input name = "logoURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.logoURL" required="required">
+                    <input name = "logoURL" type="url" class="form-control" id="InputTitle" placeholder="" ng-model="formData.logoURL" required="required">
                     <span ng-show="firstForm.logoURL.$error.required">*</span>
+                    <span ng-show="firstForm.logoURL.$error.url">Please enter a valid URL!</span>
 
                 </div>
                 <div class="form-group">
@@ -154,8 +155,9 @@
                   </div>
                   <div class="form-group">
                       <label for="InputTitle">Social Media URL</label>
-                      <input name = "socialMediaURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="formData.socialMediaURL" required="required">
+                      <input name = "socialMediaURL" type="url" class="form-control" id="InputTitle" placeholder="" ng-model="formData.socialMediaURL" required="required">
                       <span ng-show="firstForm.socialMediaURL.$error.required">*</span>
+                      <span ng-show="firstForm.socialMediaURL.$error.url">Please enter a valid URL!</span>
 
                   </div>
                   <div class="form-group">

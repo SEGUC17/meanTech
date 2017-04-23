@@ -1,6 +1,8 @@
 const stripeController = function($scope, $location, factory, stripe, $http) {
  $scope.Info = {};
 
+var amount1 = factory.getSelectedPurchase().price;
+
     $scope.payment = {
         card: {
             number: null,
@@ -9,13 +11,13 @@ const stripeController = function($scope, $location, factory, stripe, $http) {
             exp_year: null
         },
         token: null,
-        amount: 200
+        amount: amount1
     };
 
     $scope.charge = function() {
 
+console.log(amount1);
 
-  
         return stripe.card.createToken($scope.payment.card)
             .then(function(response) {
                 alert('token created for card ending in ' + response.card.last4);

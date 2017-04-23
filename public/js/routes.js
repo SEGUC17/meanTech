@@ -21,5 +21,9 @@ App.config(['$routeProvider', function ($routeProvider) {
           controller: 'stripeController'
 
       })
+      .when('/allEvents', {
+            templateUrl: 'views/allEvents.html',
+            controller: 'eventController'
+        })
 
 }])
