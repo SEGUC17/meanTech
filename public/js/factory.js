@@ -1,23 +1,22 @@
-<<<<<<< HEAD
 App.factory('factory', ($http, $location) => {
-    // const apiUrl = 'http://localhost:8080/';
-
+    const apiUrl = 'http://localhost:8080/';
     let token = null;
+
     return {
         clientLogin: (user) => {
-            return $http.post('http://localhost:8080/clientLogin', user);
+            return $http.post(apiURL.concat('clientLogin', user));
         },
 
         companyLogin: (user) => {
-            return $http.post('http://localhost:8080/companyLogin', user);
+            return $http.post(apiURL.concat('companyLogin', user));
         },
 
         userViewAllPromotions: () => {
-            return $http.get('http://localhost:8080/getAllPromotions');
+            return $http.get(apiURL.concat('getAllPromotions'));
         },
 
         clientUpdatePassword: (newPassword) => {
-            return $http.post('http://localhost:8080/clientUpdatePassword', newPassword, {
+            return $http.post(apiURL.concat('clientUpdatePassword'), newPassword, {
                 headers: {
                     'x-access-token': token,
                 },
@@ -25,7 +24,7 @@ App.factory('factory', ($http, $location) => {
         },
 
         companyUpdatePassword: (newPassword) => {
-            return $http.post('http://localhost:8080/companyUpdatePassword', newPassword, {
+            return $http.post(apiURL.concat('companyUpdatePassword'), newPassword, {
                 headers: {
                     'x-access-token': token,
                 },
@@ -35,20 +34,75 @@ App.factory('factory', ($http, $location) => {
         //TODO adminUpdatePassword
 
         clientResetPassword: (data) => {
-            return $http.post('http://localhost:8080/clientResetPassword', data, {
+            return $http.post(apiURL.concat('clientResetPassword'), data, {
             });
         },
 
         companyResetPassword: (data) => {
-            return $http.post('http://localhost:8080/companyResetPassword', data, {
+            return $http.post(apiURL.concat('companyResetPassword'), data, {
             });
         },
 
         adminResetPassword: (data) => {
-            return $http.post('http://localhost:8080/adminResetPassword', data, {
+            return $http.post(apiURL.concat('adminResetPassword'), data, {
             });
         },
 
+        createEvent: function (info) {
+            return $http.post(apiURL.concat('event'), info, {
+                headers: {
+                    'x-access-token': (token)
+                }
+            });
+
+        },
+
+        companySubscription: function (info) {
+            return $http.post(apiURL.concat('company'), info);
+
+        },
+
+        getCompanyEvents: function () {
+            console.log("it gets to the factory of get company events");
+            return $http.get(apiURL.concat('getCompanyEvents'), {
+
+                headers: {
+                    'x-access-token': token
+                }
+            });
+
+
+        },
+        viewRatings: function (companyID) {
+            console.log("it gets to the factory of view ratings");
+            return $http.post(apiURL.concat('viewRatings'), companyID, {
+
+                headers: {
+                    'x-access-token': token
+                }
+            });
+
+
+        },
+
+        updateEvent: function (info) {
+            console.log("inside the factory of  update events");
+            return $http.post(apiURL.concat('updateEvents'), info, {
+                headers: {
+                    'x-access-token': token
+                }
+            })
+
+        },
+
+        deleteEvent: function (info) {
+            console.log("inside the factory of  deleteEvent ");
+            return $http.post(apiURL.concat('deleteEvent'), info, {
+                headers: {
+                    'x-access-token': token
+                }
+            });
+        },
 
         setToken: (newToken) => {
             token = newToken;
@@ -57,62 +111,5 @@ App.factory('factory', ($http, $location) => {
         getToken: () => {
             return token;
         },
-
-        createEvent: function(info) {
-            return $http.post('http://localhost:8080/event', info, {
-                headers: {
-                    'x-access-token': token
-                }
-            });
-
-        },
-        companySubscription: function(info) {
-            return $http.post('http://localhost:8080/company', info);
-
-        },
-    
-    getCompanyEvents: function(){
-        console.log("it gets to the factory of get company events");
-        return $http.get('http://localhost:8080/getCompanyEvents',{
-             
-                headers: {
-                    'x-access-token': token
-                }
-        });
-
-        
-    },
-     viewRatings: function(companyID){
-        console.log("it gets to the factory of view ratings");
-        return $http.post('http://localhost:8080/viewRatings',companyID,{
-             
-                headers: {
-                    'x-access-token': token
-                }
-        });
-
-        
-    },
-
-       updateEvent: function(info) {
-           console.log("inside the factory of  update events");
-            return $http.post('http://localhost:8080/updateEvents', info, {
-                headers: {
-                    'x-access-token': token
-                }
-            })
-
-        },
-
-               deleteEvent: function(info) {
-           console.log("inside the factory of  deleteEvent ");
-            return $http.post('http://localhost:8080/deleteEvent', info, {
-                headers: {
-                    'x-access-token': token
-                }
-            });
-
-        }
-
-    };
+    }
 });

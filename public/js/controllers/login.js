@@ -6,7 +6,7 @@ const loginController = function ($scope, $location, factory) {
         factory.companyLogin($scope.companyForm)
             .success(function (data) {
                 factory.setToken(data.token);
-                console.log(factory.getToken());
+                // console.log(factory.getToken());
             }).error(function (error) {
                 alert(error.message);
             });
@@ -14,15 +14,13 @@ const loginController = function ($scope, $location, factory) {
 
     $scope.clientLogin = function clientLogin() {
         factory.clientLogin($scope.clientForm)
-
             .success(function (data) {
                 factory.setToken(data.token);
-                console.log(factory.getToken());
+                // console.log(factory.getToken());
             }).error(function (error) {
                 alert(error.message);
             });
     };
-
 };
 
 loginController.$inject = ['$scope', '$location', 'factory'];

@@ -70,7 +70,7 @@ module.exports.companyLogin = function (req, res) {
 
         if (!company) {
 
-            res.json({
+            res.status(404).json({
                 success: false,
                 message: 'Authentication failed. User not found.'
             });
@@ -79,7 +79,7 @@ module.exports.companyLogin = function (req, res) {
             if (company.verified == true) {
                 if (company.password != req.body.password) {
 
-                    res.json({
+                    res.status(401).json({
                         success: false,
                         message: 'Authentication failed. Wrong password.'
                     });
@@ -104,7 +104,7 @@ module.exports.companyLogin = function (req, res) {
                     });
                 }
             } else {
-                res.json({
+                res.status(401).json({
                     success: false,
                     message: 'Unautherized access. Not a verified Company'
                 });

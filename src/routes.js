@@ -1,5 +1,4 @@
 const express = require('express');
-
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const companyController = require('./controllers/companyController');
@@ -11,12 +10,31 @@ const loginController = require('./controllers/loginController');
 const promotionController = require('./controllers/promotionController');
 const clientController = require('./controllers/clientController');
 const reviewController = require('./controllers/reviewController');
-
+const stripe = require("stripe")("sk_test_iDQ4j6FIHxplL81qcqEtSWCU");
 var config = require('../src/config/token');
 
-router.get('/contactUs', function (req, res) {
-    res.render('contactUs')
+router.get('/', function (req, res) {
+    res.json({
+        hello: 'world'
+    });
 });
+
+router.post('/stripe', function (req, res) {
+    stripe.customers.create({
+        source: req.body.token
+    })
+        .then(customer =>
+            stripe.charges.create({
+                amount: req.body.amount,
+                description: "Sample Charge",
+                currency: "usd",
+                customer: customer.id
+            }))
+        .then(charge => {
+            res.json({ error: null, data: charge });
+        });
+});
+
 router.get('/company/profile', clientController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
@@ -52,11 +70,8 @@ router.post('/companyResetPassword', companyController.resetPassword);
 
 router.post('/adminResetPassword', adminController.resetPassword);
 
-
-
 router.use(function (req, res, next) {
-
-    var token = req.body.token || req.param('token') || req.headers['x-access-token'];
+    var token = req.body.token || req.param.token || req.headers['x-access-token'];
 
     if (token) {
 
@@ -83,8 +98,6 @@ router.use(function (req, res, next) {
     }
 
 });
-
-
 
 router.post('/faq', function (req, res) {
     try {
@@ -252,7 +265,6 @@ router.post('/clientUpdatePassword', function (req, res) {
     }
 });
 
-
 router.post('/companyUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
@@ -271,7 +283,6 @@ router.post('/companyUpdatePassword', function (req, res) {
     }
 });
 
-
 router.post('/adminUpdatePassword', function (req, res) {
     try {
         const decodedPayload = req.decoded;
@@ -289,8 +300,6 @@ router.post('/adminUpdatePassword', function (req, res) {
         });
     }
 });
-
-
 
 router.post('/addToWishList', function (req, res) {
     try {

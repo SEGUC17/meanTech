@@ -20,7 +20,7 @@ let companyController = {
             mobileNumbers: req.body.mobileNumbers,
             branches: req.body.branches,
             socialMediaURL: req.body.socialMediaURL,
-            verified: req.body.verified,
+            verified: false,
             paymentMethod: req.body.paymentMethod,
             securityQuestion: req.body.securityQuestion,
             securityAnswer: req.body.securityAnswer
@@ -31,7 +31,7 @@ let companyController = {
 
                 res.status(500).json({
                     success: false,
-                    message: 'If you have provided all required information please choose another username!'
+                    message: "Please choose another Username"
                 });
 
             } else {

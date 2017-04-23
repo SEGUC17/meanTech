@@ -36,20 +36,31 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/adminResetPassword.html',
             controller: 'resetPasswordController',
         })
-    
+
         .when('/viewEvents', {
             templateUrl: 'views/viewEvents.html',
             controller: 'eventController'
         })
-         .when('/viewRatings', {
+        .when('/viewRatings', {
             templateUrl: 'views/viewRatings.html',
             controller: 'reviewController'
         })
+        .when('/updateEvents/:id', {
+            templateUrl: 'views/updateEvents.html',
+            controller: 'eventController'
 
-        .when('/updateEvents/:id',{
-            templateUrl:'views/updateEvents.html',
-            controller:'eventController'
+        })
+        .when('/companyS', {
+            templateUrl: 'views/subscription.html',
+            controller: 'companyController'
+        })
+        .when('/createEvent', {
+            templateUrl: 'views/createEvent.html',
+            controller: 'createEventController'
+        })
+        .when('/stripeTest', {
+            templateUrl: 'views/stripeTest.html',
+            controller: 'stripeController'
 
         });
-}])
-
+}]);
