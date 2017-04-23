@@ -5,6 +5,7 @@ const questionController = function ($scope, $location, factory) {
         factory.answerQuestion($scope.answers)
             .success(function (data) {
                 alert('Answer successfully posted.');
+                $location.path('/FAQView');
             }).error(function (error) {
             console.log(error);
                 alert(error);

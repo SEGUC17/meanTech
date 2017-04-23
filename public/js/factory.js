@@ -1,6 +1,6 @@
 App.factory('factory', function ($http, $location) {
-   const apiUrl = 'http://localhost:8080/';
-   
+    const apiUrl = 'http://localhost:8080/';
+
     let token = null;
     return {
         clientLogin: function (user) {
@@ -16,7 +16,7 @@ App.factory('factory', function ($http, $location) {
                 },
             });
         },
-        adminRegister: function(info) {
+        adminRegister: function (info) {
             return $http.post(apiUrl + 'adminRegister', info);
         },
 
@@ -77,6 +77,13 @@ App.factory('factory', function ($http, $location) {
         },
         deleteReview: function (info) {
             return $http.post('http://localhost:8080/deleteR', info, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+        askQuestion: function (question) {
+            return $http.post('http://localhost:8080/faq', question, {
                 headers: {
                     'x-access-token': token,
                 },

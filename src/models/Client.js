@@ -28,7 +28,6 @@ var clientSchema = mongoose.Schema({
         type: String,
         enum: ['Male', 'Female'],
     },
-    DOB: Date,
     age: Number,
     socialMediaURL: String,
     phoneNumbers: [String],

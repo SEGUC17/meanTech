@@ -28,8 +28,9 @@
         box-sizing: border-box;
     }
 
-    textarea {
-        width: 100%;
+    select {
+        width: 4%;
+        height: 1%;
     }
 
     button {
@@ -48,16 +49,16 @@
 </style>
 
 <div>
-    <h1>Post question answer</h1>
+    <h1>Post question</h1>
 
-    <form ng-submit="deleteReview()" style="border:1px solid #ccc">
+    <form ng-submit="askQuestion()" style="border:1px solid #ccc">
         <div class="container">
-            <label><b>Deleting Reviews</b></label>
+            <label><b>Question</b></label>
             <br>
-            <input type="text" placeholder="" ng-model="" name="firstName" required>
+            <textarea name="question" placeholder="Write your question here..." ng-model="question.questionText" rows="10" cols="80" required>
+            </textarea>
             <br>
             <button type="submit">Post Answer</button>
         </div>
     </form>
-
 </div>

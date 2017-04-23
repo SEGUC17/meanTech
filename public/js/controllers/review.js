@@ -11,18 +11,6 @@ const reviewController = function ($scope, $location, factory) {
         $scope.searchFish = ''; // set the default search/filter term
         $scope.ratings = data.data;
     });
-
-
-    $scope.deleteInfo = {};
-
-    $scope.deleteReview = function deleteReview() {
-        factory.deleteReview($scope.deleteInfo)
-            .success(function (data) {
-                alert('Review successfully deleted.');
-            }).error(function (error) {
-                alert(error.message);
-            });
-    };
 };
 
 

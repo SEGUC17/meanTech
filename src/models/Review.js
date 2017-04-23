@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 
 var reviewSchema = mongoose.Schema({
     username: String,
-    companyID: String,
+    companyID: {
+        type: String,
+        required: true,
+    },
     content: {
         type: String,
         required: true,
@@ -17,7 +20,6 @@ var reviewSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-
 });
 
 var Review = mongoose.model("review", reviewSchema);

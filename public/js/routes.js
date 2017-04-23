@@ -39,5 +39,9 @@ App.config(function ($routeProvider) {
         .when('/deletereview', {
             templateUrl: 'views/deleteReview.html',
             controller: 'reviewController',
-        });
+        })
+        .when('/faqq', {
+            templateUrl: 'views/askQuestion.html',
+            controller: 'askQuestionController',
+        })
 });

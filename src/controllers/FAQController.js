@@ -4,24 +4,24 @@ let FAQController = {
 
     answerFAQ: function (req, res) {
         FAQ.findByIdAndUpdate({
-            _id: req.body._id
+            _id: req.body._id,
         }, {
             $set: {
                 "answerText": req.body.answerText,
-            }
+            },
         }, {
-            new: true
+            new: true,
         }, function (err, faq) {
             if (err) {
                 res.status(500).json({
                     success: false,
-                    message: 'Answer not updated.'
-                })
+                    message: 'Answer not updated.',
+                });
             } else {
                 return res.json({
                     success: true,
-                    message: 'Answer updated successfully.'
-                })
+                    message: 'Answer updated successfully.',
+                });
             }
         });
     },
@@ -29,20 +29,20 @@ let FAQController = {
     askFAQ: function (req, res) {
         let newQ = new FAQ({
             questionText: req.body.questionText,
-            clientUsername: req.decoded.username
+            clientUsername: req.decoded.username,
         });
 
         newQ.save(function (err, newQ) {
             if (err) {
                 res.status(500).json({
                     success: false,
-                    message: 'can not ask question'
+                    message: 'can not ask question',
                 });
             } else {
                 res.json({
                     success: true,
                     message: 'question posted',
-                    newQ
+                    newQ,
                 });
             }
         });
@@ -54,11 +54,10 @@ let FAQController = {
         query.exec(function (err, faq) {
             if (err) return next(err);
             res.json({
-                data: faq
+                data: faq,
             });
         });
     },
-
-}
+};
 
 module.exports = FAQController;
