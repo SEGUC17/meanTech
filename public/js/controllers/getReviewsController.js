@@ -2,8 +2,9 @@ const getReviewsController = function ($scope, $location, factory) {
 
     factory.myReviews()
         .then(function (response) {
-            const reviews = response.data.reviews[0];
-            $scope.reviewList = reviews;
+            const review = response.data.reviews[0];
+            console.log(review);
+            $scope.reviewList = review;
         })
         .catch(function (response) {
             alert(response.data.error);

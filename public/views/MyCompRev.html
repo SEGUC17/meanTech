@@ -1,9 +1,23 @@
-<html>
-<body>
+<div>
 
-    <div ng-model="review">
-      <div> {{ review.username}} </div>
-    </div>
+  <div ng-repeat="user in reviewList">
+    
+   
+    <Label>By: {{user.username}}</Label> </br>
+  
 
-</body>
-</html>
+  
+    <Label>Content: {{user.Content}}</Label> </br>
+  
+
+
+    <Label>rating: {{user.rating}}</Label> </br>
+
+
+    <Label>on: {{user.date}}</Label> </br>
+    
+  </div>
+
+
+
+</div>

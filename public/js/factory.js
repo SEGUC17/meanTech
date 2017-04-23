@@ -1,6 +1,7 @@
 App.factory('factory', function($http, $location) {
     const apiUrl = 'http://localhost:8080/';
-
+    let selectedCompany = null;
+    let companyReview = null;
     let token = null;
     return {
         clientLogin: function(user) {
@@ -28,6 +29,9 @@ App.factory('factory', function($http, $location) {
         getToken: function() {
             return token;
         },
+       
+       
+       
         askFAQ: function (question) {
             return $http.post('http://localhost:8080/faq', question, {
                 headers: {
@@ -42,8 +46,8 @@ App.factory('factory', function($http, $location) {
                 },
             });
         },
-        companyProfile: function (id) {
-            return $http.get('http://localhost:8080/company/profile', id);
+        CompanyProfile: function (company) {
+            return $http.get('http://localhost:8080/company/profile', company);
         }, 
 
         MyCompanyProfile: function() {
@@ -54,5 +58,32 @@ App.factory('factory', function($http, $location) {
             });
 
         },
+
+        companyList: function(){
+            return $http.get('http://localhost:8080/companyLists')
+        },
+
+         setSelectedCompany: function(id) {
+            selectedCompany = id;
+        },
+        getSelectedCompany: function() {
+            return selectedCompany;
+        },
+      
+        setCompanyReview: function(company) {
+            companyReview = company;
+        },
+        getCompanyReview: function() {
+            return companyReview;
+        },
+           postReview: function (info) {
+            return $http.post('http://localhost:8080/review', info, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+
+       
     };
 });

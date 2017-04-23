@@ -49,7 +49,7 @@ router.get('/FAQView', FAQController.viewFAQs);
 
 router.post('/register', clientController.register);
 
-
+router.get('/companyLists',companyController.getCompanyList);
 router.post('/clientLogin', loginController.clientLogin);
 
 router.post('/companyLogin', loginController.companyLogin);

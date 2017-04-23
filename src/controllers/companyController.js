@@ -178,6 +178,30 @@ let companyController = {
             }
         });
     },
+      getCompanyList: function (req, res) {
+        // var query = Company.find({});
+
+
+        // query.exec(function (err, companies) {
+        //     if (err) return next(err);
+        //     res.json({
+        //         data: companies
+        //     });
+        // });
+        Company.find({},function(err,companies){
+            if(err)
+                res.status(500).json({
+                    success: false,
+                    message: 'No companies to view',
+                    data:null
+                });
+                else    
+                    res.json({
+                        data: companies
+                    });
+        });
+
+    },
 }
 
 module.exports = companyController;

@@ -176,8 +176,8 @@ const clientController = {
     },
 
     viewCompanyProfile: function (req, res) {
-        var id = req._id;
-        console.log(id);
+        var id = req.body._id;
+       
         Company.findById(id, function (err, company) {
 
             if (err) {

@@ -19,6 +19,8 @@
         <div ng-repeat="branch in companyInfo.branches">
            Branches:  {{branch}} </div>
         <br>
-        <button ng-click="MyReviewPage(companyInfo._id)">My Reviews</button>
+
+        <button ng-show="showReview" ng-click="reviewPage(companyInfo)">Write Review</button>
+        
     </div>
 </div>

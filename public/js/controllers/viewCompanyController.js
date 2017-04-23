@@ -1,4 +1,9 @@
+//Company profile for Company
 const viewCompanyController = function ($scope, $location, factory) {
+
+  $scope.MyReviewPage = function MyReviewPage(companyInfo){
+        $location.path("/ViewReviews");
+  }
 
     factory.MyCompanyProfile()
         .then(function (response) {

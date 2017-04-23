@@ -20,7 +20,7 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/stripeTest.html'
 
         })
-        .when('/CompanyProfile', {
+        .when('/companyProfile', {
             templateUrl: 'views/viewCompany.html',
             controller: 'viewCompanyController',
         })
@@ -32,8 +32,16 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/MyCompRev.html',
             controller: 'getReviewsController',
         })
-        //  .when('/MycompProfile', {
-        //      templateUrl: 'views/MyCompPro.html',
-        //      controller: 'PrivateCompControl',
-        //  });
+         .when('/companyList', {
+             templateUrl: 'views/companyList.html',
+             controller: 'getCompanyListController',
+         })
+         .when('/CProfile', {
+             templateUrl: 'views/viewCompanyProfile.html',
+             controller: 'visitCompanyPageController',
+         })
+          .when('/pr', {
+            templateUrl: 'views/postReview.html',
+            controller: 'postReviewController',
+        });
 }]);
