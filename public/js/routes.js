@@ -4,7 +4,6 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/login.html',
             controller: 'loginController',
         })
-
         .when('/userViewAllPromotions', {
             templateUrl: 'views/userViewAllPromotions.html',
             controller: 'userViewAllPromotionsController',
@@ -69,10 +68,22 @@ App.config(['$routeProvider', function ($routeProvider) {
         })
         .when('/allServices', {
             templateUrl: 'views/allServices.html',
-            controller: 'serviceController'
+            controller: 'viewServiceController'
         })
         .when('/favCompanies', {
             templateUrl: 'views/favComp.html',
             controller: 'clientController'
         })
+        .when('/postPromotion',  {
+                      templateUrl:  'views/postPromotion.html',
+                      controller:  'promotionController'
+              })
+        .when('/updateEvents', {
+            templateUrl: 'views/updateEvents.html',
+            controller: 'eventController'
+        })
+        .when('/viewPromotions', {
+            templateUrl: 'views/viewPromotions.html',
+            controller: 'promotionController'
+        });
 }]);

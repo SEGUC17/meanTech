@@ -15,14 +15,6 @@ App.factory('factory', ($http, $location) => {
             return $http.get(apiURL.concat('getAllPromotions'));
         },
 
-        clientUpdatePassword: (newPassword) => {
-            return $http.post(apiURL.concat('clientUpdatePassword'), newPassword, {
-                headers: {
-                    'x-access-token': token,
-                },
-            });
-        },
-
         companyUpdatePassword: (newPassword) => {
             return $http.post(apiURL.concat('companyUpdatePassword'), newPassword, {
                 headers: {
@@ -66,13 +58,6 @@ App.factory('factory', ($http, $location) => {
             console.log("it gets to the factory of get company events");
             return $http.get(apiURL.concat('getCompanyEvents'), {
 
-                headers: {
-                    'x-access-token': token
-                }
-            });
-
-
-        },
 
         viewRatings: function (companyID) {
             console.log("it gets to the factory of view ratings");
@@ -99,6 +84,12 @@ App.factory('factory', ($http, $location) => {
         deleteEvent: function (info) {
             console.log("inside the factory of  deleteEvent ");
             return $http.post(apiURL.concat('deleteEvent'), info, {
+
+
+        },
+
+        updateEvent: function (info) {
+            return $http.post('http://localhost:8080/updateEvents', info, {
                 headers: {
                     'x-access-token': token
                 }
@@ -127,4 +118,35 @@ App.factory('factory', ($http, $location) => {
             return token;
         },
     }
+        },
+        postPromotion: function (info) {
+            return $http.post('http://localhost:8080/postPromotion1', info, {
+                headers: {
+                    'x-access-token': token
+                }
+            });
+        },
+        viewPromotions: function () {
+            return $http.get('http://localhost:8080/viewPromotions1', {
+
+                headers: {
+                    'x-access-token': token
+                }
+            });
+        },
+            deletePromotion: function (info) {
+
+                return $http.post('http://localhost:8080/deletePromotion1', info, {
+                    headers: {
+                        'x-access-token': token
+                    }
+                });
+
+            }
+
+        
+
+
+
+    };
 });
