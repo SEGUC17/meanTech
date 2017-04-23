@@ -6,7 +6,6 @@ const adminController = function ($scope, $location, factory) {
     
 
     $scope.adminRegister = function adminRegister() {
-        app.errorMsg = false;
         factory.adminRegister($scope.adminForm)
             .then(function (data) {
                 $location.path('/adminLogin');
