@@ -6,38 +6,41 @@ const adminController = function ($scope, $location, factory) {
     const app = this;
 
     $scope.adminRegister = function adminRegister() {
+        app.errorMsg = false;
         factory.adminRegister($scope.adminForm)
-        .then(function (data) {
-            app.successMsg = "You will be now redirected to login.";
-            $location.path('/adminLogin');
-        }).catch(function (error) {
-           app.errorMsg = "Something went wrong";
-        });
+            .then(function (data) {
+                alert("you will now be redirected to login.")
+                //app.successMsg = data.data.msg
+                $location.path('/adminLogin');
+            }).catch(function (error) {
+                //app.errorMsg = data.data.msg
+            });
     };
 
-    $scope.unverifiedCompanies = function unverifiedCompanies() {
-        factory.unverifiedCompanies().success(function (data) {
-            alert("Here are all the unverfied Companies.");
-        }).error(function (error) {
-            alert(error.message);
+    factory.unverifiedCompanies()
+        .then(function (response) {
+            console.log('SUCCESS =>', response);
+            // $scope.uncompanies = response.data;
+        })
+        .catch(function (response) {
+            console.log('ERROR =>', response);
         });
-    };
 
-    $scope.verifyCompanies = function verifyCompanies() {
-        factory.verifyCompanies($scope.verifyForm).success(function (data) {
+    $scope.verifyCompanies = function unverifiedCompanies() {
+        factory.verifyCompanies($scope.verifyForm).then(function (data) {
             alert("Company Verified.");
             $location.path('/unverifiedCompanies');
-        }).error(function (error) {
-            alert(error.message);
+        }).catch(function (error) {
+
         });
     };
 
     $scope.deleteCompany = function deleteCompany() {
-        factory.deleteCompany($scope.deleteForm).success(function (data) {
+        factory.deleteCompany($scope.deleteForm).then(function (data) {
             alert("Company deleted.");
-            $location.path('/viewCompanies');
+            $location.catch('/viewCompanies');
         }).error(function (error) {
-            alert(error.message);
+
         });
     };
 

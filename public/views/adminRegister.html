@@ -1,4 +1,5 @@
 <div>
+
     <head>
         <style>
             body {
@@ -50,6 +51,11 @@
         </style>
     </head>
     <div class="container">
+        <head>
+        <!--<div class="row show-hide-message" ng-show="adminRegister().successMsg">
+            <div class="alert alert-success">{{adminRegister().successMsg}}</div>
+        </div>-->
+        </head>
         <form class="form-register" ng-submit="adminRegister()">
             <h2 class="form-register-heading">Admin Register</h2>
             <!-- Username -->
@@ -77,6 +83,11 @@
                 required>
             <br>
             <button class="btn btn-primary" type="submit">Register</button>
+            <br>
+            <button class="btn btn-primary" type="submit">Login</button>
         </form>
+        <br>
+       
     </div>
+
 </div>

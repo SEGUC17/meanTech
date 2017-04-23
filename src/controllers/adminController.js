@@ -16,17 +16,8 @@ const adminController = {
         });
         bcrypt.genSalt(10, function (err, salt) {
             bcrypt.hash(admin.password, salt, function (err, hash) {
-      
-                if (err) {
-                        res.status(500).json({
-                            success: false,
-
-                            msg: 'Please Provide All required information and choose a unique username.'
-
-                        });
-
-                    throw err;
-                }
+               // if (err) throw err;
+                
                 admin.password = hash;
                 admin.save(function (err, admin) {
                     if (err) {

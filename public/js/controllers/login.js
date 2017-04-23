@@ -2,11 +2,12 @@ const loginController = function ($scope, $location, factory) {
     $scope.loginForm = {};
 
     $scope.adminLogin = function adminLogin() {
-        factory.adminLogin($scope.loginForm).success(function (data) {
+        factory.adminLogin($scope.loginForm).then(function (data) {
             alert("Welcome!");
+            factory.setToken(data.data.token);
             $location.path('/adminHome');
-        }).error(function (error) {
-            alert(error.message);
+        }).catch(function (error) {
+            
         });
     };
 };

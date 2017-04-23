@@ -1,12 +1,13 @@
 const companyController = function ($scope, $location, factory) {
 
-    $scope.viewCompanies = function viewCompanies() {
-        factory.viewCompanies().success(function (data) {
-            alert("All companies are being viewed.");
-        }).error(function (error) {
-            alert(error.message);
+    factory.viewCompanies()
+        .then(function (response) {
+            console.log('SUCCESS =>', response);
+            // $scope.uncompanies = response.data;
+        })
+        .catch(function (response) {
+            console.log('ERROR =>', response);
         });
-    };
 
     $scope.goDelete = function goDelete() {
         $location.path('#/deleteCompany');

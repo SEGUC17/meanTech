@@ -3,7 +3,7 @@ App.factory('factory', function ($http, $location) {
 
     let token = null;
     return {
-        adminRegister: function(info){
+        adminRegister: function (info) {
             return $http.post(apiUrl + 'adminRegister', info);
         },
 
@@ -24,6 +24,7 @@ App.factory('factory', function ($http, $location) {
         },
 
         unverifiedCompanies: () => {
+              
             return $http.get(apiUrl + 'unverifiedCompanies', {
                 headers: {
                     'x-access-token': token,
@@ -34,6 +35,7 @@ App.factory('factory', function ($http, $location) {
             return $http.post(apiUrl + 'verifyCompanies', user, {
                 headers: {
                     'x-access-token': token,
+                    
                 },
             });
         },
@@ -46,7 +48,11 @@ App.factory('factory', function ($http, $location) {
         },
 
         adminHome: () => {
-            return $http.get(apiUrl + 'adminHome');
+            return $http.get(apiUrl + 'adminHome', {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
         },
 
         setToken: (loginToken) => {
