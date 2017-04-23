@@ -9,7 +9,7 @@ const companyController = function ($scope, $location, factory) {
         });
 
     $scope.goDelete = function goDelete() {
-        $location.path('#/deleteCompany');
+        $location.path('/deleteCompany');
     };
 };
 

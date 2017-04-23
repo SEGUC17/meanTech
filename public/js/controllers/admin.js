@@ -3,7 +3,7 @@ const adminController = function ($scope, $location, factory) {
     $scope.verifyForm = {};
     $scope.deleteForm = {};
 
-    const app = this;
+    
 
     $scope.adminRegister = function adminRegister() {
         app.errorMsg = false;
@@ -11,7 +11,7 @@ const adminController = function ($scope, $location, factory) {
             .then(function (data) {
                 $location.path('/adminLogin');
             }).catch(function (error) {
-                //app.errorMsg = data.data.msg
+                
             });
     };
 
@@ -34,11 +34,8 @@ const adminController = function ($scope, $location, factory) {
 
     $scope.deleteCompany = function deleteCompany() {
         factory.deleteCompany($scope.deleteForm).then(function (data) {
-            alert("Company deleted.");
-            $location.catch('/viewCompanies');
-        }).error(function (error) {
-
-        });
+            $location.path('/viewCompanies');
+        })
     };
 
     $scope.goVerify = function goVerify() {
