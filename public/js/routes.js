@@ -36,5 +36,20 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/adminResetPassword.html',
             controller: 'resetPasswordController',
         })
+    
+        .when('/viewEvents', {
+            templateUrl: 'views/viewEvents.html',
+            controller: 'eventController'
+        })
+         .when('/viewRatings', {
+            templateUrl: 'views/viewRatings.html',
+            controller: 'reviewController'
+        })
 
+        .when('/updateEvents/:id',{
+            templateUrl:'views/updateEvents.html',
+            controller:'eventController'
+
+        });
 }])
+
