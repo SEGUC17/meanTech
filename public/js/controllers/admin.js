@@ -9,8 +9,6 @@ const adminController = function ($scope, $location, factory) {
         app.errorMsg = false;
         factory.adminRegister($scope.adminForm)
             .then(function (data) {
-                alert("you will now be redirected to login.")
-                //app.successMsg = data.data.msg
                 $location.path('/adminLogin');
             }).catch(function (error) {
                 //app.errorMsg = data.data.msg
@@ -19,11 +17,10 @@ const adminController = function ($scope, $location, factory) {
 
     factory.unverifiedCompanies()
         .then(function (response) {
-            console.log('SUCCESS =>', response);
-            // $scope.uncompanies = response.data;
+            $scope.uncompanies = response.data;
         })
         .catch(function (response) {
-            console.log('ERROR =>', response);
+
         });
 
     $scope.verifyCompanies = function unverifiedCompanies() {

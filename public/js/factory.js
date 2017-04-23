@@ -42,7 +42,7 @@ App.factory('factory', function ($http, $location) {
         viewCompanies: () => {
             return $http.get(apiUrl + 'viewCompanies', {
                 headers: {
-                    'x-access-token': token,
+                    'x-access-token': (token),
                 },
             });
         },

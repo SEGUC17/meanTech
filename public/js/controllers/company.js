@@ -2,11 +2,10 @@ const companyController = function ($scope, $location, factory) {
 
     factory.viewCompanies()
         .then(function (response) {
-            console.log('SUCCESS =>', response);
-            // $scope.uncompanies = response.data;
+             $scope.companies = response.data;
         })
         .catch(function (response) {
-            console.log('ERROR =>', response);
+           
         });
 
     $scope.goDelete = function goDelete() {
