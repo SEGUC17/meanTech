@@ -1,16 +1,3 @@
-<!--<!DOCTYPE html>
-<html>
-
-<head>
-    <title>View Profile</title>
-
-
-
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    
-</head>-->
-
 <style media="screen">
     * {
         font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -95,32 +82,32 @@
     <div class="form-container">
         <form name="update" class="form" ng-submit="clientUpdateProfile()">
             <div class="form-group">
-                <label for="InputTitle">First Name</label>
+                <label for="InputTitle">First Name</label>  
+                <br>
                 <input name="firstName" type="text" class="form-control" placeholder="First Name" ng-model="clientUpdateProfileForm.firstName"
+                /> 
+            </div>
+              <div class="form-group">
+                <label for="InputTitle">Last Name</label>
+                <br>
+                <input name="LastName" type="text" class="form-control" placeholder="Last Name" ng-model="clientUpdateProfileForm.lastName"
                 />
             </div>
+             <div class="form-group">
+                <label for="InputTitle">Address</label>
+                <br>
+                <input name="address" type="text" class="form-control" placeholder="address" ng-model="clientUpdateProfileForm.address"
+                />
+            </div>
+             <div class="form-group">
+                <label for="InputTitle">Phone Numbers</label>
+                <br>
+                <input name="phoneNumbers" type="text" class="form-control" placeholder="phone numbers" ng-model="clientUpdateProfileForm.phoneNumbers"
+                />
+            </div>
+          
             <button type="submit" class="btn btn-default">Update Profile</button>
         </form>
     </div>
 </div>
 
-<!--<body>
-    <img src="url" alt="image not displayed" style="width:width;height:height;">
-
-
-    <body>
-
-        <body ng-controller="updateProfileController">
-
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <h1 class="navbar-brand">Update Profile</h1>
-                    </div>
-                </div>
-            </nav>
-
-        </body>
-    </body>
-
-</html>-->
