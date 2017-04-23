@@ -1,14 +1,14 @@
 App.factory('factory', ($http, $location) => {
-    const apiUrl = 'http://localhost:8080/';
+    const apiURL = 'http://localhost:8080/';
     let token = null;
 
     return {
         clientLogin: (user) => {
-            return $http.post(apiURL.concat('clientLogin', user));
+            return $http.post(apiURL.concat('clientLogin'), user);
         },
 
         companyLogin: (user) => {
-            return $http.post(apiURL.concat('companyLogin', user));
+            return $http.post(apiURL.concat('companyLogin'), user);
         },
 
         userViewAllPromotions: () => {
