@@ -11,13 +11,13 @@ const adminController = function ($scope, $location, factory) {
             .then(function (data) {
                 $location.path('/adminLogin');
             }).catch(function (error) {
-                
+                 
             });
     };
 
     factory.unverifiedCompanies()
         .then(function (response) {
-            $scope.uncompanies = response.data;
+           $scope.uncompanies = response.data.data;
         })
         .catch(function (response) {
 

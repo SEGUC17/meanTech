@@ -19,7 +19,7 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
-        FAQView: () => {
+        viewFAQs: () => {
             return $http.get(apiUrl + 'FAQView');
         },
 

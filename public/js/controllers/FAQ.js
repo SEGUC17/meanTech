@@ -1,10 +1,15 @@
 const FAQController = function ($scope, $location, factory) {
 
-    $scope.viewFAQs = function viewFAQs() {
-        factory.viewFAQs().then(function (data) {
-            $scope.faqs = data.data
+     factory.viewFAQs()
+        .then(function (response) {
+           $scope.faqs = response.data.data;
         })
-    }; 
+        .catch(function (response) {
+
+        });
+
+
+
 };
 
 FAQController.$inject = ['$scope', '$location', 'factory'];

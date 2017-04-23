@@ -1,129 +1,66 @@
-<div ng-submit="viewFAQs()">
+<div>
 
     <head>
         <style>
-            /*
- * Base structure
- */
-            /* Move down content because we have a fixed navbar that is 50px tall */
-
             body {
-                padding-top: 50px;
-            }
-            /*
- * Global add-ons
- */
-
-            .sub-header {
-                padding-bottom: 10px;
-                border-bottom: 1px solid #eee;
-            }
-            /*
- * Top navigation
- * Hide default border to remove 1px line.
- */
-
-            .navbar-fixed-top {
-                border: 0;
-            }
-            /*
- * Sidebar
- */
-            /* Hide for mobile, show later */
-
-            .sidebar {
-                display: none;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                background-color: #eee;
             }
 
-            @media (min-width: 768px) {
-                .sidebar {
-                    position: fixed;
-                    top: 51px;
-                    bottom: 0;
-                    left: 0;
-                    z-index: 1000;
-                    display: block;
-                    padding: 20px;
-                    overflow-x: hidden;
-                    overflow-y: auto;
-                    /* Scrollable contents if viewport is shorter than content. */
-                    background-color: #f5f5f5;
-                    border-right: 1px solid #eee;
-                }
-            }
-            /* Sidebar navigation */
-
-            .nav-sidebar {
-                margin-right: -21px;
-                /* 20px padding + 1px border */
-                margin-bottom: 20px;
-                margin-left: -20px;
+            .form-signin {
+                max-width: 330px;
+                padding: 15px;
+                margin: 0 auto;
             }
 
-            .nav-sidebar>li>a {
-                padding-right: 20px;
-                padding-left: 20px;
+            .form-signin .form-signin-heading,
+            .form-signin .checkbox {
+                margin-bottom: 10px;
             }
 
-            .nav-sidebar>.active>a,
-            .nav-sidebar>.active>a:hover,
-            .nav-sidebar>.active>a:focus {
-                color: #fff;
-                background-color: #428bca;
-            }
-            /*
- * Main content
- */
-
-            .main {
-                padding: 20px;
+            .form-signin .checkbox {
+                font-weight: normal;
             }
 
-            @media (min-width: 768px) {
-                .main {
-                    padding-right: 40px;
-                    padding-left: 40px;
-                }
+            .form-signin .form-control {
+                position: relative;
+                height: auto;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
             }
 
-            .main .page-header {
-                margin-top: 0;
-            }
-            /*
- * Placeholder dashboard ideas
- */
-
-            .placeholders {
-                margin-bottom: 30px;
-                text-align: center;
+            .form-signin .form-control:focus {
+                z-index: 2;
             }
 
-            .placeholders h4 {
-                margin-bottom: 0;
+            .form-signin input[type="email"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
             }
 
-            .placeholder {
-                margin-bottom: 20px;
-            }
-
-            .placeholder img {
-                display: inline-block;
-                border-radius: 50%;
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
             }
         </style>
-         
     </head>
-    <div class="row placeholders">
-        <h1 class="page-header">View FAQs</h1>
-        <ul class="list-group company-list">
-            <div ng-repeat="faq in faqs">
-                <li class="list-group-item list-group-item-info">
-                    Question Text: {{faq.questionText}} 
-                    Answer Text: {{faq.answerText}}
-                    Client Usrename: {{faq.clientUsername}}
-                </li>
-            </div>
-        </ul> 
+
+    <div class="container">
+        <h1 class="page-header">FAQs</h1>
+
+        <div class="row placeholders" ng-submit="viewFAQs()">
+            <ul class="list-group faq-list">
+                <div ng-repeat="faq in faqs">
+                    <li class="list-group-item list-group-item-info">
+                        Username: {{faq.clientUsername}} Question: {{faq.questionText}} Answer: {{faq.answerText}}
+                    </li>
+                </div>
+            </ul>
+        </div>
     </div>
-</div>
-<!--questionText answerText clientUsername-->
