@@ -73,6 +73,7 @@ App.factory('factory', ($http, $location) => {
 
 
         },
+
         viewRatings: function (companyID) {
             console.log("it gets to the factory of view ratings");
             return $http.post(apiURL.concat('viewRatings'), companyID, {
@@ -98,6 +99,20 @@ App.factory('factory', ($http, $location) => {
         deleteEvent: function (info) {
             console.log("inside the factory of  deleteEvent ");
             return $http.post(apiURL.concat('deleteEvent'), info, {
+                headers: {
+                    'x-access-token': token
+                }
+            });
+        },
+
+        getAllEvents: function () {
+            return $http.get('http://localhost:8080/allEvents');
+        },
+        getAllServices: function () {
+            return $http.get('http://localhost:8080/allServices');
+        },
+        addFavCompanies: function (compID) {
+            return $http.post('http://locahost:8080/favCompanies', compID, {
                 headers: {
                     'x-access-token': token
                 }

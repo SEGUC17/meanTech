@@ -63,4 +63,16 @@ App.config(['$routeProvider', function ($routeProvider) {
             controller: 'stripeController'
 
         });
-}]);
+        .when('/allEvents', {
+            templateUrl: 'views/allEvents.html',
+            controller: 'eventController'
+        })
+        .when('/allServices', {
+            templateUrl: 'views/allServices.html',
+            controller: 'serviceController'
+        })
+        .when('/favCompanies', {
+            templateUrl: 'views/favComp.html',
+            controller: 'clientController'
+        })
+});

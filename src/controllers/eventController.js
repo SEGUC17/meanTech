@@ -41,12 +41,15 @@ let eventController = {
     },
 
     getAllEvents: function (req, res) {
-        Event.find({}, '-_id -companyID', function (err, events) {
-            if (err)
-                res.send(err.message)
+        Event.find({}, function (err, events) {
+            if (err){
+                res.status(500).json({
+                    message: "No events available"
+                })
+            }
             else
-                res.send({
-                    events
+                res.json({
+                    data: events
                 });
         })
     },
