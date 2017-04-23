@@ -13,7 +13,7 @@ App.factory('factory', function($http, $location) {
         createEvent: function(info) {
             return $http.post('http://localhost:8080/event', info, {
                 headers: {
-                    'x-access-token': token
+                    'x-access-token': (token)
                 }
             });
 

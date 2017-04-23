@@ -1,4 +1,4 @@
-const eventController = function ($scope, $location, factory) {
+const createEventController = function ($scope, $location, factory) {
   $scope.eventForm = {};
 
     $scope.createEvent = function createEvent() {
@@ -22,5 +22,5 @@ const eventController = function ($scope, $location, factory) {
 
 }
 
-eventController.$inject = ['$scope', '$location', 'factory'];
-App.controller('eventController', eventController);
+createEventController.$inject = ['$scope', '$location', 'factory'];
+App.controller('createEventController', createEventController);

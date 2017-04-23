@@ -1,3 +1,38 @@
 <div>
+
+  <form name="cardInfo"  >
+
+      <div >
+          <label for="InputTitle">Card Number</label>
+          <input name = "cardnumber" type="text"  id="InputTitle" placeholder="" ng-model="payment.card.number" required="required">
+          <span ng-show="cardInfo.cardnumber.$error.required">*</span>
+
+      </div>
+      <div >
+          <label for="InputTitle">cvc</label>
+          <input name = "cvc" type="text"  id="InputTitle" placeholder="" ng-model="payment.card.cvc" required="required">
+          <span ng-show="cardInfo.cvc.$error.required">*</span>
+
+      </div>
+      <div >
+          <label for="InputTitle">Expiry Month</label>
+          <input name = "expirymonth" type="number"  id="InputTitle" placeholder="" ng-model="payment.card.exp_month" required="required">
+          <span ng-show="cardInfo.expirymonth.$error.required">*</span>
+
+      </div>
+      <div >
+          <label for="InputTitle">Expiry Year</label>
+          <input name = "expiryyear" type="number"  id="InputTitle" placeholder="" ng-model="payment.card.exp_year" required="required">
+          <span ng-show="cardInfo.expiryyear.$error.required">*</span>
+
+      </div>
+
+
   <button ng-click="charge()">Purchase</button>
+
+
+  </form>
+
+
+
 </div>

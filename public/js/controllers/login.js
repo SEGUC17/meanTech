@@ -9,7 +9,7 @@ const loginController = function ($scope, $location, factory) {
 
 
          factory.setToken(data.token);
-           console.log(factory.getToken());
+        
          }).error(function(error) {
               alert(error.message);
             });
