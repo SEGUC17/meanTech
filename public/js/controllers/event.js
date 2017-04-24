@@ -2,6 +2,7 @@ const eventController = function ($scope, $location, factory) {
   $scope.eventForm = {};
   $scope.updateForm = {};
 
+
   factory.getCompanyEvents().success(function (data) {
     console.log("it gets to the controller");
     console.log(data);

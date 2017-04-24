@@ -20,7 +20,14 @@ App.factory('factory', function ($http, $location) {
                 },
             });
         },
+        updatePromotion: function (info) {
+            return $http.post('http://localhost:8080/updatePromotion1', info, {
+                headers: {
+                    'x-access-token': token
+                }
+            });
 
+        },
         //TODO adminUpdatePassword
 
         clientResetPassword: (data) => {

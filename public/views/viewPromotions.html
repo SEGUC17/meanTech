@@ -1,23 +1,10 @@
- <!--Latest compiled and minified CSS-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-  crossorigin="anonymous">
+<div ng-show="showTable" class="alert alert-info">
 
- <!--Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-  crossorigin="anonymous">
-
- <!--Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-  crossorigin="anonymous"></script>
-
-<div class="alert alert-info">
-  <p>Sort Type: {{ sortType }}</p>
-  <p>Sort Reverse: {{ sortReverse }}</p>
   <p>Search Query: {{ searchFish }}</p>
 </div>
 
 <form>
-  <div class="form-group">
+  <div ng-show="showTable" class="form-group">
     <div class="input-group">
       <div class="input-group-addon"><i class="fa fa-search"></i></div>
       <input type="text" class="form-control" placeholder="Search your Promotions" ng-model="searchFish">
@@ -25,31 +12,14 @@
   </div>
 </form>
 
-<table class="table table-bordered table-striped">
+<table ng-show="showTable" class="table table-bordered table-striped">
 
   <thead>
     <tr>
-      <td>
-        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            content 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-        <a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
-          expiry
-            <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
-      <td>
-        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Picture URL 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-      </td>
+
+      <td>content</td>
+      <td>expiry</td>
+      <td>Picture URL</td>
       <td>Update</td>
       <td> Delete</td>
 
@@ -59,13 +29,50 @@
   <tbody>
     <tr ng-repeat="promotion in promotionslist | orderBy:sortType:sortReverse | filter:searchFish">
       <td>{{promotion.content}}</td>
-      <td>{{promotion.expiry}}</td>
+      <td>{{promotion.expiry | date : longDate}}</td>
       <td>{{promotion.pictureURL}}</td>
-      <td><button class="btn btn-danger" ng-click="updatePromotion(promotion._id)">Update</button></td>
+      <td><button class="btn btn-danger" ng-click="selectPromotionToBeUpdated(promotion)">Update</button></td>
       <td><button class="btn btn-warning" ng-click="deletePromotion(promotion._id)">Delete</button></td>
     </tr>
   </tbody>
 
 </table>
+<div ng-hide="showTable">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <h1 class="navbar-brand">Update Promotion</h1>
+      </div>
+    </div>
+  </nav>
+
+  <div class="col-xs-12 col-md-4">
+    <div class="form-container">
+      <form name="promotionupdate" class="form" ng-submit="updatePromotion()">
+        <div class="form-group">
+          <label for="InputTitle">content</label>
+          <input name="name" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedPromotion.content" required="required">
+          <span ng-show="promotionupdate.content.$error.required">*</span>
+        </div>
+        <div class="form-group">
+          <label for="InputLink">expiry</label>
+          <input name="expiry" type="date" class="form-control" id="InputLink" placeholder="" ng-model="selectedPromotion.expiry" required="required">
+          <span ng-show="promotionupdate.expiry.$error.required">*</span>
+
+        </div>
+        <div class="form-group">
+          <label for="InputTitle">pictureURL</label>
+          <input name="pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedPromotion.pictureURL"
+            required="required">
+          <span ng-show="promotionupdate.pictureURL.$error.required">*</span>
+
+        </div>
+
+        <button type="submit" class="btn btn-default"> Update Promotion!</button>
+      </form>
+    </div>
+  </div>
+
+</div>
 
 </div>
