@@ -8,7 +8,7 @@ const postReviewController = function ($scope, $location, factory) {
         factory.postReview($scope.reviewInfo)
             .success(function (response) {
                 alert('Review successfully posted.');
-                $location.path('/CProfile')
+                $location.path('/CProfile');
             }).error(function (error) {
                 alert(error.message);
             });

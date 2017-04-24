@@ -5,8 +5,7 @@ const askQuestionController = function ($scope, $location, factory) {
             .success(function (response) {
                 alert('Question successfully posted.');
             }).error(function (response) {
-              
-                alert("Question Posting Unsuccessful");
+                alert('Question posting unsuccessful');
             });
     };
 };

@@ -39,8 +39,6 @@ router.get('/company/profile', clientController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
 
-router.post('/faqa', FAQController.answerFAQ);
-
 router.get('/allEvents', eventController.getAllEvents);
 
 router.get('/allServices', serviceController.getAllServices);
@@ -78,7 +76,7 @@ router.use(function (req, res, next) {
             if (err) {
                 return res.status(401).json({
                     success: false,
-                    message: 'Failed to authenticate token.'
+                    message: 'Failed to authenticate token.',
                 });
             } else {
                 req.decoded = decoded;
@@ -88,7 +86,7 @@ router.use(function (req, res, next) {
     } else {
         return res.status(401).send({
             success: false,
-            message: 'No token provided.'
+            message: 'No token provided.',
         });
     }
 });
@@ -100,13 +98,13 @@ router.post('/faq', function (req, res) {
             FAQController.askFAQ(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized'
+                error: 'Unauthorized',
             });
         }
     } catch (err) {
         res.status(500).json({
             success: false,
-            message: 'Internal server error.'
+            message: 'Internal server error.',
         });
     }
 });
