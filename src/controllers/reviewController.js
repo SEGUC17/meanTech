@@ -45,7 +45,7 @@ let reviewController = {
     viewRatings: function (req, res) {
 
         Review.find({
-            companyID: req.body.companyID
+            companyID: req.body._id
         }, function (err, review) {
 
             if (err)

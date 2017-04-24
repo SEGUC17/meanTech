@@ -8,14 +8,21 @@ const visitCompanyPageController = function ($scope, $location, factory) {
         $scope.showReview = false;
     }
     else $scope.showReview = true;
-
+// function that redirects clients to a page to post reviews on the company
     $scope.reviewPage = function reviewPage(companyInfo) {
       
                 factory.setCompanyReview(companyInfo);
-                $location.path('/ViewReviews')
+                $location.path('/pr')
 
     }
+// function that redirects anyone to view the reviews on the company
+     $scope.viewReviews = function viewReviews(companyInfo) {
+      
+                factory.setCompanyReview(companyInfo);
+                $location.path('/viewRatings')
 
+    }
+// function that retrieves the information for the company profile
     factory.CompanyProfile(comp)
         .then(function (response) {
             const company = response.data.data;

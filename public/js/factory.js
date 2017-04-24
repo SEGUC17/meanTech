@@ -104,13 +104,10 @@ App.factory('factory', function ($http, $location) {
 
         getCompanyEvents: function () {
             return $http.get(apiUrl.concat('getCompanyEvents'), {
-
                 headers: {
                     'x-access-token': token
                 }
             });
-
-
         },
 
         viewRatings: function (companyID) {
@@ -119,8 +116,6 @@ App.factory('factory', function ($http, $location) {
                     'x-access-token': token
                 }
             });
-
-
         },
 
         updateEvent: function (info) {
@@ -129,7 +124,6 @@ App.factory('factory', function ($http, $location) {
                     'x-access-token': token
                 }
             })
-
         },
 
         deleteEvent: function (info) {
@@ -261,15 +255,6 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
-
-
-        askFAQ: function (question) {
-            return $http.post(apiUrl.concat('faq'), question, {
-                headers: {
-                    'x-access-token': token,
-                },
-            });
-        },
         myReviews: function () {
             return $http.get(apiUrl.concat('viewMyReviews'), {
                 headers: {
