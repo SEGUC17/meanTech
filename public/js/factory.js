@@ -183,8 +183,8 @@ App.factory('factory', function ($http, $location) {
         getAllServices: function () {
             return $http.get(apiUrl.concat('allServices'));
         },
-        addFavCompanies: function (compID) {
-            return $http.post(apiUrl.concat('favCompanies'), compID, {
+        addToFavCompanies: function (compID) {
+            return $http.post(apiUrl.concat('company/profile'), compID, {
                 headers: {
                     'x-access-token': token
                 }

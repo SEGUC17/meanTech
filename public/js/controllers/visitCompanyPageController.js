@@ -25,6 +25,18 @@ const visitCompanyPageController = function ($scope, $location, factory) {
             alert(response.data.error);
         });
 
+        $scope.addToFavCompanies = function addToFavCompanies() {
+
+        var compID = comp._id;
+
+        factory.addToFavCompanies(compID)
+            .success(function(data) {
+                alert("Company added to favourites");
+            }).error(function(error) {
+                alert("Cannot add company to favourites");
+            });
+        };
+
 }
 
 visitCompanyPageController.$inject = ['$scope', '$location', 'factory'];
