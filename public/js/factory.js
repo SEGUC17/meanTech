@@ -10,7 +10,7 @@ App.factory('factory', function ($http, $location) {
         },
 
         companyLogin: (user) => {
-            return $http.post(apiUrl'getAllPromotions'));
+            return $http.post(apiUrl.concat('companyLogin'), user);
         },
 
         companyUpdatePassword: (newPassword) => {

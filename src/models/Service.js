@@ -4,7 +4,6 @@ var serviceSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true
     },
     availableBookings: {
         type: String,

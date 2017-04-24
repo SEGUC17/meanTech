@@ -91,10 +91,6 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/companyServices.html',
             controller: 'serviceController'
         })
-        .when('/updateService', {
-            templateUrl: 'views/updateService.html',
-            controller: 'serviceController'
-        })
         .when('/answerQuestion', {
             templateUrl: 'views/answerQuestion.html',
             controller: 'questionController',
