@@ -265,5 +265,19 @@ App.factory('factory', function ($http, $location) {
         },
 
 
+        viewProfile: function(){
+             return $http.get('http://localhost:8080/viewProfile',{
+             headers: {
+                 'x-access-token': token
+             },
+             })
+        },
+         clientUpdateProfile: function(data)  {
+            return $http.post('http://localhost:8080/updateProfile', data, {
+                headers: {
+                    'x-access-token': token
+                },
+            });
+        },
     };
 });

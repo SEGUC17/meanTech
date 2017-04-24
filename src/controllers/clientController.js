@@ -183,15 +183,22 @@ const clientController = {
             if (err) {
                 res.status(500).json({
                     success: false,
-                    msg: 'update fail'
-
+                    msg: 'Internal server error'
                 })
             } else {
-                res.json({
-                    success: true,
-                    msg: 'update success'
-                });
+                if (client) {
+                    res.json({
+                        success: true,
+                        msg: 'Update successful'
+                    });
+                } else {
+                    res.status(404).json({
+                        success: false,
+                        msg: 'Client not found'
+                    });
+                }
             }
+
         });
     },
 
