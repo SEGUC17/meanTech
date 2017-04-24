@@ -61,7 +61,6 @@ App.config(['$routeProvider', function ($routeProvider) {
         .when('/stripeTest', {
             templateUrl: 'views/stripeTest.html',
             controller: 'stripeController'
-
         })
         .when('/allEvents', {
             templateUrl: 'views/allEvents.html',
