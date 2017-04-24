@@ -1,0 +1,78 @@
+<div ng-show="showTable" class="alert alert-info">
+
+  <p>Search Query: {{ searchFish }}</p>
+</div>
+
+<form>
+  <div ng-show="showTable" class="form-group">
+    <div class="input-group">
+      <div class="input-group-addon"><i class="fa fa-search"></i></div>
+      <input type="text" class="form-control" placeholder="Search your Promotions" ng-model="searchFish">
+    </div>
+  </div>
+</form>
+
+<table ng-show="showTable" class="table table-bordered table-striped">
+
+  <thead>
+    <tr>
+
+      <td>content</td>
+      <td>expiry</td>
+      <td>Picture URL</td>
+      <td>Update</td>
+      <td> Delete</td>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="promotion in promotionslist | orderBy:sortType:sortReverse | filter:searchFish">
+      <td>{{promotion.content}}</td>
+      <td>{{promotion.expiry | date : longDate}}</td>
+      <td>{{promotion.pictureURL}}</td>
+      <td><button class="btn btn-warning" ng-click="selectPromotionToBeUpdated(promotion)">Update</button></td>
+      <td><button class="btn btn-danger" ng-click="deletePromotion(promotion._id)">Delete</button></td>
+    </tr>
+  </tbody>
+
+</table>
+<div ng-hide="showTable">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <h1 class="navbar-brand">Update Promotion</h1>
+      </div>
+    </div>
+  </nav>
+
+  <div class="col-xs-12 col-md-4">
+    <div class="form-container">
+      <form name="promotionupdate" class="form" ng-submit="updatePromotion()">
+        <div class="form-group">
+          <label for="InputTitle">content</label>
+          <input name="name" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedPromotion.content" required="required">
+          <span ng-show="promotionupdate.content.$error.required">*</span>
+        </div>
+        <div class="form-group">
+          <label for="InputLink">expiry</label>
+          <input name="expiry" type="date" class="form-control" id="InputLink" placeholder="" ng-model="selectedPromotion.expiry" required="required">
+          <span ng-show="promotionupdate.expiry.$error.required">*</span>
+
+        </div>
+        <div class="form-group">
+          <label for="InputTitle">pictureURL</label>
+          <input name="pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedPromotion.pictureURL"
+            required="required">
+          <span ng-show="promotionupdate.pictureURL.$error.required">*</span>
+
+        </div>
+
+        <button type="submit" class="btn btn-default"> Update Promotion!</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+</div>

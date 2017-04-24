@@ -1,8 +1,8 @@
-let promotion = require('../models/Promotion');
+const Promotion = require('../models/Promotion');
 
 module.exports = {
     getAllPromotions: function (req, res) {
-        promotion.find(function (err, promotions) {
+        Promotion.find(function (err, promotions) {
             if (err) {
                 res.status(500).json({
                     success: false,
@@ -11,13 +11,14 @@ module.exports = {
             } else {
                 res.json({
                     success: true,
-                    data: promotions
+                    data: promotions,
                 });
             }
         });
     },
 
     postPromotion: function (req, res) {
+        
         let promotion = new Promotion({
 
             content: req.body.content,
@@ -104,19 +105,20 @@ module.exports = {
 
         var x;
         Promotion.findOne({
-            _id: req.body._id
+            _id: req.body.id
         }, function (err, pro) {
             if (err) {
                 res.status(500).json({
                     error: err.message
                 });
-            } else {
+            } 
+            else {
                 x = pro.companyID;
 
                 if (x == req.decoded.id) {
 
                     Promotion.remove({
-                        _id: req.body._id
+                        _id: req.body.id
                     }, function (err, result) {
                         if (err) {
                             res.status(500).json({

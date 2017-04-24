@@ -1,4 +1,3 @@
-
 var mongoose = require('mongoose');
 
 var clientSchema = mongoose.Schema({
@@ -13,7 +12,7 @@ var clientSchema = mongoose.Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     password: {
         type: String,
@@ -25,17 +24,26 @@ var clientSchema = mongoose.Schema({
         required: true,
     },
     address: String,
-    gender: Boolean,
+    gender: {
+        type: String,
+        enum: ['Male', 'Female'],
+    },
     age: Number,
     socialMediaURL: String,
     phoneNumbers: [String],
     previousEvents: [String],
     securityQuestion: String,
     securityAnswer: String,
-    wishList: [{ type: mongoose.Schema.ObjectId, ref: 'Service' }],
-    favCompanies: [{ type: mongoose.Schema.ObjectId, ref: 'Company' }]
+    wishList: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Service'
+    }],
+    favCompanies: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Company'
+    }]
 
-})
+});
 
 var Client = mongoose.model("client", clientSchema);
 

@@ -1,0 +1,63 @@
+<head>
+    <title>Post Review</title>
+</head>
+
+<style>
+
+    input[type=password],
+    input[type=email],
+    input[type=URL],
+    input[type=date] {
+        width: 100%;
+        padding: 8px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    input[type=text] {
+        height: 150px;
+        width: 50%;
+        padding: 8px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    select {
+        width: 4%;
+        height: 1%;
+    }
+
+    button {
+        background-color: cornflowerblue;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+</style>
+
+<div>
+    <h1>Post question answer</h1>
+
+    <form ng-submit="answerQuestion()" style="border:1px solid #ccc">
+        <div class="container">
+            <label><b>Answer</b></label>
+            <br>
+            <textarea name="answer" placeholder="Write your answer here..." ng-model="questionAnswerForm.answerText" rows="10" cols="80"
+                required>
+            </textarea>
+            <br>
+            <button type="submit">Post Answer</button>
+        </div>
+    </form>
+</div>

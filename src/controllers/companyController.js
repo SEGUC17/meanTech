@@ -5,7 +5,6 @@ let companyController = {
 
 
     companySubscription: function (req, res) {
-
         let company = new Company({
             name: req.body.name,
             username: req.body.username,
@@ -20,7 +19,7 @@ let companyController = {
             mobileNumbers: req.body.mobileNumbers,
             branches: req.body.branches,
             socialMediaURL: req.body.socialMediaURL,
-            verified: req.body.verified,
+            verified: false,
             paymentMethod: req.body.paymentMethod,
             securityQuestion: req.body.securityQuestion,
             securityAnswer: req.body.securityAnswer
@@ -28,20 +27,15 @@ let companyController = {
 
         company.save(function (err, company) {
             if (err) {
-
                 res.status(500).json({
                     success: false,
-                    message: 'If you have provided all required information please choose another username!'
+                    message: "Please choose another Username"
                 });
-
             } else {
                 return res.json({
                     success: true,
                     message: 'Successfully Registered!'
                 });
-
-
-
             }
         })
     },
@@ -66,7 +60,6 @@ let companyController = {
     },
 
     getCompanies: function (req, res, next) {
-
         var query = Company.find({}).select('name username');
 
 
@@ -84,8 +77,8 @@ let companyController = {
         };
         Company.findOneAndRemove(query, callback);
     },
-    updatePassword: function (req, res) {
 
+    updatePassword: function (req, res) {
         Company.findOneAndUpdate({
             _id: req.decoded.id
         }, {
@@ -108,31 +101,57 @@ let companyController = {
         });
     },
 
-    resetPassword: function (req, res) {
-        if (req.decoded.securityAnswer === req.answer) {
-            Company.findOneAndUpdate({
-                _id: req.decoded.id
-            }, {
-                $set: {
-                    "password": req.newPassword
-                }
-            }, function (err, client) {
-                if (err) {
-                    res.status(500).json({
+        resetPassword: function (req, res) {
+        Company.findOne({
+            username: req.body.username
+        }, function (err, company) {
+            if (err) res.status(500).json({
+                success: false,
+                message: 'Error'
+            });
+
+            if (!company) {
+                res.status(404).json({
+                    success: false,
+                    message: 'Username not found',
+                });
+            } else if (company) {
+                if (company.securityAnswer !== req.body.securityAnswer) {
+
+                    res.status(401).json({
                         success: false,
-                        msg: 'You are not allowed to change the password, update failed',
+                        message: 'Authentication failed. Wrong Security Answer.',
                     });
                 } else {
-                    res.json({
-                        success: true,
-                        msg: 'The password has been updated successfully'
-                    });
-                    company.markModified('Password reset ok');
-                }
-            });
-        }
+                    Company.findOneAndUpdate({
+                        username: req.body.username,
+                    }, {
+                            $set: {
+                                'password': req.body.newPassword,
+                            },
+                        }, function (err, company) {
+                            if (err) {
+                                res.status(500).json({
+                                    success: false,
+                                    msg: 'You are not allowed to change the password, update failed',
+                                });
+                            } else {
+                                res.json({
+                                    success: true,
+                                    msg: 'The password has been updated successfully'
+                                });
+                                company.markModified('Password reset ok');
+                            }
+                        });
+
+                };
+
+            }
+
+        });
 
     },
+
 
     viewReviews: function (req, res) {
         Review.find({
@@ -147,11 +166,55 @@ let companyController = {
                 res.json({
                     success: true,
                     message: 'Successful',
-                    reviews
+                    data: reviews
                 });
             }
         })
-    }
+    },
+
+    viewMyProfile: function (req, res){
+        Company.find({ username: req.decoded.username }, function (err, company) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    message: 'Failed to find company.'
+                });
+            }
+            else {
+                if (company ){
+                    res.json({
+                            success: true,
+                            message: 'viewing company',
+                            company,
+                        });
+                }
+                else {
+                    res.json({
+                              success: false,
+                              message: 'no existing company',
+                              company,
+                        
+                          });
+                }
+            }
+        });
+    },
+      getCompanyList: function (req, res) {
+   
+        Company.find({},function(err,companies){
+            if(err)
+                res.status(500).json({
+                    success: false,
+                    message: 'No companies to view',
+                    data:null
+                });
+                else    
+                    res.json({
+                        data: companies
+                    });
+        });
+
+    },
 }
 
 module.exports = companyController;

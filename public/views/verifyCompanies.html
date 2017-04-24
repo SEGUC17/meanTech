@@ -1,0 +1,16 @@
+<div>
+    <form class="form-verify" ng-submit="verifyCompanies()">
+        <h1 class="form-verify-header">Verify Company</h1>
+        <!-- Username -->
+        <label>Username:</label>
+        <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="verifyForm.username"
+            required>
+        <br>
+        <!-- verified -->
+        <label>verified:</label>
+        <input class="form-control" type="text" name="verified" placeholder="Please enter true or false." ng-model="verifyForm.verified"
+            required>
+        <br>
+        <button class="btn btn-primary" type="submit">Verify</button>
+    </form>
+</div>
