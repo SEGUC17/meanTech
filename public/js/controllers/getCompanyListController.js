@@ -1,4 +1,5 @@
 const getCompanyListController = function ($scope, $location, factory) {
+$scope.showTable=true;
 // visits the profile of the company selected from the list
 $scope.visitProfile = function visitProfile(company){
     factory.CompanyProfile()
