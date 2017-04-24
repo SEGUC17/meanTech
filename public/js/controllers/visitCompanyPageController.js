@@ -1,6 +1,5 @@
 //Company Profile for visitors/Clients
 const visitCompanyPageController = function ($scope, $location, factory) {
-   
     const comp = factory.getSelectedCompany();
     $scope.showReview = false;
   
@@ -10,10 +9,8 @@ const visitCompanyPageController = function ($scope, $location, factory) {
     else $scope.showReview = true;
 
     $scope.reviewPage = function reviewPage(companyInfo) {
-      
                 factory.setCompanyReview(companyInfo);
-                $location.path('/ViewReviews')
-
+                $location.path('/pr');
     }
 
     factory.CompanyProfile(comp)
@@ -24,7 +21,6 @@ const visitCompanyPageController = function ($scope, $location, factory) {
         .catch(function (response) {
             alert(response.data.error);
         });
-
 }
 
 visitCompanyPageController.$inject = ['$scope', '$location', 'factory'];

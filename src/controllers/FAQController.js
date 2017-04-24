@@ -21,7 +21,7 @@ let FAQController = {
                 return res.json({
                     success: true,
                     message: 'Answer updated successfully.'
-                })
+                });
             }
         });
     },
@@ -42,7 +42,7 @@ let FAQController = {
                 res.json({
                     success: true,
                     message: 'question posted',
-                    newQ
+                    newQ,
                 });
             }
         });

@@ -213,15 +213,6 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
-
-
-        askFAQ: function (question) {
-            return $http.post('http://localhost:8080/faq', question, {
-                headers: {
-                    'x-access-token': token,
-                },
-            });
-        },
         myReviews: function () {
             return $http.get('http://localhost:8080/viewMyReviews', {
                 headers: {
