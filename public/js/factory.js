@@ -6,6 +6,7 @@ App.factory('factory', function ($http, $location) {
     let selectedPurchase = null;
     let username = null;
     let isClientUser = null;
+    let questionId = null;
 
     return {
         setClientUser: function () {
@@ -314,7 +315,60 @@ App.factory('factory', function ($http, $location) {
         },
         getSelectedPurchase: function () {
             return selectedPurchase;
-        }
+        },
+
+
+        adminRegister: function (info) {
+            return $http.post(apiUrl + 'adminRegister', info);
+        },
+
+        adminLogin: (user) => {
+            return $http.post(apiUrl + 'adminLogin', user);
+        },
+
+        deleteCompany: (user) => {
+            return $http.post(apiUrl + 'deleteCompany', user, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+
+        viewFAQs: () => {
+            return $http.get(apiUrl + 'FAQView');
+        },
+
+        unverifiedCompanies: () => {
+
+            return $http.get(apiUrl + 'unverifiedCompanies', {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+
+        verifyCompanies: (user) => {
+            return $http.post(apiUrl + 'verifyCompanies', user, {
+                headers: {
+                    'x-access-token': token,
+
+                },
+            });
+        },
+        viewCompanies: () => {
+            return $http.get(apiUrl + 'viewCompanies', {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+
+        setQuestionId: (newId) => {
+            questionId = newId;
+        },
+        getQuestionId: () => {
+            return questionId;
+        },
 
 
     };

@@ -1,0 +1,13 @@
+<div>
+    <h1 class="page-header">Unverified Companies</h1>
+    <div class="row placeholders" ng-submit="unverifiedCompanies()">
+        <ul class="list-group company-list">
+            <div ng-repeat="uncompany in uncompanies">
+                <li class="list-group-item list-group-item-info">
+                    Username: {{uncompany.username}} Verified: {{uncompany.verified}}
+                </li>
+            </div>
+        </ul>
+        <button class="btn btn-primary" type="submit" ng-click="goVerify()">Next</button>
+    </div>
+</div>
