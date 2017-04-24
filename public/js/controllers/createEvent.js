@@ -1,5 +1,5 @@
 const createEventController = function($scope, $location, factory) {
-    if (!factory.getToken()) {
+    if (!factory.getToken() || !factory.isBusinessUser()) {
         $location.path('/');
     } else {
         $scope.eventForm = {};

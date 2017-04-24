@@ -1,87 +1,85 @@
 const eventController = function ($scope, $location, factory) {
-  $scope.eventForm = {};
-  $scope.updateForm = {};
+  if (!factory.getToken() || !factory.isBusinessUser()) {
+    $location.path('/');
+  } else {
 
-  factory.getCompanyEvents().success(function (data) {
-    console.log("it gets to the controller");
-    console.log(data);
+    $scope.eventForm = {};
+    $scope.updateForm = {};
 
-    $scope.sortType = 'name'; // set the default sort type
-    $scope.sortReverse = false; // set the default sort order
-    $scope.searchFish = ''; // set the default search/filter term
-    $scope.events = data.data;
-  });
+    factory.getCompanyEvents().success(function (data) {
+      console.log("it gets to the controller");
+      console.log(data);
 
-  $scope.updateEvent = function updateEvent(id) {
+      $scope.sortType = 'name'; // set the default sort type
+      $scope.sortReverse = false; // set the default sort order
+      $scope.searchFish = ''; // set the default search/filter term
+      $scope.events = data.data;
+    });
 
-    console.log(id);
+    $scope.updateEvent = function updateEvent(id) {
 
-    $scope.id = {
-      id
-    };
+      console.log(id);
 
-    // $location.path('http://localhost:8080/updateEvents');
+      $scope.id = {
+        id
+      };
 
-
-    factory.updateEvent($scope.eventForm, $scope.id)
-      .success(function (data) {
-        console.log("it gets to the CTRL of view ratings");
-
-        alert("Event Successfully Updated!");
-
-      }).error(function (error) {
-
-        alert(error.message);
-
-      });
+      // $location.path('http://localhost:8080/updateEvents');
 
 
+      factory.updateEvent($scope.eventForm, $scope.id)
+        .success(function (data) {
+          console.log("it gets to the CTRL of view ratings");
 
-  };
+          alert("Event Successfully Updated!");
 
+        }).error(function (error) {
 
-  $scope.deleteEvent = function deleteEvent(id) {
+          alert(error.message);
 
-    console.log(id);
-    $scope.id = {
-      id
-    };
-    // $location.path('http://localhost:8080/updateEvent');
-
-
-    factory.deleteEvent($scope.id)
-      .success(function (data) {
-        console.log("it gets to the CTRL of delete event");
-
-        alert("Event Successfully delted!");
-
-        // $route.reload(true);
-        factory.getCompanyEvents().success(function (data) {
-          // console.log("it gets to the controller");
-          // console.log(data);
-
-          // $scope.sortType = 'name'; // set the default sort type
-          // $scope.sortReverse = false; // set the default sort order
-          // $scope.searchFish = ''; // set the default search/filter term
-          $scope.events = data.data;
         });
 
-      }).error(function (error) {
-
-        alert(error);
-
-      });
 
 
-
-  };
-
+    };
 
 
+    $scope.deleteEvent = function deleteEvent(id) {
+
+      console.log(id);
+      $scope.id = {
+        id
+      };
+      // $location.path('http://localhost:8080/updateEvent');
+
+
+      factory.deleteEvent($scope.id)
+        .success(function (data) {
+          console.log("it gets to the CTRL of delete event");
+
+          alert("Event Successfully delted!");
+
+          // $route.reload(true);
+          factory.getCompanyEvents().success(function (data) {
+            // console.log("it gets to the controller");
+            // console.log(data);
+
+            // $scope.sortType = 'name'; // set the default sort type
+            // $scope.sortReverse = false; // set the default sort order
+            // $scope.searchFish = ''; // set the default search/filter term
+            $scope.events = data.data;
+          });
+
+        }).error(function (error) {
+
+          alert(error);
+
+        });
 
 
 
-
+    };
+  }
 };
 
 

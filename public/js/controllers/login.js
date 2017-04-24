@@ -17,6 +17,7 @@ const loginController = function ($scope, $location, factory) {
             .success(function (data) {
                 factory.setToken(data.token);
                 factory.setUsername($scope.companyForm.username);
+                factory.setBusinessUser();
                 $location.path('/companyProfile');
             }).error(function (error) {
                 alert(error.message);
@@ -28,6 +29,7 @@ const loginController = function ($scope, $location, factory) {
             .success(function (data) {
                 factory.setToken(data.token);
                 factory.setUsername($scope.clientForm.username);
+                factory.setClientUser();
                 $location.path('/clientViewProfile');
             }).error(function (error) {
                 alert(error.message);

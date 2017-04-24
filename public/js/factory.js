@@ -5,14 +5,27 @@ App.factory('factory', function ($http, $location) {
     let token = null;
     let selectedPurchase = null;
     let username = null;
+    let isClientUser = null;
 
     return {
-        setUsername: function(newUsername) {
-          username = newUsername;
+        setClientUser: function () {
+            isClientUser = true;
         },
 
-        getUsername: function() {
-          return username;
+        setBusinessUser: function () {
+            isClientUser = false;
+        },
+
+        isBusinessUser: function () {
+            return !isClientUser;
+        },
+
+        setUsername: function (newUsername) {
+            username = newUsername;
+        },
+
+        getUsername: function () {
+            return username;
         },
 
         clientLogin: (user) => {
@@ -186,8 +199,8 @@ App.factory('factory', function ($http, $location) {
             return token;
         },
 
-        clearToken: function() {
-          token = null;
+        clearToken: function () {
+            token = null;
         },
 
         postPromotion: function (info) {
