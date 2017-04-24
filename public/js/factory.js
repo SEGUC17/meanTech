@@ -2,6 +2,7 @@ App.factory('factory', function ($http, $location) {
     const apiUrl = 'http://localhost:8080/';
 
     let token = null;
+    let questionId = null;
     return {
         adminRegister: function (info) {
             return $http.post(apiUrl + 'adminRegister', info);
@@ -52,6 +53,12 @@ App.factory('factory', function ($http, $location) {
 
         getToken: () => {
             return token;
+        },
+        setQuestionId: (newId) => {
+            questionId = newId;
+        },
+        getQuestionId: () => {
+            return questionId;
         },
 
     };

@@ -1,5 +1,5 @@
 const companyController = function ($scope, $location, factory) {
-
+    //views companies so that they can be deleted 
     factory.viewCompanies()
         .then(function (response) {
             $scope.companies = response.data.data;
@@ -7,7 +7,8 @@ const companyController = function ($scope, $location, factory) {
         .catch(function (response) {
 
         });
-
+    
+    //redirects from the page that views companies to a page to delete the companies
     $scope.goDelete = function goDelete() {
         $location.path('/deleteCompany');
     };

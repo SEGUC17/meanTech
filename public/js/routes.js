@@ -35,5 +35,4 @@ App.config(function ($routeProvider) {
             controller: 'loginController',
 
         })
-
 });

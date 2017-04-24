@@ -4,7 +4,7 @@ const adminController = function ($scope, $location, factory) {
         $scope.deleteForm = {};
 
 
-
+        //User registers as admin tp login
         $scope.adminRegister = function adminRegister() {
             factory.adminRegister($scope.adminForm)
                 .then(function (data) {
@@ -14,14 +14,14 @@ const adminController = function ($scope, $location, factory) {
                 });
         };
 
+        //Shows unverified companies so that they can be verified
         factory.unverifiedCompanies()
             .then(function (response) {
-                $scope.uncompanies = response.data.data;
+               $scope.uncompanies = response.data.data;
             })
-            .catch(function (response) {
+          
 
-            });
-
+        //gives the admin the ability to verify companies
         $scope.verifyCompanies = function unverifiedCompanies() {
             factory.verifyCompanies($scope.verifyForm).then(function (data) {
                 alert("Company Verified.");
@@ -31,12 +31,14 @@ const adminController = function ($scope, $location, factory) {
             });
         };
 
+        //gives the admin the ability to delete companies
         $scope.deleteCompany = function deleteCompany() {
             factory.deleteCompany($scope.deleteForm).then(function (data) {
                 $location.path('/viewCompanies');
             })
         };
 
+        //redirects from a page that views unverified companies to a page where you can verify them
         $scope.goVerify = function goVerify() {
             $location.path('/verifyCompanies');
         };
