@@ -266,5 +266,8 @@ App.factory('factory', function ($http, $location) {
                 },
             });
         },
+        viewFAQs: () => {
+            return $http.get(apiUrl + 'FAQView');
+        },
     };
 });

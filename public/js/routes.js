@@ -140,5 +140,10 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/clientUpdateProfile.html',
             controller: 'updateProfileController'
         })
+        .when('/FAQView', {
+            templateUrl: 'views/FAQView.html',
+            controller: 'FAQController',
+
+        })
 
 }]);
