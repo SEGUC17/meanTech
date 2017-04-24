@@ -57,7 +57,7 @@ router.get('/FAQView', FAQController.viewFAQs);
 
 router.post('/register', clientController.register);
 
-
+router.get('/companyLists', companyController.getCompanyList);
 router.post('/clientLogin', loginController.clientLogin);
 
 router.post('/companyLogin', loginController.companyLogin);
@@ -416,7 +416,7 @@ router.get('/viewMyReviews', function (req, res) {
 
 router.post('/postPromotion1', function (req, res) {
     try {
-        
+
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
             promotionController.postPromotion(req, res);
@@ -616,4 +616,23 @@ router.get('/viewServices', function (req, res) {
         });
     }
 });
+
+router.get('/viewMyProfile', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            companyController.viewMyProfile(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error.'
+        })
+    }
+});
+
 module.exports = router;

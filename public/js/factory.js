@@ -1,9 +1,10 @@
-App.factory('factory', ($http, $location) => {
-    const apiURL = 'http://localhost:8080/';
+App.factory('factory', function ($http, $location) {
+    const apiUrl = 'http://localhost:8080/';
+    let selectedCompany = null;
+    let companyReview = null;
     let token = null;
 
     return {
-<<<<<<< HEAD
         clientLogin: (user) => {
             return $http.post(apiURL.concat('clientLogin'), user);
         },
@@ -215,5 +216,54 @@ App.factory('factory', ($http, $location) => {
                 },
             });
         },
+
+
+
+        askFAQ: function (question) {
+            return $http.post('http://localhost:8080/faq', question, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+        myReviews: function () {
+            return $http.get('http://localhost:8080/viewMyReviews', {
+                headers: {
+                    'x-access-token': token
+                },
+            });
+        },
+        CompanyProfile: function (company) {
+            return $http.get('http://localhost:8080/company/profile', company);
+        },
+
+        MyCompanyProfile: function () {
+            return $http.get('http://localhost:8080/viewMyProfile', {
+                headers: {
+                    'x-access-token': token
+                },
+            });
+
+        },
+
+        companyList: function () {
+            return $http.get('http://localhost:8080/companyLists')
+        },
+
+        setSelectedCompany: function (id) {
+            selectedCompany = id;
+        },
+        getSelectedCompany: function () {
+            return selectedCompany;
+        },
+
+        setCompanyReview: function (company) {
+            companyReview = company;
+        },
+        getCompanyReview: function () {
+            return companyReview;
+        },
+
+
     };
 });

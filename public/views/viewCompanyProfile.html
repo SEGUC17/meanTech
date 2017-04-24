@@ -1,0 +1,26 @@
+<div>
+    <div align="center">
+        <h1>{{companyInfo.name}}</h1>
+    </div>
+
+    <div>
+        <img src="{{companyInfo.logoURL}}" alt="Profile Pic">
+        <br>
+        <label>Category: {{companyInfo.category}}</label>
+        <br>
+        <label>Address: {{companyInfo.address}} , {{companyInfo.area}} , {{companyInfo.city}}  </label>
+        <br>
+        <label>Description: {{companyInfo.description}}</label>
+        <br>
+        <URL>{{companyInfo.socialMediaURL}}</URL>
+        <label>Email: {{companyInfo.email}}</label>
+        <div ng-repeat="mobileNumber in companyInfo.mobileNumbers">
+           Mobile:  {{mobileNumber}} </div>
+        <div ng-repeat="branch in companyInfo.branches">
+           Branches:  {{branch}} </div>
+        <br>
+
+        <button ng-show="showReview" ng-click="reviewPage(companyInfo)">Write Review</button>
+        
+    </div>
+</div>

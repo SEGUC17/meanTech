@@ -196,24 +196,38 @@ const clientController = {
     },
 
     viewCompanyProfile: function (req, res) {
-        var id = req.query;
-
+        var id = req.body._id;
+       
         Company.findById(id, function (err, company) {
+
             if (err) {
                 res.status(500).json({
                     success: false,
                     message: 'Failed to find company.'
                 });
-            } else
-                res.json({
-                    success: true,
-                    message: 'viewing company',
-                    company
-                });
+            }
+            else {
+                if (company ){
+                        res.json({
+                        success: true,
+                        message: 'viewing company',
+                        company,
+                    });
+                     }
+                else {
 
-        })
+                          res.json({
+                        success: false,
+                        message: 'no existing company',
+                        company,
+                        
+                    });
+                     }
 
-    }
-}
+            }
+
+        });
+    },
+};
 
 module.exports = clientController;

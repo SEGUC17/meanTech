@@ -15,13 +15,13 @@ let FAQController = {
             if (err) {
                 res.status(500).json({
                     success: false,
-                    message: 'Answer not updated.',
-                });
+                    message: 'Answer not updated.'
+                })
             } else {
                 return res.json({
                     success: true,
-                    message: 'Answer updated successfully.',
-                });
+                    message: 'Answer updated successfully.'
+                })
             }
         });
     },
@@ -36,13 +36,13 @@ let FAQController = {
             if (err) {
                 res.status(500).json({
                     success: false,
-                    message: 'can not ask question',
+                    message: 'can not ask question'
                 });
             } else {
                 res.json({
                     success: true,
                     message: 'question posted',
-                    newQ,
+                    newQ
                 });
             }
         });
@@ -54,7 +54,7 @@ let FAQController = {
         query.exec(function (err, faq) {
             if (err) return next(err);
             res.json({
-                data: faq,
+                data: faq
             });
         });
     },

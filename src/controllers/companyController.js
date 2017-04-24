@@ -5,7 +5,6 @@ let companyController = {
 
 
     companySubscription: function (req, res) {
-
         let company = new Company({
             name: req.body.name,
             username: req.body.username,
@@ -28,20 +27,15 @@ let companyController = {
 
         company.save(function (err, company) {
             if (err) {
-
                 res.status(500).json({
                     success: false,
                     message: "Please choose another Username"
                 });
-
             } else {
                 return res.json({
                     success: true,
                     message: 'Successfully Registered!'
                 });
-
-
-
             }
         })
     },
@@ -66,7 +60,6 @@ let companyController = {
     },
 
     getCompanies: function (req, res, next) {
-
         var query = Company.find({}).select('name username');
 
 
@@ -86,7 +79,6 @@ let companyController = {
     },
 
     updatePassword: function (req, res) {
-
         Company.findOneAndUpdate({
             _id: req.decoded.id
         }, {
@@ -178,7 +170,59 @@ let companyController = {
                 });
             }
         })
-    }
+    },
+
+    viewMyProfile: function (req, res){
+        Company.find({ username: req.decoded.username }, function (err, company) {
+            if (err) {
+                res.status(500).json({
+                    success: false,
+                    message: 'Failed to find company.'
+                });
+            }
+            else {
+                if (company ){
+                    res.json({
+                            success: true,
+                            message: 'viewing company',
+                            company,
+                        });
+                }
+                else {
+                    res.json({
+                              success: false,
+                              message: 'no existing company',
+                              company,
+                        
+                          });
+                }
+            }
+        });
+    },
+      getCompanyList: function (req, res) {
+        // var query = Company.find({});
+
+
+        // query.exec(function (err, companies) {
+        //     if (err) return next(err);
+        //     res.json({
+        //         data: companies
+        //     });
+        // });
+        Company.find({},function(err,companies){
+            if(err)
+                res.status(500).json({
+                    success: false,
+                    message: 'No companies to view',
+                    data:null
+                });
+                else    
+                    res.json({
+                        data: companies
+                    });
+        });
+
+    },
 }
 
 module.exports = companyController;
