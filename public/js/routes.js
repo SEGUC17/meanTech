@@ -49,6 +49,7 @@ App.config(['$routeProvider', function ($routeProvider) {
             controller: 'eventController'
 
         })
+        // route for the about page
         .when('/companyS', {
             templateUrl: 'views/subscription.html',
             controller: 'companyController'
@@ -74,16 +75,25 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/favComp.html',
             controller: 'clientController'
         })
-        .when('/postPromotion',  {
-                      templateUrl:  'views/postPromotion.html',
-                      controller:  'promotionController'
-              })
-        .when('/updateEvents', {
-            templateUrl: 'views/updateEvents.html',
-            controller: 'eventController'
+        .when('/postPromotion', {
+            templateUrl: 'views/postPromotion.html',
+            controller: 'promotionController'
         })
         .when('/viewPromotions', {
             templateUrl: 'views/viewPromotions.html',
             controller: 'promotionController'
-        });
+        })
+        .when('/createService', {
+            templateUrl: 'views/createService.html',
+            controller: 'serviceController'
+        })
+        .when('/viewServices', {
+            templateUrl: 'views/companyServices.html',
+            controller: 'serviceController'
+        })
+        .when('/updateService', {
+            templateUrl: 'views/updateService.html',
+            controller: 'serviceController'
+        })
+
 }]);

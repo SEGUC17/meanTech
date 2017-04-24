@@ -617,4 +617,21 @@ router.post('/deleteService', function (req, res) {
 
 });
 
+router.get('/viewServices', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'company') {
+            serviceController.viewServices(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            msg: 'Could not view services',
+        });
+    }
+});
 module.exports = router;

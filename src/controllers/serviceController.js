@@ -31,8 +31,9 @@ let serviceController = {
 
     deleteService: function (req, res) {
         Service.findOne({
-            _id: req.body._id
+            _id: req.body.id
         }, function (err, service) {
+           // console.log(req.body._id)
             if (err) {
                 res.json({
                     error: 'Could not find service',
@@ -41,7 +42,7 @@ let serviceController = {
             } else {
                 if (service.companyID == req.decoded.id) {
                     Service.remove({
-                        _id: req.body._id,
+                        _id: req.body.id,
                     }, function (err) {
                         if (err) {
                             res.json({
@@ -110,6 +111,24 @@ let serviceController = {
                 }
             }
         });
+    },
+
+    viewServices: function (req, res) {
+
+        Service.find({
+            companyID: req.decoded.id
+        }, function (err, services) {
+
+            if (err)
+                res.status(500).json({
+                    error: err.message
+                });
+            else
+                res.json({
+                    services
+                });
+        })
+
     },
 
     getAllServices: function (req, res) {
