@@ -181,7 +181,7 @@ App.factory('factory', function ($http, $location) {
             return $http.get(apiUrl.concat('allServices'));
         },
         addFavCompanies: function (compID) {
-            return $http.post(apiUrl.concat('favCompanies'), compID, {
+            return $http.post(apiUrl.concat('addToFavCompanies'), { companyID: compID }, {
                 headers: {
                     'x-access-token': token
                 }

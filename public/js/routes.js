@@ -70,10 +70,6 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/allServices.html',
             controller: 'viewServiceController'
         })
-        .when('/favCompanies', {
-            templateUrl: 'views/favComp.html',
-            controller: 'clientController'
-        })
         .when('/postPromotion', {
             templateUrl: 'views/postPromotion.html',
             controller: 'promotionController'
