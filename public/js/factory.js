@@ -3,6 +3,7 @@ App.factory('factory', function ($http, $location) {
     let selectedCompany = null;
     let companyReview = null;
     let token = null;
+    let selectedPurchase = null;
 
     return {
         clientLogin: (user) => {
@@ -273,7 +274,16 @@ App.factory('factory', function ($http, $location) {
                 headers: {
                     'x-access-token': token
                 },
+
             });
         },
+        setSelectedPurchase: function(newItem) {
+            selectedPurchase = newItem;
+        },
+        getSelectedPurchase: function() {
+            return selectedPurchase;
+        }
+
+
     };
 });

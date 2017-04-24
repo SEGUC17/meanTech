@@ -1,6 +1,6 @@
 const stripeController = function($scope, $location, factory, stripe, $http) {
  $scope.Info = {};
-
+var amount1 = factory.getSelectedPurchase().price;
     $scope.payment = {
         card: {
             number: null,
@@ -9,7 +9,7 @@ const stripeController = function($scope, $location, factory, stripe, $http) {
             exp_year: null
         },
         token: null,
-        amount: 200
+        amount: (amount1 * 100)
     };
 
     $scope.charge = function() {
@@ -25,7 +25,7 @@ const stripeController = function($scope, $location, factory, stripe, $http) {
                 return $http.post('http://localhost:8080/stripe', payment);
             })
             .then(function(payment) {
-              alert('successfully submitted payment for $' + payment.amount);
+              alert('successfully submitted payment!');
             })
             .catch(function(err) {
                 if (err.type && /^Stripe/.test(err.type)) {
