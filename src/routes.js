@@ -654,24 +654,4 @@ router.post('/deleteService', function (req, res) {
 
 });
 
-router.get('/adminHome', function (req, res) {
-    try {
-        const decodedPayload = req.decoded;
-        if (decodedPayload === 'admin') {
-            res.json({
-                msg: 'authorized.'
-            });
-        } else {
-            res.status(401).json({
-                error: 'unauthorized'
-            });
-        }
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            msg: 'Could not delete service',
-        });
-    }
-});
-
 module.exports = router;
