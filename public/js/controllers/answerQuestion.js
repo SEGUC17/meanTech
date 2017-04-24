@@ -1,8 +1,8 @@
 const questionController = function ($scope, $location, factory) {
-    $scope.answers = {};
-    $scope.answers._id = '58fb5365e9a7833523b82f23';
+    $scope.questionAnswerForm = {};
+    $scope.questionAnswerForm._id = factory.getQuestionId();
     $scope.answerQuestion = function answerQuestion() {
-        factory.answerQuestion($scope.answers)
+        factory.answerQuestion($scope.questionAnswerForm)
             .success(function (response) {
                 alert('Answer successfully posted.');
                 $location.path('/FAQView');
