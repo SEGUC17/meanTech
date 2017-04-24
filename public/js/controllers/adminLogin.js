@@ -1,14 +1,13 @@
 const loginController = function ($scope, $location, factory) {
-    $scope.loginForm = {};
-
     $scope.adminLogin = function adminLogin() {
         factory.adminLogin($scope.loginForm).then(function (data) {
-            alert("Welcome!");
-            factory.setToken(data.data.token);
-            $location.path('/adminHome');
-        }).catch(function (error) {
-            
-        });
+            if (data.data.success == true && data.data.token != null) {
+                factory.setToken(data.data.token);
+                $location.path('/adminHome');
+            } else { 
+                alert(data.data.msg);
+            }
+        })
     };
 };
 

@@ -2,66 +2,169 @@
 
     <head>
         <style>
+            /*
+ * Base structure
+ */
+            /* Move down content because we have a fixed navbar that is 50px tall */
+
             body {
-                padding-top: 40px;
-                padding-bottom: 40px;
-                background-color: #eee;
+                padding-top: 50px;
+            }
+            /*
+ * Global add-ons
+ */
+
+            .sub-header {
+                padding-bottom: 10px;
+                border-bottom: 1px solid #eee;
+            }
+            /*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+
+            .navbar-fixed-top {
+                border: 0;
+            }
+            /*
+ * Sidebar
+ */
+            /* Hide for mobile, show later */
+
+            .sidebar {
+                display: none;
             }
 
-            .form-signin {
-                max-width: 330px;
-                padding: 15px;
-                margin: 0 auto;
+            @media (min-width: 768px) {
+                .sidebar {
+                    position: fixed;
+                    top: 51px;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 1000;
+                    display: block;
+                    padding: 20px;
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    /* Scrollable contents if viewport is shorter than content. */
+                    background-color: #f5f5f5;
+                    border-right: 1px solid #eee;
+                }
+            }
+            /* Sidebar navigation */
+
+            .nav-sidebar {
+                margin-right: -21px;
+                /* 20px padding + 1px border */
+                margin-bottom: 20px;
+                margin-left: -20px;
             }
 
-            .form-signin .form-signin-heading,
-            .form-signin .checkbox {
-                margin-bottom: 10px;
+            .nav-sidebar>li>a {
+                padding-right: 20px;
+                padding-left: 20px;
             }
 
-            .form-signin .checkbox {
-                font-weight: normal;
+            .nav-sidebar>.active>a,
+            .nav-sidebar>.active>a:hover,
+            .nav-sidebar>.active>a:focus {
+                color: #fff;
+                background-color: #428bca;
+            }
+            /*
+ * Main content
+ */
+
+            .main {
+                padding: 20px;
             }
 
-            .form-signin .form-control {
-                position: relative;
-                height: auto;
-                -webkit-box-sizing: border-box;
-                -moz-box-sizing: border-box;
-                box-sizing: border-box;
-                padding: 10px;
-                font-size: 16px;
+            @media (min-width: 768px) {
+                .main {
+                    padding-right: 40px;
+                    padding-left: 40px;
+                }
             }
 
-            .form-signin .form-control:focus {
-                z-index: 2;
+            .main .page-header {
+                margin-top: 0;
+            }
+            /*
+ * Placeholder dashboard ideas
+ */
+
+            .placeholders {
+                margin-bottom: 30px;
+                text-align: center;
             }
 
-            .form-signin input[type="email"] {
-                margin-bottom: -1px;
-                border-bottom-right-radius: 0;
-                border-bottom-left-radius: 0;
+            .placeholders h4 {
+                margin-bottom: 0;
             }
 
-            .form-signin input[type="password"] {
-                margin-bottom: 10px;
-                border-top-left-radius: 0;
-                border-top-right-radius: 0;
+            .placeholder {
+                margin-bottom: 20px;
+            }
+
+            .placeholder img {
+                display: inline-block;
+                border-radius: 50%;
             }
         </style>
     </head>
 
-    <div class="container">
-        <h1 class="page-header">FAQs</h1>
 
-        <div class="row placeholders" ng-submit="viewFAQs()">
-            <ul class="list-group faq-list">
-                <div ng-repeat="faq in faqs">
-                    <li class="list-group-item list-group-item-info">
-                        Username: {{faq.clientUsername}} Question: {{faq.questionText}} Answer: {{faq.answerText}}
-                        <button style="float: right" class="btn btn-warning" ng-click="questionId(faq._id)">Answer</button>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="#/adminHome">Admin Home</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!--<li><a href="#">Logout</a></li>-->
+                    <li ng-controller="logoutController">
+                        <form method="post" ng-submit="logout()">
+                            <button type="submit" class="btn btn-primary">Logout</button>
+                        </form>
                     </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="#/adminHome">Home <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#/viewCompanies">Delete Company</a></li>
+                    <li><a href="#/unverifiedCompanies">Verify Company</a></li>
+                    <li><a href="#/deleteR">Delete Reviews</a></li>
+                    <li><a href="#/FAQView">Answer Questions</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">FAQs</h1>
+
+                <div class="row placeholders" ng-submit="viewFAQs()">
+                    <ul class="list-group faq-list">
+                        <div ng-repeat="faq in faqs">
+                            <li class="list-group-item list-group-item-info">
+                                Username: {{faq.clientUsername}} Question: {{faq.questionText}} Answer: {{faq.answerText}}
+                                <button style="float: right" class="btn btn-warning" ng-click="questionId(faq._id)">Answer</button>
+                            </li>
+                        </div>
+                    </ul>
                 </div>
-            </ul>
+            </div>
         </div>
     </div>
+    </body>
+</div>
