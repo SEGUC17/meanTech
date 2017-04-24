@@ -61,9 +61,20 @@
                         <a class="navbar-brand">Eventatk</a>
                     </div>
                     <ul class="nav navbar-nav navbar-right" ng-hide="isLoggedIn()">
-                      <li>
-                          <a href="#/companyS">Subscribe now</a>
-                      </li>
+                        <li uib-dropdown>
+                            <a role="button" uib-dropdown-toggle>
+                                    Subscribe
+                                    <span class="caret"></span>
+                                </a>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                                <li role="menuitem">
+                                    <a href="#/clientRegistration">User</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/companyS">Company</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn()">
                         <li>
