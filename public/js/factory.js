@@ -37,7 +37,7 @@ App.factory('factory', function ($http, $location) {
         },
 
         userViewAllPromotions: () => {
-            return $http.get('http://localhost:8080/getAllPromotions');
+            return $http.get(apiUrl.concat('getAllPromotions'));
         },
 
         clientUpdatePassword: (newPassword) => {
@@ -129,7 +129,7 @@ App.factory('factory', function ($http, $location) {
 
         deleteEvent: function (info) {
             console.log("inside the factory of  deleteEvent ");
-            return $http.post('http://localhost:8080/deleteEvent', info, {
+            return $http.post(apiUrl.concat('deleteEvent'), info, {
                 headers: {
                     'x-access-token': token
                 }
@@ -137,22 +137,22 @@ App.factory('factory', function ($http, $location) {
         },
 
         createService: function (info) {
-            return $http.post('http://localhost:8080/createService', info, {
+            return $http.post(apiUrl.concat('createService'), info, {
                 headers: {
                     'x-access-token': token,
                 },
             });
         },
         adminRegister: function (info) {
-            return $http.post(apiUrl + 'adminRegister', info);
+            return $http.post(apiUrl.concat('adminRegister'), info);
         },
 
         adminLogin: (user) => {
-            return $http.post(apiUrl + 'adminLogin', user);
+            return $http.post(apiUrl.concat('adminLogin'), user);
         },
 
         updateService: function (info) {
-            return $http.post('http://localhost:8080/updateService', info, {
+            return $http.post(apiUrl.concat('updateService'), info, {
                 headers: {
                     'x-access-token': token
                 }
@@ -161,7 +161,7 @@ App.factory('factory', function ($http, $location) {
         },
         deleteService: function (info) {
             console.log("inside the factory of  deleteService ");
-            return $http.post('http://localhost:8080/deleteService', info, {
+            return $http.post(apiUrl.concat('deleteService'), info, {
                 headers: {
                     'x-access-token': (token)
                 }
@@ -169,7 +169,7 @@ App.factory('factory', function ($http, $location) {
 
         },
         viewServices: function (info) {
-            return $http.get('http://localhost:8080/viewServices', {
+            return $http.get(apiUrl.concat('viewServices'), {
                 headers: {
                     'x-access-token': token
                 }
@@ -178,13 +178,13 @@ App.factory('factory', function ($http, $location) {
 
 
         getAllEvents: function () {
-            return $http.get('http://localhost:8080/allEvents');
+            return $http.get(apiUrl.concat('allEvents'));
         },
         getAllServices: function () {
-            return $http.get('http://localhost:8080/allServices');
+            return $http.get(apiUrl.concat('allServices'));
         },
         addFavCompanies: function (compID) {
-            return $http.post('http://locahost:8080/favCompanies', compID, {
+            return $http.post(apiUrl.concat('favCompanies'), compID, {
                 headers: {
                     'x-access-token': token
                 }
@@ -204,14 +204,14 @@ App.factory('factory', function ($http, $location) {
         },
 
         postPromotion: function (info) {
-            return $http.post('http://localhost:8080/postPromotion1', info, {
+            return $http.post(apiUrl.concat('postPromotion1'), info, {
                 headers: {
                     'x-access-token': token
                 }
             });
         },
         viewPromotions: function () {
-            return $http.get('http://localhost:8080/viewPromotions1', {
+            return $http.get(apiUrl.concat('viewPromotions1'), {
 
                 headers: {
                     'x-access-token': token
@@ -220,38 +220,38 @@ App.factory('factory', function ($http, $location) {
         },
         deletePromotion: function (info) {
 
-            return $http.post('http://localhost:8080/deletePromotion1', info, {
+            return $http.post(apiUrl.concat('deletePromotion1'), info, {
                 headers: {
                     'x-access-token': token,
                 },
             });
         },
         postReview: function (info) {
-            return $http.post('http://localhost:8080/review', info, {
+            return $http.post(apiUrl.concat('review'), info, {
                 headers: {
                     'x-access-token': token,
                 },
             });
         },
         register: function (client) {
-            return $http.post('http://localhost:8080/register', client);
+            return $http.post(apiUrl.concat('register'), client);
         },
         answerQuestion: function (answer) {
-            return $http.post('http://localhost:8080/faqa', answer, {
+            return $http.post(apiUrl.concat('faqa'), answer, {
                 headers: {
                     'x-access-token': token,
                 },
             });
         },
         deleteReview: function (info) {
-            return $http.post('http://localhost:8080/deleteR', info, {
+            return $http.post(apiUrl.concat('deleteR'), info, {
                 headers: {
                     'x-access-token': token,
                 },
             });
         },
         askQuestion: function (question) {
-            return $http.post('http://localhost:8080/faq', question, {
+            return $http.post(apiUrl.concat('faq'), question, {
                 headers: {
                     'x-access-token': token,
                 },
@@ -261,25 +261,25 @@ App.factory('factory', function ($http, $location) {
 
 
         askFAQ: function (question) {
-            return $http.post('http://localhost:8080/faq', question, {
+            return $http.post(apiUrl.concat('faq'), question, {
                 headers: {
                     'x-access-token': token,
                 },
             });
         },
         myReviews: function () {
-            return $http.get('http://localhost:8080/viewMyReviews', {
+            return $http.get(apiUrl.concat('viewMyReviews'), {
                 headers: {
                     'x-access-token': token
                 },
             });
         },
         CompanyProfile: function (company) {
-            return $http.get('http://localhost:8080/company/profile', company);
+            return $http.get(apiUrl.concat('company/profile'), company);
         },
 
         MyCompanyProfile: function () {
-            return $http.get('http://localhost:8080/viewMyProfile', {
+            return $http.get(apiUrl.concat('viewMyProfile'), {
                 headers: {
                     'x-access-token': token
                 },
@@ -288,7 +288,7 @@ App.factory('factory', function ($http, $location) {
         },
 
         companyList: function () {
-            return $http.get('http://localhost:8080/companyLists')
+            return $http.get(apiUrl.concat('companyLists'))
         },
 
         setSelectedCompany: function (id) {
@@ -307,14 +307,14 @@ App.factory('factory', function ($http, $location) {
 
 
         viewProfile: function () {
-            return $http.get('http://localhost:8080/viewProfile', {
+            return $http.get(apiUrl.concat('viewProfile'), {
                 headers: {
                     'x-access-token': token
                 },
             })
         },
         clientUpdateProfile: function (data) {
-            return $http.post('http://localhost:8080/updateProfile', data, {
+            return $http.post(apiUrl.concat('updateProfile'), data, {
                 headers: {
                     'x-access-token': token
                 },
