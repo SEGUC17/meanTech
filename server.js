@@ -21,6 +21,6 @@ const DB_URI = 'mongodb://localhost:27017/sprint1';
 mongoose.connect(DB_URI);
 
 // start the server
-app.listen(8080, function () {
+app.listen(process.env.PORT || 8080, function () {
   console.log('server is listening on port 8080');
 });
