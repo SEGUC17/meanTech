@@ -10,7 +10,7 @@ App.factory('factory', function ($http, $location) {
         },
 
         companyLogin: (user) => {
-            return $http.post(apiUrl'getAllPromotions'));
+            return $http.post(apiUrl.concat('companyLogin'), user);
         },
 
         companyUpdatePassword: (newPassword) => {
@@ -92,8 +92,8 @@ App.factory('factory', function ($http, $location) {
                     'x-access-token': token
                 }
             });
-
         },
+
         createService: function (info) {
             return $http.post('http://localhost:8080/createService', info, {
                 headers: {
@@ -261,14 +261,14 @@ App.factory('factory', function ($http, $location) {
         },
 
 
-        viewProfile: function(){
-             return $http.get('http://localhost:8080/viewProfile',{
-             headers: {
-                 'x-access-token': token
-             },
-             })
+        viewProfile: function () {
+            return $http.get('http://localhost:8080/viewProfile', {
+                headers: {
+                    'x-access-token': token
+                },
+            })
         },
-         clientUpdateProfile: function(data)  {
+        clientUpdateProfile: function (data) {
             return $http.post('http://localhost:8080/updateProfile', data, {
                 headers: {
                     'x-access-token': token
