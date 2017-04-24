@@ -4,8 +4,17 @@ App.factory('factory', function ($http, $location) {
     let companyReview = null;
     let token = null;
     let selectedPurchase = null;
+    let username = null;
 
     return {
+        setUsername: function(newUsername) {
+          username = newUsername;
+        },
+
+        getUsername: function() {
+          return username;
+        },
+
         clientLogin: (user) => {
             return $http.post(apiUrl.concat('clientLogin'), user);
         },
@@ -177,6 +186,9 @@ App.factory('factory', function ($http, $location) {
             return token;
         },
 
+        clearToken: function() {
+          token = null;
+        },
 
         postPromotion: function (info) {
             return $http.post('http://localhost:8080/postPromotion1', info, {
