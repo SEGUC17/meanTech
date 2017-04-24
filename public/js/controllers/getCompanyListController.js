@@ -16,7 +16,6 @@ $scope.visitProfile = function visitProfile(company){
         .then(function (response) {
             const company = response.data.data;
             $scope.companylist = company;
-            console.log(response.data.data);
         })
         .catch(function (response) {
             alert(response.data.data.error);

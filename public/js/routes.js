@@ -112,8 +112,8 @@ App.config(['$routeProvider', function ($routeProvider) {
             controller: 'viewCompanyController',
         })
         .when('/faqq', {
-            templateUrl: 'views/FAQ.html',
-            controller: 'FaqControl',
+            templateUrl: 'views/askQuestion.html',
+            controller: 'askQuestionController',
         })
         .when('/ViewReviews', {
             templateUrl: 'views/MyCompRev.html',

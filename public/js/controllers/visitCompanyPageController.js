@@ -12,7 +12,14 @@ const visitCompanyPageController = function ($scope, $location, factory) {
     $scope.reviewPage = function reviewPage(companyInfo) {
       
                 factory.setCompanyReview(companyInfo);
-                $location.path('/ViewReviews')
+                $location.path('/pr')
+
+    }
+
+     $scope.viewReviews = function viewReviews(companyInfo) {
+      
+                factory.setCompanyReview(companyInfo);
+                $location.path('/viewRatings')
 
     }
 
