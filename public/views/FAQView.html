@@ -1,0 +1,13 @@
+<div>
+    <h1 class="page-header">FAQs</h1>
+    <div class="row placeholders" ng-submit="viewFAQs()">
+        <ul class="list-group faq-list">
+            <div ng-repeat="faq in faqs">
+                <li class="list-group-item list-group-item-info">
+                    Username: {{faq.clientUsername}} Question: {{faq.questionText}} Answer: {{faq.answerText}}
+                    <button style="float: right" class="btn btn-warning" ng-click="questionId(faq._id)">Answer</button>
+                </li>
+            </div>
+        </ul>
+    </div>
+</div>

@@ -4,7 +4,6 @@
     </div>
 
     <div>
-        <!--<img src="{{companyInfo.logoURL}}" alt="Profile Pic">-->
         <br>
         <label>Category: {{companyInfo.category}}</label>
         <br>
@@ -19,8 +18,9 @@
         <div ng-repeat="branch in companyInfo.branches">
            Branches:  {{branch}} </div>
         <br>
-
         <button ng-show="showReview" ng-click="reviewPage(companyInfo)">Write Review</button>
-        
+        <button  ng-click="viewReviews(companyInfo)">View Reviews</button>
+         <button class "btn btn-primary" ng-click="addToFavCompanies()">Add to Favourites</button>
     </div>
 </div>
+

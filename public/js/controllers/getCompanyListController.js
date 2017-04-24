@@ -1,5 +1,6 @@
 const getCompanyListController = function ($scope, $location, factory) {
-
+$scope.showTable=true;
+// visits the profile of the company selected from the list
 $scope.visitProfile = function visitProfile(company){
     factory.CompanyProfile()
         .then(function (response) {
@@ -11,12 +12,11 @@ $scope.visitProfile = function visitProfile(company){
             alert(response.data.error);
         });
     }
-   
+//    gets a list of available companies to be viewed by anyone 
     factory.companyList()
         .then(function (response) {
             const company = response.data.data;
             $scope.companylist = company;
-            console.log(response.data.data);
         })
         .catch(function (response) {
             alert(response.data.data.error);

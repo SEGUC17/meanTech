@@ -17,5 +17,5 @@ const viewEventController = function ($scope, $location, factory) {
 
 }
 
-eventController.$inject = ['$scope', '$location', 'factory'];
+viewEventController.$inject = ['$scope', '$location', 'factory'];
 App.controller('viewEventController', viewEventController);

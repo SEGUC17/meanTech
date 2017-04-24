@@ -85,14 +85,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
-<div class="alert alert-info">
+
+<div ng-show="showTable" class="alert alert-info">
     <p>Sort Type: {{ sortType }}</p>
     <p>Sort Reverse: {{ sortReverse }}</p>
     <p>Search Query: {{ searchFish }}</p>
 </div>
 
 <form>
-    <div class="form-group">
+    <div ng-show="showTable" class="form-group">
         <div class="input-group">
             <div class="input-group-addon"><i class="fa fa-search"></i></div>
             <input type="text" class="form-control" placeholder="Search your Services" ng-model="searchFish">
@@ -100,51 +101,51 @@
     </div>
 </form>
 
-<table class="table table-bordered table-striped">
+<table ng-show="showTable" class="table table-bordered table-striped">
 
     <thead>
         <tr>
             <td>
                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Name 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                Name 
+                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
             </td>
             <td>
                 <a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
-          Available Bookings
-            <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+            Available Bookings
+                <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
             </td>
             <td>
                 <a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
-          Duration 
-            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+            Duration 
+                <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
             </td>
             <td>
                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Description 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                Description 
+                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
             </td>
             <td>
                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Price 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                Price 
+                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
             </td>
             <td>
                 <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Picture URL
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                Picture URL
+                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
             </td>
             <td>Update</td>
             <td> Delete</td>
@@ -160,11 +161,67 @@
             <td>{{service.description}}</td>
             <td>{{service.price}}</td>
             <td>{{service.pictureURL}}</td>
-            <td><button class="btn btn-warning" ng-href="views/updateService.html" ng-click="updateService(service)">Update</button></td>
+            <td><button class="btn btn-warning" ng-click="selectServiceToBeUpdated(service)">Update</button></td>
             <td><button class="btn btn-danger" ng-click="deleteService(service._id)">Delete</button></td>
         </tr>
     </tbody>
 
 </table>
+
+<div ng-hide="showTable">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h1 class="navbar-brand">Update Service</h1>
+            </div>
+        </div>
+    </nav>
+
+    <div class="col-xs-12 col-md-4">
+        <div class="form-container">
+            <form name="serviceupdate" class="form" ng-submit="updateService()">
+                <div class="form-group">
+                    <label for="InputTitle">Name</label>
+                    <input name="name" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedService.name" required="required">
+                    <span ng-show="serviceupdate.name.$error.required">*</span>
+                </div>
+                <div class="form-group">
+                    <label for="InputLink">Available Bookings</label>
+                    <input name="availableBookings" type="text" class="form-control" id="InputLink" placeholder="" ng-model="selectedService.availableBookings" required="required">
+                    <span ng-show="serviceupdate.availableBookings.$error.required">*</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="InputTitle">Duration</label>
+                    <input name="duration" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedService.duration" required="required">
+                    <span ng-show="serviceupdate.duration.$error.required">*</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="InputTitle">Description</label>
+                    <input name="description" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedService.description"
+                        required="required">
+                    <span ng-show="serviceupdate.description.$error.required">*</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="InputTitle">Price</label>
+                    <input name="price" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedService.price" required="required">
+                    <span ng-show="serviceupdate.price.$error.required">*</span>
+
+                </div>
+                <div class="form-group">
+                    <label for="InputTitle">Picture URL</label>
+                    <input name="pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedService.pictureURL"
+                        required="required">
+                    <span ng-show="serviceupdate.prictureURL.$error.required">*</span>
+
+                </div>
+
+                <button type="submit" class="btn btn-default"> Update Service!</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 </div>

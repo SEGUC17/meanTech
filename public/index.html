@@ -16,6 +16,7 @@
     <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-stripe/4.2.13/angular-stripe.min.js"></script>
 
+
     <script type="text/javascript" src="./js/app.js"></script>
     <script type="text/javascript" src="./js/routes.js"></script>
     <script type="text/javascript" src="./js/factory.js"></script>
@@ -35,7 +36,6 @@
     <script type="text/javascript" src="./js/controllers/answerQuestion.js"></script>
     <script type="text/javascript" src="./js/controllers/register.js"></script>
     <script type="text/javascript" src="./js/controllers/admin.js"></script>
-    <script type="text/javascript" src="./js/controllers/FaqControl.js"></script>
     <script type="text/javascript" src="./js/controllers/getReviewsController.js"></script>
     <script type="text/javascript" src="./js/controllers/viewCompanyController.js"></script>
     <script type="text/javascript" src="./js/controllers/getCompanyListController.js"></script>
@@ -43,10 +43,12 @@
     <script type="text/javascript" src="./js/controllers/clientUpdateProfile.js"></script>
     <script type="text/javascript" src="./js/controllers/clientViewProfile.js"></script>
     <script type="text/javascript" src="./js/controllers/promotion.js"></script>
-    <script type="text/javascript" src="./js/controllers/logout.js"></script>
-    <script type="text/javascript" src="./js/controllers/client.js"></script>
     <script type="text/javascript" src="./js/controllers/viewEvent.js"></script>
     <script type="text/javascript" src="./js/controllers/viewServices.js"></script>
+    <script type="text/javascript" src="./js/controllers/adminLogin.js"></script>
+    <script type="text/javascript" src="./js/controllers/viewCompany.js"></script>
+    <script type="text/javascript" src="./js/controllers/viewFAQ.js"></script>
+    <script type="text/javascript" src="./js/controllers/adminLogout.js"></script>
 </head>
 
 <body>
@@ -104,13 +106,16 @@
                                 </a>
                             <ul class="dropdown-menu" uib-dropdown-menu role="menu">
                                 <li role="menuitem">
+                                    <a href="#/companyList">All Companies</a>
+                                </li>
+                                <li role="menuitem">
                                     <a href="#/allServices">All Services</a>
                                 </li>
                                 <li role="menuitem">
                                     <a href="#/allEvents">All Events</a>
                                 </li>
                                 <li role="menuitem">
-                                    <a href="#/getAllPromotions">All Promotions [FIXME]</a>
+                                    <a href="#/userViewAllPromotions">All Promotions</a>
                                 </li>
                                 <li class="divider" ng-show="isBusinessUser()"></li>
                                 <li role="menuitem" ng-show="isBusinessUser()">

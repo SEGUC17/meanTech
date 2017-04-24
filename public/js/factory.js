@@ -6,6 +6,7 @@ App.factory('factory', function ($http, $location) {
     let selectedPurchase = null;
     let username = null;
     let isClientUser = null;
+    let questionId = null;
 
     return {
         setClientUser: function () {
@@ -57,6 +58,14 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
+        updatePromotion: function (info) {
+            return $http.post(apiUrl.concat('updatePromotion1'), info, {
+                headers: {
+                    'x-access-token': token
+                }
+            })
+        },
+
         adminUpdatePassword: (newPassword) => {
             return $http.post(apiUrl.concat('adminUpdatePassword'), newPassword, {
                 headers: {
@@ -95,40 +104,30 @@ App.factory('factory', function ($http, $location) {
         },
 
         getCompanyEvents: function () {
-            console.log("it gets to the factory of get company events");
             return $http.get(apiUrl.concat('getCompanyEvents'), {
-
                 headers: {
                     'x-access-token': token
                 }
             });
-
-
         },
 
         viewRatings: function (companyID) {
-            console.log("it gets to the factory of view ratings");
             return $http.post(apiUrl.concat('viewRatings'), companyID, {
                 headers: {
                     'x-access-token': token
                 }
             });
-
-
         },
 
         updateEvent: function (info) {
-            console.log("inside the factory of  update events");
             return $http.post(apiUrl.concat('updateEvents'), info, {
                 headers: {
                     'x-access-token': token
                 }
             })
-
         },
 
         deleteEvent: function (info) {
-            console.log("inside the factory of  deleteEvent ");
             return $http.post(apiUrl.concat('deleteEvent'), info, {
                 headers: {
                     'x-access-token': token
@@ -160,7 +159,6 @@ App.factory('factory', function ($http, $location) {
 
         },
         deleteService: function (info) {
-            console.log("inside the factory of  deleteService ");
             return $http.post(apiUrl.concat('deleteService'), info, {
                 headers: {
                     'x-access-token': (token)
@@ -184,7 +182,7 @@ App.factory('factory', function ($http, $location) {
             return $http.get(apiUrl.concat('allServices'));
         },
         addFavCompanies: function (compID) {
-            return $http.post(apiUrl.concat('favCompanies'), compID, {
+            return $http.post(apiUrl.concat('addToFavCompanies'), { companyID: compID }, {
                 headers: {
                     'x-access-token': token
                 }
@@ -258,15 +256,6 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
-
-
-        askFAQ: function (question) {
-            return $http.post(apiUrl.concat('faq'), question, {
-                headers: {
-                    'x-access-token': token,
-                },
-            });
-        },
         myReviews: function () {
             return $http.get(apiUrl.concat('viewMyReviews'), {
                 headers: {
@@ -326,7 +315,60 @@ App.factory('factory', function ($http, $location) {
         },
         getSelectedPurchase: function () {
             return selectedPurchase;
-        }
+        },
+
+
+        adminRegister: function (info) {
+            return $http.post(apiUrl + 'adminRegister', info);
+        },
+
+        adminLogin: (user) => {
+            return $http.post(apiUrl + 'adminLogin', user);
+        },
+
+        deleteCompany: (user) => {
+            return $http.post(apiUrl + 'deleteCompany', user, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+
+        viewFAQs: () => {
+            return $http.get(apiUrl + 'FAQView');
+        },
+
+        unverifiedCompanies: () => {
+
+            return $http.get(apiUrl + 'unverifiedCompanies', {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+
+        verifyCompanies: (user) => {
+            return $http.post(apiUrl + 'verifyCompanies', user, {
+                headers: {
+                    'x-access-token': token,
+
+                },
+            });
+        },
+        viewCompanies: () => {
+            return $http.get(apiUrl + 'viewCompanies', {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+
+        setQuestionId: (newId) => {
+            questionId = newId;
+        },
+        getQuestionId: () => {
+            return questionId;
+        },
 
 
     };

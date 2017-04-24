@@ -3,7 +3,7 @@ const FaqControl = function ($scope, $location, factory) {
     $scope.askquestion = function askquestion() {
         factory.askFAQ($scope.question)
             .then(function (data) {
-                // console.log($scope.question);
+               
                 // alert("Question posted");
                 console.log("SUCCESS==>",data)
             }).catch(function (error) {
