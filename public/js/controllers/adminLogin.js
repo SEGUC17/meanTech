@@ -3,7 +3,7 @@ const loginController = function ($scope, $location, factory) {
         factory.adminLogin($scope.loginForm).then(function (data) {
             if (data.data.success == true && data.data.token != null) {
                 factory.setToken(data.data.token);
-                $location.path('/adminHome');
+                $location.path('/#');
             } else { 
                 alert(data.data.msg);
             }

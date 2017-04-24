@@ -46,15 +46,6 @@ App.factory('factory', function ($http, $location) {
                 },
             });
         },
-
-        adminHome: () => {
-            return $http.get(apiUrl + 'adminHome', {
-                headers: {
-                    'x-access-token': token,
-                },
-            });
-        },
-
         setToken: (loginToken) => {
             token = loginToken;
         },
