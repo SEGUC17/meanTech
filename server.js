@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', express.static('public'));
 app.use(router);
 
-const DB_URI = 'mongodb://localhost:27017/sprint1';
+const DB_URI = 'mongodb://team:12345@ds117251.mlab.com:17251/meantech';
 mongoose.connect(DB_URI);
 
 // start the server
