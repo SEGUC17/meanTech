@@ -12,12 +12,7 @@ App.config(function ($routeProvider) {
          .when('/viewRatings', {
             templateUrl: 'views/viewRatings.html',
             controller: 'reviewController'
-        })
-
-        .when('/updateEvents/:id',{
-            templateUrl:'views/updateEvents.html',
-            controller:'eventController'
-
+       
         });
 
 

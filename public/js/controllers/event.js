@@ -1,107 +1,60 @@
 const eventController = function ($scope, $location, factory) {
-  $scope.eventForm = {};
-  $scope.updateForm = {};
+  if (!factory.getToken()) {
+    $location.path('/');
+  } else {
+    $scope.selectedEvent = {};
+    $scope.showTable = true;
 
-  $scope.createEvent = function createEvent() {
-
-
-
-    factory.createEvent($scope.eventForm)
-      .success(function (data) {
-
-        alert("Event Successfully created!");
-
-      }).error(function (error) {
-
-        alert(error.message);
-
-      });
-
-
-
-  };
-
-
-  factory.getCompanyEvents().success(function (data) {
-    console.log("it gets to the controller");
-    console.log(data);
-
-    $scope.sortType = 'name'; // set the default sort type
-    $scope.sortReverse = false; // set the default sort order
-    $scope.searchFish = ''; // set the default search/filter term
-    $scope.events = data.data;
-  });
-
-  $scope.updateEvent = function updateEvent(id) {
-
-    console.log(id);
-
-    $scope.id = {
-      id
+    $scope.constructDate = function (dateString) {
+      return new Date(dateString);
     };
 
-    // $location.path('http://localhost:8080/updateEvents');
-
-
-    factory.updateEvent($scope.eventForm, $scope.id)
-      .success(function (data) {
-        console.log("it gets to the CTRL of view ratings");
-
-        alert("Event Successfully Updated!");
-
-      }).error(function (error) {
-
-        alert(error.message);
-
-      });
-
-
-
-  };
-
-
-  $scope.deleteEvent = function deleteEvent(id) {
-
-    console.log(id);
-    $scope.id = {
-      id
-    };
-    // $location.path('http://localhost:8080/updateEvent');
-
-
-    factory.deleteEvent($scope.id)
-      .success(function (data) {
-        console.log("it gets to the CTRL of delete event");
-
-        alert("Event Successfully delted!");
-
-        // $route.reload(true);
-        factory.getCompanyEvents().success(function (data) {
-          // console.log("it gets to the controller");
-          // console.log(data);
-
-          // $scope.sortType = 'name'; // set the default sort type
-          // $scope.sortReverse = false; // set the default sort order
-          // $scope.searchFish = ''; // set the default search/filter term
-          $scope.events = data.data;
+    $scope.getCompanyEvents = function () {
+      factory.getCompanyEvents()
+        .success(function (response) {
+          $scope.sortType = 'name'; // set the default sort type
+          $scope.sortReverse = false; // set the default sort order
+          $scope.searchFish = ''; // set the default search/filter term
+          $scope.events = response.data;
+        })
+        .error(function (response) {
+          alert(response);
         });
+    };
 
-      }).error(function (error) {
+    $scope.getCompanyEvents();
 
-        alert(error);
+    $scope.selectEventToBeUpdated = function (event) {
+      $scope.selectedEvent = event;
+      $scope.showTable = false;
+    };
 
-      });
+    $scope.updateEvent = function () {
+      factory.updateEvent($scope.selectedEvent)
+        .success(function (response) {
+          alert('Event updated successfully');
+          $scope.getCompanyEvents();
+          $scope.showTable = true;
+        })
+        .error(function (response) {
+          alert(response.error);
+        });
+    };
 
+    $scope.deleteEvent = function deleteEvent(id) {
+      $scope.id = {
+        id
+      };
 
-
-  };
-
-
-
-
-
-
-
+      factory.deleteEvent($scope.id)
+        .success(function (response) {
+          alert("Event Successfully deleted!");
+          $scope.getCompanyEvents();
+        }).error(function (response) {
+          alert(response);
+        });
+    };
+  }
 };
 
 eventController.$inject = ['$scope', '$location', 'factory'];

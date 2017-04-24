@@ -74,7 +74,7 @@ let eventController = {
 
     updateEvents: function (req, res) {
         var query = {
-            _id: req.body.id
+            _id: req.body._id
         };
 
         var update = {
@@ -87,15 +87,22 @@ let eventController = {
 
         Event.findByIdAndUpdate(query, update, options, function (err, event) {
             if (err) {
-                res.json({
-                    error: "An error appeared while updating",
+                res.status(500).json({
+                    error: "Internal server error",
                     data: null
                 });
             } else {
-                res.json({
-                    Message: "you have updated the data Successfully",
-                    data: event
-                });
+                if (event) {
+                    res.json({
+                        error: null,
+                        data: event
+                    });
+                } else {
+                    res.status(404).json({
+                        error: "Event not found",
+                        data: null
+                    });
+                }
             }
         });
     },
