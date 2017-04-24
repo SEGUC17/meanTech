@@ -57,6 +57,14 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
+        updatePromotion: function (info) {
+            return $http.post(apiUrl.concat('updatePromotion1'), info, {
+                headers: {
+                    'x-access-token': token
+                }
+            })
+        },
+
         adminUpdatePassword: (newPassword) => {
             return $http.post(apiUrl.concat('adminUpdatePassword'), newPassword, {
                 headers: {
