@@ -1,0 +1,79 @@
+<head>
+    <title>Post Review</title>
+</head>
+
+<style>
+    /* Full-width input fields */
+
+    input[type=password],
+    input[type=email],
+    input[type=URL],
+    input[type=date] {
+        width: 100%;
+        padding: 8px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    /* Set a style for all buttons */
+
+    input[type=text] {
+        height: 300px;
+        width: 100%;
+        padding: 8px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    select {
+        width: 4%;
+        height: 1%;
+    }
+
+    button {
+        background-color: cornflowerblue;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+    }
+
+    .container {
+        padding: 16px;
+    }
+</style>
+
+<div>
+    <h1>Post Review</h1>
+
+    <form ng-submit="postReview()" style="border:1px solid #ccc">
+        <div class="container">
+
+            <label><b>Rating</b></label>
+            <select name="rating" ng-model="reviewInfo.rating" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <br> <br>
+            <label><b>Review</b></label> <br>
+            <textarea name="content" placeholder="Write your review here..." ng-model="reviewInfo.content" rows="15" cols="20" required>
+            </textarea>
+            <br>
+
+            <button type="submit">Post Review</button>
+        </div>
+    </form>
+
+</div>

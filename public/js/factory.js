@@ -3,6 +3,7 @@ App.factory('factory', ($http, $location) => {
     let token = null;
 
     return {
+<<<<<<< HEAD
         clientLogin: (user) => {
             return $http.post(apiURL.concat('clientLogin'), user);
         },
@@ -99,10 +100,16 @@ App.factory('factory', ($http, $location) => {
         createService: function (info) {
             return $http.post('http://localhost:8080/createService', info, {
                 headers: {
-                    'x-access-token': token
-                }
+                    'x-access-token': token,
+                },
             });
+        },
+        adminRegister: function (info) {
+            return $http.post(apiUrl + 'adminRegister', info);
+        },
 
+        adminLogin: (user) => {
+            return $http.post(apiUrl + 'adminLogin', user);
         },
 
         updateService: function (info) {
@@ -173,11 +180,40 @@ App.factory('factory', ($http, $location) => {
 
             return $http.post('http://localhost:8080/deletePromotion1', info, {
                 headers: {
-                    'x-access-token': token
-                }
+                    'x-access-token': token,
+                },
             });
-
-        }
-
+        },
+        postReview: function (info) {
+            return $http.post('http://localhost:8080/review', info, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+        register: function (client) {
+            return $http.post('http://localhost:8080/register', client);
+        },
+        answerQuestion: function (answer) {
+            return $http.post('http://localhost:8080/faqa', answer, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+        deleteReview: function (info) {
+            return $http.post('http://localhost:8080/deleteR', info, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+        askQuestion: function (question) {
+            return $http.post('http://localhost:8080/faq', question, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
     };
 });

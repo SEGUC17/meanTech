@@ -2,15 +2,19 @@ var mongoose = require('mongoose');
 
 var reviewSchema = mongoose.Schema({
     username: String,
-    companyID: String,
+    companyID: {
+        type: String,
+        required: true,
+    },
     content: {
         type: String,
         required: true,
     },
     rating: {
         type: Number,
+        required: true,
         min: 1,
-        max: 5
+        max: 5,
     },
     date: {
         type: Date,

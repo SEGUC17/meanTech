@@ -1,0 +1,83 @@
+<div>
+
+    <head>
+        <style>
+            body {
+                padding-top: 40px;
+                padding-bottom: 40px;
+                background-color: #eee;
+            }
+
+            .form-signin {
+                max-width: 330px;
+                padding: 15px;
+                margin: 0 auto;
+            }
+
+            .form-signin .form-signin-heading,
+            .form-signin .checkbox {
+                margin-bottom: 10px;
+            }
+
+            .form-signin .checkbox {
+                font-weight: normal;
+            }
+
+            .form-signin .form-control {
+                position: relative;
+                height: auto;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+            .form-signin .form-control:focus {
+                z-index: 2;
+            }
+
+            .form-signin input[type="email"] {
+                margin-bottom: -1px;
+                border-bottom-right-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+
+            .form-signin input[type="password"] {
+                margin-bottom: 10px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+            }
+        </style>
+    </head>
+    <div class="container">
+        <form class="form-register" ng-submit="adminRegister()">
+            <h2 class="form-register-heading">Admin Register</h2>
+            <!-- Username -->
+            <label>Username:</label>
+            <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="adminForm.username"
+                required>
+            <br>
+            <!-- Password -->
+            <label>Password:</label>
+            <input class="form-control" type="password" name="password" placeholder="Please enter password." ng-model="adminForm.password"
+                required>
+            <br>
+            <!-- Email -->
+            <label>Email:</label>
+            <input class="form-control" type="text" name="email" placeholder="Please enter email." ng-model="adminForm.email" required>
+            <br>
+            <!-- Security Question -->
+            <label>Security Question:</label>
+            <input class="form-control" type="text" name="sq" placeholder="Please enter security question." ng-model="adminForm.securityQuestion"
+                required>
+            <br>
+            <!-- Question Answer -->
+            <label>Question Answer:</label>
+            <input class="form-control" type="text" name="qa" placeholder="Please enter question answer." ng-model="adminForm.questionAnswer"
+                required>
+            <br>
+            <button class="btn btn-primary" type="submit">Register</button>
+        </form>
+    </div>
+</div>
