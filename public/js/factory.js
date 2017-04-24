@@ -6,19 +6,15 @@ App.factory('factory', function ($http, $location) {
 
     return {
         clientLogin: (user) => {
-            return $http.post(apiURL.concat('clientLogin'), user);
+            return $http.post(apiUrl.concat('clientLogin'), user);
         },
 
         companyLogin: (user) => {
-            return $http.post(apiURL.concat('companyLogin'), user);
-        },
-
-        userViewAllPromotions: () => {
-            return $http.get(apiURL.concat('getAllPromotions'));
+            return $http.post(apiUrl'getAllPromotions'));
         },
 
         companyUpdatePassword: (newPassword) => {
-            return $http.post(apiURL.concat('companyUpdatePassword'), newPassword, {
+            return $http.post(apiUrl.concat('companyUpdatePassword'), newPassword, {
                 headers: {
                     'x-access-token': token,
                 },
@@ -28,22 +24,22 @@ App.factory('factory', function ($http, $location) {
         //TODO adminUpdatePassword
 
         clientResetPassword: (data) => {
-            return $http.post(apiURL.concat('clientResetPassword'), data, {
+            return $http.post(apiUrl.concat('clientResetPassword'), data, {
             });
         },
 
         companyResetPassword: (data) => {
-            return $http.post(apiURL.concat('companyResetPassword'), data, {
+            return $http.post(apiUrl.concat('companyResetPassword'), data, {
             });
         },
 
         adminResetPassword: (data) => {
-            return $http.post(apiURL.concat('adminResetPassword'), data, {
+            return $http.post(apiUrl.concat('adminResetPassword'), data, {
             });
         },
 
         createEvent: function (info) {
-            return $http.post(apiURL.concat('event'), info, {
+            return $http.post(apiUrl.concat('event'), info, {
                 headers: {
                     'x-access-token': (token)
                 }
@@ -52,13 +48,13 @@ App.factory('factory', function ($http, $location) {
         },
 
         companySubscription: function (info) {
-            return $http.post(apiURL.concat('company'), info);
+            return $http.post(apiUrl.concat('company'), info);
 
         },
 
         getCompanyEvents: function () {
             console.log("it gets to the factory of get company events");
-            return $http.get(apiURL.concat('getCompanyEvents'), {
+            return $http.get(apiUrl.concat('getCompanyEvents'), {
 
                 headers: {
                     'x-access-token': token
@@ -70,7 +66,7 @@ App.factory('factory', function ($http, $location) {
 
         viewRatings: function (companyID) {
             console.log("it gets to the factory of view ratings");
-            return $http.post(apiURL.concat('viewRatings'), companyID, {
+            return $http.post(apiUrl.concat('viewRatings'), companyID, {
                 headers: {
                     'x-access-token': token
                 }
@@ -81,7 +77,7 @@ App.factory('factory', function ($http, $location) {
 
         updateEvent: function (info) {
             console.log("inside the factory of  update events");
-            return $http.post(apiURL.concat('updateEvents'), info, {
+            return $http.post(apiUrl.concat('updateEvents'), info, {
                 headers: {
                     'x-access-token': token
                 }
