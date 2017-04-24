@@ -7,8 +7,7 @@ const eventController = function ($scope, $location, factory) {
     $scope.updateForm = {};
 
     factory.getCompanyEvents().success(function (data) {
-      console.log("it gets to the controller");
-      console.log(data);
+    
 
       $scope.sortType = 'name'; // set the default sort type
       $scope.sortReverse = false; // set the default sort order
@@ -18,7 +17,7 @@ const eventController = function ($scope, $location, factory) {
 
     $scope.updateEvent = function updateEvent(id) {
 
-      console.log(id);
+    
 
       $scope.id = {
         id
@@ -29,7 +28,7 @@ const eventController = function ($scope, $location, factory) {
 
       factory.updateEvent($scope.eventForm, $scope.id)
         .success(function (data) {
-          console.log("it gets to the CTRL of view ratings");
+        
 
           alert("Event Successfully Updated!");
 
@@ -46,7 +45,7 @@ const eventController = function ($scope, $location, factory) {
 
     $scope.deleteEvent = function deleteEvent(id) {
 
-      console.log(id);
+     
       $scope.id = {
         id
       };
@@ -55,15 +54,13 @@ const eventController = function ($scope, $location, factory) {
 
       factory.deleteEvent($scope.id)
         .success(function (data) {
-          console.log("it gets to the CTRL of delete event");
+       
 
           alert("Event Successfully delted!");
 
           // $route.reload(true);
           factory.getCompanyEvents().success(function (data) {
-            // console.log("it gets to the controller");
-            // console.log(data);
-
+           
             // $scope.sortType = 'name'; // set the default sort type
             // $scope.sortReverse = false; // set the default sort order
             // $scope.searchFish = ''; // set the default search/filter term

@@ -6,8 +6,9 @@ const postReviewController = function ($scope, $location, factory) {
         $scope.reviewInfo.companyID = company._id;
 
         factory.postReview($scope.reviewInfo)
-            .success(function (data) {
+            .success(function (response) {
                 alert('Review successfully posted.');
+                $location.path('/CProfile')
             }).error(function (error) {
                 alert(error.message);
             });

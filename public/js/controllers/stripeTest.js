@@ -11,7 +11,7 @@ var amount1 = factory.getSelectedPurchase().price;
         token: null,
         amount: (amount1 * 100)
     };
-
+//Function to create a stripe token and the call backend charge functionality to client on purchase
     $scope.charge = function() {
 
 

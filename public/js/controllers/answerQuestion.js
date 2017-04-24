@@ -7,7 +7,7 @@ const questionController = function ($scope, $location, factory) {
                 alert('Answer successfully posted.');
                 $location.path('/FAQView');
             }).error(function (error) {
-            console.log(error);
+           
                 alert(error);
             });
     };

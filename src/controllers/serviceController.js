@@ -33,7 +33,7 @@ let serviceController = {
         Service.findOne({
             _id: req.body.id
         }, function (err, service) {
-           // console.log(req.body._id)
+          
             if (err) {
                 res.json({
                     error: 'Could not find service',

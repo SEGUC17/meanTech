@@ -11,7 +11,7 @@ const loginController = function ($scope, $location, factory) {
     $scope.isCompanyFormValid = function() {
       return $scope.companyForm.username && $scope.companyForm.password;
     };
-
+// Function to log in a company
     $scope.companyLogin = function companyLogin() {
         factory.companyLogin($scope.companyForm)
             .success(function (data) {
@@ -23,7 +23,7 @@ const loginController = function ($scope, $location, factory) {
                 alert(error.message);
             });
     };
-
+// Function to log in a client
     $scope.clientLogin = function clientLogin() {
         factory.clientLogin($scope.clientForm)
             .success(function (data) {

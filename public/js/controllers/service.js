@@ -1,53 +1,75 @@
 const serviceController = function ($scope, $location, factory) {
   if (!factory.getToken() || !factory.isBusinessUser()) {
     $location.path('/');
-  } else {
-    $scope.serviceForm = {};
+    } else {
+      $scope.selectedService = {};
+      $scope.showTable = true;
+      $scope.serviceForm = {};
+      
+      //A company creating a service for itself
 
-    $scope.createService = function () {
-      factory.createService($scope.serviceForm)
-        .success(function (data) {
-          alert("Service Successfully created!")
-        }).error(function (error) {
-
-          alert(error.message)
-
-        });
-    };
-
-    $scope.updateService = function updateService(service) {
-      $http.post('http://localhost:8080/updateService', JSON.stringify({ Id: service._Id, name: service.name, availableBookings: service.availableBookings, duration: service.duration, description: service.description, price: service.price, pictureURL: service.pictureURL }), {
-        headers: { 'Content-Type': 'application/json; charset=utf-8' }
-      }).success(function (data) {
-        $location.path("/viewServices");
-      }).error(function (err) {
-        alert(err.Message);
-      });
-    };
-
-    $scope.deleteService = function deleteService(id) {
-      $scope.id = {
-        id
-      };
-      factory.deleteService($scope.id)
-        .success(function (data) {
-          console.log("it gets to the CTRL of delete service");
-          alert("Service Successfully delted!");
-
-          factory.viewServices().success(function (data) {
-            $scope.services = data.services;
+      $scope.createService = function createService() {
+        factory.createService($scope.serviceForm)
+          .success(function (response) {
+            alert("Service Successfully created!")
+          }).error(function (response) {
+            alert(response)
           });
-        }).error(function (error) {
-          alert(error.message);
-        });
-    };
+      };
+
+      // A company deleteing its own service
+
+      $scope.deleteService = function deleteService(id) {
+        $scope.id = {
+          id
+        };
+        factory.deleteService($scope.id)
+          .success(function (response) {
+            alert("Service Successfully delted!");
+            $scope.getCompanyServices();
+          }).error(function (response) {
+            alert(response);
+          });
+      };
 
 
-    factory.viewServices().success(function (data) {
-      console.log(data);
-      $scope.services = data.services;
-    })
-  }
+      //A company updating its own service
+      
+      $scope.selectServiceToBeUpdated = function (service) {
+        $scope.selectedService = service;
+        $scope.showTable = false;
+      };
+
+      $scope.updateService = function () {
+        factory.updateService($scope.selectedService)
+          .success(function (response) {
+            alert('Service updated successfully');
+            $scope.getCompanyServices();
+            $scope.showTable = true;
+          })
+          .error(function (response) {
+            alert(response.error);
+          });
+      };
+
+
+      //A company viewing its own service
+
+      $scope.getCompanyServices = function () {
+        factory.viewServices().success(function (response) {
+            $scope.sortType = 'name'; // set the default sort type
+            $scope.sortReverse = false; // set the default sort order
+            $scope.searchFish = ''; // set the default search/filter term
+            $scope.services = response.services;
+          })
+          .error(function (response) {
+            alert(response);
+          });
+      };
+
+      $scope.getCompanyServices();
+
+    }
 }
 
 serviceController.$inject = ['$scope', '$location', 'factory'];

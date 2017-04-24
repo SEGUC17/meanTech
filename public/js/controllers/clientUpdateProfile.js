@@ -1,4 +1,5 @@
 const updateProfileController = function ($scope, $location, factory) {
+    
     $scope.clientUpdateProfileForm = {};
 
     $scope.clientUpdateProfile = function clientUpdateProfile() {

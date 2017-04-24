@@ -46,7 +46,7 @@ const promotionController = function ($scope, $location, factory) {
         .success(function (data) {
           console.log("it gets to the CTRL of delete promotion frontend");
 
-          alert("Promotion delted!");
+          alert("Promotion deleted!");
 
           factory.viewPromotions().success(function (data) {
             console.log("it gets to the frontend controller");

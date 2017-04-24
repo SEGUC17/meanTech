@@ -95,7 +95,6 @@ App.factory('factory', function ($http, $location) {
         },
 
         getCompanyEvents: function () {
-            console.log("it gets to the factory of get company events");
             return $http.get(apiUrl.concat('getCompanyEvents'), {
 
                 headers: {
@@ -107,7 +106,6 @@ App.factory('factory', function ($http, $location) {
         },
 
         viewRatings: function (companyID) {
-            console.log("it gets to the factory of view ratings");
             return $http.post(apiUrl.concat('viewRatings'), companyID, {
                 headers: {
                     'x-access-token': token
@@ -118,7 +116,6 @@ App.factory('factory', function ($http, $location) {
         },
 
         updateEvent: function (info) {
-            console.log("inside the factory of  update events");
             return $http.post(apiUrl.concat('updateEvents'), info, {
                 headers: {
                     'x-access-token': token
@@ -128,7 +125,6 @@ App.factory('factory', function ($http, $location) {
         },
 
         deleteEvent: function (info) {
-            console.log("inside the factory of  deleteEvent ");
             return $http.post(apiUrl.concat('deleteEvent'), info, {
                 headers: {
                     'x-access-token': token
@@ -160,7 +156,6 @@ App.factory('factory', function ($http, $location) {
 
         },
         deleteService: function (info) {
-            console.log("inside the factory of  deleteService ");
             return $http.post(apiUrl.concat('deleteService'), info, {
                 headers: {
                     'x-access-token': (token)

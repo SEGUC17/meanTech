@@ -1,10 +1,10 @@
 const companyController = function ($scope, $location, factory) {
 
-    $scope.heading = "HI";
+   
 
     $scope.formData = {};
 
-
+//Function to subscribe a company to our directory
     $scope.createCompany = function createCompany() {
 
 

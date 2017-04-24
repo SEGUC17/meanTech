@@ -3,7 +3,7 @@ const createEventController = function($scope, $location, factory) {
         $location.path('/');
     } else {
         $scope.eventForm = {};
-
+// Function used by company to create an event
         $scope.createEvent = function() {
             factory.createEvent($scope.eventForm)
                 .success(function(data) {

@@ -4,7 +4,7 @@ const registerController = function ($scope, $location, factory) {
     $scope.register = function register() {
         factory.register($scope.clientInfo)
             .success(function (data) {
-                alert('Successfully Registered! Please wait for an email on further details!');
+                alert('Successfully Registered!');
             }).error(function (error) {
                 alert(error.message);
             });
