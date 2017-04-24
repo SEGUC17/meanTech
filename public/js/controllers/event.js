@@ -5,9 +5,12 @@ const eventController = function ($scope, $location, factory) {
     $scope.selectedEvent = {};
     $scope.showTable = true;
 
+    //------>changes the date as string coming from the DB to  type date<------
     $scope.constructDate = function (dateString) {
       return new Date(dateString);
     };
+
+    //------> as a company I can view my events <------
 
     $scope.getCompanyEvents = function () {
       factory.getCompanyEvents()
@@ -21,13 +24,18 @@ const eventController = function ($scope, $location, factory) {
           alert(response);
         });
     };
+  //------>calls the functions that views the company's events<-------
 
     $scope.getCompanyEvents();
+
+   //------> helper function that carries the selected event to be updated  <-------
 
     $scope.selectEventToBeUpdated = function (event) {
       $scope.selectedEvent = event;
       $scope.showTable = false;
     };
+
+    //------>As a company I can update events I have posted already <-------
 
     $scope.updateEvent = function () {
       factory.updateEvent($scope.selectedEvent)
@@ -40,6 +48,7 @@ const eventController = function ($scope, $location, factory) {
           alert(response.error);
         });
     };
+    //------>As a company I can delete events I have posted already <-------
 
     $scope.deleteEvent = function deleteEvent(id) {
       $scope.id = {

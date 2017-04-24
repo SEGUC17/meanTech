@@ -79,14 +79,12 @@
 </style>
 <div>
 
-    <div class="alert alert-info">
-        <p>Sort Type: {{ sortType }}</p>
-        <p>Sort Reverse: {{ sortReverse }}</p>
+    <div ng-show="showTable" class="alert alert-info">
         <p>Search Query: {{ searchFish }}</p>
     </div>
 
     <form>
-        <div class="form-group">
+        <div ng-show="showTable" class="form-group">
             <div class="input-group">
                 <div class="input-group-addon"><i class="fa fa-search"></i></div>
                 <input type="text" class="form-control" placeholder="Search your events" ng-model="searchFish">
@@ -98,63 +96,36 @@
         <thead>
             <tr>
                 <td>
-                    <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Name 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                    Name
                 </td>
                 <td>
-                    <a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
-          Details
-            <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                    Details
+
+
                 </td>
                 <td>
-                    <a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
-          Date 
-            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                    Date
+
                 </td>
                 <td>
-                    <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Duration Mins 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                    Duration Mins
                 </td>
                 <td>
-                    <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Address 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
+                    Address
                 </td>
                 <td>
-                    <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Picture URL 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-                </td>
-                <td>
-                    <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Category 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-                </td>
-                <td>
-                    <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
-            Price
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
-                </td>
-                <td>Update</td>
-                <td> Delete</td>
+                    Pirture URL
+                    <td>
+                        Category
+                    </td>
+                     <td>
+                        Contacts
+                    </td>
+                    <td>
+                        Price
+                    </td>
+                    <td>Update</td>
+                    <td> Delete</td>
 
             </tr>
         </thead>
@@ -168,6 +139,7 @@
                 <td>{{event.address}}</td>
                 <td>{{event.pictureURL}}</td>
                 <td>{{event.category}}</td>
+                <td>{{event.contacts[0]}}</td>
                 <td>{{event.price}}</td>
                 <td><button class="btn btn-warning" ng-click="selectEventToBeUpdated(event)">Update</button></td>
                 <td><button class="btn btn-danger" ng-click="deleteEvent(event._id)">Delete</button></td>

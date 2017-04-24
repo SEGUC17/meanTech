@@ -2,7 +2,6 @@ App.factory('factory', function ($http, $location) {
     const apiUrl = 'http://localhost:8080/';
 
     let token = null;
-    // let eventID = null;
 
     return {
         clientLogin: function (user) {
@@ -32,7 +31,6 @@ App.factory('factory', function ($http, $location) {
         },
 
         getCompanyEvents: function () {
-            console.log("it gets to the factory of get company events");
             return $http.get('http://localhost:8080/getCompanyEvents', {
 
                 headers: {
@@ -42,8 +40,9 @@ App.factory('factory', function ($http, $location) {
 
 
         },
+
+
         viewRatings: function (companyID) {
-            console.log("it gets to the factory of view ratings");
             return $http.post('http://localhost:8080/viewRatings', companyID, {
 
                 headers: {
@@ -64,7 +63,6 @@ App.factory('factory', function ($http, $location) {
         },
 
         deleteEvent: function (info) {
-            console.log("inside the factory of  deleteEvent ");
             return $http.post('http://localhost:8080/deleteEvent', info, {
                 headers: {
                     'x-access-token': token

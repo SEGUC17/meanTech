@@ -42,6 +42,8 @@ let reviewController = {
             }
         });
     },
+
+    // as a client i can view ratings of any company
     viewRatings: function (req, res) {
 
         Review.find({

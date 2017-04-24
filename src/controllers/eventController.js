@@ -35,7 +35,7 @@ let eventController = {
                 });
 
             }
-        })
+        });
 
 
     },
@@ -48,9 +48,10 @@ let eventController = {
                 res.send({
                     events
                 });
-        })
+        });
     },
 
+//as a company i can see my events
     getCompanyEvents: function (req, res) {
 
         Event.find({
@@ -69,9 +70,9 @@ let eventController = {
             });
 
 
-        })
+        });
     },
-
+// as a company i can update my events
     updateEvents: function (req, res) {
         var query = {
             _id: req.body._id
@@ -117,7 +118,7 @@ let eventController = {
                     success: false,
                     msg: 'can not cancel event'
 
-                })
+                });
             } else {
                 res.json({
                     success: true,
