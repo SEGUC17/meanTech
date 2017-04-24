@@ -21,6 +21,11 @@ App.config(['$routeProvider', function ($routeProvider) {
 
         // TODO admin update
 
+         .when('/adminUpdatePassword', {
+            templateUrl: 'views/adminUpdatePassword.html',
+            controller: 'updatePasswordController',
+        })
+
         .when('/clientResetPassword', {
             templateUrl: 'views/clientResetPassword.html',
             controller: 'resetPasswordController',

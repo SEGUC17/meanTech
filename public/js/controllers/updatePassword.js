@@ -1,6 +1,7 @@
 const updatePasswordController = function ($scope, $location, factory) {
     $scope.clientUpdatePasswordForm = {};
     $scope.companyUpdatePasswordForm = {};
+    $scope.adminUpdatePasswordForm={};
 
 
     $scope.clientUpdatePassword = function clientUpdatePassword() {
@@ -24,6 +25,15 @@ const updatePasswordController = function ($scope, $location, factory) {
     };
 
     // TODO admin update password 
+        $scope.adminUpdatePassword = function adminUpdatePassword() {
+        factory.adminUpdatePassword($scope.adminUpdatePasswordForm)
+
+            .success(function (data) {
+                alert('Password Updated Successfully');
+            }).error(function (error) {
+                alert(error.message);
+            });
+    };
 };
 
 updatePasswordController.$inject = ['$scope', '$location', 'factory'];
