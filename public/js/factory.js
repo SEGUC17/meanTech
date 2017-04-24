@@ -14,6 +14,19 @@ App.factory('factory', function ($http, $location) {
             return $http.post(apiUrl.concat('companyLogin'), user);
         },
 
+        userViewAllPromotions: () => {
+            return $http.get('http://localhost:8080/getAllPromotions');
+        },
+
+        clientUpdatePassword: (newPassword) => {
+            return $http.post(apiUrl.concat('clientUpdatePassword'), newPassword, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
+
+
         companyUpdatePassword: (newPassword) => {
             return $http.post(apiUrl.concat('companyUpdatePassword'), newPassword, {
                 headers: {
@@ -22,7 +35,13 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
-        //TODO adminUpdatePassword
+        adminUpdatePassword: (newPassword) => {
+            return $http.post(apiUrl.concat('adminUpdatePassword'), newPassword, {
+                headers: {
+                    'x-access-token': token,
+                },
+            });
+        },
 
         clientResetPassword: (data) => {
             return $http.post(apiUrl.concat('clientResetPassword'), data, {
@@ -277,10 +296,10 @@ App.factory('factory', function ($http, $location) {
 
             });
         },
-        setSelectedPurchase: function(newItem) {
+        setSelectedPurchase: function (newItem) {
             selectedPurchase = newItem;
         },
-        getSelectedPurchase: function() {
+        getSelectedPurchase: function () {
             return selectedPurchase;
         }
 
