@@ -1,5 +1,5 @@
 App.factory('factory', function ($http, $location) {
-    const apiUrl = 'http://localhost:8080/';
+    const apiUrl = 'https://eventatk.herokuapp.com/';
     let selectedCompany = null;
     let companyReview = null;
     let token = null;
