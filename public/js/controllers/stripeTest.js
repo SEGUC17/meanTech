@@ -30,7 +30,7 @@ const stripeController = function ($scope, $location, factory, stripe, $http) {
                 })
                 .then(function (payment) {
                     alert('successfully submitted payment!');
-                    $location.path('/allEvents');
+                  factory.clearSelectedPurchase();
                 })
                 .catch(function (err) {
                     if (err.type && /^Stripe/.test(err.type)) {
