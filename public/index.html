@@ -78,6 +78,25 @@
                             </ul>
                         </li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right" ng-hide="isLoggedIn()">
+                        <li uib-dropdown>
+                            <a role="button" uib-dropdown-toggle>
+                                    List
+                                    <span class="caret"></span>
+                                </a>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                                <li role="menuitem">
+                                    <a href="#/userViewAllPromotions">All Promotions</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/allServices">All Services</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/allEvents">All Events</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn()">
                         <li>
                             <a href="#/clientUpdateProfile">Hi, {{getUsername()}}</a>
