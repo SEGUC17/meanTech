@@ -56,13 +56,18 @@
         <div ng-controller="mainController">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
+
                     <div class="navbar-header">
                         <a class="navbar-brand">
                             <img alt="Brand" src="https://s-media-cache-ak0.pinimg.com/originals/7e/ab/00/7eab008ec1712b602112aa878567469f.jpg" height="100%">
-                        </a>
-                        <a class="navbar-brand">Eventatk</a>
+                            <a ng-hide="isLoggedIn()" href="#/" class="navbar-brand">Eventatk</a>
+                            <a ng-show="isClientUser()" href="#/clientViewProfile" class="navbar-brand">Eventatk</a>
+                            <a ng-show="isBusinessUser()" href="#/companyProfile" class="navbar-brand">Eventatk</a>
+                            <a ng-show="isAdminUser()" class="navbar-brand">Eventatk</a>
+
                     </div>
                     <ul class="nav navbar-nav navbar-right" ng-hide="isLoggedIn()">
+                        <li><a role="button" href="#/adminLogin">Admin Login</a></li>
                         <li uib-dropdown>
                             <a role="button" uib-dropdown-toggle>
                                     Subscribe
@@ -78,10 +83,36 @@
                             </ul>
                         </li>
                     </ul>
+                    <ul class="nav navbar-nav navbar-right" ng-hide="isLoggedIn()">
+                        <li uib-dropdown>
+                            <a role="button" uib-dropdown-toggle>
+                                    List
+                                    <span class="caret"></span>
+                                </a>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                                <li role="menuitem">
+                                    <a href="#/userViewAllPromotions">All Promotions</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/allServices">All Services</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/allEvents">All Events</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn()">
-                        <li>
+                        <li ng-show="isClientUser()">
                             <a href="#/clientUpdateProfile">Hi, {{getUsername()}}</a>
                         </li>
+                        <li ng-show="isBusinessUser()">
+                            <a href="#/companyProfile">Hi, {{getUsername()}}</a>
+                        </li>
+                        <li ng-show="isAdminUser()">
+                            <a href="#/adminHome">Hi, {{getUsername()}}</a>
+                        </li>
+
                         <li ng-show="isBusinessUser()" uib-dropdown>
                             <a role="button" uib-dropdown-toggle>
                                     New
@@ -99,7 +130,18 @@
                                 </li>
                             </ul>
                         </li>
-                        <li uib-dropdown>
+                        <li ng-show="isClientUser()" uib-dropdown>
+                            <a role="button" uib-dropdown-toggle>
+                                    New
+                                    <span class="caret"></span>
+                                </a>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                                <li role="menuitem">
+                                    <a href="#/askQuestion">Ask Question</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li ng-hide="isAdminUser()" uib-dropdown>
                             <a role="button" uib-dropdown-toggle>
                                     List
                                     <span class="caret"></span>
@@ -129,6 +171,39 @@
                                 </li>
                             </ul>
                         </li>
+
+
+                        <ul class="nav navbar-nav navbar-right" ng-show="isAdminUser()">
+                            <li>
+                                <a href="#/adminUpdatePassword">Update Password</a>
+                            </li>
+                        </ul>
+
+                        <!--admin-->
+                        <li ng-show="isAdminUser()" uib-dropdown>
+                            <a role="button" uib-dropdown-toggle>
+                                    Work
+                                    <span class="caret"></span>
+                                </a>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                                <li role="menuitem">
+                                    <a href="#/unverifiedCompanies">Unverified Companies</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/viewCompanies">Delete Companies</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/FAQView">Answer Questions</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/adminRegister">Register Admin</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/adminUpdatePassword">Update Password</a>
+                                </li>
+                            </ul>
+                        </li>
+
                         <li>
                             <a href="#/">Logout</a>
                         </li>

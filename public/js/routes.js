@@ -21,7 +21,7 @@ App.config(['$routeProvider', function ($routeProvider) {
 
         // TODO admin update
 
-         .when('/adminUpdatePassword', {
+        .when('/adminUpdatePassword', {
             templateUrl: 'views/adminUpdatePassword.html',
             controller: 'updatePasswordController',
         })
@@ -93,25 +93,21 @@ App.config(['$routeProvider', function ($routeProvider) {
         })
         .when('/updateService', {
             templateUrl: 'views/updateService.html',
-            controller: 'serviceController'
+            controller: 'serviceController',
         })
         .when('/answerQuestion', {
             templateUrl: 'views/answerQuestion.html',
-            controller: 'questionController',
+            controller: 'answerQuestionController',
         })
         .when('/clientRegistration', {
             templateUrl: 'views/clientRegister.html',
             controller: 'registerController',
         })
-        .when('/deleteReview', {
-            templateUrl: 'views/deleteReview.html',
-            controller: 'reviewController',
-        })
         .when('/companyProfile', {
             templateUrl: 'views/viewCompany.html',
             controller: 'viewCompanyController',
         })
-        .when('/faqq', {
+        .when('/askQuestion', {
             templateUrl: 'views/askQuestion.html',
             controller: 'askQuestionController',
         })
@@ -127,18 +123,18 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/viewCompanyProfile.html',
             controller: 'visitCompanyPageController',
         })
-        .when('/pr', {
+        .when('/postReview', {
             templateUrl: 'views/postReview.html',
             controller: 'postReviewController',
         })
 
         .when('/clientViewProfile', {
             templateUrl: 'views/viewProfile.html',
-            controller: 'viewProfileController'
+            controller: 'viewProfileController',
         })
         .when('/clientUpdateProfile', {
             templateUrl: 'views/clientUpdateProfile.html',
-            controller: 'updateProfileController'
+            controller: 'updateProfileController',
         })
         .when('/unverifiedCompanies', {
             templateUrl: 'views/unverifiedCompanies.html',
