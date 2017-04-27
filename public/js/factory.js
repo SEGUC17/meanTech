@@ -60,6 +60,13 @@ App.factory('factory', function ($http, $location) {
             return $http.post(apiUrl.concat('companyLogin'), user);
         },
 
+        logout: function () {
+            isClientUser = false;
+            isAdminUser = false;
+            isBusinessUser = false;
+            return $http.get(apiUrl.concat('/'));
+        },
+
         //see all the promotions as a client
         userViewAllPromotions: () => {
             return $http.get(apiUrl.concat('getAllPromotions'));

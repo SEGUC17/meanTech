@@ -39,7 +39,23 @@ const loginController = function ($scope, $location, factory) {
                 alert(error.message);
             });
     };
-};
+
+            factory.logout()
+            .then(function (response) {
+                factory.setBusinessUserFalse();
+                factory.setAdminUserFalse();
+                factory.setClientUserFalse();
+                const x = null;
+                factory.setToken(x);
+                $location.path('/');
+            }).catch(function (error) {
+                alert(error.message);
+            });
+    };
+
+
+
+
 
 loginController.$inject = ['$scope', '$location', 'factory'];
 App.controller('loginController', loginController);

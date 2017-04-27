@@ -10,4 +10,5 @@ App.controller('mainController', ['$scope', 'factory', function ($scope, factory
     $scope.isBusinessUser = factory.isBusinessUser;
     $scope.isAdminUser = factory.isAdminUser;
     $scope.isClientUser = factory.isClientUser;
+    // $scope.logout = factory.logout;
 }]);
