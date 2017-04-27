@@ -11,9 +11,21 @@ const adminLoginController = function ($scope, $location, factory) {
                 $location.path('/adminHome');
             } else {
                 alert(data.data.msg);
-            } 
+            }
         })
     };
+    factory.logout()
+        .then(function (response) {
+            factory.setBusinessUserFalse();
+            factory.setAdminUserFalse();
+            factory.setClientUserFalse();
+            const x = null;
+            factory.setToken(x);
+            // $location.path('/');
+        }).catch(function (error) {
+            alert(error.message);
+        });
+
 };
 
 adminLoginController.$inject = ['$scope', '$location', 'factory'];
