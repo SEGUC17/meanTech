@@ -8,7 +8,7 @@ const adminController = function ($scope, $location, factory) {
     $scope.adminRegister = function adminRegister() {
         factory.adminRegister($scope.adminForm)
             .then(function (data) {
-                $location.path('/adminLogin');
+                $location.path('/adminHome');
             }).catch(function (error) {
 
             });
@@ -38,7 +38,7 @@ const adminController = function ($scope, $location, factory) {
     $scope.deleteCompany = function deleteCompany() {
         factory.deleteCompany($scope.deleteForm).then(function (data) {
             $location.path('/viewCompanies');
-        })
+        }) 
     };
 
     //redirects from a page that views unverified companies to a page where you can verify them

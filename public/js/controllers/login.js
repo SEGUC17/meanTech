@@ -21,7 +21,7 @@ const loginController = function ($scope, $location, factory) {
                 factory.setAdminUserFalse();
                 factory.setClientUserFalse();
                 $location.path('/companyProfile');
-            }).error(function (error) {
+            }).error(function (error) { 
                 alert(error.message);
             });
     };

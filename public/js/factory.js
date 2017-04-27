@@ -43,7 +43,6 @@ App.factory('factory', function ($http, $location) {
         isAdminUser: function () {
             return isAdminUser;
         },
-
         setUsername: function (newUsername) {
             username = newUsername;
         },
@@ -99,18 +98,15 @@ App.factory('factory', function ($http, $location) {
         },
         //reset password as a client when forgotten
         clientResetPassword: (data) => {
-            return $http.post(apiUrl.concat('clientResetPassword'), data, {
-            });
+            return $http.post(apiUrl.concat('clientResetPassword'), data, {});
         },
         //reset password as a company when forgotten
         companyResetPassword: (data) => {
-            return $http.post(apiUrl.concat('companyResetPassword'), data, {
-            });
+            return $http.post(apiUrl.concat('companyResetPassword'), data, {});
         },
         //reset password as an admin when forgotten
         adminResetPassword: (data) => {
-            return $http.post(apiUrl.concat('adminResetPassword'), data, {
-            });
+            return $http.post(apiUrl.concat('adminResetPassword'), data, {});
         },
 
         createEvent: function (info) {
@@ -206,7 +202,9 @@ App.factory('factory', function ($http, $location) {
             return $http.get(apiUrl.concat('allServices'));
         },
         addFavCompanies: function (compID) {
-            return $http.post(apiUrl.concat('addToFavCompanies'), { companyID: compID }, {
+            return $http.post(apiUrl.concat('addToFavCompanies'), {
+                companyID: compID
+            }, {
                 headers: {
                     'x-access-token': token
                 }
