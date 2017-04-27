@@ -200,6 +200,9 @@ App.factory('factory', function ($http, $location) {
         clearToken: function () {
             token = null;
         },
+        clearSelectedPurchase: function () {
+            selectedPurchase = null;
+        },
 
         postPromotion: function (info) {
             return $http.post(apiUrl.concat('postPromotion1'), info, {
