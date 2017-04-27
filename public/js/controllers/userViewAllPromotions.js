@@ -1,14 +1,11 @@
 const userViewAllPromotionsController = function ($scope, $location, factory) {
 
-
-    factory.userViewAllPromotions() // there was $scope.viewPromotionsForm in paramater
+//to let a visitor and a client see all the promotions
+    factory.userViewAllPromotions()
         .success(function (data) {
        
             $scope.promotions = data.data;
         })
-
-    //     factory.userViewAllPromotions().then((res)) => {
-    //   const { data: { data: { collection: promotions}}} = res;
 };
 
 userViewAllPromotionsController.$inject = ['$scope', '$location', 'factory'];
