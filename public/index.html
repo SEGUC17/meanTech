@@ -87,7 +87,7 @@
                             <a href="#/companyProfile">Hi, {{getUsername()}}</a>
                         </li>
                         <li ng-show="isAdminUser()">
-                            <a>Hi, {{getUsername()}}</a>
+                            <a href="#/adminHome">Hi, {{getUsername()}}</a>
                         </li>
 
                         <li ng-show="isBusinessUser()" uib-dropdown>
@@ -107,7 +107,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li uib-dropdown>
+                        <li ng-hide="isAdminUser()" uib-dropdown>
                             <a role="button" uib-dropdown-toggle>
                                     List
                                     <span class="caret"></span>
@@ -137,13 +137,8 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#/">Logout</a>
-                        </li>
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right" ng-show="isAdminUser()">
                         <!--admin-->
-                        <li uib-dropdown>
+                        <li ng-show="isAdminUser()" uib-dropdown>
                             <a role="button" uib-dropdown-toggle>
                                     Work
                                     <span class="caret"></span>
@@ -161,12 +156,11 @@
                                 <li role="menuitem">
                                     <a href="#/adminRegister">Register Admin</a>
                                 </li>
-                                 <li role="menuitem">
+                                <li role="menuitem">
                                     <a href="#/adminUpdatePassword">Update Password</a>
                                 </li>
                             </ul>
                         </li>
-
                         <li>
                             <a href="#/">Logout</a>
                         </li>
