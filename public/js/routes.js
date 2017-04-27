@@ -4,6 +4,11 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/login.html',
             controller: 'loginController',
         })
+        .when('/logout', {
+            templateUrl: 'views/login.html',
+            controller: 'loginController',
+        })
+
         .when('/userViewAllPromotions', {
             templateUrl: 'views/userViewAllPromotions.html',
             controller: 'userViewAllPromotionsController',
@@ -169,6 +174,10 @@ App.config(['$routeProvider', function ($routeProvider) {
         .when('/adminLogin', {
             templateUrl: 'views/adminLogin.html',
             controller: 'adminLoginController',
+
+        })
+         .when('/adminHome', {
+            templateUrl: 'views/adminHome.html',
 
         })
 

@@ -82,32 +82,30 @@
     <div class="form-container">
         <form name="update" class="form" ng-submit="clientUpdateProfile()">
             <div class="form-group">
-                <label for="InputTitle">First Name</label>  
+                <label for="InputTitle">First Name</label>
                 <br>
                 <input name="firstName" type="text" class="form-control" placeholder="First Name" ng-model="clientUpdateProfileForm.firstName"
                 /> 
             </div>
-              <div class="form-group">
+            <div class="form-group">
                 <label for="InputTitle">Last Name</label>
                 <br>
                 <input name="LastName" type="text" class="form-control" placeholder="Last Name" ng-model="clientUpdateProfileForm.lastName"
                 />
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label for="InputTitle">Address</label>
                 <br>
-                <input name="address" type="text" class="form-control" placeholder="address" ng-model="clientUpdateProfileForm.address"
-                />
+                <input name="address" type="text" class="form-control" placeholder="address" ng-model="clientUpdateProfileForm.address" />
             </div>
-             <div class="form-group">
+            <div class="form-group">
                 <label for="InputTitle">Phone Numbers</label>
                 <br>
                 <input name="phoneNumbers" type="text" class="form-control" placeholder="phone numbers" ng-model="clientUpdateProfileForm.phoneNumbers"
                 />
             </div>
-          
             <button type="submit" class="btn btn-default">Update Profile</button>
         </form>
+            <button  ng-click="clientUpdatePassword()">Update Password</button>
     </div>
 </div>
-

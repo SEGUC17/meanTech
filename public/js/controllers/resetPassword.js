@@ -4,7 +4,7 @@ const resetPasswordController = function ($scope, $location, factory) {
     $scope.adminResetPasswordForm = {};
 
 
-
+//to let the client reset his password when fogotten
     $scope.clientResetPassword = function clientResetPassword() {
         factory.clientResetPassword($scope.clientResetPasswordForm)
 
@@ -15,6 +15,8 @@ const resetPasswordController = function ($scope, $location, factory) {
             });
     };
 
+//to let the company reset his password when fogotten
+
     $scope.companyResetPassword = function companyResetPassword() {
         factory.companyResetPassword($scope.companyResetPasswordForm)
 
@@ -24,6 +26,8 @@ const resetPasswordController = function ($scope, $location, factory) {
                 alert(error.message);
             });
     };
+
+//to let the admin reset his password when fogotten
 
     $scope.adminResetPassword = function adminResetPassword() {
         factory.adminResetPassword($scope.adminResetPasswordForm)

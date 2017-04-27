@@ -16,8 +16,8 @@ const adminController = {
         });
         bcrypt.genSalt(10, function (err, salt) {
             bcrypt.hash(admin.password, salt, function (err, hash) {
-               // if (err) throw err;
-                
+                // if (err) throw err;
+
                 admin.password = hash;
                 admin.save(function (err, admin) {
                     if (err) {
@@ -117,79 +117,93 @@ const adminController = {
 
 
     updatePassword: function (req, res) {
-        Admin.findOneAndUpdate({
-            username: req.decoded.username
-        }, {
-                $set: {
-                    "password": req.body.newPassword
-                }
-            }, function (err, admin) {
+        let pass = "";
 
-                if (err) {
-                    res.status(500).json({
-                        success: false,
-                        msg: 'You are not allowed to change the password, update failed',
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(req.body.newPassword, salt, function (err, hash) {
+                pass = hash;
+                Admin.findOneAndUpdate({
+                    username: req.decoded.username
+                }, {
+                        $set: {
+                            "password": pass
+                        }
+                    }, function (err, admin) {
+
+                        if (err) {
+                            res.status(500).json({
+                                success: false,
+                                msg: 'You are not allowed to change the password, update failed',
+                            });
+                        } else {
+
+                            res.json({
+                                success: true,
+                                msg: 'The password has been updated successfully'
+                            });
+
+                            admin.markModified('Password ok');
+                        }
                     });
-                } else {
-
-                    res.json({
-                        success: true,
-                        msg: 'The password has been updated successfully'
-                    });
-
-                    admin.markModified('Password ok');
-                }
             });
+        });
     },
 
     resetPassword: function (req, res) {
-        Admin.findOne({
-            username: req.body.username
-        }, function (err, admin) {
-            if (err) res.status(500).json({
-                success: false,
-                message: 'Error'
-            });
+        let pass = "";
 
-            if (!admin) {
-                res.status(404).json({
-                    success: false,
-                    message: 'Username not found',
-                });
-            } else if (admin) {
-                if (admin.questionAnswer != req.body.questionAnswer) {
-
-                    res.status(401).json({
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(req.body.newPassword, salt, function (err, hash) {
+                pass = hash;
+                Admin.findOne({
+                    username: req.body.username
+                }, function (err, admin) {
+                    if (err) res.status(500).json({
                         success: false,
-                        message: 'Authentication failed. Wrong Security Answer.',
+                        message: 'Error'
                     });
-                } else {
-                    Admin.findOneAndUpdate({
-                        username: req.body.username,
-                    }, {
-                            $set: {
-                                'password': req.body.newPassword,
-                            },
-                        }, function (err, admin) {
-                            if (err) {
-                                res.status(500).json({
-                                    success: false,
-                                    msg: 'You are not allowed to change the password, update failed',
-                                });
-                            } else {
-                                res.json({
-                                    success: true,
-                                    msg: 'The password has been updated successfully'
-                                });
-                                admin.markModified('Password reset ok');
-                            }
+
+                    if (!admin) {
+                        res.status(404).json({
+                            success: false,
+                            message: 'Username not found',
                         });
+                    } else if (admin) {
+                        if (admin.questionAnswer != req.body.questionAnswer) {
 
-                };
+                            res.status(401).json({
+                                success: false,
+                                message: 'Authentication failed. Wrong Security Answer.',
+                            });
+                        } else {
+                            Admin.findOneAndUpdate({
+                                username: req.body.username,
+                            }, {
+                                    $set: {
+                                        'password': pass,
+                                    },
+                                }, function (err, admin) {
+                                    if (err) {
+                                        res.status(500).json({
+                                            success: false,
+                                            msg: 'You are not allowed to change the password, update failed',
+                                        });
+                                    } else {
+                                        res.json({
+                                            success: true,
+                                            msg: 'The password has been updated successfully'
+                                        });
+                                        admin.markModified('Password reset ok');
+                                    }
+                                });
 
-            }
+                        };
 
-        });
+                    }
+
+                });
+            })
+        })
 
     },
 
