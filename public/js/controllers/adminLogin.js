@@ -5,8 +5,9 @@ const adminLoginController = function ($scope, $location, factory) {
             if (data.data.success == true && data.data.token != null) {
                 factory.setToken(data.data.token);
                 factory.setUsername($scope.loginForm.username);
+                factory.setAdmin();
                 $location.path('/unverifiedCompanies');
-            } else { 
+            } else {
                 alert(data.data.msg);
             }
         })

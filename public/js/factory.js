@@ -7,6 +7,7 @@ App.factory('factory', function ($http, $location) {
     let username = null;
     let isClientUser = null;
     let questionId = null;
+    let isAdmin = false;
 
     return {
         setClientUser: function () {
@@ -20,6 +21,17 @@ App.factory('factory', function ($http, $location) {
         isBusinessUser: function () {
             return !isClientUser;
         },
+        setAdminFalse: function () {
+            isAdmin = true;
+        },
+        setAdmin: function () {
+            isAdmin = true;
+        },
+
+        isAdmin: function () {
+            return isAdmin;
+        },
+
 
         setUsername: function (newUsername) {
             username = newUsername;
@@ -41,7 +53,7 @@ App.factory('factory', function ($http, $location) {
         userViewAllPromotions: () => {
             return $http.get(apiUrl.concat('getAllPromotions'));
         },
-//update password as a client
+        //update password as a client
         clientUpdatePassword: (newPassword) => {
             return $http.post(apiUrl.concat('clientUpdatePassword'), newPassword, {
                 headers: {
@@ -50,7 +62,7 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
-//update password as a company
+        //update password as a company
         companyUpdatePassword: (newPassword) => {
             return $http.post(apiUrl.concat('companyUpdatePassword'), newPassword, {
                 headers: {
@@ -66,7 +78,7 @@ App.factory('factory', function ($http, $location) {
                 }
             })
         },
-//update password as an admin
+        //update password as an admin
         adminUpdatePassword: (newPassword) => {
             return $http.post(apiUrl.concat('adminUpdatePassword'), newPassword, {
                 headers: {
@@ -74,17 +86,17 @@ App.factory('factory', function ($http, $location) {
                 },
             });
         },
-//reset password as a client when forgotten
+        //reset password as a client when forgotten
         clientResetPassword: (data) => {
             return $http.post(apiUrl.concat('clientResetPassword'), data, {
             });
         },
-//reset password as a company when forgotten
+        //reset password as a company when forgotten
         companyResetPassword: (data) => {
             return $http.post(apiUrl.concat('companyResetPassword'), data, {
             });
         },
-//reset password as an admin when forgotten
+        //reset password as an admin when forgotten
         adminResetPassword: (data) => {
             return $http.post(apiUrl.concat('adminResetPassword'), data, {
             });
