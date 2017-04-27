@@ -180,5 +180,9 @@ App.config(['$routeProvider', function ($routeProvider) {
             controller: 'adminLoginController',
 
         })
+         .when('/adminHome', {
+            templateUrl: 'views/adminHome.html',
+
+        })
 
 }]);

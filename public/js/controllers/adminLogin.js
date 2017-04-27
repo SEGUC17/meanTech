@@ -8,10 +8,10 @@ const adminLoginController = function ($scope, $location, factory) {
                 factory.setAdminUser();
                 factory.setClientUserFalse();
                 factory.setBusinessUserFalse();
-                $location.path('/unverifiedCompanies');
+                $location.path('/adminHome');
             } else {
                 alert(data.data.msg);
-            }
+            } 
         })
     };
 };
