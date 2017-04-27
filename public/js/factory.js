@@ -22,7 +22,7 @@ App.factory('factory', function ($http, $location) {
             return !isClientUser;
         },
         setAdminFalse: function () {
-            isAdmin = true;
+            isAdmin = false;
         },
         setAdmin: function () {
             isAdmin = true;
