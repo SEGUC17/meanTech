@@ -5,11 +5,6 @@ const eventController = function ($scope, $location, factory) {
     $scope.selectedEvent = {};
     $scope.showTable = true;
 
-    //------>changes the date as string coming from the DB to  type date<------
-    $scope.constructDate = function (dateString) {
-      return new Date(dateString);
-    };
-
     //------> as a company I can view my events <------
 
     $scope.getCompanyEvents = function () {
@@ -18,7 +13,10 @@ const eventController = function ($scope, $location, factory) {
           $scope.sortType = 'name'; // set the default sort type
           $scope.sortReverse = false; // set the default sort order
           $scope.searchFish = ''; // set the default search/filter term
-          $scope.events = response.data;
+          $scope.events = response.data.map(function (element) {
+            element.date = new Date(element.date);
+            return element;
+          });
         })
         .error(function (response) {
           alert(response);
@@ -69,4 +67,3 @@ const eventController = function ($scope, $location, factory) {
 
 eventController.$inject = ['$scope', '$location', 'factory'];
 App.controller('eventController', eventController);
-

@@ -77,8 +77,14 @@
         width: 90%;
     }
 </style>
-<div>
 
+<div>
+    <a href="#companyProfile" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-arrow-left"></span> My profile
+    </a>
+</div>
+
+<div>
     <div ng-show="showTable" class="alert alert-info">
         <p>Search Query: {{ searchFish }}</p>
     </div>
@@ -118,7 +124,7 @@
                     <td>
                         Category
                     </td>
-                     <td>
+                    <td>
                         Contacts
                     </td>
                     <td>
@@ -134,7 +140,7 @@
             <tr ng-repeat="event in events | orderBy:sortType:sortReverse | filter:searchFish">
                 <td>{{event.name}}</td>
                 <td>{{event.details}}</td>
-                <td>{{constructDate(event.date) | date: longDate}}</td>
+                <td>{{event.date | date: longDate}}</td>
                 <td>{{event.durationMins}}</td>
                 <td>{{event.address}}</td>
                 <td>{{event.pictureURL}}</td>
@@ -172,7 +178,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Date</label>
-                        <input name="date" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.date" required="required">
+                        <input name="date" type="date" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.date" required="required">
                         <span ng-show="eventupdate.date.$error.required">*</span>
 
                     </div>
@@ -185,13 +191,15 @@
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Address</label>
-                        <input name="address" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.address" required="required">
+                        <input name="address" type="text" required ng-pattern="/^[0-9-a-zA-Z]*$/" class="form-control" id="InputTitle" placeholder=""
+                            ng-model="selectedEvent.address" required="required">
                         <span ng-show="eventupdate.address.$error.required">*</span>
+                        <span ng-show="eventupdate.address.$error.pattern">Not a valid Address!, you can only use letters and numbers</span>
 
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Picture URL</label>
-                        <input name="pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.pictureURL"
+                        <input name="pictureURL" type="URL" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.pictureURL"
                             required="required">
                         <span ng-show="eventupdate.prictureURL.$error.required">*</span>
 
@@ -205,20 +213,22 @@
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Contacts</label>
-                        <input name="contacts" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.contacts"
+                        <input name="contacts" type="text" required ng-pattern="/^[0-9]*$/" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.contacts"
                             required="required">
                         <span ng-show="eventupdate.contacts.$error.required">*</span>
+                        <span ng-show="eventupdate.contacts.$error.pattern">Not a valid Number!, you can only use numbers</span>
 
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Price</label>
-                        <input name="price" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.price" required="required">
+                        <input name="price" type="Number" step="0.001" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.price"
+                            required="required">
                         <span ng-show="eventupdate.price.$error.required">*</span>
 
                     </div>
-
-                    <button type="submit" class="btn btn-default"> Update Event!</button>
+                    <button type="submit" ng-disabled="eventupdate.$pristine|| eventupdate.$invalid" class="btn btn-default"> Update Event!</button>
                 </form>
+
             </div>
         </div>
 

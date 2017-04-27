@@ -103,7 +103,7 @@ App.factory('factory', function ($http, $location) {
             return $http.post(apiUrl.concat('company'), info);
 
         },
-
+//view the events of a specific company to the company itself
         getCompanyEvents: function () {
             return $http.get(apiUrl.concat('getCompanyEvents'), {
                 headers: {
@@ -112,6 +112,7 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
+// clients are able to view ratings of a specific company
         viewRatings: function (companyID) {
             return $http.post(apiUrl.concat('viewRatings'), companyID, {
                 headers: {
@@ -120,6 +121,7 @@ App.factory('factory', function ($http, $location) {
             });
         },
 
+// Companies are able to update the details of events they created
         updateEvent: function (info) {
             return $http.post(apiUrl.concat('updateEvents'), info, {
                 headers: {
@@ -127,6 +129,7 @@ App.factory('factory', function ($http, $location) {
                 }
             })
         },
+// Companies are able to delete the details of events they created
 
         deleteEvent: function (info) {
             return $http.post(apiUrl.concat('deleteEvent'), info, {

@@ -32,7 +32,7 @@
       <tr ng-repeat="rating in ratings | orderBy:sortType:sortReverse | filter:searchFish">
         <td>{{rating.content}}</td>
         <td>{{rating.rating}}</td>
-        <td>{{rating.date}}</td>
+        <td>{{constructDate(rating.date) | date: longDate}}</td>
         
 
       </tr>
