@@ -79,9 +79,16 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn()">
-                        <li>
+                        <li ng-show="isClientUser()">
                             <a href="#/clientUpdateProfile">Hi, {{getUsername()}}</a>
                         </li>
+                        <li ng-show="isBusinessUser()">
+                            <a href="#/companyProfile">Hi, {{getUsername()}}</a>
+                        </li>
+                        <li ng-show="isAdminUser()">
+                            <a>Hi, {{getUsername()}}</a>
+                        </li>
+
                         <li ng-show="isBusinessUser()" uib-dropdown>
                             <a role="button" uib-dropdown-toggle>
                                     New
@@ -129,6 +136,13 @@
                                 </li>
                             </ul>
                         </li>
+
+                        <ul class="nav navbar-nav navbar-right" ng-show="isAdminUser()">
+                            <li>
+                                <a href="#/adminUpdatePassword">Update Password</a>
+                            </li>
+                        </ul>
+
                         <li>
                             <a href="#/">Logout</a>
                         </li>
