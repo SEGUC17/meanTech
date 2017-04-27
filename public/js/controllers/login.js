@@ -19,7 +19,7 @@ const loginController = function ($scope, $location, factory) {
                 factory.setUsername($scope.companyForm.username);
                 factory.setBusinessUser();
                 $location.path('/companyProfile');
-            }).error(function (error) {
+            }).error(function (error) { 
                 alert(error.message);
             });
     };

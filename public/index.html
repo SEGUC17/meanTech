@@ -63,6 +63,7 @@
                         <a class="navbar-brand">Eventatk</a>
                     </div>
                     <ul class="nav navbar-nav navbar-right" ng-hide="isLoggedIn()">
+                        <li><a role="button" href="#/adminLogin">Admin Login</a></li>
                         <li uib-dropdown>
                             <a role="button" uib-dropdown-toggle>
                                     Subscribe
@@ -126,6 +127,36 @@
                                 </li>
                                 <li role="menuitem" ng-show="isBusinessUser()">
                                     <a href="#/viewPromotions">My Promotions</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#/">Logout</a>
+                        </li>
+                    </ul>
+                    <!--admin-->
+                    <ul class="nav navbar-nav navbar-right" ng-show="isLoggedIn()">
+                        <li>
+                            <a href="#/adminHome">Hi, {{getUsername()}}</a>
+                        </li>
+                        <li uib-dropdown>
+                            <a role="button" uib-dropdown-toggle>
+                                    Work
+                                    <span class="caret"></span>
+                                </a>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                                <li role="menuitem">
+                                    <a href="#/unverifiedCompanies">Unverified Companies</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/viewCompanies">Delete Companies</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/FAQView">Answer Questions</a>
+                                </li>
+                                <li role="menuitem">
+                                    <a href="#/adminRegister">Register Admin</a>
                                 </li>
                             </ul>
                         </li>

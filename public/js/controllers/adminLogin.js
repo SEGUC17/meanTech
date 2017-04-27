@@ -5,10 +5,10 @@ const adminLoginController = function ($scope, $location, factory) {
             if (data.data.success == true && data.data.token != null) {
                 factory.setToken(data.data.token);
                 factory.setUsername($scope.loginForm.username);
-                $location.path('/unverifiedCompanies');
+                $location.path('/adminHome');
             } else { 
                 alert(data.data.msg);
-            }
+            } 
         })
     };
 };
