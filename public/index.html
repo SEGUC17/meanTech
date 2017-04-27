@@ -130,6 +130,17 @@
                                 </li>
                             </ul>
                         </li>
+                        <li ng-show="isClientUser()" uib-dropdown>
+                            <a role="button" uib-dropdown-toggle>
+                                    New
+                                    <span class="caret"></span>
+                                </a>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                                <li role="menuitem">
+                                    <a href="#/askQuestion">Ask Question</a>
+                                </li>
+                            </ul>
+                        </li>
                         <li ng-hide="isAdminUser()" uib-dropdown>
                             <a role="button" uib-dropdown-toggle>
                                     List

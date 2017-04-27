@@ -4,6 +4,7 @@ const askQuestionController = function ($scope, $location, factory) {
         factory.askQuestion($scope.question)
             .success(function (response) {
                 alert('Question successfully posted.');
+                $location.path('/clientViewProfile');
             }).error(function (response) {
                 alert('Question posting unsuccessful');
             });
