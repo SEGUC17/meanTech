@@ -8,4 +8,6 @@ App.controller('mainController', ['$scope', 'factory', function ($scope, factory
     $scope.isLoggedIn = factory.getToken;
     $scope.getUsername = factory.getUsername;
     $scope.isBusinessUser = factory.isBusinessUser;
+    $scope.isAdminUser = factory.isAdminUser;
+    $scope.isClientUser = factory.isClientUser;
 }]);

@@ -5,20 +5,43 @@ App.factory('factory', function ($http, $location) {
     let token = null;
     let selectedPurchase = null;
     let username = null;
-    let isClientUser = null;
+    let isClientUser = false;
     let questionId = null;
+    let isAdminUser = false;
+    let isBusinessUser = false;
 
     return {
         setClientUser: function () {
             isClientUser = true;
         },
 
-        setBusinessUser: function () {
+        setClientUserFalse: function () {
             isClientUser = false;
         },
 
+        setBusinessUser: function () {
+            isBusinessUser = true;
+        },
+        setBusinessUserFalse: function () {
+            isBusinessUser = false;
+        },
+        setAdminUser: function () {
+            isAdminUser = true;
+        },
+        setAdminUserFalse: function () {
+            isAdminUser = false;
+        },
+
+        isClientUser: function () {
+            return isClientUser;
+        },
+
         isBusinessUser: function () {
-            return !isClientUser;
+            return isBusinessUser;
+        },
+
+        isAdminUser: function () {
+            return isAdminUser;
         },
         setUsername: function (newUsername) {
             username = newUsername;
