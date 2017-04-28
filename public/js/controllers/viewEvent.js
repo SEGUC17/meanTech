@@ -6,6 +6,7 @@ const viewEventController = function ($scope, $location, factory) {
     $scope.pay = function pay(event) {
 
          factory.setSelectedPurchase(event);
+        
 
       $location.path('/stripeTest');
 

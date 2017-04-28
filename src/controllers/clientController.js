@@ -1,5 +1,6 @@
 const Client = require('../models/Client');
 const Company = require('../models/Company');
+const Event = require('../models/Event');
 
 const clientController = {
 
@@ -204,7 +205,7 @@ const clientController = {
 
     viewCompanyProfile: function (req, res) {
         var id = req.body._id;
-       
+
         Company.findById(id, function (err, company) {
 
             if (err) {
@@ -227,7 +228,7 @@ const clientController = {
                         success: false,
                         message: 'no existing company',
                         company,
-                        
+
                     });
                      }
 
@@ -235,6 +236,78 @@ const clientController = {
 
         });
     },
+    addToBookedServices: function (req, res) {
+        var serviceID = req.body.serviceID;
+        Client.findOneAndUpdate({
+            _id: req.decoded.id
+        }, {
+                "$push": {
+                    "bookedServices": serviceID
+                }
+            }, function (err, client) {
+                if (err) {
+                    res.status(500).json({
+                        success: false,
+                        message: 'Could not book service!'
+                    });
+                }
+                if (client) {
+                    client.markModified('anything');
+                    return res.json({
+                        success: true,
+                        message: 'Successfully Booked'
+                    });
+                }
+            });
+    },
+    addToBookedEvents: function (req, res) {
+        var eventID = req.body.eventID;
+        Client.findOneAndUpdate({
+            _id: req.decoded.id
+        }, {
+                "$push": {
+                    "bookedEvents": eventID
+                }
+            }, function (err, client) {
+                if (err) {
+                    res.status(500).json({
+                        success: false,
+                        message: 'Could not book event!'
+                    });
+                }
+                if (client) {
+                    client.markModified('anything');
+                    return res.json({
+                        success: true,
+                        message: 'Successfully Booked'
+                    });
+                }
+            });
+    },
+    myBookedEvents: function (req, res) {
+      Client.findOne({ _id : req.decoded.id })
+        .populate({ path: 'bookedEvents', model: Event })
+        .exec(function (err, client) {
+          if (err) {
+
+            res.status(500).json({
+                success: false,
+                message: 'error'
+
+            })
+        } else {
+
+            res.json({
+                success: true,
+                data: client.bookedEvents
+            })
+        };
+
+        })
+    }
+
+
+
 };
 
 module.exports = clientController;

@@ -203,6 +203,27 @@ App.factory('factory', function ($http, $location) {
         clearSelectedPurchase: function () {
             selectedPurchase = null;
         },
+        bookEvent: function (eventID) {
+          return $http.post(apiUrl.concat('bookEvent'), { eventID: eventID }, {
+              headers: {
+                  'x-access-token': token
+              }
+          });
+        },
+        bookService: function (serviceID) {
+          return $http.post(apiUrl.concat('bookService'), { serviceID: serviceID }, {
+              headers: {
+                  'x-access-token': token
+              }
+          });
+        },
+        myBookedEvents: function () {
+          return $http.get(apiUrl.concat('bookedEvents'), {
+              headers: {
+                  'x-access-token': token
+              }
+          });
+        },
 
         postPromotion: function (info) {
             return $http.post(apiUrl.concat('postPromotion1'), info, {
