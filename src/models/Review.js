@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 
 var reviewSchema = mongoose.Schema({
-    username: String,
+    username: {
+        type: String,
+        required: true,
+    },
     companyID: {
         type: String,
         required: true,
@@ -18,11 +21,9 @@ var reviewSchema = mongoose.Schema({
     },
     date: {
         type: Date,
-        default: Date.now
-    }
-
+        default: Date.now,
+    },
 });
 
 var Review = mongoose.model("review", reviewSchema);
-
 module.exports = Review;

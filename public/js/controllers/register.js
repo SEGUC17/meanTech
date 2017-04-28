@@ -1,6 +1,7 @@
 const registerController = function ($scope, $location, factory) {
     $scope.clientInfo = {};
 
+    // Client can register his information
     $scope.register = function register() {
         factory.register($scope.clientInfo)
             .success(function (response) {
