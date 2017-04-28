@@ -32,11 +32,11 @@ const passwordValidator = [
     validate({
         validator: 'isLength',
         arguments: [3, 20],
-        message: 'Username should be between {ARGS[0]} and {ARGS[1]} characters.',
+        message: 'Password should be between {ARGS[0]} and {ARGS[1]} characters.',
     }),
     validate({
         validator: 'isAlphanumeric',
-        message: 'Username should be letters and numbers only.',
+        message: 'Password should be letters and numbers only.',
     }),
 ];
 
@@ -75,6 +75,7 @@ var clientSchema = mongoose.Schema({
         enum: ['Male', 'Female'],
     },
     age: Number,
+    DOB: Date,
     socialMediaURL: String,
     phoneNumbers: [String],
     previousEvents: [String],

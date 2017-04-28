@@ -1,7 +1,9 @@
 const postReviewController = function ($scope, $location, factory) {
     $scope.reviewInfo = {};
     const company = factory.getCompanyReview();
+    $scope.companyName = company.name;
 
+    // Client can review a company
     $scope.postReview = function postReview() {
         $scope.reviewInfo.companyID = company._id;
 

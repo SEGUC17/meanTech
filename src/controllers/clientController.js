@@ -3,9 +3,21 @@ const Company = require('../models/Company');
 
 const clientController = {
 
+    // Client can register his information
     register: function (req, res) {
-        let client = new Client(req.body);
+        function getAge(dateString) {
+            var today = new Date();
+            var birthDate = new Date(dateString);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            return age;
+        }
 
+        let client = new Client(req.body);
+        client.age = getAge(req.body.DOB);
         client.save(function (err, client) {
             if (err) {
                 if (err.errors != null) {
