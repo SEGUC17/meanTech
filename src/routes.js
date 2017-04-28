@@ -340,6 +340,23 @@ router.get('/bookedEvents', function (req, res) {
         });
     }
 });
+router.get('/bookedServices', function (req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.myBookedServices(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
 router.post('/bookService', function (req, res) {
     try {
         const decodedPayload = req.decoded;

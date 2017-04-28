@@ -1,6 +1,7 @@
 const Client = require('../models/Client');
 const Company = require('../models/Company');
 const Event = require('../models/Event');
+const Service = require('../models/Service');
 
 const clientController = {
 
@@ -300,6 +301,27 @@ const clientController = {
             res.json({
                 success: true,
                 data: client.bookedEvents
+            })
+        };
+
+        })
+    },
+    myBookedServices: function (req, res) {
+      Client.findOne({ _id : req.decoded.id })
+        .populate({ path: 'bookedServices', model: Service })
+        .exec(function (err, client) {
+          if (err) {
+
+            res.status(500).json({
+                success: false,
+                message: 'error'
+
+            })
+        } else {
+
+            res.json({
+                success: true,
+                data: client.bookedServices
             })
         };
 

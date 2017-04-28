@@ -1,0 +1,64 @@
+<div>
+    <h1>Bookings</h1>
+
+    <table>
+        <thead>
+
+            <tr>
+                <th>Name </th>
+                <th>Details </th>
+                <th>Date </th>
+                <th>Duration in Minutes</th>
+                <th>Address</th>
+                <th>Category</th>
+                <th>Price</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr ng-repeat="event in bookedEvents">
+                <td>{{event.name}}</td>
+                <td>{{event.details}}</td>
+                <td>{{event.date}}</td>
+                <td>{{event.durationMins}}</td>
+                <td>{{event.address}}</td>
+                <td>{{event.pictureURL}}</td>
+                <td>{{event.category}}</td>
+                <td>{{event.price}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+    </br>
+
+
+    <table>
+        <thead>
+
+            <tr>
+                <th>Name</th>
+                <th>Available Bookings</th>
+                <th>Duration</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Picture</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr ng-repeat="service in bookedServices">
+                <td>{{service.name}}</td>
+                <td>{{service.availableBookings}}</td>
+                <td>{{service.duration}}</td>
+                <td>{{service.description}}</td>
+                <td>{{service.price}}</td>
+                <td>{{service.pictureURL}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

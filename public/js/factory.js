@@ -173,7 +173,20 @@ App.factory('factory', function ($http, $location) {
                 }
             })
         },
-
+        getBookedEvents: function () {
+            return $http.get(apiUrl.concat('bookedEvents'), {
+                headers: {
+                    'x-access-token': token
+                }
+            })
+        },
+        getBookedServices: function () {
+            return $http.get(apiUrl.concat('bookedServices'), {
+                headers: {
+                    'x-access-token': token
+                }
+            })
+        },
 
         getAllEvents: function () {
             return $http.get(apiUrl.concat('allEvents'));

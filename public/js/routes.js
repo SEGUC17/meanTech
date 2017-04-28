@@ -175,5 +175,10 @@ App.config(['$routeProvider', function ($routeProvider) {
             controller: 'adminLoginController',
 
         })
+        .when('/Bookings', {
+            templateUrl: 'views/Bookings.html',
+            controller: 'viewBookingsController',
+
+        })
 
 }]);
