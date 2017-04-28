@@ -29,7 +29,7 @@ const clientController = {
                     } else if (err.errors.lastName) {
                         res.status(500).json({
                             success: false,
-                            message: err.errors.email.lastName,
+                            message: err.errors.lastName.message,
                         });
                     } else if (err.errors.email) {
                         res.status(500).json({
