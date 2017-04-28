@@ -14,6 +14,11 @@ const clientController = {
                             success: false,
                             message: err.errors.firstName.message,
                         });
+                    } else if (err.errors.lastName) {
+                        res.status(500).json({
+                            success: false,
+                            message: err.errors.email.lastName,
+                        });
                     } else if (err.errors.email) {
                         res.status(500).json({
                             success: false,
