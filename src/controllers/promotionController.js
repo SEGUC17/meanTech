@@ -18,8 +18,8 @@ module.exports = {
     },
 
     postPromotion: function (req, res) {
-        
-        let promotion = new Promotion({
+
+        let  promotion = new Promotion({
 
             content: req.body.content,
             pictureURL: req.body.pictureURL,
@@ -28,17 +28,27 @@ module.exports = {
         });
         promotion.save(function (err, promotion) {
             if (err) {
-                res.status(500).json({
-                    error: err.message
-                });
+                if (err.errors != null) {
+                    if (err.errors.pictureURL) {
+                        res.status(500).json({
+                            success: false,
+                            message: err.errors.pictureURL.message,
+                        });
+                    }
+                }
+                else {
+                    res.status(500).json({
+                        error: err.message
+                    });
+                }
             } else {
                 res.json({
                     data: promotion
                 });
             }
         })
-
     },
+
 
     updatePromotion: function (req, res) {
 
@@ -55,18 +65,27 @@ module.exports = {
                 if (x === req.decoded.id) {
 
                     Promotion.findByIdAndUpdate({
-                            _id: req.body._id
-                        }, {
+                        _id: req.body._id
+                    }, {
                             $set: req.body
                         }, {
-                            new: true
+                            runValidators: true
                         },
                         function (err, promotion) {
                             if (err) {
-                                res.status(500).json({
-                                    error: err.message
-                                });
-
+                                if (err.errors != null) {
+                                    if (err.errors.pictureURL) {
+                                        res.status(500).json({
+                                            success: false,
+                                            message: err.errors.pictureURL.message,
+                                        });
+                                    }
+                                }
+                                else {
+                                    res.status(500).json({
+                                        error: err.message
+                                    });
+                                }
                             } else {
                                 res.json({
                                     data: promotion
@@ -111,7 +130,7 @@ module.exports = {
                 res.status(500).json({
                     error: err.message
                 });
-            } 
+            }
             else {
                 x = pro.companyID;
 
