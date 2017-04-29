@@ -172,7 +172,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputLink">Details</label>
-                        <input name="details" type="text" class="form-control" id="InputLink" placeholder="" ng-model="selectedEvent.details" required="required">
+                        <input name="details" type="text" ng-pattern="^[a-zA-Z0-9_ ]*$" class="form-control" id="InputLink" placeholder="" ng-model="selectedEvent.details" required="required">
                         <span ng-show="eventupdate.details.$error.required">*</span>
 
                     </div>
@@ -192,7 +192,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Address</label>
-                        <input name="address" type="text" required ng-pattern="/^[0-9-a-zA-Z]*$/" class="form-control" id="InputTitle" placeholder=""
+                        <input name="address" type="text" required ng-pattern="/^[0-9-a-zA-Z-" "]*$/" class="form-control" id="InputTitle" placeholder=""
                             ng-model="selectedEvent.address" required="required">
                         <span ng-show="eventupdate.address.$error.required">*</span>
                         <span ng-show="eventupdate.address.$error.pattern">Not a valid Address!, you can only use letters and numbers</span>
@@ -207,7 +207,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Category</label>
-                        <input name="category" type="text" required ng-pattern="/^[0-9-a-zA-Z]*$/" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.category"
+                        <input name="category" type="text" required ng-pattern="/^[0-9-a-zA-Z-" "]*$/" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.category"
                             required="required">
                         <span ng-show="eventupdate.category.$error.required">*</span>
                      <span ng-show="eventupdate.category.$error.pattern">Not a valid Address!, you can only use letters and numbers</span>
@@ -216,7 +216,7 @@
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Contacts</label>
-                        <input name="contacts" type="text" required ng-pattern="/^[0-9]*$/" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.contacts"
+                        <input name="contacts" type="text" required ng-pattern="/^[0-9-,]*$/" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.contacts"
                             required="required">
                         <span ng-show="eventupdate.contacts.$error.required">*</span>
                         <span ng-show="eventupdate.contacts.$error.pattern">Not a valid Number!, you can only use numbers</span>

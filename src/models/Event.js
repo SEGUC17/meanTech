@@ -10,6 +10,12 @@ var alphaValidator = validate({
     httpStatus: 400
   });
 
+ 
+ var textValidator= validate({
+  validator: 'matches',
+  arguments: ['^[a-zA-Z\-0-9-" "]+$', 'i']
+});
+
 
   var urlValidator = validate({
     validator: 'isURL',
@@ -29,7 +35,7 @@ var eventSchema = mongoose.Schema({
     details: {
         type: String,
         required: true,
-        validate:alphaValidator,
+        validate:textValidator,
 
     },
     date: {
@@ -49,7 +55,7 @@ var eventSchema = mongoose.Schema({
     address: {
         type: String,
         required: true,
-        validate:alphaValidator,
+        validate:textValidator,
 
     },
     pictureURL: {
@@ -61,7 +67,7 @@ var eventSchema = mongoose.Schema({
     category: {
         type: String,
         required: true,
-        validate:alphaValidator,
+        validate:textValidator,
 
 
     },
