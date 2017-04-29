@@ -1,4 +1,4 @@
-<style media="screen">
+<!--<style media="screen">
     * {
         font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-weight: bolder;
@@ -76,7 +76,7 @@
     .form-control {
         width: 90%;
     }
-</style>
+</style>-->
 
 
 <form method="GET" ng-submit="userViewAllPromotions()">
@@ -90,10 +90,10 @@
                 <div class="panel panel-primary">
                     <div> {{ "Activity: " + promotion.content}}
                         <div> {{"Expiry: " + promotion.expiry}}
-                            <!--<div> {{"Picture: " + promotion.pictureURL}}
 
+                            <div> {{"Expiry: " + promotion.Expiry | date: longDate}}
 
-                                </div>-->
+                            <!--<div> {{"Picture: " + promotion.pictureURL}}</div>-->
                         </div>
 
                     </div>
