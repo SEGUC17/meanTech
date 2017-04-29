@@ -20,7 +20,6 @@ const adminController = function ($scope, $location, factory) {
             $scope.uncompanies = response.data.data;
         })
         .catch(function(response) {
-            console.log(response);
         });
 
 

@@ -419,13 +419,6 @@ App.factory('factory', function($http, $location) {
                 }
             });
         },
-        myBookedEvents: function() {
-            return $http.get(apiUrl.concat('bookedEvents'), {
-                headers: {
-                    'x-access-token': token
-                }
-            });
-        },
         getBookedEvents: function () {
           return $http.get(apiUrl.concat('bookedEvents'), {
               headers: {
