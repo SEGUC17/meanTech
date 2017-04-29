@@ -89,7 +89,7 @@
             <div class="" ng-repeat="promotion in promotions">
                 <div class="panel panel-primary">
                     <div> {{ "Activity: " + promotion.content}}
-                        <div> {{"Expiry: " + constructDate(promotion.expiry) | date: longDate}}
+                        <div> Expiry : {{constructDate(promotion.expiry) | date: longDate}} 
                         </div>
 
                     </div>

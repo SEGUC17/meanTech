@@ -1,6 +1,7 @@
 const userViewAllPromotionsController = function ($scope, $location, factory) {
 
- $scope.constructDate = function (dateString) {
+ //------>changes the date as string coming from the DB to  type date<------
+    $scope.constructDate = function (dateString) {
       return new Date(dateString);
     };
     
