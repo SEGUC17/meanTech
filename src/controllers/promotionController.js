@@ -16,6 +16,7 @@ module.exports = {
             }
         });
     },
+    // --->> As a company i can post a promotion --backend
 
     postPromotion: function (req, res) {
 
@@ -48,6 +49,7 @@ module.exports = {
             }
         })
     },
+    // --->> As a company i can update a promotion i previously posted --backend
 
 
     updatePromotion: function (req, res) {
@@ -102,6 +104,7 @@ module.exports = {
 
 
     },
+    // --->> As a company i can view my promotions --backend
 
     viewPromotions: function (req, res) {
 
@@ -120,6 +123,8 @@ module.exports = {
         })
 
     },
+        // --->> As a company i can delete a promotion i previously posted --backend
+
     deletePromotion: function (req, res) {
 
         var x;
