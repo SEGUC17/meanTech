@@ -20,7 +20,7 @@
         <br>
         <button ng-show="showReview" ng-click="reviewPage(companyInfo)">Write Review</button>
         <button  ng-click="viewReviews(companyInfo)">View Reviews</button>
-         <button class "btn btn-primary" ng-click="addToFavCompanies()">Add to Favourites</button>
+         <button ng-show="isLoggedIn()" class "btn btn-primary" ng-click="addToFavCompanies()">Add to Favourites</button>
     </div>
 </div>
 
