@@ -43,7 +43,7 @@ const eventController = function ($scope, $location, factory) {
           $scope.showTable = true;
         })
         .error(function (response) {
-          alert(response.error);
+          alert(response.message);
         });
     };
     //------>As a company I can delete events I have posted already <-------

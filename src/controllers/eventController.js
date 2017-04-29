@@ -22,11 +22,57 @@ let eventController = {
 
         event.save(function (err, event) {
             if (err) {
+                if (err.errors != null) {
 
-                res.status(500).json({
-                    success: false,
-                    message: "Please make sure you have provided valid information"
-                });
+                    if (err.errors.pictureURL) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid URL"
+                        });
+
+
+                    }
+
+                    if (err.errors.details) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Details"
+                        });
+                    }
+
+                    if (err.errors.durationMins) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Duration"
+                        });
+                    }
+
+                    if (err.errors.address) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Address"
+                        });
+                    }
+
+                    if (err.errors.category) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Category"
+                        });
+                    }
+
+                } else {
+
+                    res.status(500).json({
+                        success: false,
+                        message: "Please make sure you have provided valid information"
+                    });
+                }
             } else {
 
                 return res.json({
@@ -42,19 +88,18 @@ let eventController = {
 
     getAllEvents: function (req, res) {
         Event.find({}, function (err, events) {
-            if (err){
+            if (err) {
                 res.status(500).json({
                     message: "No events available"
                 })
-            }
-            else
+            } else
                 res.json({
                     data: events
                 });
         });
     },
 
-//as a company i can see my events
+    //as a company i can see my events
     getCompanyEvents: function (req, res) {
 
         Event.find({
@@ -75,7 +120,7 @@ let eventController = {
 
         });
     },
-// as a company i can update my events
+    // as a company i can update my events
     updateEvents: function (req, res) {
         var query = {
             _id: req.body._id
@@ -85,16 +130,56 @@ let eventController = {
             $set: req.body
         };
 
-        var options = {
-            new: true
-        };
-
-        Event.findByIdAndUpdate(query, update, options, function (err, event) {
+        Event.findByIdAndUpdate(query, update, { runValidators: true }, function (err, event) {
             if (err) {
-                res.status(500).json({
-                    error: "Internal server error",
-                    data: null
-                });
+                if (err.errors != null) {
+
+                    if (err.errors.pictureURL) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid URL"
+                        });
+                    }
+                    
+                    if (err.errors.details) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Details"
+                        });
+                    }
+
+                    if (err.errors.durationMins) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Duration"
+                        });
+                    }
+
+                    if (err.errors.address) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Address"
+                        });
+                    }
+
+                    if (err.errors.category) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Category"
+                        });
+                    }
+
+                } else {
+                    res.status(500).json({
+                        error: "Internal server error",
+                        data: null
+                    });
+                }
             } else {
                 if (event) {
                     res.json({
