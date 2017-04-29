@@ -1,19 +1,39 @@
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
+var validate = require('mongoose-validator');
+
+
+var alphaValidator = validate({
+    validator: 'isAlphanumeric',
+    passIfEmpty: false,
+    message: 'Name should contain alpha-numeric characters only',
+    httpStatus: 400
+  });
+
+  var urlValidator = validate({
+    validator: 'isURL',
+    passIfEmpty: true,
+    message: 'Please provide a valide URL',
+    httpStatus: 400
+  });
+
+
 
 var serviceSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     availableBookings: {
         type: String,
-        required: true
+        required: true,
+        validate:alphaValidator
 
     },
     duration: {
         type: String,
-        required: true
+        required: true,
+        validate:alphaValidator
 
     },
     description: {
@@ -24,10 +44,11 @@ var serviceSchema = mongoose.Schema({
     price: {
         type: String,
         required: true
-
+        
     },
     pictureURL: {
-        type: String
+        type: String,
+        validate:urlValidator
 
     },
     companyID: {

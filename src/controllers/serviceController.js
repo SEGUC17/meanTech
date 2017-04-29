@@ -10,30 +10,90 @@ let serviceController = {
             price: req.body.price,
             pictureURL: req.body.pictureURL,
             companyID: req.decoded.id
+
+
+
         });
+
+
         service.save(function (err, service) {
             if (err) {
+                if (err.errors != null) {
 
-                res.status(500).json({
-                    success: false,
-                    message: 'Could not create service'
-                });
+                    if (err.errors.pictureURL) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid URL"
+                        });
+
+
+                    }
+
+                    if (err.errors.name) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Name"
+                        });
+                    }
+
+                    if (err.errors.availableBookings) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid available booking"
+                        });
+                    }
+
+                    if (err.errors.duration) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Duration"
+                        });
+                    }
+                      if (err.errors.description) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid description"
+                        });
+                    }
+
+                    if (err.errors.price) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid price"
+                        });
+                    }
+
+                } else {
+
+                    res.status(500).json({
+                        success: false,
+                        message: "Please make sure you have provided valid information"
+                    });
+                }
             } else {
 
                 return res.json({
                     success: true,
-                    message: 'Service Successfully created'
+                    message: "Service Successfully created"
                 });
 
             }
-        })
+        });
+
+
     },
 
     deleteService: function (req, res) {
         Service.findOne({
             _id: req.body.id
         }, function (err, service) {
-          
+
             if (err) {
                 res.json({
                     error: 'Could not find service',
@@ -133,12 +193,11 @@ let serviceController = {
 
     getAllServices: function (req, res) {
         Service.find({}, function (err, services) {
-            if (err){
+            if (err) {
                 res.status(500).json({
                     message: "No services available"
                 })
-            }
-            else
+            } else
                 res.json({
                     data: services
                 });
@@ -147,3 +206,4 @@ let serviceController = {
 };
 
 module.exports = serviceController;
+
