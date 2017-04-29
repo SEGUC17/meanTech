@@ -1,4 +1,13 @@
 var mongoose = require("mongoose");
+var validate = require('mongoose-validator');
+
+const urlValidator = [
+    validate({
+        validator: 'isURL',
+        message: 'Please enter a valid URL.'
+    }),
+];
+
 
 var promotionSchema = mongoose.Schema({
 
@@ -8,7 +17,8 @@ var promotionSchema = mongoose.Schema({
         required: true
     },
     pictureURL: {
-        type: String
+        type: String,
+        validate: urlValidator
     },
     expiry: {
         type: Date,

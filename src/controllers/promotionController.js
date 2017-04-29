@@ -28,16 +28,25 @@ module.exports = {
         });
         promotion.save(function (err, promotion) {
             if (err) {
-                res.status(500).json({
+                if (err.errors != null){
+               if (err.errors.pictureURL) {
+                        res.status(500).json({
+                            success: false,
+                          message: err.errors.pictureURL.message,
+                        });
+                    } 
+            }
+         else {   
+             res.status(500).json({
                     error: err.message
-                });
-            } else {
+                }); 
+            }
+       } else {
                 res.json({
                     data: promotion
                 });
             }
         })
-
     },
 
     updatePromotion: function (req, res) {
@@ -45,7 +54,7 @@ module.exports = {
         var x;
         Promotion.findOne({
             _id: req.body._id
-        }, function (err, pro) {
+        }, function (err, pro) {                                                                                                                                                                
             if (err) {
                 res.status(500).json({
                     error: err.message

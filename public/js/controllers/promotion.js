@@ -38,7 +38,7 @@ const promotionController = function ($scope, $location, factory) {
           $scope.showTable = true;
         })
         .error(function (response) {
-          alert(response.error);
+          alert(response.message);
         });
     };
 
@@ -49,9 +49,10 @@ const promotionController = function ($scope, $location, factory) {
         .then(function (data) {
           alert("Promotion Successfully Posted !")
         }).catch(function (error) {
-          alert(error)
+          alert(error.message)
         });
     };
+
 
     // --->> As a company i can delete a promotion i previously posted
 
