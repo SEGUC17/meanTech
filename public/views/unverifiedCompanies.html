@@ -1,6 +1,52 @@
-<div>
+<style>
+    .form-signin {
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 10px;
+    }
+
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
+<div class="container">
     <h1 class="page-header">Unverified Companies</h1>
     <div class="row placeholders" ng-submit="unverifiedCompanies()">
+        <!-- Failed Message -->
+        <div class="row show-hide-message" ng-show="errorMsg">
+            <div class="alert alert-danger">{{errorMsg}}</div>
+        </div>
         <ul class="list-group company-list">
             <div ng-repeat="uncompany in uncompanies">
                 <li class="list-group-item list-group-item-info">

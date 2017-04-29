@@ -63,12 +63,11 @@
             <label><b>First Name</b></label>
             <input type="text" placeholder="Enter First Name" ng-model="clientInfo.firstName" name="firstName" required>
             
-
             <label><b>Last Name</b></label>
             <input type="text" placeholder="Enter Last Name" ng-model="clientInfo.lastName" name="lastName" required>
 
-            <label><b>Age</b></label>
-            <input type="text" placeholder="Enter Age" ng-model="clientInfo.age" name="age" required>
+            <label><b>Date of Birth</b></label>
+            <input type="date" placeholder="Enter Date of Birth" ng-model="clientInfo.DOB" name="DOB" required>
 
             <label><b>Username</b></label>
             <input type="text" placeholder="Enter Username" ng-model="clientInfo.username" name="username" required>
@@ -84,6 +83,7 @@
 
             <label><b>Gender</b></label> <br>
             <input type="radio" name="gender" ng-model="clientInfo.gender" value="Male" checked> Male<br>
+            <input type="radio" name="gender" ng-model="clientInfo.gender" value="Female" checked> Female<br>
 
             <label><b>Profile Picture URL</b></label>
             <input type="url" placeholder="Enter URL" ng-model="clientInfo.profilePictureURL" name="pictureURL" required>

@@ -1,4 +1,4 @@
-const adminController = function ($scope, $location, factory) {
+const adminController = function ($scope, $location, factory, $timeout, $route) {
     $scope.adminForm = {};
     $scope.verifyForm = {};
     $scope.deleteForm = {};
@@ -8,8 +8,14 @@ const adminController = function ($scope, $location, factory) {
     $scope.adminRegister = function adminRegister() {
         factory.adminRegister($scope.adminForm)
             .then(function (data) {
-                $location.path('/adminLogin');
+                $scope.errorMsg = false;
+                $scope.successMsg = data.data.message + "...redirecting";
+                $timeout(function () {
+                    $location.path('/adminHome');
+                    $route.reload();
+                }, 1000);
             }).catch(function (error) {
+                $scope.errorMsg = error.data.message;
 
             });
     };
@@ -18,26 +24,39 @@ const adminController = function ($scope, $location, factory) {
     factory.unverifiedCompanies()
         .then(function (response) {
             $scope.uncompanies = response.data.data;
-        })
-        .catch(function(response) {
-            console.log(response);
+        }).catch(function (error) {
+            $scope.errorMsg = "something went wrong :|";
         });
 
 
     //gives the admin the ability to verify companies
     $scope.verifyCompanies = function unverifiedCompanies() {
         factory.verifyCompanies($scope.verifyForm).then(function (data) {
-            alert("Company Verified.");
-            $location.path('/unverifiedCompanies');
+            $scope.errorMsg = false;
+            $scope.successMsg = data.data.msg + "...redirecting";
+            $timeout(function () {
+                $location.path('/unverifiedCompanies');
+                $route.reload();
+            }, 1000);
         }).catch(function (error) {
-
+            $scope.errorMsg = error.data.msg;
         });
     };
 
     //gives the admin the ability to delete companies
     $scope.deleteCompany = function deleteCompany() {
         factory.deleteCompany($scope.deleteForm).then(function (data) {
-            $location.path('/viewCompanies');
+            console.log(data)
+            $scope.errorMsg = false;
+            $scope.successMsg = data.data + "...redirecting";
+            $timeout(function () {
+                $location.path('/viewCompanies');
+                $route.reload();
+            }, 1000);
+
+        }).catch(function (error) {
+            console.log(error)
+            $scope.errorMsg = error.data;
         })
     };
 
@@ -48,5 +67,5 @@ const adminController = function ($scope, $location, factory) {
 
 };
 
-adminController.$inject = ['$scope', '$location', 'factory'];
+adminController.$inject = ['$scope', '$location', 'factory', '$timeout', '$route'];
 App.controller('adminController', adminController);

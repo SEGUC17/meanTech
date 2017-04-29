@@ -16,10 +16,11 @@ module.exports = {
             }
         });
     },
+    // --->> As a company i can post a promotion --backend
 
     postPromotion: function (req, res) {
-        
-        let promotion = new Promotion({
+
+        let  promotion = new Promotion({
 
             content: req.body.content,
             pictureURL: req.body.pictureURL,
@@ -28,17 +29,28 @@ module.exports = {
         });
         promotion.save(function (err, promotion) {
             if (err) {
-                res.status(500).json({
-                    error: err.message
-                });
+                if (err.errors != null) {
+                    if (err.errors.pictureURL) {
+                        res.status(500).json({
+                            success: false,
+                            message: err.errors.pictureURL.message,
+                        });
+                    }
+                }
+                else {
+                    res.status(500).json({
+                        error: err.message
+                    });
+                }
             } else {
                 res.json({
                     data: promotion
                 });
             }
         })
-
     },
+    // --->> As a company i can update a promotion i previously posted --backend
+
 
     updatePromotion: function (req, res) {
 
@@ -55,18 +67,27 @@ module.exports = {
                 if (x === req.decoded.id) {
 
                     Promotion.findByIdAndUpdate({
-                            _id: req.body._id
-                        }, {
+                        _id: req.body._id
+                    }, {
                             $set: req.body
                         }, {
-                            new: true
+                            runValidators: true
                         },
                         function (err, promotion) {
                             if (err) {
-                                res.status(500).json({
-                                    error: err.message
-                                });
-
+                                if (err.errors != null) {
+                                    if (err.errors.pictureURL) {
+                                        res.status(500).json({
+                                            success: false,
+                                            message: err.errors.pictureURL.message,
+                                        });
+                                    }
+                                }
+                                else {
+                                    res.status(500).json({
+                                        error: err.message
+                                    });
+                                }
                             } else {
                                 res.json({
                                     data: promotion
@@ -83,6 +104,7 @@ module.exports = {
 
 
     },
+    // --->> As a company i can view my promotions --backend
 
     viewPromotions: function (req, res) {
 
@@ -101,6 +123,8 @@ module.exports = {
         })
 
     },
+        // --->> As a company i can delete a promotion i previously posted --backend
+
     deletePromotion: function (req, res) {
 
         var x;
@@ -111,7 +135,7 @@ module.exports = {
                 res.status(500).json({
                     error: err.message
                 });
-            } 
+            }
             else {
                 x = pro.companyID;
 
