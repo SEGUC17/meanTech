@@ -1,7 +1,7 @@
 let Event = require('../models/Event');
 
 let eventController = {
-    createEvent: function (req, res) {
+     createEvent: function (req, res) {
 
         let event = new Event({
             name: req.body.name,
@@ -22,64 +22,11 @@ let eventController = {
 
         event.save(function (err, event) {
             if (err) {
-                if (err.errors != null) {
 
-                    if (err.errors.pictureURL) {
-
-                        res.status(400).json({
-                            success: false,
-                            message: "Please make sure you have provided valid URL"
-                        });
-
-
-                    }
-
-                    if (err.errors.details) {
-
-                        res.status(400).json({
-                            success: false,
-                            message: "Please make sure you have provided valid Details"
-                        });
-                    }
-
-                    if (err.errors.durationMins) {
-
-                        res.status(400).json({
-                            success: false,
-                            message: "Please make sure you have provided valid Duration"
-                        });
-                    }
-
-                    if (err.errors.address) {
-
-                        res.status(400).json({
-                            success: false,
-                            message: "Please make sure you have provided valid Address"
-                        });
-                    }
-                      if (err.errors.date) {
-
-                        res.status(400).json({
-                            success: false,
-                            message: "Please make sure you have provided valid Date"
-                        });
-                    }
-
-                    if (err.errors.category) {
-
-                        res.status(400).json({
-                            success: false,
-                            message: "Please make sure you have provided valid Category"
-                        });
-                    }
-
-                } else {
-
-                    res.status(500).json({
-                        success: false,
-                        message: "Please make sure you have provided valid information"
-                    });
-                }
+                res.status(500).json({
+                    success: false,
+                    message: "Please make sure you have provided valid information"
+                });
             } else {
 
                 return res.json({

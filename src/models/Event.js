@@ -10,13 +10,6 @@ var alphaValidator = validate({
     httpStatus: 400
   });
 
-  var numberValidator = validate({
-    validator: 'isNumeric',
-    passIfEmpty: false,
-    arguments: /^[0-9]*$/,
-    message: 'Name should contain numeric characters only',
-    httpStatus: 400
-  });
 
   var urlValidator = validate({
     validator: 'isURL',
@@ -48,7 +41,8 @@ var eventSchema = mongoose.Schema({
     durationMins: {
         type: Number,
         required: true,
-        validate: numberValidator,
+        validate:alphaValidator,
+
 
 
     },
