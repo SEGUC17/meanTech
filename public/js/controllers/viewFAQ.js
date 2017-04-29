@@ -6,9 +6,9 @@ const FAQController = function ($scope, $location, factory) {
                         $scope.faqs = response.data.data;
                 })
                 .catch(function (response) {
-
+                        $scope.errorMsg = "something went wrong :|";
                 });
-        
+
         //retrieves the id of a question so that it can be answered
         $scope.questionId = function questionId(id) {
                 factory.setQuestionId(id);

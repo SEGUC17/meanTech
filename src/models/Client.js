@@ -16,7 +16,7 @@ const emailValidator = [
     }),
 ];
 
-const usernameValidator = [
+const usernameValidator = [ 
     validate({
         validator: 'isLength',
         arguments: [3, 20],

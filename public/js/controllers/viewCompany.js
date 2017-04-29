@@ -5,9 +5,9 @@ const adminViewCompanyController = function ($scope, $location, factory) {
             $scope.companies = response.data.data;
         })
         .catch(function (response) {
-
+            $scope.errorMsg = "something went wrong :|";
         });
-    
+
     //redirects from the page that views companies to a page to delete the companies
     $scope.goDelete = function goDelete() {
         $location.path('/deleteCompany');
