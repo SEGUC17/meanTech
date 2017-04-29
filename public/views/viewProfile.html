@@ -1,6 +1,6 @@
-<form method="GET" ng-submit="viewProfile()">
+<!--<form method="GET" ng-submit="viewProfile()">
     <div >
-        <h1>My profile: <span class="label label-info"></span></h1>
+        <h1>My profile <span class="label label-info"></span></h1>
     </div>
 
     <div>
@@ -21,8 +21,8 @@
                     </div>
 
                     <div>
-                        <!--{{ profile.profilePictureURL}}
-                        <img src= {{profile.profilePictureURL}} alt="no photo" style="width:304px;height:228px;">-->
+                        {{ profile.profilePictureURL}}
+                        <img src= {{profile.profilePictureURL}} alt="no photo" style="width:304px;height:228px;">
 
                          <br>
                     </div>
@@ -62,4 +62,38 @@
         </div>
     </div>
 
-</form>
+</form>-->
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+</style>
+<div>
+
+    <div class="w3-card-2 w3-round w3-white">
+        <div class="w3-container">
+        <h1>My profile <span class="label label-info"></span></h1>
+         <p class="w3-center"><img src={{profile.profilePictureURL}} alt="Avatar" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+          <p><i class="fa fa-tags" aria-hidden="true"></i> First name: {{profile.firstName}}</p>
+         <p><i class="fa fa-tags" aria-hidden="true"></i> Last name: {{profile.lastName}}</p>
+          <p><i class="fa fa-tags" aria-hidden="true"></i> username: {{profile.username}}</p>
+         <p><i class="fa fa-home" aria-hidden="true"></i> address: {{profile.address}}</p>
+         <p><i class="fa fa-dot-circle-o" aria-hidden="true"></i> gender: {{profile.gender}}</p>
+         <p><i class="fa fa-info-circle" aria-hidden="true"></i> age: {{profile.age}}</p>
+        <p><i class="fa fa-envelope open" aria-hidden="true"></i> email: {{ profile.email}}</p>
+         <p><i class="fa fa-facebook" aria-hidden="true"></i> social media {{profile.socialMediaURL}}</p>
+        <p><i class="fa fa-question" aria-hidden="true"></i> Security Question: {{profile.securityquestion}}</p>
+        <i class="fa fa-phone" aria-hidden="true"></i><div ng-repeat="phoneNumber in profile.phoneNumbers">
+             {{phoneNumber}} </div>
+         <i class="fa fa-map-marker" aria-hidden="true"></i><div ng-repeat="wishList in profile.wishLists">
+            {{wishList}} </div>
+         <i class="fa fa-map-marker" aria-hidden="true"></i><div ng-repeat="company in profile.favCompanies">
+            {{company}} </div>
+              
+    </div>
+</div>
+</div>

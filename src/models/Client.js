@@ -39,7 +39,7 @@ var clientSchema = mongoose.Schema({
         ref: 'Service'
     }],
     favCompanies: [{
-        type: mongoose.Schema.ObjectId,
+        type:String,
         ref: 'Company'
     }]
 

@@ -145,7 +145,7 @@ const clientController = {
     },
 
     addToFavCompanies: function (req, res) {
-        var companyID = req.body.companyID;
+       var companyID = req.body.companyID;
         Client.findOneAndUpdate({
             _id: req.decoded.id
         }, {
