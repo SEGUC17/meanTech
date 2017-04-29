@@ -271,7 +271,7 @@
         <th>Description</th>
         <th>Price</th>
         <th>Picture</th>
-        <td>Book</td>
+        <td ng-show = "isClientUser()">Book</td>
 
       </tr>
     </thead>
@@ -284,7 +284,7 @@
         <td>{{service.description}}</td>
         <td>{{service.price}}</td>
         <td>{{service.pictureURL}}</td>
-        <td><button class "btn btn-primary" ng-click="pay(service)">Pay</button></td>
+        <td ng-show = "isClientUser()"><button ng-show = "isBusinessUser()" class "btn btn-primary" ng-click="pay(service)">Pay</button></td>
       </tr>
     </tbody>
   </table>

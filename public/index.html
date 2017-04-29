@@ -105,6 +105,8 @@
                                 <li role="menuitem">
                                     <a href="#/allEvents">All Events</a>
                                 </li>
+
+
                             </ul>
                         </li>
                     </ul>
@@ -165,6 +167,10 @@
                                 <li role="menuitem">
                                     <a href="#/userViewAllPromotions">All Promotions</a>
                                 </li>
+                                <li ng-show="isClientUser()" role="menuitem">
+                                    <a href="#/Bookings">My Bookings</a>
+                                </li>
+
                                 <li class="divider" ng-show="isBusinessUser()"></li>
                                 <li role="menuitem" ng-show="isBusinessUser()">
                                     <a href="#/viewServices">My Services</a>

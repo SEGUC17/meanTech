@@ -151,7 +151,7 @@ h1 {
     <th>Picture</th>
     <th>Category</th>
     <th>Price</th>
-    <td>Book</td>
+    <td ng-show = "isClientUser()" >Book</td>
 
     </tr>
     </thead>
@@ -166,7 +166,7 @@ h1 {
     <td>{{event.pictureURL}}</td> 
     <td>{{event.category}}</td>
     <td>{{event.price}}</td>
-    <td><button class "btn btn-primary" ng-click="pay(event)">Pay</button></td>
+    <td ng-show = "isClientUser()" ><button ng-show = "isClientUser()" class "btn btn-primary" ng-click="pay(event)">Pay</button></td>
     </tr>
     </tbody>
 </table>
