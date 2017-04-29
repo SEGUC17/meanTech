@@ -184,9 +184,10 @@
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Duration in Minutes</label>
-                        <input name="durationMins" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.durationMins"
+                        <input name="durationMins" type="Number" required ng-pattern="/^[0-9]*$/" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.durationMins"
                             required="required">
                         <span ng-show="eventupdate.durationMins.$error.required">*</span>
+                        <span ng-show="eventupdate.durationMins.$error.pattern">Not a valid Duration!, you can only use numbers</span>
 
                     </div>
                     <div class="form-group">
@@ -206,9 +207,11 @@
                     </div>
                     <div class="form-group">
                         <label for="InputTitle">Category</label>
-                        <input name="category" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.category"
+                        <input name="category" type="text" required ng-pattern="/^[0-9-a-zA-Z]*$/" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.category"
                             required="required">
                         <span ng-show="eventupdate.category.$error.required">*</span>
+                     <span ng-show="eventupdate.category.$error.pattern">Not a valid Address!, you can only use letters and numbers</span>
+
 
                     </div>
                     <div class="form-group">
@@ -224,7 +227,6 @@
                         <input name="price" type="Number" step="0.001" class="form-control" id="InputTitle" placeholder="" ng-model="selectedEvent.price"
                             required="required">
                         <span ng-show="eventupdate.price.$error.required">*</span>
-
                     </div>
                     <button type="submit" ng-disabled="eventupdate.$pristine|| eventupdate.$invalid" class="btn btn-default"> Update Event!</button>
                 </form>

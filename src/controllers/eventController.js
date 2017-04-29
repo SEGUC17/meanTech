@@ -57,6 +57,13 @@ let eventController = {
                             message: "Please make sure you have provided valid Address"
                         });
                     }
+                      if (err.errors.date) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Date"
+                        });
+                    }
 
                     if (err.errors.category) {
 
@@ -141,7 +148,7 @@ let eventController = {
                             message: "Please make sure you have provided valid URL"
                         });
                     }
-                    
+
                     if (err.errors.details) {
 
                         res.status(400).json({
@@ -173,11 +180,27 @@ let eventController = {
                             message: "Please make sure you have provided valid Category"
                         });
                     }
+                    if (err.errors.date) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid Date"
+                        });
+                    }
+
+                        if (err.errors.price) {
+
+                        res.status(400).json({
+                            success: false,
+                            message: "Please make sure you have provided valid price"
+                        });
+                    }   
 
                 } else {
                     res.status(500).json({
                         error: "Internal server error",
-                        data: null
+                        data: null,
+                        message:"Internal server error"
                     });
                 }
             } else {
@@ -189,7 +212,8 @@ let eventController = {
                 } else {
                     res.status(404).json({
                         error: "Event not found",
-                        data: null
+                        data: null,
+                        message:"Event not found"
                     });
                 }
             }
