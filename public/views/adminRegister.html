@@ -42,33 +42,43 @@
 </style>
 
 <div class="container">
-    <form class="form-register" ng-submit="adminRegister()">
-        <h2 class="form-register-heading">Admin Register</h2>
-        <!-- Username -->
-        <label>Username:</label>
-        <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="adminForm.username"
-            required>
-        <br>
-        <!-- Password -->
-        <label>Password:</label>
-        <input class="form-control" type="password" name="password" placeholder="Please enter password." ng-model="adminForm.password"
-            required>
-        <br>
-        <!-- Email -->
-        <label>Email:</label>
-        <input class="form-control" type="text" name="email" placeholder="Please enter email." ng-model="adminForm.email" required>
-        <br>
-        <!-- Security Question -->
-        <label>Security Question:</label>
-        <input class="form-control" type="text" name="sq" placeholder="Please enter security question." ng-model="adminForm.securityQuestion"
-            required>
-        <br>
-        <!-- Question Answer -->
-        <label>Question Answer:</label>
-        <input class="form-control" type="text" name="qa" placeholder="Please enter question answer." ng-model="adminForm.questionAnswer"
-            required>
-        <br>
-        <button class="btn btn-primary" type="submit">Register</button>
+    <div>
+        <form class="form-register" ng-submit="adminRegister()">
+            <!-- Successful Registration Message -->
+            <div class="row show-hide-message" ng-show="successMsg">
+                <div class="alert alert-success">{{successMsg}}</div>
+            </div>
+            <!-- Failed Registration Message -->
+            <div class="row show-hide-message" ng-show="errorMsg">
+                <div class="alert alert-danger">{{errorMsg}}</div>
+            </div>
+            <h2 class="form-register-heading">Admin Register</h2>
+            <!-- Username -->
+            <label>Username:</label>
+            <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="adminForm.username"
+                required>
+            <br>
+            <!-- Password -->
+            <label>Password:</label>
+            <input class="form-control" type="password" name="password" placeholder="Please enter password." ng-model="adminForm.password"
+                required>
+            <br>
+            <!-- Email -->
+            <label>Email:</label>
+            <input class="form-control" type="text" name="email" placeholder="Please enter email." ng-model="adminForm.email" required>
+            <br>
+            <!-- Security Question -->
+            <label>Security Question:</label>
+            <input class="form-control" type="text" name="sq" placeholder="Please enter security question." ng-model="adminForm.securityQuestion"
+                required>
+            <br>
+            <!-- Question Answer -->
+            <label>Question Answer:</label>
+            <input class="form-control" type="text" name="qa" placeholder="Please enter question answer." ng-model="adminForm.questionAnswer"
+                required>
+            <br>
+            <button class="btn btn-primary" type="submit">Register</button>
 
-    </form>
+        </form>
+    </div>
 </div>

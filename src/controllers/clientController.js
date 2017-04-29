@@ -47,7 +47,7 @@ const clientController = {
                             success: false,
                             message: err.errors.password.message,
                         });
-                    }
+                    } 
                 } else {
                     res.status(500).json({
                         success: false,

@@ -42,6 +42,14 @@
 </style>
 <div class="container">
     <form class="form-delete" ng-submit="deleteCompany()">
+        <!-- Successful delete Message -->
+        <div class="row show-hide-message" ng-show="successMsg">
+            <div class="alert alert-success">{{successMsg}}</div>
+        </div>
+        <!-- Failed delete Message -->
+        <div class="row show-hide-message" ng-show="errorMsg">
+            <div class="alert alert-danger">{{errorMsg}}</div>
+        </div>
         <h1 class="form-delete-header">Delete Company</h1>
         <!-- Username -->
         <label>Username:</label>
