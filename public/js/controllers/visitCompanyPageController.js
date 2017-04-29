@@ -27,13 +27,12 @@ const visitCompanyPageController = function ($scope, $location, factory) {
         });
 
     $scope.addToFavCompanies = function addToFavCompanies() {
-        var compID = comp._id;
-
+        var compID = comp.name;
         factory.addFavCompanies(compID)
             .success(function (data) {
-                alert("Company added to favourites");
+                alert("Company added to favorites");
             }).error(function (error) {
-                alert("Cannot add company to favourites");
+                alert("Cannot add company to favorites");
             });
     };
 };

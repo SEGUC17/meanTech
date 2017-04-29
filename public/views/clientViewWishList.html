@@ -1,0 +1,23 @@
+<form method="GET" ng-submit="userViewAllPromotions()">
+    <div class="jumbotron text-center">
+        <h1>Promotions of all the companies: <span class="label label-info">{{ promotions.length }}</span></h1>
+    </div>
+    <div id="promotion-list" class="row">
+        <div class="col-sm-4 col-cm-offser-4">
+            <div class="" ng-repeat="promotion in promotions">
+                <div class="panel panel-primary">
+                    <div> {{ "Activity: " + promotion.content}}
+                        <div> {{"Expiry: " + promotion.expiry}}
+                            <!--<div> {{"Picture: " + promotion.pictureURL}}
+
+
+                                </div>-->
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

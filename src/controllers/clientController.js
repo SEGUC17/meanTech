@@ -179,6 +179,7 @@ const clientController = {
 
     addToFavCompanies: function (req, res) {
         var companyID = req.body.companyID;
+        console.log(req.body.companyID);
         Client.findOneAndUpdate({
             _id: req.decoded.id,
         }, {

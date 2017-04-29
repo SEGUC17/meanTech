@@ -123,7 +123,7 @@ App.config(['$routeProvider', function ($routeProvider) {
         .when('/companyList', {
             templateUrl: 'views/companyList.html',
             controller: 'getCompanyListController',
-        })
+        }) 
         .when('/CProfile', {
             templateUrl: 'views/viewCompanyProfile.html',
             controller: 'visitCompanyPageController',

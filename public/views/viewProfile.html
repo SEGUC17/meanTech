@@ -1,10 +1,10 @@
 <form method="GET" ng-submit="viewProfile()">
-    <div >
+    <div>
         <h1>My profile: <span class="label label-info"></span></h1>
     </div>
 
     <div>
-        <div >
+        <div>
             <div>
                 <div>
                     <div>First name: {{profile.firstName}}<br>
@@ -24,7 +24,7 @@
                         <!--{{ profile.profilePictureURL}}
                         <img src= {{profile.profilePictureURL}} alt="no photo" style="width:304px;height:228px;">-->
 
-                         <br>
+                        <br>
                     </div>
 
                     <div>
@@ -46,9 +46,10 @@
                     <div>
                         {{ "security answer: " + profile.securityAnswer}} <br>
                     </div>
-                    
                     <div ng-repeat="company in profile.favCompanies">
-                     {{company}}<br />
+                        <br />
+                        Company Name: {{company}}<br /> 
+
                     </div>
                     <div>
                         {{ "phone numbers: " + profile.phoneNumbers}} <br>

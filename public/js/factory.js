@@ -409,7 +409,7 @@ App.factory('factory', function($http, $location) {
                     'x-access-token': token
                 }
             });
-        },
+        }, 
         bookService: function(serviceID) {
             return $http.post(apiUrl.concat('bookService'), {
                 serviceID: serviceID
