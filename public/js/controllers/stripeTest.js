@@ -1,4 +1,4 @@
-const stripeController = function ($scope, $location, factory, stripe, $http) {
+const stripeController = function($scope, $location, factory, stripe, $http) {
     if (!factory.getToken()) {
         $location.path('/');
     } else {
@@ -16,23 +16,39 @@ const stripeController = function ($scope, $location, factory, stripe, $http) {
             amount: (amount1 * 100)
         };
         //Function to create a stripe token and the call backend charge functionality to client on purchase
-        $scope.charge = function () {
+        $scope.charge = function() {
 
 
 
             return stripe.card.createToken($scope.payment.card)
-                .then(function (response) {
+                .then(function(response) {
                     alert('token created for card ending in ' + response.card.last4);
                     var payment = angular.copy($scope.payment);
                     payment.card = void 0;
                     payment.token = response.id;
                     return $http.post('http://localhost:8080/stripe', payment);
                 })
-                .then(function (payment) {
+                .then(function(payment) {
+                    if (factory.getSelectedPurchase().date) {
+                        factory.bookEvent(factory.getSelectedPurchase()._id)
+                            .success(function(data) {
+                                alert(" Event Successfully Booked");
+                            }).error(function(error) {
+                                alert(error.message);
+                            });
+                    } else {
+                        factory.bookService(factory.getSelectedPurchase()._id)
+                            .success(function(data) {
+                                alert(" Service Successfully Booked");
+                            }).error(function(error) {
+                                alert(error.message);
+                            });
+
+                    }
                     alert('successfully submitted payment!');
-                  factory.clearSelectedPurchase();
+                    factory.clearSelectedPurchase();
                 })
-                .catch(function (err) {
+                .catch(function(err) {
                     if (err.type && /^Stripe/.test(err.type)) {
                         alert('Stripe error: ' + err.message);
                     } else {

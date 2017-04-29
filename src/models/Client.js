@@ -89,6 +89,14 @@ var clientSchema = mongoose.Schema({
         type: mongoose.Schema.ObjectId,
         ref: 'Company',
     }],
+    bookedEvents: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Event'
+    }],
+    bookedServices: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Service'
+    }],
 
 });
 

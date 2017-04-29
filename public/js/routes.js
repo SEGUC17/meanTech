@@ -180,5 +180,10 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/adminHome.html',
 
         })
+        .when('/Bookings', {
+          templateUrl: 'views/Bookings.html',
+          controller: 'viewBookingsController',
+
+      })
 
 }]);
