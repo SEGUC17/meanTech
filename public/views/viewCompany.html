@@ -1,5 +1,4 @@
-<div>
-    <div align="center">
+    <!--<div align="center">
         <h1>{{companyInfo.name}}</h1>
     </div>
 
@@ -21,5 +20,34 @@
         <button ng-click="MyReviewPage(companyInfo._id)">My Reviews</button>
          <button ng-click="updatePassword()">update Password</button>
 
+    </div>-->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
+</style>
+<div>
+
+    <div class="w3-card-2 w3-round w3-white">
+        <div class="w3-container">
+         <h4 class="w3-center">{{companyInfo.name}}</h4>
+         <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+         <p><i class="fa fa-tags" aria-hidden="true"></i> {{companyInfo.category}}</p>
+         <p><i class="fa fa-home" aria-hidden="true"></i>{{companyInfo.address}} , {{companyInfo.area}} , {{companyInfo.city}}</p>
+         <p><i class="fa fa-comment" aria-hidden="true"></i> {{companyInfo.description}}</p>
+         <p><i class="fa fa-globe" aria-hidden="true"></i> {{companyInfo.socialMediaURL}}</p>
+        <p><i class="fa fa-envelope-open" aria-hidden="true"></i> {{companyInfo.email}}</p>
+        <i class="fa fa-phone" aria-hidden="true"></i><div ng-repeat="mobileNumber in companyInfo.mobileNumbers">
+             {{mobileNumber}} </div>
+         <i class="fa fa-map-marker" aria-hidden="true"></i><div ng-repeat="branch in companyInfo.branches">
+            {{branch}} </div>
+
+        </div>
+              
     </div>
+      <button ng-click="MyReviewPage(companyInfo._id)" class="w3-button w3-theme">My Reviews</button>
+                 <button ng-click="updatePassword()" class="w3-button w3-theme">Update Password</button>
 </div>
