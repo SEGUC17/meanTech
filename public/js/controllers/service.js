@@ -13,7 +13,7 @@ const serviceController = function ($scope, $location, factory) {
           .success(function (response) {
             alert("Service Successfully created!")
           }).error(function (response) {
-            alert(response)
+            alert(response.message)
           });
       };
 
@@ -48,7 +48,7 @@ const serviceController = function ($scope, $location, factory) {
             $scope.showTable = true;
           })
           .error(function (response) {
-            alert(response.error);
+            alert(response.message);
           });
       };
 
