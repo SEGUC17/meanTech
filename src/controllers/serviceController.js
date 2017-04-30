@@ -157,14 +157,53 @@ let serviceController = {
                         if (err) {
                             if (err.errors != null) {
                                 if (err.errors.pictureURL) {
-                                    res.status(500).json({
+                                    res.status(400).json({
                                         success: false,
-                                        message: err.errors.pictureURL.message,
+                                        message: "Please make sure you have provided valid URL"
+                                    });
+                                }
+                                if (err.errors.name) {
+
+                                    res.status(400).json({
+                                        success: false,
+                                        message: "Please make sure you have provided valid Name"
+                                    });
+                                }
+
+                                if (err.errors.availableBookings) {
+
+                                    res.status(400).json({
+                                        success: false,
+                                        message: "Please make sure you have provided valid available booking"
+                                    });
+                                }
+
+                                if (err.errors.duration) {
+
+                                    res.status(400).json({
+                                        success: false,
+                                        message: "Please make sure you have provided valid Duration"
+                                    });
+                                }
+                                if (err.errors.description) {
+
+                                    res.status(400).json({
+                                        success: false,
+                                        message: "Please make sure you have provided valid description"
+                                    });
+                                }
+
+                                if (err.errors.price) {
+
+                                    res.status(400).json({
+                                        success: false,
+                                        message: "Please make sure you have provided valid price"
                                     });
                                 }
                             } else {
                                 res.status(500).json({
-                                    error: err.message
+                                    success: false,
+                                    message: "Please make sure you have provided valid information"
                                 });
                             }
                         } else {

@@ -25,13 +25,13 @@ var serviceSchema = mongoose.Schema({
         required: true
     },
     availableBookings: {
-        type: String,
+        type: Number,
         required: true,
         validate:alphaValidator
 
     },
     duration: {
-        type: String,
+        type: Number,
         required: true,
         validate:alphaValidator
 
@@ -42,8 +42,9 @@ var serviceSchema = mongoose.Schema({
 
     },
     price: {
-        type: String,
-        required: true
+        type: Number,
+        required: true,
+        validate:alphaValidator
         
     },
     pictureURL: {
