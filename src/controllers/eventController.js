@@ -39,7 +39,7 @@ let eventController = {
 
 
     },
-
+    //For visitors and clients to view all events
     getAllEvents: function (req, res) {
         Event.find({}, function (err, events) {
             if (err) {
