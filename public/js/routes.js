@@ -166,6 +166,11 @@ App.config(['$routeProvider', function ($routeProvider) {
             controller: 'FAQController',
 
         })
+        .when('/clientViewFAQ', {
+            templateUrl: 'views/clientFAQView.html',
+            controller: 'FAQController',
+
+        })
         .when('/adminRegister', {
             templateUrl: 'views/adminRegister.html',
             controller: 'adminController',
