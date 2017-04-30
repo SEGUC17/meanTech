@@ -85,6 +85,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>
 
+<div>
+    <a href="#companyProfile" class="btn btn-info btn-lg">
+        <span class="glyphicon glyphicon-arrow-left"></span> My profile
+    </a>
+</div>
 
 <div ng-show="showTable" class="alert alert-info">
     <p>Sort Type: {{ sortType }}</p>
@@ -212,7 +217,7 @@
                 </div>
                 <div class="form-group">
                     <label for="InputTitle">Picture URL</label>
-                    <input name="pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="selectedService.pictureURL"
+                    <input name="pictureURL" type="url" class="form-control" id="InputTitle" placeholder="" ng-model="selectedService.pictureURL"
                         required="required">
                     <span ng-show="serviceupdate.prictureURL.$error.required">*</span>
 
