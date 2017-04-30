@@ -201,7 +201,7 @@ let companyController = {
     },
       getCompanyList: function (req, res) {
    
-        Company.find({},function(err,companies){
+        Company.find({verified: true},function(err,companies){
             if(err)
                 res.status(500).json({
                     success: false,

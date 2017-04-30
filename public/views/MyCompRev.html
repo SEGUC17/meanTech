@@ -1,23 +1,47 @@
-<div>
 
-  <div ng-repeat="user in reviewList">
-    
-   <br>
-    <Label>By: {{user.username}}</Label></br>
-  
-
-  
-    <Label>Content: {{user.content}}</Label> </br>
-  
-
-
-    <Label>rating: {{user.rating}}</Label> </br>
-
-
-    <Label>on: {{user.date}}</Label> </br>
-    
+<div class="alert alert-info">
+    <p>Search Query: {{ searchFish }}</p>
   </div>
+  
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+        <input type="text" class="form-control" placeholder="Search for ratings" ng-model="searchFish">
+      </div>      
+    </div>
+  </form>
+  
+  <table class="table table-bordered table-striped">
+    
+    <thead>
+      <tr>
+       <td>
+            User 
+        </td>
+        <td>
+            Content 
+        </td>
+        <td>
+          Rating
+        </td>
+        <td>
+          Date 
+        </td>
+ 
+    </thead>
+    
+    <tbody>
+      <tr ng-repeat="rating in reviewList | orderBy:sortType:sortReverse | filter:searchFish">
+         <td>{{rating.username}}</td>
+        <td>{{rating.content}}</td>
+        <td>{{rating.rating}}</td>
+        <td>{{rating.date}}</td>
+        
 
-
-
+      </tr>
+    </tbody>
+    
+  </table>
+  
 </div>
