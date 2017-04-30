@@ -240,7 +240,7 @@ let serviceController = {
         })
 
     },
-
+    //For visitors and clients to view all services
     getAllServices: function (req, res) {
         Service.find({}, function (err, services) {
             if (err) {

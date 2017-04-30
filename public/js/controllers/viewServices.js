@@ -1,5 +1,5 @@
 const viewServiceController = function ($scope, $location, factory) {
-
+    //For visitors and clients to view all services
     factory.getAllServices().success(function(data) {
         $scope.allservices=data.data;
     });

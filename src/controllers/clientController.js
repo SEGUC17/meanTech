@@ -176,7 +176,7 @@ const clientController = {
             }
         });
     },
-
+    //For clients to add companies to their list of favourites
     addToFavCompanies: function (req, res) {
         var companyID = req.body.companyID;
         Client.findOneAndUpdate({
