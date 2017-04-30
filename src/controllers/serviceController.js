@@ -53,7 +53,7 @@ let serviceController = {
                             message: "Please make sure you have provided valid Duration"
                         });
                     }
-                      if (err.errors.description) {
+                    if (err.errors.description) {
 
                         res.status(400).json({
                             success: false,
@@ -151,26 +151,37 @@ let serviceController = {
                         new: true
                     };
 
-                    Service.findByIdAndUpdate(query, update, options, function (err, services) {
+                    Service.findByIdAndUpdate(query, update, {
+                        runValidators: true
+                    }, function (err, services) {
                         if (err) {
-                            res.json({
-                                error: err.message
-                            })
+                            if (err.errors != null) {
+                                if (err.errors.pictureURL) {
+                                    res.status(500).json({
+                                        success: false,
+                                        message: err.errors.pictureURL.message,
+                                    });
+                                }
+                            } else {
+                                res.status(500).json({
+                                    error: err.message
+                                });
+                            }
                         } else {
                             res.json({
                                 data: services
                             });
-                        }
-                    });
 
+                        }
+                    })
                 } else {
-                    res.json({
-                        error: "Unauthorized access",
-                        data: null
-                    });
+                    res.json("sorry, you are not authorized to update this service");
                 }
+
             }
-        });
+        })
+
+
     },
 
     viewServices: function (req, res) {
@@ -206,4 +217,3 @@ let serviceController = {
 };
 
 module.exports = serviceController;
-
