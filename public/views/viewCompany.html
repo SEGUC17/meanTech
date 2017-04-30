@@ -1,26 +1,3 @@
-    <!--<div align="center">
-        <h1>{{companyInfo.name}}</h1>
-    </div>
-
-    <div>
-        <br>
-        <label>Category: {{companyInfo.category}}</label>
-        <br>
-        <label>Address: {{companyInfo.address}} , {{companyInfo.area}} , {{companyInfo.city}}  </label>
-        <br>
-        <label>Description: {{companyInfo.description}}</label>
-        <br>
-        <URL>{{companyInfo.socialMediaURL}}</URL>
-        <label>Email: {{companyInfo.email}}</label>
-        <div ng-repeat="mobileNumber in companyInfo.mobileNumbers">
-           Mobile:  {{mobileNumber}} </div>
-        <div ng-repeat="branch in companyInfo.branches">
-           Branches:  {{branch}} </div>
-        <br>
-        <button ng-click="MyReviewPage(companyInfo._id)">My Reviews</button>
-        <button ng-click="companyUpdatePassword()">Update Password</button>
-
-    </div>-->
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
@@ -33,7 +10,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <div class="w3-card-2 w3-round w3-white">
         <div class="w3-container">
          <h4 class="w3-center">{{companyInfo.name}}</h4>
-         <p class="w3-center"><img src="/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
          <p><i class="fa fa-tags" aria-hidden="true"></i> {{companyInfo.category}}</p>
          <p><i class="fa fa-home" aria-hidden="true"></i>{{companyInfo.address}} , {{companyInfo.area}} , {{companyInfo.city}}</p>
