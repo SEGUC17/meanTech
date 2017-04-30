@@ -1,12 +1,14 @@
 const askQuestionController = function ($scope, $location, factory) {
     $scope.question = {};
+
+    // Client can ask a question to the platform
     $scope.askQuestion = function askQuestion() {
         factory.askQuestion($scope.question)
-            .success(function (data) {
+            .success(function (response) {
                 alert('Question successfully posted.');
-            }).error(function (error) {
-                console.log(error);
-                alert(error);
+                $location.path('/clientViewProfile');
+            }).error(function (response) {
+                alert('Question posting unsuccessful');
             });
     };
 };

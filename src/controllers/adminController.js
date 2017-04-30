@@ -14,27 +14,39 @@ const adminController = {
             securityQuestion: req.body.securityQuestion,
             questionAnswer: req.body.questionAnswer,
         });
+       bcrypt.genSalt(10, function (err, salt) {
+           bcrypt.hash(admin.password, salt, function (err, hash) {
+                //if (err) throw err;
 
-        bcrypt.genSalt(10, function (err, salt) {
-            bcrypt.hash(admin.password, salt, function (err, hash) {
-                if (err) throw err;
                 admin.password = hash;
                 admin.save(function (err, admin) {
                     if (err) {
-                        res.status(500).json({
-                            success: false,
-
-                            msg: 'Please Provide All required information and choose a unique username.'
-
-                        });
+                        if (err.errors != null) {
+                            if (err.errors.email) {
+                                res.status(500).json({
+                                    success: false,
+                                    message: err.errors.email.message,
+                                });
+                            } else if (err.errors.username) {
+                                res.status(500).json({
+                                    success: false,
+                                    message: err.errors.username.message,
+                                });
+                            }
+                        } else {
+                            res.status(500).json({
+                                success: false,
+                                message: 'Error registering data',
+                            });
+                        }
                     } else {
                         res.json({
                             success: true,
-                            msg: 'Admin registered.',
+                            message: 'Admin registered.',
                         });
                     }
                 });
-            });
+           });
         });
     },
 
@@ -91,7 +103,7 @@ const adminController = {
                         }
                     });
                 } else {
-                    res.status(500).json('Company not found review username');
+                    res.status(500).json({msg: 'Company not found review username'});
                 }
 
             }
@@ -104,9 +116,9 @@ const adminController = {
         companyController.getCompanyAndRemove(username, function (err, Company) {
             if (Company) {
                 if (err) {
-                    res.status(500).json(err);
+                    res.status(500).json('something went wrong :|');
                 } else {
-                    res.json('complete');
+                    res.json('Company deleted');
                 }
             } else {
                 res.status(500).json('Company not found.')
@@ -117,79 +129,93 @@ const adminController = {
 
 
     updatePassword: function (req, res) {
-        Admin.findOneAndUpdate({
-            username: req.decoded.username
-        }, {
-                $set: {
-                    "password": req.body.newPassword
-                }
-            }, function (err, admin) {
+        let pass = "";
 
-                if (err) {
-                    res.status(500).json({
-                        success: false,
-                        msg: 'You are not allowed to change the password, update failed',
-                    });
-                } else {
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(req.body.newPassword, salt, function (err, hash) {
+                pass = hash;
+                Admin.findOneAndUpdate({
+                    username: req.decoded.username
+                }, {
+                    $set: {
+                        "password": pass
+                    }
+                }, function (err, admin) {
 
-                    res.json({
-                        success: true,
-                        msg: 'The password has been updated successfully'
-                    });
+                    if (err) {
+                        res.status(500).json({
+                            success: false,
+                            msg: 'You are not allowed to change the password, update failed',
+                        });
+                    } else {
 
-                    admin.markModified('Password ok');
-                }
+                        res.json({
+                            success: true,
+                            msg: 'The password has been updated successfully'
+                        });
+
+                        admin.markModified('Password ok');
+                    }
+                });
             });
+        });
     },
 
     resetPassword: function (req, res) {
-        Admin.findOne({
-            username: req.body.username
-        }, function (err, admin) {
-            if (err) res.status(500).json({
-                success: false,
-                message: 'Error'
-            });
+        let pass = "";
 
-            if (!admin) {
-                res.status(404).json({
-                    success: false,
-                    message: 'Username not found',
-                });
-            } else if (admin) {
-                if (admin.questionAnswer != req.body.questionAnswer) {
-
-                    res.status(401).json({
+        bcrypt.genSalt(10, function (err, salt) {
+            bcrypt.hash(req.body.newPassword, salt, function (err, hash) {
+                pass = hash;
+                Admin.findOne({
+                    username: req.body.username
+                }, function (err, admin) {
+                    if (err) res.status(500).json({
                         success: false,
-                        message: 'Authentication failed. Wrong Security Answer.',
+                        message: 'Error'
                     });
-                } else {
-                    Admin.findOneAndUpdate({
-                        username: req.body.username,
-                    }, {
-                            $set: {
-                                'password': req.body.newPassword,
-                            },
-                        }, function (err, admin) {
-                            if (err) {
-                                res.status(500).json({
-                                    success: false,
-                                    msg: 'You are not allowed to change the password, update failed',
-                                });
-                            } else {
-                                res.json({
-                                    success: true,
-                                    msg: 'The password has been updated successfully'
-                                });
-                                admin.markModified('Password reset ok');
-                            }
+
+                    if (!admin) {
+                        res.status(404).json({
+                            success: false,
+                            message: 'Username not found',
                         });
+                    } else if (admin) {
+                        if (admin.questionAnswer != req.body.questionAnswer) {
 
-                };
+                            res.status(401).json({
+                                success: false,
+                                message: 'Authentication failed. Wrong Security Answer.',
+                            });
+                        } else {
+                            Admin.findOneAndUpdate({
+                                username: req.body.username,
+                            }, {
+                                $set: {
+                                    'password': pass,
+                                },
+                            }, function (err, admin) {
+                                if (err) {
+                                    res.status(500).json({
+                                        success: false,
+                                        msg: 'You are not allowed to change the password, update failed',
+                                    });
+                                } else {
+                                    res.json({
+                                        success: true,
+                                        msg: 'The password has been updated successfully'
+                                    });
+                                    admin.markModified('Password reset ok');
+                                }
+                            });
 
-            }
+                        };
 
-        });
+                    }
+
+                });
+            })
+        })
 
     },
 

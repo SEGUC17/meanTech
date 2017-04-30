@@ -4,6 +4,7 @@ var express = require('express');
 var router = require('./src/routes');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var validate = require('mongoose-validator');
 
 var jwt = require('jsonwebtoken');
 var token = require('./src/config/token');

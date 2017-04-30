@@ -1,55 +1,5 @@
-<!--<div>
-
-  <h1>My Ratings</h1>
-
-
-
-  <table style="width:100%" ng-controller="reviewController">
- 
-    <thead>
-      <tr>
-        <th>name</th>
-        <th>details</th>
-        <th>date</th>
-        <th>durationMins</th>
-        <th>address</th>
-        <th>pictureURL</th>
-        <th>category</th>
-        <th>price</th>
-      </tr>
-
-    </thead>
-
-    <tbody>
-
-      <tr ng-repeat="rating in ratings| orderBy:'name'">
-        <td>{{ratings.name}}</td>
-        <td>{{ratings.details}}</td>
-        <td>{{ratings.date}}</td>
-        <td>{{ratings.durationMins}}</td>
-        <td>{{ratings.address}}</td>
-        <td>{{ratings.pictureURL}}</td>
-        <td>{{ratings.category}}</td>
-        <td>{{ratings.price}}</td>
-      </tr>
-    </tbody>
-  </table>
-
-</div>-->
-
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <div class="alert alert-info">
-    <p>Sort Type: {{ sortType }}</p>
-    <p>Sort Reverse: {{ sortReverse }}</p>
     <p>Search Query: {{ searchFish }}</p>
   </div>
   
@@ -67,25 +17,13 @@
     <thead>
       <tr>
         <td>
-          <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">
             Content 
-            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
         </td>
         <td>
-          <a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
           Rating
-            <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
         </td>
         <td>
-          <a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
           Date 
-            <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
-            <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
-          </a>
         </td>
  
     </thead>
@@ -94,7 +32,7 @@
       <tr ng-repeat="rating in ratings | orderBy:sortType:sortReverse | filter:searchFish">
         <td>{{rating.content}}</td>
         <td>{{rating.rating}}</td>
-        <td>{{rating.date}}</td>
+        <td>{{constructDate(rating.date) | date: longDate}}</td>
         
 
       </tr>

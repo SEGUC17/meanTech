@@ -1,13 +1,16 @@
 const postReviewController = function ($scope, $location, factory) {
     $scope.reviewInfo = {};
     const company = factory.getCompanyReview();
+    $scope.companyName = company.name;
 
+    // Client can review a company
     $scope.postReview = function postReview() {
         $scope.reviewInfo.companyID = company._id;
 
         factory.postReview($scope.reviewInfo)
-            .success(function (data) {
+            .success(function (response) {
                 alert('Review successfully posted.');
+                $location.path('/CProfile');
             }).error(function (error) {
                 alert(error.message);
             });

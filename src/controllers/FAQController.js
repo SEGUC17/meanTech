@@ -2,6 +2,7 @@ let FAQ = require('../models/FAQ');
 
 let FAQController = {
 
+    // Admin can answer clients' questions
     answerFAQ: function (req, res) {
         FAQ.findByIdAndUpdate({
             _id: req.body._id,
@@ -15,17 +16,18 @@ let FAQController = {
             if (err) {
                 res.status(500).json({
                     success: false,
-                    message: 'Answer not updated.'
+                    message: 'Answer not updated.',
                 })
             } else {
                 return res.json({
                     success: true,
-                    message: 'Answer updated successfully.'
-                })
+                    message: 'Answer updated successfully.',
+                });
             }
         });
     },
 
+    // Client can ask a question to the platform
     askFAQ: function (req, res) {
         let newQ = new FAQ({
             questionText: req.body.questionText,
@@ -36,13 +38,13 @@ let FAQController = {
             if (err) {
                 res.status(500).json({
                     success: false,
-                    message: 'can not ask question'
+                    message: 'can not ask question',
                 });
             } else {
                 res.json({
                     success: true,
                     message: 'question posted',
-                    newQ
+                    newQ,
                 });
             }
         });
@@ -54,7 +56,7 @@ let FAQController = {
         query.exec(function (err, faq) {
             if (err) return next(err);
             res.json({
-                data: faq
+                data: faq,
             });
         });
     },

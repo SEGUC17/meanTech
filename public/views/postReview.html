@@ -1,9 +1,5 @@
-<head>
-    <title>Post Review</title>
-</head>
-
 <style>
-    /* Full-width input fields */
+
     input[type=password],
     input[type=email],
     input[type=URL],
@@ -15,7 +11,7 @@
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-    /* Set a style for all buttons */
+
     input[type=text] {
         height: 300px;
         width: 100%;
@@ -32,7 +28,6 @@
 
     select {
         width: 4%;
-        height: 1%;
     }
     button {
         background-color: cornflowerblue;
@@ -50,7 +45,7 @@
 
 <div>
     <h1>Post Review</h1>
-
+    <h5>You are now reviewing: {{ companyName }}</h5>
     <form ng-submit="postReview()" style="border:1px solid #ccc">
         <div class="container">
 
@@ -68,7 +63,7 @@
             </textarea>
             <br>
 
-            <button type="submit">Post Review</button>
+            <button type="submit">Post Review</button> 
         </div>
     </form>
 </div>

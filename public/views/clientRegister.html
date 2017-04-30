@@ -3,8 +3,6 @@
 </head>
 
 <style>
-    /* Full-width input fields */
-
     input[type=text],
     input[type=password],
     input[type=email],
@@ -17,7 +15,6 @@
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-    /* Set a style for all buttons */
 
     button {
         background-color: #4CAF50;
@@ -28,32 +25,27 @@
         cursor: pointer;
         width: 100%;
     }
-    /* Extra styles for the cancel button */
 
     .cancelbtn {
         padding: 14px 20px;
         background-color: #f44336;
     }
-    /* Float cancel and signup buttons and add an equal width */
 
     .cancelbtn,
     .signupbtn {
         float: left;
         width: 50%;
     }
-    /* Add padding to container elements */
 
     .container {
         padding: 16px;
     }
-    /* Clear floats */
 
     .clearfix::after {
         content: "";
         clear: both;
         display: table;
     }
-    /* Change styles for cancel button and signup button on extra small screens */
 
     @media screen and (max-width: 300px) {
         .cancelbtn,
@@ -70,60 +62,47 @@
         <div class="container">
             <label><b>First Name</b></label>
             <input type="text" placeholder="Enter First Name" ng-model="clientInfo.firstName" name="firstName" required>
-            <span ng-show="registerForm.firstName.$error.required">*</span>
-
+            
             <label><b>Last Name</b></label>
             <input type="text" placeholder="Enter Last Name" ng-model="clientInfo.lastName" name="lastName" required>
-            <span ng-show="registerForm.lastName.$error.required">*</span>
 
-            <label><b>Age</b></label>
-            <input type="text" placeholder="Enter Age" ng-model="clientInfo.age" name="age" required>
-            <span ng-show="registerForm.age.$error.required">*</span>
+            <label><b>Date of Birth</b></label>
+            <input type="date" placeholder="Enter Date of Birth" ng-model="clientInfo.DOB" name="DOB" required>
 
             <label><b>Username</b></label>
             <input type="text" placeholder="Enter Username" ng-model="clientInfo.username" name="username" required>
-            <span ng-show="registerForm.username.$error.required">*</span>
 
             <label><b>Password</b></label>
             <input type="password" placeholder="Enter Password" ng-model="clientInfo.password" name="password" required>
-            <span ng-show="registerForm.password.$error.required">*</span>
 
             <label><b>Email</b></label>
             <input type="text" placeholder="Enter Email" ng-model="clientInfo.email" name="email" required>
-            <span ng-show="registerForm.email.$error.required">*</span>
 
             <label><b>Address</b></label>
             <input type="text" placeholder="Enter Address" ng-model="clientInfo.address" name="address" required>
-            <span ng-show="registerForm.address.$error.required">*</span>
 
             <label><b>Gender</b></label> <br>
             <input type="radio" name="gender" ng-model="clientInfo.gender" value="Male" checked> Male<br>
-            <input type="radio" name="gender" ng-model="clientInfo.gender" value="Female"> Female<br><br>
+            <input type="radio" name="gender" ng-model="clientInfo.gender" value="Female" checked> Female<br>
 
             <label><b>Profile Picture URL</b></label>
             <input type="url" placeholder="Enter URL" ng-model="clientInfo.profilePictureURL" name="pictureURL" required>
-            <span ng-show="registerForm.pictureURL.$error.required">*</span>
 
             <label><b>Social Media URL</b></label>
             <input type="url" placeholder="Enter URL" ng-model="clientInfo.socialMediaURL" name="socialURL" required>
-            <span ng-show="registerForm.socialURL.$error.required">*</span>
 
             <label><b>Phone Number</b></label>
             <input type="text" placeholder="Enter phone number" ng-model="clientInfo.phoneNumbers" name="phone" required>
-            <span ng-show="registerForm.phone.$error.required">*</span>
 
             <label><b>Security Question</b></label>
             <input type="text" placeholder="Enter Security Question" ng-model="clientInfo.securityQuestion" name="Squestion" required>
-            <span ng-show="registerForm.Squestion.$error.required">*</span>
 
             <label><b>Security Answer</b></label>
             <input type="text" placeholder="Enter Security Answer" ng-model="clientInfo.securityAnswer" name="Sanswer" required>
-            <span ng-show="registerForm.Sanswer.$error.required">*</span>
 
             <div class="clearfix">
                 <button type="submit" class="signupbtn">Sign Up</button>
             </div>
         </div>
     </form>
-
 </div>

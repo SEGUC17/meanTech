@@ -1,16 +1,20 @@
 const reviewController = function ($scope, $location, factory) {
-    $scope.companyID = {
-        "companyID": '58e6a0581a4ebeed5fadfa3e',
-    };
-
-    factory.viewRatings($scope.companyID).success(function (data) {
-        console.log('it gets to the review controller');
-        console.log(data);
-        $scope.sortType = 'name'; // set the default sort type
-        $scope.sortReverse = false; // set the default sort order
-        $scope.searchFish = ''; // set the default search/filter term
-        $scope.ratings = data.data;
-    });
+    if (!factory.getToken()) {
+        $location.path('/');
+    } else {
+        const company = factory.getCompanyReview();
+        // function that views the reviews of the company to anyone
+        factory.viewRatings(company).success(function (data) {
+            $scope.sortType = 'name'; // set the default sort type
+            $scope.sortReverse = false; // set the default sort order
+            $scope.searchFish = ''; // set the default search/filter term
+            $scope.ratings = data.data;
+        });
+        //------>changes the date as string coming from the DB to  type date<------
+        $scope.constructDate = function (dateString) {
+            return new Date(dateString);
+        };
+    }
 };
 
 

@@ -95,12 +95,12 @@
 
             <div class="form-group">
                 <label for="InputTitle">Date</label>
-                <input name="date" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.date" required="required">
+                <input name="date" type="date" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.date" required="required">
                 <span ng-show="eventF.date.$error.required">*</span>
             </div>
             <div class="form-group">
                 <label for="InputTitle">Duration in Minutes</label>
-                <input name="durationMins" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.durationMins" required="required">
+                <input name="durationMins" type="number" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.durationMins" required="required">
                 <span ng-show="eventF.durationMins.$error.required">*</span>
             </div>
 
@@ -112,8 +112,9 @@
 
             <div class="form-group">
                 <label for="InputTitle">Picture URL</label>
-                <input name="pictureURL" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.pictureURL" required="required">
+                <input name="pictureURL" type="url" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.pictureURL" required="required">
                 <span ng-show="eventF.prictureURL.$error.required">*</span>
+                <span ng-show="eventF.prictureURL.$error.url">Please enter a valid URL!</span>
             </div>
 
             <div class="form-group">
@@ -130,7 +131,7 @@
 
             <div class="form-group">
                 <label for="InputTitle">Price</label>
-                <input name="price" type="text" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.price" required="required">
+                <input name="price" type="number" class="form-control" id="InputTitle" placeholder="" ng-model="eventForm.price" required="required">
                 <span ng-show="eventF.price.$error.required">*</span>
             </div>
 

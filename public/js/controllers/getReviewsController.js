@@ -1,9 +1,8 @@
 const getReviewsController = function ($scope, $location, factory) {
-
+// company can view its own reviews
     factory.myReviews()
         .then(function (response) {
-            const review = response.data.reviews[0];
-            console.log(review);
+            const review = response.data.data;
             $scope.reviewList = review;
         })
         .catch(function (response) {

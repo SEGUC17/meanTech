@@ -4,6 +4,11 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/login.html',
             controller: 'loginController',
         })
+        .when('/logout', {
+            templateUrl: 'views/login.html',
+            controller: 'loginController',
+        })
+
         .when('/userViewAllPromotions', {
             templateUrl: 'views/userViewAllPromotions.html',
             controller: 'userViewAllPromotionsController',
@@ -20,6 +25,11 @@ App.config(['$routeProvider', function ($routeProvider) {
         })
 
         // TODO admin update
+
+        .when('/adminUpdatePassword', {
+            templateUrl: 'views/adminUpdatePassword.html',
+            controller: 'updatePasswordController',
+        })
 
         .when('/clientResetPassword', {
             templateUrl: 'views/clientResetPassword.html',
@@ -61,7 +71,6 @@ App.config(['$routeProvider', function ($routeProvider) {
         .when('/stripeTest', {
             templateUrl: 'views/stripeTest.html',
             controller: 'stripeController'
-
         })
         .when('/allEvents', {
             templateUrl: 'views/allEvents.html',
@@ -70,10 +79,6 @@ App.config(['$routeProvider', function ($routeProvider) {
         .when('/allServices', {
             templateUrl: 'views/allServices.html',
             controller: 'viewServiceController'
-        })
-        .when('/favCompanies', {
-            templateUrl: 'views/favComp.html',
-            controller: 'clientController'
         })
         .when('/postPromotion', {
             templateUrl: 'views/postPromotion.html',
@@ -93,27 +98,23 @@ App.config(['$routeProvider', function ($routeProvider) {
         })
         .when('/updateService', {
             templateUrl: 'views/updateService.html',
-            controller: 'serviceController'
+            controller: 'serviceController',
         })
         .when('/answerQuestion', {
             templateUrl: 'views/answerQuestion.html',
-            controller: 'questionController',
+            controller: 'answerQuestionController',
         })
         .when('/clientRegistration', {
             templateUrl: 'views/clientRegister.html',
             controller: 'registerController',
         })
-        .when('/deleteReview', {
-            templateUrl: 'views/deleteReview.html',
-            controller: 'reviewController',
-        })
         .when('/companyProfile', {
             templateUrl: 'views/viewCompany.html',
             controller: 'viewCompanyController',
         })
-        .when('/faqq', {
-            templateUrl: 'views/FAQ.html',
-            controller: 'FaqControl',
+        .when('/askQuestion', {
+            templateUrl: 'views/askQuestion.html',
+            controller: 'askQuestionController',
         })
         .when('/ViewReviews', {
             templateUrl: 'views/MyCompRev.html',
@@ -127,18 +128,67 @@ App.config(['$routeProvider', function ($routeProvider) {
             templateUrl: 'views/viewCompanyProfile.html',
             controller: 'visitCompanyPageController',
         })
-        .when('/pr', {
+        .when('/postReview', {
             templateUrl: 'views/postReview.html',
             controller: 'postReviewController',
         })
 
         .when('/clientViewProfile', {
             templateUrl: 'views/viewProfile.html',
-            controller: 'viewProfileController'
+            controller: 'viewProfileController',
         })
         .when('/clientUpdateProfile', {
             templateUrl: 'views/clientUpdateProfile.html',
-            controller: 'updateProfileController'
+            controller: 'updateProfileController',
         })
+        .when('/unverifiedCompanies', {
+            templateUrl: 'views/unverifiedCompanies.html',
+            controller: 'adminController',
+
+        })
+        .when('/verifyCompanies', {
+            templateUrl: 'views/verifyCompanies.html',
+            controller: 'adminController',
+
+        })
+        .when('/viewCompanies', {
+            templateUrl: 'views/viewCompanies.html',
+            controller: 'adminViewCompanyController',
+
+        })
+        .when('/deleteCompany', {
+            templateUrl: 'views/deleteCompany.html',
+            controller: 'adminController',
+
+        })
+        .when('/FAQView', {
+            templateUrl: 'views/FAQView.html',
+            controller: 'FAQController',
+
+        })
+        .when('/clientViewFAQ', {
+            templateUrl: 'views/clientFAQView.html',
+            controller: 'FAQController',
+
+        })
+        .when('/adminRegister', {
+            templateUrl: 'views/adminRegister.html',
+            controller: 'adminController',
+
+        })
+        .when('/adminLogin', {
+            templateUrl: 'views/adminLogin.html',
+            controller: 'adminLoginController',
+
+        })
+         .when('/adminHome', {
+            templateUrl: 'views/adminHome.html',
+
+        })
+        .when('/Bookings', {
+          templateUrl: 'views/Bookings.html',
+          controller: 'viewBookingsController',
+
+      })
 
 }]);

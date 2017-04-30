@@ -13,16 +13,16 @@ const reviewController = require('./controllers/reviewController');
 const stripe = require("stripe")("sk_test_iDQ4j6FIHxplL81qcqEtSWCU");
 var config = require('../src/config/token');
 
-router.get('/', function (req, res) {
+router.get('/', function(req, res) {
     res.json({
         hello: 'world'
     });
 });
 
-router.post('/stripe', function (req, res) {
+router.post('/stripe', function(req, res) {
     stripe.customers.create({
-        source: req.body.token
-    })
+            source: req.body.token
+        })
         .then(customer =>
             stripe.charges.create({
                 amount: req.body.amount,
@@ -31,15 +31,16 @@ router.post('/stripe', function (req, res) {
                 customer: customer.id
             }))
         .then(charge => {
-            res.json({ error: null, data: charge });
+            res.json({
+                error: null,
+                data: charge
+            });
         });
 });
 
 router.get('/company/profile', clientController.viewCompanyProfile);
 
 router.post('/company', companyController.companySubscription);
-
-router.post('/faqa', FAQController.answerFAQ);
 
 router.get('/allEvents', eventController.getAllEvents);
 
@@ -70,15 +71,15 @@ router.post('/companyResetPassword', companyController.resetPassword);
 
 router.post('/adminResetPassword', adminController.resetPassword);
 
-router.use(function (req, res, next) {
+router.use(function(req, res, next) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
     if (token) {
-        jwt.verify(token, config.secret, function (err, decoded) {
+        jwt.verify(token, config.secret, function(err, decoded) {
             if (err) {
                 return res.status(401).json({
                     success: false,
-                    message: 'Failed to authenticate token.'
+                    message: 'Failed to authenticate token.',
                 });
             } else {
                 req.decoded = decoded;
@@ -88,30 +89,30 @@ router.use(function (req, res, next) {
     } else {
         return res.status(401).send({
             success: false,
-            message: 'No token provided.'
+            message: 'No token provided.',
         });
     }
 });
 
-router.post('/faq', function (req, res) {
+router.post('/faq', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
             FAQController.askFAQ(req, res);
         } else {
             res.status(401).json({
-                error: 'Unauthorized'
+                error: 'Unauthorized',
             });
         }
     } catch (err) {
         res.status(500).json({
             success: false,
-            message: 'Internal server error.'
+            message: 'Internal server error.',
         });
     }
 });
 
-router.post('/faqa', function (req, res) {
+router.post('/faqa', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -129,7 +130,7 @@ router.post('/faqa', function (req, res) {
     }
 });
 
-router.post('/review', function (req, res) {
+router.post('/review', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -147,7 +148,7 @@ router.post('/review', function (req, res) {
     }
 });
 
-router.post('/deleteR', function (req, res) {
+router.post('/deleteR', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -165,7 +166,7 @@ router.post('/deleteR', function (req, res) {
     }
 });
 
-router.get('/viewProfile', function (req, res) {
+router.get('/viewProfile', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -183,7 +184,7 @@ router.get('/viewProfile', function (req, res) {
     }
 });
 
-router.post('/updateProfile', function (req, res) {
+router.post('/updateProfile', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -201,7 +202,7 @@ router.post('/updateProfile', function (req, res) {
     }
 });
 
-router.post('/deleteEvent', function (req, res) {
+router.post('/deleteEvent', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -219,7 +220,7 @@ router.post('/deleteEvent', function (req, res) {
     }
 });
 
-router.post('/event', function (req, res) {
+router.post('/event', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -237,7 +238,7 @@ router.post('/event', function (req, res) {
     }
 });
 
-router.post('/clientUpdatePassword', function (req, res) {
+router.post('/clientUpdatePassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -255,7 +256,7 @@ router.post('/clientUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/companyUpdatePassword', function (req, res) {
+router.post('/companyUpdatePassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -273,7 +274,7 @@ router.post('/companyUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/adminUpdatePassword', function (req, res) {
+router.post('/adminUpdatePassword', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -291,7 +292,7 @@ router.post('/adminUpdatePassword', function (req, res) {
     }
 });
 
-router.post('/addToWishList', function (req, res) {
+router.post('/addToWishList', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -309,7 +310,7 @@ router.post('/addToWishList', function (req, res) {
     }
 });
 
-router.get('/unverifiedCompanies', function (req, res) {
+router.get('/unverifiedCompanies', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -327,7 +328,7 @@ router.get('/unverifiedCompanies', function (req, res) {
     }
 });
 
-router.post('/verifyCompanies', function (req, res) {
+router.post('/verifyCompanies', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -345,7 +346,7 @@ router.post('/verifyCompanies', function (req, res) {
     }
 });
 
-router.get('/viewCompanies', function (req, res) {
+router.get('/viewCompanies', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -363,7 +364,7 @@ router.get('/viewCompanies', function (req, res) {
     }
 });
 
-router.post('/deleteCompany', function (req, res) {
+router.post('/deleteCompany', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'admin') {
@@ -381,7 +382,7 @@ router.post('/deleteCompany', function (req, res) {
     }
 });
 
-router.post('/addToFavCompanies', function (req, res) {
+router.post('/addToFavCompanies', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -396,7 +397,7 @@ router.post('/addToFavCompanies', function (req, res) {
     }
 });
 
-router.get('/viewMyReviews', function (req, res) {
+router.get('/viewMyReviews', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -414,7 +415,7 @@ router.get('/viewMyReviews', function (req, res) {
     }
 });
 
-router.post('/postPromotion1', function (req, res) {
+router.post('/postPromotion1', function(req, res) {
     try {
 
         const decodedPayload = req.decoded;
@@ -433,7 +434,7 @@ router.post('/postPromotion1', function (req, res) {
     }
 });
 
-router.post('/updatePromotion1', function (req, res) {
+router.post('/updatePromotion1', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -451,7 +452,7 @@ router.post('/updatePromotion1', function (req, res) {
     }
 });
 
-router.get('/viewPromotions1', function (req, res) {
+router.get('/viewPromotions1', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -469,7 +470,7 @@ router.get('/viewPromotions1', function (req, res) {
     }
 });
 
-router.post('/deletePromotion1', function (req, res) {
+router.post('/deletePromotion1', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -487,7 +488,7 @@ router.post('/deletePromotion1', function (req, res) {
     }
 });
 
-router.get('/getCompanyEvents', function (req, res) {
+router.get('/getCompanyEvents', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -505,7 +506,7 @@ router.get('/getCompanyEvents', function (req, res) {
     }
 });
 
-router.post('/viewRatings', function (req, res) {
+router.post('/viewRatings', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'client') {
@@ -523,7 +524,7 @@ router.post('/viewRatings', function (req, res) {
     }
 });
 
-router.post('/updateEvents', function (req, res) {
+router.post('/updateEvents', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -545,7 +546,7 @@ router.post('/updateEvents', function (req, res) {
     }
 });
 
-router.post('/createService', function (req, res) {
+router.post('/createService', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -563,7 +564,7 @@ router.post('/createService', function (req, res) {
     }
 });
 
-router.post('/updateService', function (req, res) {
+router.post('/updateService', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -581,7 +582,7 @@ router.post('/updateService', function (req, res) {
     }
 });
 
-router.post('/deleteService', function (req, res) {
+router.post('/deleteService', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -599,7 +600,7 @@ router.post('/deleteService', function (req, res) {
     }
 });
 
-router.get('/viewServices', function (req, res) {
+router.get('/viewServices', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -617,7 +618,7 @@ router.get('/viewServices', function (req, res) {
     }
 });
 
-router.get('/viewMyProfile', function (req, res) {
+router.get('/viewMyProfile', function(req, res) {
     try {
         const decodedPayload = req.decoded;
         if (decodedPayload.role === 'company') {
@@ -632,6 +633,74 @@ router.get('/viewMyProfile', function (req, res) {
             success: false,
             message: 'Internal server error.'
         })
+    }
+});
+router.post('/bookEvent', function(req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.addToBookedEvents(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
+router.get('/bookedEvents', function(req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.myBookedEvents(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
+router.get('/bookedServices', function(req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.myBookedServices(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+});
+router.post('/bookService', function(req, res) {
+    try {
+        const decodedPayload = req.decoded;
+        if (decodedPayload.role === 'client') {
+            clientController.addToBookedServices(req, res);
+        } else {
+            res.status(401).json({
+                error: 'Unauthorized'
+            });
+        }
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
     }
 });
 

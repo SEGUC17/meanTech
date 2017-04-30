@@ -1,5 +1,5 @@
 const viewEventController = function ($scope, $location, factory) {
-
+    //For visitors and clients to view all events
     factory.getAllEvents().success(function(data) {
         $scope.allevents=data.data;
     });
@@ -17,5 +17,5 @@ const viewEventController = function ($scope, $location, factory) {
 
 }
 
-eventController.$inject = ['$scope', '$location', 'factory'];
+viewEventController.$inject = ['$scope', '$location', 'factory'];
 App.controller('viewEventController', viewEventController);

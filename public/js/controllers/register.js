@@ -1,10 +1,12 @@
 const registerController = function ($scope, $location, factory) {
     $scope.clientInfo = {};
 
+    // Client can register his information
     $scope.register = function register() {
         factory.register($scope.clientInfo)
-            .success(function (data) {
-                alert('Successfully Registered! Please wait for an email on further details!');
+            .success(function (response) {
+                alert('Successfully Registered!');
+                $location.path('/');
             }).error(function (error) {
                 alert(error.message);
             });
