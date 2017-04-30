@@ -41,21 +41,30 @@
     }
 </style>
 <div class="container">
-<div>
-    <form class="form-login" ng-submit="adminLogin()">
-        <h1 class="form-login-header">Admin Login</h1>
-        <!-- Username -->
-        <label>Username:</label>
-        <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="loginForm.username"
-            required>
-        <br>
-        <!-- Password -->
-        <label>Password:</label>
-        <input class="form-control" type="password" name="password" placeholder="Please enter password." ng-model="loginForm.password"
-            required>
-        <br>
-        <button class="btn btn-primary" type="submit">Login</button>
-    </form>
-    <a href="#/adminResetPassword">Forgot Password?</a>
+    <div>
+        <form class="form-login" ng-submit="adminLogin()">
+            <!-- Successful Login Message -->
+            <div class="row show-hide-message" ng-show="successMsg">
+                <div class="alert alert-success">{{successMsg}}</div>
+            </div>
+            <!-- Failed Login Message -->
+            <div class="row show-hide-message" ng-show="errorMsg">
+                <div class="alert alert-danger">{{errorMsg}}</div>
+            </div>
+            <h1 class="form-login-header">Admin Login</h1>
+            <!-- Username -->
+            <label>Username:</label>
+            <input class="form-control" type="text" name="username" placeholder="Please enter username." ng-model="loginForm.username"
+                required>
+            <br>
+            <!-- Password -->
+            <label>Password:</label>
+            <input class="form-control" type="password" name="password" placeholder="Please enter password." ng-model="loginForm.password"
+                required>
+            <br>
+            <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+        <a href="#/adminResetPassword">Forgot Password?</a>
 
+    </div>
 </div>

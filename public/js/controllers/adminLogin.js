@@ -9,9 +9,10 @@ const adminLoginController = function ($scope, $location, factory) {
                 factory.setClientUserFalse();
                 factory.setBusinessUserFalse();
                 $location.path('/adminHome');
+                
             } else {
-                alert(data.data.msg);
-            } 
+                $scope.errorMsg = data.data.msg;
+            }
         })
     };
 };

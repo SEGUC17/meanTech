@@ -129,8 +129,8 @@ App.factory('factory', function($http, $location) {
             return $http.post(apiUrl.concat('company'), info);
 
         },
-
-        getCompanyEvents: function() {
+//view the events of a specific company to the company itself
+        getCompanyEvents: function () {
             return $http.get(apiUrl.concat('getCompanyEvents'), {
                 headers: {
                     'x-access-token': token
@@ -138,7 +138,8 @@ App.factory('factory', function($http, $location) {
             });
         },
 
-        viewRatings: function(companyID) {
+// clients are able to view ratings of a specific company
+        viewRatings: function (companyID) {
             return $http.post(apiUrl.concat('viewRatings'), companyID, {
                 headers: {
                     'x-access-token': token
@@ -146,13 +147,15 @@ App.factory('factory', function($http, $location) {
             });
         },
 
-        updateEvent: function(info) {
+// Companies are able to update the details of events they created
+        updateEvent: function (info) {
             return $http.post(apiUrl.concat('updateEvents'), info, {
                 headers: {
                     'x-access-token': token
                 }
             })
         },
+// Companies are able to delete the details of events they created
 
         deleteEvent: function(info) {
             return $http.post(apiUrl.concat('deleteEvent'), info, {

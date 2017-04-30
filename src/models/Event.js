@@ -1,5 +1,29 @@
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+var validate = require('mongoose-validator');
+
+
+var alphaValidator = validate({
+    validator: 'isAlphanumeric',
+    passIfEmpty: false,
+    message: 'Name should contain alpha-numeric characters only',
+    httpStatus: 400
+  });
+
+ 
+ var textValidator= validate({
+  validator: 'matches',
+  arguments: ['^[a-zA-Z\-0-9-" "]+$', 'i']
+});
+
+
+  var urlValidator = validate({
+    validator: 'isURL',
+    passIfEmpty: true,
+    message: 'Please provide a valide URL',
+    httpStatus: 400
+  });
+
 
 
 var eventSchema = mongoose.Schema({
@@ -10,7 +34,8 @@ var eventSchema = mongoose.Schema({
     },
     details: {
         type: String,
-        required: true
+        required: true,
+        validate:textValidator,
 
     },
     date: {
@@ -21,33 +46,39 @@ var eventSchema = mongoose.Schema({
     },
     durationMins: {
         type: Number,
-        required: true
+        required: true,
+        validate:alphaValidator,
+
+
 
     },
     address: {
         type: String,
-        required: true
+        required: true,
+        validate:textValidator,
 
     },
     pictureURL: {
         type: String,
-        required: true
+        required: true,
+        validate:urlValidator,
 
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        validate:textValidator,
+
 
     },
 
     contacts: {
         type: [String],
-        required: true
-
+        required: true,
     },
     price: {
         type: Number,
-        default: false
+        default: false,
 
 
     },

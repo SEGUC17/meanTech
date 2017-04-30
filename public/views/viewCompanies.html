@@ -43,6 +43,10 @@
 <div class="container">
     <h1 class="page-header">View Companies</h1>
     <div class="row placeholders" ng-submit="viewCompanies()">
+        <!-- Failed Message -->
+        <div class="row show-hide-message" ng-show="errorMsg">
+            <div class="alert alert-danger">{{errorMsg}}</div>
+        </div>
         <ul class="list-group company-list">
             <div ng-repeat="company in companies">
                 <li class="list-group-item list-group-item-info">
