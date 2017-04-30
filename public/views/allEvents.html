@@ -130,7 +130,7 @@ tr:last-of-type td:last-child {
     <tr ng-repeat="event in allevents"> 
     <td>{{event.name}}</td>
     <td>{{event.details}}</td> 
-    <td>{{event.date}}</td> 
+    <td>{{event.date | date: 'MM-dd-yyyy'}}</td> 
     <td>{{event.durationMins}}</td> 
     <td>{{event.address}}</td> 
     <td>{{event.pictureURL}}</td> 
