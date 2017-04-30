@@ -25,7 +25,7 @@ const visitCompanyPageController = function ($scope, $location, factory) {
         .catch(function (response) {
             alert(response.data.error);
         });
-
+    //For clients to add companies to their list of favourites
     $scope.addToFavCompanies = function addToFavCompanies() {
         var compID = comp._id;
 
