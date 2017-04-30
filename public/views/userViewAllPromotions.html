@@ -88,12 +88,9 @@
         <div class="col-sm-4 col-cm-offser-4">
             <div class="" ng-repeat="promotion in promotions">
                 <div class="panel panel-primary">
-                    <div> {{ "Activity: " + promotion.content}}
-                        <div> {{"Expiry: " + promotion.expiry}}
-                            <!--<div> {{"Picture: " + promotion.pictureURL}}
-
-
-                                </div>-->
+                    <h5> Promotion </h5>
+                    <div> {{ "Content: " + promotion.content}}
+                        <div> Expiry: {{constructDate(promotion.expiry) | date: longDate}}
                         </div>
 
                     </div>
