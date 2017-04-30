@@ -27,9 +27,9 @@ const visitCompanyPageController = function ($scope, $location, factory) {
         });
     //For clients to add companies to their list of favourites
     $scope.addToFavCompanies = function addToFavCompanies() {
-        var compID = comp._id;
+        var compName = comp.name;
 
-        factory.addFavCompanies(compID)
+        factory.addFavCompanies(compName)
             .success(function (data) {
                 alert("Company added to favourites");
             }).error(function (error) {

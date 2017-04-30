@@ -10,9 +10,9 @@ const updateProfileController = function ($scope, $location, factory) {
     $scope.clientUpdateProfile = function clientUpdateProfile() {
         factory.clientUpdateProfile($scope.clientUpdateProfileForm)
             .success(function (data) {
-                // console.log('SUCCESS =>', data);
+                alert('successfully updated')
             }).error(function (error) {
-                // console.log('ERROR =>', error);
+                alert(error.message)
             });
     };
 };
