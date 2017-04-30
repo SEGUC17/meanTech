@@ -26,7 +26,7 @@ const stripeController = function($scope, $location, factory, stripe, $http) {
                     var payment = angular.copy($scope.payment);
                     payment.card = void 0;
                     payment.token = response.id;
-                    return $http.post('http://localhost:8080/stripe', payment);
+                    return $http.post('https://eventatk.herokuapp.com/stripe', payment);
                 })
                 .then(function(payment) {
                     if (factory.getSelectedPurchase().date) {
